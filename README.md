@@ -22,3 +22,10 @@ Windows版本要求10.0.17763.0及以上。现在目前只支持windows x64平�
 持续更新中... :)
 
 未来的更新：添加桌面右键菜单快捷打开
+
+<br/><br/>
+<div>
+相关介绍视频参考(来源:bilibili)：
+
+[![](https://i0.hdslb.com/bfs/archive/1333a1317e438c5c017c7de1d4b7b497c4da3798.jpg@320w_200h)](https://www.bilibili.com/video/BV1sYhLesEhD)
+</div>
