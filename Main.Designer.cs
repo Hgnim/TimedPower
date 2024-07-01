@@ -52,10 +52,14 @@
             countdownLabel = new Label();
             StartButton = new Button();
             StopButton = new Button();
-            GyMenuStrip = new ContextMenuStrip(components);
+            FormMenuStrip = new ContextMenuStrip(components);
+            windows右键菜单ToolStripMenuItem = new ToolStripMenuItem();
+            AddOrFixWindowsRightClickMenu_MenuItem = new ToolStripMenuItem();
+            RemoveWindowsRightClickMenu_MenuItem = new ToolStripMenuItem();
+            toolStripMenuItem1 = new ToolStripSeparator();
             GyToolStripMenuItem = new ToolStripMenuItem();
             TimeInput_ContextMenu.SuspendLayout();
-            GyMenuStrip.SuspendLayout();
+            FormMenuStrip.SuspendLayout();
             SuspendLayout();
             // 
             // ActionSelect
@@ -81,6 +85,8 @@
             TimePicker.Size = new Size(161, 24);
             TimePicker.TabIndex = 1;
             TimePicker.Visible = false;
+            TimePicker.KeyPress += TimePicker_KeyPress;
+            TimePicker.KeyUp += TimePicker_KeyUp;
             // 
             // TimeInput_ContextMenu
             // 
@@ -238,16 +244,42 @@
             StopButton.UseVisualStyleBackColor = true;
             StopButton.Click += StopButton_Click;
             // 
-            // GyMenuStrip
+            // FormMenuStrip
             // 
-            GyMenuStrip.Items.AddRange(new ToolStripItem[] { GyToolStripMenuItem });
-            GyMenuStrip.Name = "GyMenuStrip";
-            GyMenuStrip.Size = new Size(181, 48);
+            FormMenuStrip.Items.AddRange(new ToolStripItem[] { windows右键菜单ToolStripMenuItem, toolStripMenuItem1, GyToolStripMenuItem });
+            FormMenuStrip.Name = "GyMenuStrip";
+            FormMenuStrip.Size = new Size(178, 54);
+            // 
+            // windows右键菜单ToolStripMenuItem
+            // 
+            windows右键菜单ToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { AddOrFixWindowsRightClickMenu_MenuItem, RemoveWindowsRightClickMenu_MenuItem });
+            windows右键菜单ToolStripMenuItem.Name = "windows右键菜单ToolStripMenuItem";
+            windows右键菜单ToolStripMenuItem.Size = new Size(177, 22);
+            windows右键菜单ToolStripMenuItem.Text = "Windows右键菜单";
+            // 
+            // AddOrFixWindowsRightClickMenu_MenuItem
+            // 
+            AddOrFixWindowsRightClickMenu_MenuItem.Name = "AddOrFixWindowsRightClickMenu_MenuItem";
+            AddOrFixWindowsRightClickMenu_MenuItem.Size = new Size(184, 22);
+            AddOrFixWindowsRightClickMenu_MenuItem.Text = "添加或修复右键菜单";
+            AddOrFixWindowsRightClickMenu_MenuItem.Click += AddOrFixWindowsRightClickMenu_MenuItem_Click;
+            // 
+            // RemoveWindowsRightClickMenu_MenuItem
+            // 
+            RemoveWindowsRightClickMenu_MenuItem.Name = "RemoveWindowsRightClickMenu_MenuItem";
+            RemoveWindowsRightClickMenu_MenuItem.Size = new Size(184, 22);
+            RemoveWindowsRightClickMenu_MenuItem.Text = "移除右键菜单";
+            RemoveWindowsRightClickMenu_MenuItem.Click += RemoveWindowsRightClickMenu_MenuItem_Click;
+            // 
+            // toolStripMenuItem1
+            // 
+            toolStripMenuItem1.Name = "toolStripMenuItem1";
+            toolStripMenuItem1.Size = new Size(174, 6);
             // 
             // GyToolStripMenuItem
             // 
             GyToolStripMenuItem.Name = "GyToolStripMenuItem";
-            GyToolStripMenuItem.Size = new Size(180, 22);
+            GyToolStripMenuItem.Size = new Size(177, 22);
             GyToolStripMenuItem.Text = "关于";
             GyToolStripMenuItem.Click += GyToolStripMenuItem_Click;
             // 
@@ -256,7 +288,7 @@
             AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(276, 102);
-            ContextMenuStrip = GyMenuStrip;
+            ContextMenuStrip = FormMenuStrip;
             Controls.Add(StopButton);
             Controls.Add(StartButton);
             Controls.Add(countdownLabel);
@@ -274,8 +306,9 @@
             Text=ThisFormText;
             FormClosing += Main_FormClosing;
             Load += Main_Load;
+            Shown += Main_Shown;
             TimeInput_ContextMenu.ResumeLayout(false);
-            GyMenuStrip.ResumeLayout(false);
+            FormMenuStrip.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -301,7 +334,11 @@
         private Label countdownLabel;
         private Button StartButton;
         private Button StopButton;
-        private ContextMenuStrip GyMenuStrip;
+        private ContextMenuStrip FormMenuStrip;
         private ToolStripMenuItem GyToolStripMenuItem;
+        private ToolStripSeparator toolStripMenuItem1;
+        private ToolStripMenuItem windows右键菜单ToolStripMenuItem;
+        private ToolStripMenuItem AddOrFixWindowsRightClickMenu_MenuItem;
+        private ToolStripMenuItem RemoveWindowsRightClickMenu_MenuItem;
     }
 }

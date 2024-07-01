@@ -1,4 +1,5 @@
 using Microsoft.Toolkit.Uwp.Notifications;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -8,14 +9,22 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text.RegularExpressions;
 using Windows.Foundation.Collections;
 using static TimedPower.TaskbarProgressBar;
+using System.Xml;
 
 namespace TimedPower
 {
     public partial class Main : Form
     {
-        const string version = "1.0.0.20240630";
-        public Main()
+        static string[] args = [];
+        const string version = "1.2.1.20240701";
+        internal readonly struct FilePath
         {
+            internal static readonly string ConfigDir = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "\\TimedPower\\";
+            internal static readonly string MainDataFile = ConfigDir + "data.xml";
+        }
+        public Main(string[] args)
+        {
+            Main.args = args;
             InitializeComponent();
         }
 
@@ -23,12 +32,183 @@ namespace TimedPower
         #region Main_From
         private void Main_Load(object sender, EventArgs e)
         {
+            bool firstStart = false;//是否首次启动程序
+
             ActionSelect.SelectedIndex = 0;
             TimeTypeSelect.SelectedIndex = 0;
+
+            if (!Directory.Exists(FilePath.ConfigDir))
+                Directory.CreateDirectory(FilePath.ConfigDir);
+            if (!File.Exists(FilePath.MainDataFile))
+            {
+                XmlTextWriter xmlWriter = new(FilePath.MainDataFile, System.Text.Encoding.GetEncoding("utf-8")) { Formatting = System.Xml.Formatting.Indented };
+
+                xmlWriter.WriteRaw("<?xml version=\"1.0\" encoding=\"utf-8\" ?>");
+                xmlWriter.WriteStartElement("TimedPower_Data");
+
+                xmlWriter.WriteStartElement("first");
+                xmlWriter.WriteAttributeString("value", "1");
+                xmlWriter.WriteEndElement();
+
+                xmlWriter.WriteStartElement("Window");
+                xmlWriter.WriteAttributeString("x", this.Left.ToString());
+                xmlWriter.WriteAttributeString("y", this.Top.ToString());
+                xmlWriter.WriteEndElement();
+
+                xmlWriter.WriteStartElement("Action");
+                xmlWriter.WriteAttributeString("index", ActionSelect.SelectedIndex.ToString());
+                xmlWriter.WriteEndElement();
+
+                xmlWriter.WriteStartElement("TimeType");
+                xmlWriter.WriteAttributeString("index", TimeTypeSelect.SelectedIndex.ToString());
+                xmlWriter.WriteEndElement();
+
+                xmlWriter.WriteStartElement("TimeInput");
+                xmlWriter.WriteAttributeString("value", "");
+                xmlWriter.WriteEndElement();
+
+                xmlWriter.WriteFullEndElement();
+                xmlWriter.Close();
+            }
+            else
+            {
+                try
+                {
+                    XmlDocument xmlDoc = new();
+                    XmlNode xmlRoot;
+                    xmlDoc.Load(FilePath.MainDataFile);
+                    xmlRoot = xmlDoc.SelectSingleNode("TimedPower_Data")!;
+                    XmlNodeList xmlNL = xmlRoot.ChildNodes;
+                    foreach (XmlNode xn in xmlNL)
+                    {
+                        XmlElement xmlE = (XmlElement)xn;
+                        switch (xmlE.Name)
+                        {
+                            case "first":
+                                try { firstStart = Convert.ToBoolean(int.Parse(xmlE.GetAttribute("value"))); } catch { }
+                                break;
+                            case "Window":
+                                try
+                                {
+                                    int[] temp = [int.Parse(xmlE.GetAttribute("x")), int.Parse(xmlE.GetAttribute("y"))];
+                                    if (temp[0] >= 0 && temp[0] + this.Width <= System.Windows.Forms.SystemInformation.PrimaryMonitorSize.Width)
+                                        this.Left = temp[0];
+                                    if (temp[1] >= 0 && temp[1] + this.Height <= System.Windows.Forms.SystemInformation.PrimaryMonitorSize.Height)
+                                        this.Top = temp[1];
+                                }
+                                catch { }
+                                break;
+                            case "Action":
+                                try { ActionSelect.SelectedIndex = int.Parse(xmlE.GetAttribute("index")); } catch { }
+                                break;
+                            case "TimeType":
+                                try { TimeTypeSelect.SelectedIndex = int.Parse(xmlE.GetAttribute("index")); } catch { }
+                                break;
+                            case "TimeInput":
+                                try { TimeInput.Text = xmlE.GetAttribute("value"); } catch { }
+                                break;
+                        }
+                    }
+                }
+                catch { }
+            }
+            if (!firstStart)
+            {
+                if (MessageBox.Show("是否将快捷按钮添加至Windows右键菜单？稍后也可以右键程序进行设置。", this.Text, MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+                {
+                    AddOrFixWindowsRightClickMenu_MenuItem_Click(null!, null!);
+                }
+            }
         }
         private void Main_FormClosing(object sender, FormClosingEventArgs e)
         {
             fuse = false;
+            ToastNotificationManagerCompat.Uninstall();//清除且卸载所有通知（实测使用该方法后该实例将无法再发送通知）
+            DataSave();
+        }
+        private void Main_Shown(object sender, EventArgs e)
+        {
+            if (args.Length != 0)
+            {
+                string type = "", time = "";
+                for (int i = 0; i < args.Length; i++)
+                {
+                    switch (args[i].ToLower())
+                    {
+                        case "-type":
+                            i++;
+                            type = args[i].ToLower();
+                            break;
+                        case "-time":
+                            i++;
+                            time = args[i].ToLower();
+                            break;
+                    }
+                }
+                //string typeStr="";
+                switch (type)
+                {
+                    case "shutdown":
+                        //typeStr = "关机";
+                        ActionSelect.SelectedIndex = 0;
+                        break;
+                    case "reboot":
+                        //typeStr = "重启";
+                        ActionSelect.SelectedIndex = 1;
+                        break;
+                    case "sleep":
+                        //typeStr = "睡眠";
+                        ActionSelect.SelectedIndex = 2;
+                        break;
+                    case "hibernate":
+                        //typeStr = "休眠";
+                        ActionSelect.SelectedIndex = 3;
+                        break;
+                    case "userlock":
+                        //typeStr = "锁定";
+                        ActionSelect.SelectedIndex = 4;
+                        break;
+                    case "useroff":
+                        //typeStr = "注销";
+                        ActionSelect.SelectedIndex = 5;
+                        break;
+                    default:
+                        return;
+                }
+                TimeTypeSelect.SelectedIndex = 0;
+                TimeInput.Text = time;
+                StartButton_Click(null!, null!);
+            }
+        }
+        void DataSave()
+        {
+            XmlDocument xmlDoc = new();
+            XmlNodeList xmlNL;
+            XmlElement xmlEle;
+            xmlDoc.Load(FilePath.MainDataFile);
+            xmlNL = xmlDoc.SelectSingleNode("TimedPower_Data")!.ChildNodes;
+            foreach (XmlNode xn in xmlNL)
+            {
+                xmlEle = (XmlElement)xn;
+                switch (xmlEle.Name)
+                {
+                    case "Window":
+                        xmlEle.SetAttribute("x", this.Left.ToString());
+                        xmlEle.SetAttribute("y", this.Top.ToString());
+                        break;
+                    case "Action":
+                        xmlEle.SetAttribute("index", ActionSelect.SelectedIndex.ToString());
+                        break;
+                    case "TimeType":
+                        xmlEle.SetAttribute("index", TimeTypeSelect.SelectedIndex.ToString());
+                        break;
+                    case "TimeInput":
+                        xmlEle.SetAttribute("value", TimeInput.Text);
+                        break;
+                }
+            }
+            xmlDoc.Save(FilePath.MainDataFile);
+
         }
         #endregion
         private void TimeTypeSelect_SelectedIndexChanged(object sender, EventArgs e)
@@ -49,13 +229,12 @@ namespace TimedPower
         {
             countdownLabel.Left = (int)(((float)this.Width / 2) - ((float)countdownLabel.Width / 2));
         }
+        #region TimeInput&TimePicker
         #region TimeInput
         private void TimeInput_Leave(object sender, EventArgs e)
         {
             if (TimeInput.Text != "" && FormatdInputBool(TimeInput.Text))
-            {
                 TimeInput.Text = atv.GetFormatdTime();
-            }
         }
         private void TimeInput_KeyUp(object sender, KeyEventArgs e)
         {
@@ -124,6 +303,25 @@ namespace TimedPower
             TimeInput.Text = atv.GetFormatdTime();
         }
         #endregion
+
+        #endregion
+        #region TimePicker
+        private void TimePicker_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.Handled = true;
+                StartButton.Focus();
+            }
+        }
+        private void TimePicker_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == System.Convert.ToChar(13))
+            {
+                e.Handled = true;
+            }
+        }
+        #endregion
         #endregion
 
 
@@ -135,7 +333,7 @@ namespace TimedPower
             switch (TimeTypeSelect.SelectedItem!.ToString())
             {
                 case "此后":
-                    if (FormatdInputBool(TimeInput.Text)) { }
+                    if (FormatdInputBool(TimeInput.Text)) TimeInput.Text = atv.GetFormatdTime();
                     else return;
                     break;
                 case "此时":
@@ -311,7 +509,6 @@ namespace TimedPower
                         if (fuse) PowerInvoke.UserOff();
                         break;
                 }
-                ToastNotificationManagerCompat.Uninstall();//清除且卸载所有通知（实测使用该方法后该实例将无法再发送通知）
                 this.Invoke(new Action(() =>
                 {
                     this.Close();
@@ -455,13 +652,24 @@ namespace TimedPower
             }
         }
 
+        #region FormMenuStrip
+        private void AddOrFixWindowsRightClickMenu_MenuItem_Click(object sender, EventArgs e)
+        {
+            BatFile.WindowsRightClickMenu.RunAdd();
+        }
+        private void RemoveWindowsRightClickMenu_MenuItem_Click(object sender, EventArgs e)
+        {
+            BatFile.WindowsRightClickMenu.RunRemove();
+        }
         private void GyToolStripMenuItem_Click(object sender, EventArgs e)
         {
             MessageBox.Show("程序名: TimedPower" +
             "\r\n别名: 定时电源" +
             "\r\n版本:V" + version +
             "\r\nCopyright (C) 2024 Hgnim, All rights reserved." +
-            "\r\nGithub: https://github.com/Hgnim", "关于");
+            "\r\nGithub: https://github.com/Hgnim/TimedPower", "关于");
         }
+        #endregion
+
     }
 }

@@ -146,6 +146,7 @@ namespace TimedPower
             };
             process.Start();
             process.WaitForExit();
+            process.Close();
         }
     }
 }
