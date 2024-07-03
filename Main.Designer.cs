@@ -207,11 +207,10 @@
             // countdownLabel
             // 
             countdownLabel.Anchor = AnchorStyles.Bottom;
-            countdownLabel.AutoSize = true;
             countdownLabel.Font = new Font("Microsoft YaHei UI", 20F);
-            countdownLabel.Location = new Point(76, 98);
+            countdownLabel.Location = new Point(4, 64);
             countdownLabel.Name = "countdownLabel";
-            countdownLabel.Size = new Size(125, 35);
+            countdownLabel.Size = new Size(225, 35);
             countdownLabel.TabIndex = 20;
             countdownLabel.Tag = "";
             countdownLabel.Text = "00:00:00";
@@ -223,7 +222,7 @@
             // 
             StartButton.Anchor = AnchorStyles.Top;
             StartButton.Font = new Font("Microsoft YaHei UI", 10F);
-            StartButton.Location = new Point(44, 67);
+            StartButton.Location = new Point(101, 67);
             StartButton.Name = "StartButton";
             StartButton.Size = new Size(75, 28);
             StartButton.TabIndex = 3;
@@ -236,12 +235,13 @@
             StopButton.Anchor = AnchorStyles.Top;
             StopButton.Enabled = false;
             StopButton.Font = new Font("Microsoft YaHei UI", 10F);
-            StopButton.Location = new Point(158, 67);
+            StopButton.Location = new Point(226, 67);
             StopButton.Name = "StopButton";
-            StopButton.Size = new Size(75, 28);
+            StopButton.Size = new Size(49, 28);
             StopButton.TabIndex = 5;
             StopButton.Text = "停止";
             StopButton.UseVisualStyleBackColor = true;
+            StopButton.Visible = false;
             StopButton.Click += StopButton_Click;
             // 
             // FormMenuStrip
@@ -290,7 +290,6 @@
             ClientSize = new Size(276, 102);
             ContextMenuStrip = FormMenuStrip;
             Controls.Add(StopButton);
-            Controls.Add(StartButton);
             Controls.Add(countdownLabel);
             Controls.Add(TimeInput);
             Controls.Add(TimeTypeSelect);
@@ -298,12 +297,13 @@
             Controls.Add(label1);
             Controls.Add(TimePicker);
             Controls.Add(ActionSelect);
+            Controls.Add(StartButton);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
             MinimumSize = new Size(292, 0);
             Name = "Main";
-            Text=ThisFormText;
+            Text = ThisFormText;
             FormClosing += Main_FormClosing;
             Load += Main_Load;
             Shown += Main_Shown;

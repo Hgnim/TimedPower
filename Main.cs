@@ -16,7 +16,7 @@ namespace TimedPower
     public partial class Main : Form
     {
         static string[] args = [];
-        const string version = "1.2.1.20240701";
+        const string version = "1.2.2.20240703";
         internal readonly struct FilePath
         {
             internal static readonly string ConfigDir = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "\\TimedPower\\";
@@ -227,7 +227,7 @@ namespace TimedPower
         }
         private void CountdownLabel_Resize(object sender, EventArgs e)
         {
-            countdownLabel.Left = (int)(((float)this.Width / 2) - ((float)countdownLabel.Width / 2));
+            //countdownLabel.Left = (int)(((float)this.Width / 2) - ((float)countdownLabel.Width / 2));
         }
         #region TimeInput&TimePicker
         #region TimeInput
@@ -251,7 +251,7 @@ namespace TimedPower
                 e.Handled = true;
             }
         }
-        #region TimePicker_ContextMenu.Items
+        #region TimeInput_ContextMenu.Items
         private void TPCM_s10_Click(object sender, EventArgs e)
         {
             atv.SetTimeValue(seconds: 10);
@@ -548,26 +548,30 @@ namespace TimedPower
             {
                 case "start":
                     StartButton.Enabled = false;
+                    StartButton.Visible = false;
                     StopButton.Enabled = true;
+                    StopButton.Visible = true;
                     ActionSelect.Enabled = false;
                     TimePicker.Enabled = false;
                     TimeInput.Enabled = false;
                     TimeTypeSelect.Enabled = false;
                     countdownLabel.Text = "00:00:00";
                     countdownLabel.Visible = true;
-                    this.Height = 175;
-                    countdownLabel.Top = 98;//必须在后面重新定义位置，否则将会随窗体活动到底部不可见位置
+                    //this.Height = 175;
+                    //countdownLabel.Top = 98;//必须在后面重新定义位置，否则将会随窗体活动到底部不可见位置
                     break;
                 case "stop":
                     StartButton.Enabled = true;
+                    StartButton.Visible = true;
                     StopButton.Enabled = false;
+                    StopButton.Visible= false;
                     ActionSelect.Enabled = true;
                     TimePicker.Enabled = true;
                     TimeInput.Enabled = true;
                     TimeTypeSelect.Enabled = true;
                     countdownLabel.Visible = false;
                     //this.Width = 292;
-                    this.Height = 141;
+                    //this.Height = 141;
                     break;
             }
         }
