@@ -1,6 +1,9 @@
 # 定时电源(TimedPower)
 
-基于Windows平台下的定时电源操作软件。
+基于Windows平台下的定时电源操作软件。<br/>
+[点击前往下载页面](https://github.com/Hgnim/TimedPower/releases/latest)
+
+[最新版本更新内容](update_log/latest_version.md)<br/>
 
 <br/><br/>
 该软件可以定时关机、重启、睡眠、休眠、锁定、注销。

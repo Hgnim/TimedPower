@@ -56,10 +56,21 @@
             windows右键菜单ToolStripMenuItem = new ToolStripMenuItem();
             AddOrFixWindowsRightClickMenu_MenuItem = new ToolStripMenuItem();
             RemoveWindowsRightClickMenu_MenuItem = new ToolStripMenuItem();
+            软件开机自启ToolStripMenuItem = new ToolStripMenuItem();
+            enabledSelfStarting = new ToolStripMenuItem();
+            disabledSelfStarting = new ToolStripMenuItem();
+            autoTask_ToolStripMenuItem = new ToolStripMenuItem();
             toolStripMenuItem1 = new ToolStripSeparator();
             GyToolStripMenuItem = new ToolStripMenuItem();
+            notifyIcon_main = new NotifyIcon(components);
+            notifyIcon_main_ContextMenu = new ContextMenuStrip(components);
+            notifyIcon_main_ContextMenu_ShowButton = new ToolStripMenuItem();
+            notifyIcon_main_ContextMenu_HiddenButton = new ToolStripMenuItem();
+            toolStripMenuItem2 = new ToolStripSeparator();
+            notifyIcon_main_ContextMenu_ExitButton = new ToolStripMenuItem();
             TimeInput_ContextMenu.SuspendLayout();
             FormMenuStrip.SuspendLayout();
+            notifyIcon_main_ContextMenu.SuspendLayout();
             SuspendLayout();
             // 
             // ActionSelect
@@ -246,9 +257,9 @@
             // 
             // FormMenuStrip
             // 
-            FormMenuStrip.Items.AddRange(new ToolStripItem[] { windows右键菜单ToolStripMenuItem, toolStripMenuItem1, GyToolStripMenuItem });
+            FormMenuStrip.Items.AddRange(new ToolStripItem[] { windows右键菜单ToolStripMenuItem, 软件开机自启ToolStripMenuItem, autoTask_ToolStripMenuItem, toolStripMenuItem1, GyToolStripMenuItem });
             FormMenuStrip.Name = "GyMenuStrip";
-            FormMenuStrip.Size = new Size(178, 54);
+            FormMenuStrip.Size = new Size(178, 98);
             // 
             // windows右键菜单ToolStripMenuItem
             // 
@@ -271,6 +282,34 @@
             RemoveWindowsRightClickMenu_MenuItem.Text = "移除右键菜单";
             RemoveWindowsRightClickMenu_MenuItem.Click += RemoveWindowsRightClickMenu_MenuItem_Click;
             // 
+            // 软件开机自启ToolStripMenuItem
+            // 
+            软件开机自启ToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { enabledSelfStarting, disabledSelfStarting });
+            软件开机自启ToolStripMenuItem.Name = "软件开机自启ToolStripMenuItem";
+            软件开机自启ToolStripMenuItem.Size = new Size(177, 22);
+            软件开机自启ToolStripMenuItem.Text = "软件开机自启";
+            // 
+            // enabledSelfStarting
+            // 
+            enabledSelfStarting.Name = "enabledSelfStarting";
+            enabledSelfStarting.Size = new Size(184, 22);
+            enabledSelfStarting.Text = "启用或修复开机自启";
+            enabledSelfStarting.Click += EnabledSelfStarting_Click;
+            // 
+            // disabledSelfStarting
+            // 
+            disabledSelfStarting.Name = "disabledSelfStarting";
+            disabledSelfStarting.Size = new Size(184, 22);
+            disabledSelfStarting.Text = "禁用开机自启";
+            disabledSelfStarting.Click += DisabledSelfStarting_Click;
+            // 
+            // autoTask_ToolStripMenuItem
+            // 
+            autoTask_ToolStripMenuItem.Name = "autoTask_ToolStripMenuItem";
+            autoTask_ToolStripMenuItem.Size = new Size(177, 22);
+            autoTask_ToolStripMenuItem.Text = "自动定时任务";
+            autoTask_ToolStripMenuItem.Click += AutoTask_ToolStripMenuItem_Click;
+            // 
             // toolStripMenuItem1
             // 
             toolStripMenuItem1.Name = "toolStripMenuItem1";
@@ -282,6 +321,47 @@
             GyToolStripMenuItem.Size = new Size(177, 22);
             GyToolStripMenuItem.Text = "关于";
             GyToolStripMenuItem.Click += GyToolStripMenuItem_Click;
+            // 
+            // notifyIcon_main
+            // 
+            notifyIcon_main.ContextMenuStrip = notifyIcon_main_ContextMenu;
+            notifyIcon_main.Icon = (Icon)resources.GetObject("notifyIcon_main.Icon");
+            notifyIcon_main.Text = "定时电源";
+            notifyIcon_main.Visible = true;
+            notifyIcon_main.DoubleClick += NotifyIcon_main_DoubleClick;
+            // 
+            // notifyIcon_main_ContextMenu
+            // 
+            notifyIcon_main_ContextMenu.Items.AddRange(new ToolStripItem[] { notifyIcon_main_ContextMenu_ShowButton, notifyIcon_main_ContextMenu_HiddenButton, toolStripMenuItem2, notifyIcon_main_ContextMenu_ExitButton });
+            notifyIcon_main_ContextMenu.Name = "notifyIcon_main_ContextMenu";
+            notifyIcon_main_ContextMenu.Size = new Size(101, 76);
+            notifyIcon_main_ContextMenu.Opening += NotifyIcon_main_ContextMenu_Opening;
+            // 
+            // notifyIcon_main_ContextMenu_ShowButton
+            // 
+            notifyIcon_main_ContextMenu_ShowButton.Name = "notifyIcon_main_ContextMenu_ShowButton";
+            notifyIcon_main_ContextMenu_ShowButton.Size = new Size(100, 22);
+            notifyIcon_main_ContextMenu_ShowButton.Text = "显示";
+            notifyIcon_main_ContextMenu_ShowButton.Click += NotifyIcon_main_ContextMenu_ShowButton_Click;
+            // 
+            // notifyIcon_main_ContextMenu_HiddenButton
+            // 
+            notifyIcon_main_ContextMenu_HiddenButton.Name = "notifyIcon_main_ContextMenu_HiddenButton";
+            notifyIcon_main_ContextMenu_HiddenButton.Size = new Size(100, 22);
+            notifyIcon_main_ContextMenu_HiddenButton.Text = "隐藏";
+            notifyIcon_main_ContextMenu_HiddenButton.Click += NotifyIcon_main_ContextMenu_HiddenButton_Click;
+            // 
+            // toolStripMenuItem2
+            // 
+            toolStripMenuItem2.Name = "toolStripMenuItem2";
+            toolStripMenuItem2.Size = new Size(97, 6);
+            // 
+            // notifyIcon_main_ContextMenu_ExitButton
+            // 
+            notifyIcon_main_ContextMenu_ExitButton.Name = "notifyIcon_main_ContextMenu_ExitButton";
+            notifyIcon_main_ContextMenu_ExitButton.Size = new Size(100, 22);
+            notifyIcon_main_ContextMenu_ExitButton.Text = "退出";
+            notifyIcon_main_ContextMenu_ExitButton.Click += NotifyIcon_main_ContextMenu_ExitButton_Click;
             // 
             // Main
             // 
@@ -303,12 +383,15 @@
             MaximizeBox = false;
             MinimumSize = new Size(292, 0);
             Name = "Main";
-            Text = ThisFormText;
+            Opacity = 0D;
+            Text = "定时电源";
             FormClosing += Main_FormClosing;
+            FormClosed += Main_FormClosed;
             Load += Main_Load;
             Shown += Main_Shown;
             TimeInput_ContextMenu.ResumeLayout(false);
             FormMenuStrip.ResumeLayout(false);
+            notifyIcon_main_ContextMenu.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -340,5 +423,15 @@
         private ToolStripMenuItem windows右键菜单ToolStripMenuItem;
         private ToolStripMenuItem AddOrFixWindowsRightClickMenu_MenuItem;
         private ToolStripMenuItem RemoveWindowsRightClickMenu_MenuItem;
+        private NotifyIcon notifyIcon_main;
+        private ToolStripMenuItem autoTask_ToolStripMenuItem;
+        private ContextMenuStrip notifyIcon_main_ContextMenu;
+        private ToolStripMenuItem notifyIcon_main_ContextMenu_ShowButton;
+        private ToolStripMenuItem notifyIcon_main_ContextMenu_HiddenButton;
+        private ToolStripSeparator toolStripMenuItem2;
+        private ToolStripMenuItem notifyIcon_main_ContextMenu_ExitButton;
+        private ToolStripMenuItem 软件开机自启ToolStripMenuItem;
+        private ToolStripMenuItem enabledSelfStarting;
+        private ToolStripMenuItem disabledSelfStarting;
     }
 }

@@ -4,13 +4,13 @@ namespace TimedPower
 {
     class AfterTimeValue
     {
-        private static class MainData
+        private  class MainData
         {
-            private static int hours = 0;
-            private static int minutes = 0;
-            private static int seconds = 0;
+            private  int hours = 0;
+            private  int minutes = 0;
+            private  int seconds = 0;
 
-            public static long Hours
+            public  long Hours
             {
                 get
                 {
@@ -21,7 +21,7 @@ namespace TimedPower
                     hours = (int)value;
                 }
             }
-            public static long Minutes
+            public  long Minutes
             {
                 get
                 {
@@ -42,7 +42,7 @@ namespace TimedPower
                     minutes = (int)value;
                 }
             }
-            public static long Seconds
+            public  long Seconds
             {
                 get
                 {
@@ -64,9 +64,9 @@ namespace TimedPower
                 }
             }
         }
-
+        MainData mainData = new();
         #region 获取或设置时间值
-#pragma warning disable CA1822 // 将成员标记为 static //这些成员不可被标记为 static
+#pragma warning disable CA1822 // 将成员标记为  //这些成员不可被标记为 
         /// <summary>
         /// 获取时间值
         /// </summary>
@@ -74,7 +74,7 @@ namespace TimedPower
         {
             get
             {
-                return [(int)MainData.Hours, (int)MainData.Minutes, (int)MainData.Seconds];
+                return [(int)mainData.Hours, (int)mainData.Minutes, (int)mainData.Seconds];
             }
         }
         /// <summary>
@@ -84,11 +84,11 @@ namespace TimedPower
         {
             get
             {
-                return (int)MainData.Hours;
+                return (int)mainData.Hours;
             }
             set
             {
-                MainData.Hours = value;
+                mainData.Hours = value;
             }
         }
         /// <summary>
@@ -98,11 +98,11 @@ namespace TimedPower
         {
             get
             {
-                return (int)MainData.Minutes;
+                return (int)mainData.Minutes;
             }
             set
             {
-                MainData.Minutes = value;
+                mainData.Minutes = value;
             }
         }
         /// <summary>
@@ -112,11 +112,11 @@ namespace TimedPower
         {
             get
             {
-                return (int)MainData.Seconds;
+                return (int)mainData.Seconds;
             }
             set
             {
-                MainData.Seconds = value;
+                mainData.Seconds = value;
             }
         }
         /// <summary>
@@ -126,7 +126,7 @@ namespace TimedPower
         {
             get
             {
-                return MainData.Hours + (float)MainData.Minutes / 60 + (float)MainData.Seconds / 60 / 60;
+                return mainData.Hours + (float)mainData.Minutes / 60 + (float)mainData.Seconds / 60 / 60;
             }
         }
         /// <summary>
@@ -136,7 +136,7 @@ namespace TimedPower
         {
             get
             {
-                return MainData.Hours * 60 + MainData.Minutes + (float)MainData.Seconds / 60;
+                return mainData.Hours * 60 + mainData.Minutes + (float)mainData.Seconds / 60;
             }
         }
         /// <summary>
@@ -146,7 +146,7 @@ namespace TimedPower
         {
             get
             {
-                return MainData.Hours * 60 * 60 + MainData.Minutes * 60 + MainData.Seconds;
+                return mainData.Hours * 60 * 60 + mainData.Minutes * 60 + mainData.Seconds;
             }
         }
         /// <summary>
@@ -157,13 +157,13 @@ namespace TimedPower
         /// <param name="seconds_">秒</param>
         public void SetTimeValue(long hours = 0, long minutes = 0, long seconds = 0)
         {
-            /*hours ??= MainData.Hours;
-            minutes ??= MainData.Minutes;
-            seconds ??= MainData.Seconds; //同 if (seconds_ == null) seconds_ = MainData.seconds;*/
+            /*hours ??= mainData.Hours;
+            minutes ??= mainData.Minutes;
+            seconds ??= mainData.Seconds; //同 if (seconds_ == null) seconds_ = mainData.seconds;*/
 
-            MainData.Hours = hours;
-            MainData.Minutes = minutes;
-            MainData.Seconds = seconds;
+            mainData.Hours = hours;
+            mainData.Minutes = minutes;
+            mainData.Seconds = seconds;
         }
         #endregion
 
@@ -174,9 +174,9 @@ namespace TimedPower
         /// <returns>返回string值</returns>
         public string GetFormatdTime()
         {
-            return MainData.Hours.ToString().PadLeft(2,char.Parse("0")) + ":" + 
-                   MainData.Minutes.ToString().PadLeft(2, char.Parse("0")) + ":" + 
-                   MainData.Seconds.ToString().PadLeft(2, char.Parse("0"));
+            return mainData.Hours.ToString().PadLeft(2,char.Parse("0")) + ":" + 
+                   mainData.Minutes.ToString().PadLeft(2, char.Parse("0")) + ":" + 
+                   mainData.Seconds.ToString().PadLeft(2, char.Parse("0"));
         }
         /// <summary>
         /// 获取格式化后更直观的文本，例如: 5分20秒，13min14s
@@ -190,29 +190,29 @@ namespace TimedPower
             {
                 case "cn":
                     {
-                        if (MainData.Hours != 0) 
+                        if (mainData.Hours != 0) 
                         {
-                            output += MainData.Hours.ToString();
-                            if (MainData.Minutes == 0 && MainData.Seconds == 0) output +="小时";
+                            output += mainData.Hours.ToString();
+                            if (mainData.Minutes == 0 && mainData.Seconds == 0) output +="小时";
                             else output += "时";
                         }
-                        if (MainData.Minutes != 0)
+                        if (mainData.Minutes != 0)
                         {
-                            output += MainData.Minutes.ToString();
-                            if (MainData.Seconds == 0) output += "分钟";
+                            output += mainData.Minutes.ToString();
+                            if (mainData.Seconds == 0) output += "分钟";
                             else output += "分";
                         }
-                        if (MainData.Seconds != 0)
+                        if (mainData.Seconds != 0)
                         {
-                            output += MainData.Seconds.ToString() +"秒"; 
+                            output += mainData.Seconds.ToString() +"秒"; 
                         }
                     }
                     break;
                 case "en":
                     {
-                        if (MainData.Hours != 0) output += MainData.Hours.ToString()+"h";
-                        if (MainData.Minutes != 0) output += MainData.Minutes.ToString()+"min";
-                        if (MainData.Seconds != 0) output += MainData.Seconds.ToString() + "s";
+                        if (mainData.Hours != 0) output += mainData.Hours.ToString()+"h";
+                        if (mainData.Minutes != 0) output += mainData.Minutes.ToString()+"min";
+                        if (mainData.Seconds != 0) output += mainData.Seconds.ToString() + "s";
                     }
                     break;
             }
@@ -228,7 +228,7 @@ namespace TimedPower
         /// <returns>返回执行结果 done: 执行完成; error: 格式错误; ToBig: 数值过大</returns>
         public string FormatdInputTime(string input,int typeID=0)
         {
-            static bool IsNumber(string input)
+             bool IsNumber(string input)
             {
                 string pattern = "^-?\\d+$|^(-?\\d+)(\\.\\d+)?$";
                 Regex regex = new(pattern);
@@ -380,17 +380,17 @@ namespace TimedPower
             switch (typeID)
             {
                 case 0:
-                    MainData.Hours = timeTmp[0];
-                    MainData.Minutes = timeTmp[1];
-                    MainData.Seconds = timeTmp[2];
+                    mainData.Hours = timeTmp[0];
+                    mainData.Minutes = timeTmp[1];
+                    mainData.Seconds = timeTmp[2];
                     break;
                 case 1:
-                    MainData.Hours += timeTmp[0];
-                    MainData.Minutes += timeTmp[1];
-                    MainData.Seconds += timeTmp[2];
+                    mainData.Hours += timeTmp[0];
+                    mainData.Minutes += timeTmp[1];
+                    mainData.Seconds += timeTmp[2];
                     break;
             }
-            if (MainData.Hours > 90000000) return "ToBig";
+            if (mainData.Hours > 90000000) return "ToBig";
             return "done";
 errorExit:;
             return "error";

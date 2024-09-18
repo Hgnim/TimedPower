@@ -10,18 +10,22 @@ using System.Text.RegularExpressions;
 using Windows.Foundation.Collections;
 using static TimedPower.TaskbarProgressBar;
 using System.Xml;
+using Windows.Media.Core;
+using static TimedPower.AutoTaskData;
 
 namespace TimedPower
 {
+    internal readonly struct FilePath
+    {
+        internal static readonly string ConfigDir = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "\\TimedPower\\";
+        internal static readonly string MainDataFile = ConfigDir + "data.xml";
+        internal static readonly string AutoTaskFile = ConfigDir + "autoTask.xml";
+    }
     public partial class Main : Form
     {
         static string[] args = [];
-        const string version = "1.2.2.20240703";
-        internal readonly struct FilePath
-        {
-            internal static readonly string ConfigDir = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "\\TimedPower\\";
-            internal static readonly string MainDataFile = ConfigDir + "data.xml";
-        }
+        const string version = "2.2.2.20240918";
+
         public Main(string[] args)
         {
             Main.args = args;
@@ -44,6 +48,7 @@ namespace TimedPower
                 XmlTextWriter xmlWriter = new(FilePath.MainDataFile, System.Text.Encoding.GetEncoding("utf-8")) { Formatting = System.Xml.Formatting.Indented };
 
                 xmlWriter.WriteRaw("<?xml version=\"1.0\" encoding=\"utf-8\" ?>");
+                xmlWriter.WriteComment("注意，私自修改数据文件导致的程序错误开发者概不负责!");
                 xmlWriter.WriteStartElement("TimedPower_Data");
 
                 xmlWriter.WriteStartElement("first");
@@ -112,22 +117,63 @@ namespace TimedPower
                 }
                 catch { }
             }
+            if (!File.Exists(FilePath.AutoTaskFile))
+            {
+                XmlTextWriter xmlWriter = new(FilePath.AutoTaskFile, System.Text.Encoding.GetEncoding("utf-8")) { Formatting = System.Xml.Formatting.Indented };
+
+                xmlWriter.WriteRaw("<?xml version=\"1.0\" encoding=\"utf-8\" ?>");
+                xmlWriter.WriteComment("注意，私自修改数据文件导致的程序错误开发者概不负责!");
+                xmlWriter.WriteStartElement("TimedPower_AutoTask");
+                xmlWriter.WriteStartElement("task");
+                xmlWriter.WriteEndElement();
+                xmlWriter.WriteFullEndElement();
+                xmlWriter.Close();
+            }
+            AutoTaskData.GetDataFromFile();
             if (!firstStart)
             {
                 if (MessageBox.Show("是否将快捷按钮添加至Windows右键菜单？稍后也可以右键程序进行设置。", this.Text, MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
                 {
                     AddOrFixWindowsRightClickMenu_MenuItem_Click(null!, null!);
                 }
+                if (MessageBox.Show("是否启用软件开机自动启动？这可以为自动定时任务功能带来更好的体验。稍后也可以右键程序进行设置。", 
+                    this.Text, MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+                {
+                    EnabledSelfStarting_Click(null!,null!);
+                }
+                MessageBox.Show("提示：点击软件的关闭按钮后将会最小化至任务栏托盘。若想关闭软件，请右键任务栏托盘的该软件的小图标后点击退出即可。",
+                    this.Text, MessageBoxButtons.YesNo, MessageBoxIcon.Information);
             }
+
+            DefendAutoTask.SetDefendTime(30);//程序启动后将有30秒的自动任务防御时间
+            CountdownStateControl.IsEnable_Change += AutoTask_CountdownState_IsEnable_Change;
+            AutoTaskData.CountdownStateControl.UpdateData();//刷新自动任务
         }
+        /// <summary>
+        /// 设置为true后将不会在Main_FormClosing函数中阻止程序退出
+        /// </summary>
+        bool trueExitProgram = false;
         private void Main_FormClosing(object sender, FormClosingEventArgs e)
         {
+            if (!trueExitProgram)
+            {
+                this.Visible = false;
+                e.Cancel = true;
+            }
+        }
+        private void Main_FormClosed(object sender, FormClosedEventArgs e)
+        {
             fuse = false;
+            fuse_autoTask = false;
+            DefendAutoTask.CloseDefend();
             ToastNotificationManagerCompat.Uninstall();//清除且卸载所有通知（实测使用该方法后该实例将无法再发送通知）
             DataSave();
         }
         private void Main_Shown(object sender, EventArgs e)
         {
+            this.Visible = false;
+            this.Opacity = 1;            
+            bool showTheForm = true;///是否在函数最后显示窗体，如果有-hidden标签，则在最后不显示窗体
             if (args.Length != 0)
             {
                 string type = "", time = "";
@@ -142,6 +188,9 @@ namespace TimedPower
                         case "-time":
                             i++;
                             time = args[i].ToLower();
+                            break;
+                        case "-hidden":
+                            showTheForm = false;
                             break;
                     }
                 }
@@ -179,6 +228,8 @@ namespace TimedPower
                 TimeInput.Text = time;
                 StartButton_Click(null!, null!);
             }
+            if (showTheForm)
+                this.Visible = true;
         }
         void DataSave()
         {
@@ -209,6 +260,7 @@ namespace TimedPower
             }
             xmlDoc.Save(FilePath.MainDataFile);
 
+            AutoTaskData.SaveToFile();
         }
         #endregion
         private void TimeTypeSelect_SelectedIndexChanged(object sender, EventArgs e)
@@ -327,6 +379,7 @@ namespace TimedPower
 
         AfterTimeValue? countdown;
         Thread? countdownThread;
+        Thread? countdownThread_autoTask;
         static bool fuse = false;//保险变量，倒计时和执行电源操作时必须为true
         private void StartButton_Click(object sender, EventArgs e)
         {
@@ -488,6 +541,7 @@ namespace TimedPower
             }
             if (fuse)
             {
+                DataSave();//操作前保存所有
                 switch (actionSelect)
                 {
                     case "关机":
@@ -511,10 +565,166 @@ namespace TimedPower
                 }
                 this.Invoke(new Action(() =>
                 {
+                    trueExitProgram = true;
                     this.Close();
                 }));
                 /*this.Invoke(new Action(() =>{ if (fuse) StopButton_Click(null!, null!);}));*/
             }
+        }
+
+        AfterTimeValue countdown_autoTask;
+        /// <summary>
+        /// autoTask的保险变量
+        /// </summary>
+        bool fuse_autoTask = false;
+        void AutoTaskCountdownThread()
+        {
+            countdown_autoTask = new();
+
+            void LastWarning(AutoTaskData.ATDataHead_action type, string time, string taskName)
+            {
+                string typeStr;
+                switch (type)
+                {
+                    case AutoTaskData.ATDataHead_action.shutdown:
+                        typeStr = "关机";
+                        break;
+                    case ATDataHead_action.reboot:
+                        typeStr = "重启";
+                        break;
+                    case ATDataHead_action.sleep:
+                        typeStr = "睡眠";
+                        break;
+                    case ATDataHead_action.hibernate:
+                        typeStr = "休眠";
+                        break;
+                    case ATDataHead_action.userlock:
+                        typeStr = "锁定";
+                        break;
+                    case ATDataHead_action.useroff:
+                        typeStr = "注销";
+                        break;
+                    default:
+                        typeStr = "错误";
+                        break;
+                }
+                //侦听Windows通知点击事件
+                ToastNotificationManagerCompat.OnActivated += toastArgs =>
+                {
+                    //通知参数
+                    ToastArguments args = ToastArguments.Parse(toastArgs.Argument);
+                    //获取任何用户输入
+                    ValueSet userInput = toastArgs.UserInput;
+
+                    if (args.ToString() == "StopCountdown;TimeWarning_autoTask")
+                        this.Invoke(new Action(() => { if (fuse_autoTask) AutoTaskData.CountdownStateControl.StopNowTask(); }));
+                    else if (args.ToString() == "TimeWarning_autoTask")
+                    {
+                        this.Invoke(new Action(() =>
+                        {
+                            [System.Runtime.InteropServices.DllImport("user32.dll", EntryPoint = "SetForegroundWindow")]
+                            static extern bool SetForegroundWindow(IntPtr hWnd);
+                            SetForegroundWindow(this.Handle);
+                        }));
+                    }
+                };
+                new ToastContentBuilder()
+                    .AddArgument("TimeWarning_autoTask")
+                    .AddText("警告，名为\"" + taskName + "\"的自动定时任务将在" + time + "后执行" + typeStr + "操作")
+                    .AddButton(new ToastButton()
+                    .SetContent("禁用当前任务")
+                    .AddArgument("StopCountdown"))
+                    .Show();
+            }
+
+            /*string actionSelect = "";
+            {
+                bool threadLock = false;
+                this.Invoke(new Action(() => { actionSelect = ActionSelect.SelectedItem!.ToString()!; threadLock = true; }));
+                while (!threadLock) { }
+            }*/
+            AutoTaskData.ATDataHead_action actionSelect;
+            actionSelect = AutoTaskData.CountdownStateControl.GetAction();
+            {
+                long endTimeStamp = 0;
+                void TimeReload()//将时间差刷新至countdown内
+                {
+                    countdown_autoTask.SetTimeValue(seconds: ((long)endTimeStamp - (long)GetTimeStamp(DateTime.Now)));
+                    //try { this.Invoke(new Action(() => { countdownLabel.Text = countdown_autoTask.GetFormatdTime(); })); } catch { }//将格式化的数据刷新至UI
+                }
+
+                endTimeStamp = GetTimeStamp(AutoTaskData.CountdownStateControl.GetDateTime());
+
+                TimeReload();
+                while (countdown_autoTask.AllSeconds > 0 && fuse_autoTask)
+                {
+                    if (countdown_autoTask.AllSeconds <= 3 * 60)
+                    {
+                        switch (countdown_autoTask.AllSeconds)
+                        {
+                            case 3 * 60:
+                            case 1 * 60:
+                            case 30:
+                            case 15:
+                            case 5:
+                                LastWarning(actionSelect, countdown_autoTask.GetVisualTime(), AutoTaskData.CountdownStateControl.GetTaskName());
+                                break;
+                        }
+                    }
+                    Sleep(950);
+                    TimeReload();
+                }
+            }
+            if (fuse_autoTask)
+            {
+                if (!DefendAutoTask.DefendState())//自动任务防御程序，防止不可预测的意外
+                {
+                    DataSave();//操作前保存所有
+                    switch (actionSelect)
+                    {
+                        case AutoTaskData.ATDataHead_action.shutdown:
+                            if (fuse_autoTask) PowerInvoke.Shutdown();
+                            break;
+                        case ATDataHead_action.reboot:
+                            if (fuse_autoTask) PowerInvoke.Reboot();
+                            break;
+                        case ATDataHead_action.sleep:
+                            if (fuse_autoTask) PowerInvoke.Sleep();
+                            break;
+                        case ATDataHead_action.hibernate:
+                            if (fuse_autoTask) PowerInvoke.Hibernate();
+                            break;
+                        case ATDataHead_action.userlock:
+                            if (fuse_autoTask) PowerInvoke.UserLock();
+                            break;
+                        case ATDataHead_action.useroff:
+                            if (fuse_autoTask) PowerInvoke.UserOff();
+                            break;
+                    }
+                }
+                else
+                    DefendAutoTask.DefendMessage_Msgbox();
+                this.Invoke(new Action(() =>
+                {
+                    trueExitProgram = true;
+                    this.Close();
+                }));
+                /*this.Invoke(new Action(() =>{ if (fuse_autoTask) StopButton_Click(null!, null!);}));*/
+            }
+            AutoTaskData.CountdownStateControl.updateWaitLock = false;
+        }
+        void AutoTask_CountdownState_IsEnable_Change(bool isEnable)
+        {
+            if (isEnable)
+            {
+                AutoTaskData.CountdownStateControl.updateWaitLock = true;//锁定数据刷新函数，避免在计时器运行过程中刷新数据导致异常
+
+                fuse_autoTask = true;
+                countdownThread_autoTask = new(AutoTaskCountdownThread);
+                countdownThread_autoTask.Start();
+            }
+            else
+                fuse_autoTask = false;
         }
         /// <summary>
         /// 判断输入时间的内容和格式是否非法，且错误时做出相关处理
@@ -564,7 +774,7 @@ namespace TimedPower
                     StartButton.Enabled = true;
                     StartButton.Visible = true;
                     StopButton.Enabled = false;
-                    StopButton.Visible= false;
+                    StopButton.Visible = false;
                     ActionSelect.Enabled = true;
                     TimePicker.Enabled = true;
                     TimeInput.Enabled = true;
@@ -595,6 +805,7 @@ namespace TimedPower
         /// <summary>
         /// 取指定时间的时间戳
         /// </summary>
+        /// <param name="dateTime">需要转换的DateTime类型</param>
         /// <param name="accurateToMilliseconds">是否精确到毫秒</param>
         /// <returns>返回long类型时间戳</returns>
         public static long GetTimeStamp(DateTime dateTime, bool accurateToMilliseconds = false)
@@ -656,6 +867,43 @@ namespace TimedPower
             }
         }
 
+        #region notifyIcon_main_EVENT
+        #region NotifyIcon_main_ContextMenu_EVENT
+        private void NotifyIcon_main_ContextMenu_Opening(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (this.Visible)
+            {
+                notifyIcon_main_ContextMenu_ShowButton.Enabled = false;
+                notifyIcon_main_ContextMenu_HiddenButton.Enabled = true;
+            }
+            else
+            {
+                notifyIcon_main_ContextMenu_ShowButton.Enabled = true;
+                notifyIcon_main_ContextMenu_HiddenButton.Enabled = false;
+            }
+        }
+        private void NotifyIcon_main_ContextMenu_ShowButton_Click(object sender, EventArgs e)
+        {
+            this.Visible = true;
+        }
+
+        private void NotifyIcon_main_ContextMenu_HiddenButton_Click(object sender, EventArgs e)
+        {
+            this.Visible = false;
+        }
+
+        private void NotifyIcon_main_ContextMenu_ExitButton_Click(object sender, EventArgs e)
+        {
+            trueExitProgram = true;
+            this.Close();
+        }
+        #endregion
+        private void NotifyIcon_main_DoubleClick(object sender, EventArgs e)
+        {
+            NotifyIcon_main_ContextMenu_ShowButton_Click(null!, null!);
+        }
+        #endregion
+
         #region FormMenuStrip
         private void AddOrFixWindowsRightClickMenu_MenuItem_Click(object sender, EventArgs e)
         {
@@ -664,6 +912,19 @@ namespace TimedPower
         private void RemoveWindowsRightClickMenu_MenuItem_Click(object sender, EventArgs e)
         {
             BatFile.WindowsRightClickMenu.RunRemove();
+        }
+        private void EnabledSelfStarting_Click(object sender, EventArgs e)
+        {
+            BatFile.WindowsSelfStarting.RunAdd();
+        }
+        private void DisabledSelfStarting_Click(object sender, EventArgs e)
+        {
+            BatFile.WindowsSelfStarting.RunRemove();
+        }
+        private void AutoTask_ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AutoTaskForm autoTaskForm = new();
+            autoTaskForm.Show/*Dialog*/();
         }
         private void GyToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -674,6 +935,5 @@ namespace TimedPower
             "\r\nGithub: https://github.com/Hgnim/TimedPower", "关于");
         }
         #endregion
-
     }
 }
