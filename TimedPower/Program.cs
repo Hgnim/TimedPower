@@ -4,6 +4,7 @@ namespace TimedPower
 {
     internal static class Program
     {
+       public const string version = "2.3.4.20241029";
         /// <summary>
         ///  The main entry point for the application.
         /// </summary>

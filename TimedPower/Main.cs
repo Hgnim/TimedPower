@@ -12,7 +12,6 @@ using static TimedPower.TaskbarProgressBar;
 using System.Xml;
 using Windows.Media.Core;
 using static TimedPower.AutoTaskData;
-using static CLRClassLibrary.PowerInovkeLib;
 
 namespace TimedPower
 {
@@ -25,7 +24,6 @@ namespace TimedPower
     public partial class Main : Form
     {
         static string[] args = [];
-        const string version = "2.3.3.20241014";
 
         public Main(string[] args)
         {
@@ -567,22 +565,22 @@ namespace TimedPower
                 switch (actionSelect)
                 {
                     case "关机":
-                        if (fuse) pi_shutdown(); //PowerInvoke.Shutdown();
+                        if (fuse) PowerInvoke.Shutdown();
                         break;
                     case "重启":
-                        if (fuse) pi_reboot();//PowerInvoke.Reboot();
+                        if (fuse) PowerInvoke.Reboot();
                         break;
                     case "睡眠":
-                        if (fuse) pi_sleep();//PowerInvoke.Sleep();
+                        if (fuse) PowerInvoke.Sleep();
                         break;
                     case "休眠":
-                        if (fuse) pi_hibernate(); //PowerInvoke.Hibernate();
+                        if (fuse) PowerInvoke.Hibernate();
                         break;
                     case "锁定":
-                        if (fuse) pi_userLock();//PowerInvoke.UserLock();
+                        if (fuse) PowerInvoke.UserLock();
                         break;
                     case "注销":
-                        if (fuse) pi_userOff();//PowerInvoke.UserOff();
+                        if (fuse) PowerInvoke.UserOff();
                         break;
                 }
                 this.Invoke(new Action(() =>
@@ -705,22 +703,22 @@ namespace TimedPower
                     switch (actionSelect)
                     {
                         case AutoTaskData.ATDataHead_action.shutdown:
-                            if (fuse_autoTask) pi_shutdown(); //PowerInvoke.Shutdown();
+                            if (fuse_autoTask) PowerInvoke.Shutdown();
                             break;
                         case ATDataHead_action.reboot:
-                            if (fuse_autoTask) pi_reboot(); //PowerInvoke.Reboot();
+                            if (fuse_autoTask) PowerInvoke.Reboot();
                             break;
                         case ATDataHead_action.sleep:
-                            if (fuse_autoTask) pi_sleep(); //PowerInvoke.Sleep();
+                            if (fuse_autoTask) PowerInvoke.Sleep();
                             break;
                         case ATDataHead_action.hibernate:
-                            if (fuse_autoTask) pi_hibernate(); //PowerInvoke.Hibernate();
+                            if (fuse_autoTask) PowerInvoke.Hibernate();
                             break;
                         case ATDataHead_action.userlock:
-                            if (fuse_autoTask) pi_userLock(); //PowerInvoke.UserLock();
+                            if (fuse_autoTask) PowerInvoke.UserLock();
                             break;
                         case ATDataHead_action.useroff:
-                            if (fuse_autoTask) pi_userOff(); //PowerInvoke.UserOff();
+                            if (fuse_autoTask) PowerInvoke.UserOff();
                             break;
                     }
                 }
@@ -952,7 +950,7 @@ namespace TimedPower
         {
             MessageBox.Show("程序名: TimedPower" +
             "\r\n别名: 定时电源" +
-            "\r\n版本:V" + version +
+            "\r\n版本:V" + Program.version +
             "\r\nCopyright (C) 2024 Hgnim, All rights reserved." +
             "\r\nGithub: https://github.com/Hgnim/TimedPower", "关于");
         }
