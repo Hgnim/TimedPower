@@ -240,7 +240,8 @@ namespace TimedPower
             bool exist2 = false;//如果秒分时关键字符存在
             if (input.IndexOf(":") != -1) exist1 = true;
             if (input.IndexOf("秒") != -1 || input.IndexOf("分") != -1 || input.IndexOf("时") != -1 ||
-                input.IndexOf("s") != -1 || input.IndexOf("min") != -1 || input.IndexOf("h") != -1) exist2 = true;
+                input.IndexOf("s") != -1 || input.IndexOf("min") != -1 || input.IndexOf("h") != -1 ||
+				input.IndexOf("m") != -1) exist2 = true;
             if (exist1 && !exist2)
             {
                 string[] spStr = input.Split(":");
@@ -323,6 +324,8 @@ namespace TimedPower
                                     }
                                     else {  goto errorExit; }
                                 }
+                                else if(i+1==input.Length)
+                                { }
                                 else {  goto errorExit; }
                                 if (addValue(1) == "err") goto errorExit;
                                 break;

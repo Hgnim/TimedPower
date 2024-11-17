@@ -15,320 +15,401 @@ using static TimedPower.AutoTaskData;
 
 namespace TimedPower
 {
-    public partial class AutoTaskForm : Form
-    {
-        public AutoTaskForm()
-        {
-            InitializeComponent();
-        }
+	public partial class AutoTaskForm : Form
+	{
+		public bool IsStart
+		{
+			get { return isStart; }
+		}
+		bool isStart = false;
+		public AutoTaskForm()
+		{
+			InitializeComponent();
+		}
 
-        private void AutoTaskForm_Load(object sender, EventArgs e)
-        {
-            TaskListUpdate();
-            timeTypeSelect.SelectedIndex = 0;
-        }
-        private void AutoTaskForm_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            if (userIsChange)
-            {
-                if (!UnsaveNotify())
-                    return;
-            }
-        }
+		private void AutoTaskForm_Load(object sender, EventArgs e)
+		{
+			TaskListUpdate();
+			timeTypeSelect.SelectedIndex = 0;
+
+			isStart = true;
+		}
+		private void AutoTaskForm_FormClosed(object sender, FormClosedEventArgs e)
+		{
+			isStart =false;
+		}
+		private void AutoTaskForm_FormClosing(object sender, FormClosingEventArgs e)
+		{
+			if (userIsChange)
+			{
+				if (!UnsaveNotify())
+					return;
+			}
+		}
 
 
-        private void TimeTypeSelect_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            switch (timeTypeSelect.SelectedIndex)
-            {
-                case 0:
-                    TimePicker.CustomFormat = "HH:mm:ss";
-                    break;
-                case 1:
-                    TimePicker.CustomFormat = "yyyy/MM/dd HH:mm:ss";
-                    break;
-            }
-            UserChangeCheck();
-        }
-        #region TaskList
-        /// <summary>
-        /// 列表项目刷新
-        /// </summary>
-        void TaskListUpdate()
-        {
-            //清除所有项后将取消当前选择
-            taskList.Items.Clear();
-            for (int i = 0; i < AutoTaskData.GetATDataCount(); i++)
-            {
-                taskList.Items.Add(AutoTaskData.GetData(i, AutoTaskData.ATDataHead.name)!);
-            }
-            TaskListSelectCheck();
-            if (taskList_LastSelect != -1)
-            {
-                if (taskList_LastSelect < taskList.Items.Count)//将之前选中的项重新选中，如果没有当前项，则选中当前已有的最大的编号所指向的项
-                    taskList.SelectedIndex = taskList_LastSelect;
-                else taskList.SelectedIndex = taskList.Items.Count - 1;
-            }
-        }
-        /// <summary>
-        /// 检查列表项目是否为0，或者未被选中。因此来控制信息面板的启用状态
-        /// </summary>
-        void TaskListSelectCheck()
-        {
-            if (taskList.Items.Count == 0 || taskList.SelectedIndex == -1)
-                infoPanel.Enabled = false;
-            else
-                infoPanel.Enabled = true;
-        }
-        #region TaskList_UIEvent
-        private void TaskList_DrawItem(object sender, DrawItemEventArgs e)
-        {
-            if (e.Index >= 0)
-            {
-                e.DrawBackground();
-                Brush mybsh;
-                //根据任务的启动状态绘制列表中的项目颜色
-                if (AutoTaskData.GetData(e.Index, AutoTaskData.ATDataHead.enable) == AutoTaskData.ATDataHead_enable.t.ToString())
-                {
-                    mybsh = Brushes.Green;
-                }
-                else
-                {
-                    mybsh = Brushes.Red;
-                }
-                /*else if (listBox1.Items[e.Index].ToString().IndexOf("test2") != -1)
+		private void TimeTypeSelect_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			switch (timeTypeSelect.SelectedIndex)
+			{
+				case 0:
+					//每天
+					TimePicker.CustomFormat = "HH:mm:ss";
+					TimePicker.Visible = true;
+					TimeInput.Visible = false;
+					break;
+				case 1:
+					//指定时间					
+					TimePicker.CustomFormat = "yyyy/MM/dd HH:mm:ss";
+					TimePicker.Visible = true;
+					TimeInput.Visible = false;
+					break;
+				case 2:
+					//程序启动后
+					TimePicker.Visible = false;
+					TimeInput.Visible = true;
+					break;
+
+			}
+			UserChangeCheck();
+		}
+		#region TaskList
+		/// <summary>
+		/// 列表项目刷新
+		/// </summary>
+		void TaskListUpdate()
+		{
+			//清除所有项后将取消当前选择
+			taskList.Items.Clear();
+			for (int i = 0; i < AutoTaskData.GetATDataCount(); i++)
+			{
+				taskList.Items.Add(AutoTaskData.GetData(i, AutoTaskData.ATDataHead.name)!);
+			}
+			TaskListSelectCheck();
+			if (taskList_LastSelect != -1)
+			{
+				if (taskList_LastSelect < taskList.Items.Count)//将之前选中的项重新选中，如果没有当前项，则选中当前已有的最大的编号所指向的项
+					taskList.SelectedIndex = taskList_LastSelect;
+				else taskList.SelectedIndex = taskList.Items.Count - 1;
+			}
+		}
+		/// <summary>
+		/// 检查列表项目是否为0，或者未被选中。因此来控制信息面板的启用状态
+		/// </summary>
+		void TaskListSelectCheck()
+		{
+			if (taskList.Items.Count == 0 || taskList.SelectedIndex == -1)
+				infoPanel.Enabled = false;
+			else
+				infoPanel.Enabled = true;
+		}
+		#region TaskList_UIEvent
+		private void TaskList_DrawItem(object sender, DrawItemEventArgs e)
+		{
+			if (e.Index >= 0)
+			{
+				e.DrawBackground();
+				Brush mybsh;
+				//根据任务的启动状态绘制列表中的项目颜色
+				if (AutoTaskData.GetData(e.Index, AutoTaskData.ATDataHead.enable) == AutoTaskData.ATDataHead_enable.t.ToString())
+				{
+					mybsh = Brushes.Green;
+				}
+				else
+				{
+					mybsh = Brushes.Red;
+				}
+				/*else if (listBox1.Items[e.Index].ToString().IndexOf("test2") != -1)
                 {
                     mybsh = Brushes.Red;
                 }*/
-                // 焦点框
-                e.DrawFocusRectangle();
-                //文本 
-                e.Graphics.DrawString(taskList.Items[e.Index].ToString(), e.Font!, mybsh, e.Bounds, StringFormat.GenericDefault);
-            }
-        }
-        int taskList_LastSelect = -1;
-        private void TaskList_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (userIsChange &&
-                taskList.SelectedIndex != taskList_LastSelect//避免重复判断
-                )
-            {
-                if (!UnsaveNotify())
-                {
-                    taskList.SelectedIndex = taskList_LastSelect;
-                    return;
-                }
-            }
-            else if (taskList.SelectedIndex == taskList_LastSelect)//如果发现两数相等，则跳出，不进行加载
-                goto end;
-            taskList_LastSelect = taskList.SelectedIndex;
+				// 焦点框
+				e.DrawFocusRectangle();
+				//文本 
+				e.Graphics.DrawString(taskList.Items[e.Index].ToString(), e.Font!, mybsh, e.Bounds, StringFormat.GenericDefault);
+			}
+		}
+		int taskList_LastSelect = -1;
+		private void TaskList_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			if (userIsChange &&
+				taskList.SelectedIndex != taskList_LastSelect//避免重复判断
+				)
+			{
+				if (!UnsaveNotify())
+				{
+					taskList.SelectedIndex = taskList_LastSelect;
+					return;
+				}
+			}
+			else if (taskList.SelectedIndex == taskList_LastSelect)//如果发现两数相等，则跳出，不进行加载
+				goto end;
+			taskList_LastSelect = taskList.SelectedIndex;
 
 
-            userChangeCheckSwitch = false;
-            SetUserIsChangeState(false);
-            int index = taskList.SelectedIndex;
-            if (AutoTaskData.GetData(index, AutoTaskData.ATDataHead.enable) == AutoTaskData.ATDataHead_enable.t.ToString())
-                enableCheck.Checked = true;
-            else enableCheck.Checked = false;
-            taskName_TextBox.Text = AutoTaskData.GetData(index, AutoTaskData.ATDataHead.name)!.ToString();
-            {
-                string cache = AutoTaskData.GetData(index, AutoTaskData.ATDataHead.timeType)!.ToString();
-                if (cache == AutoTaskData.ATDataHead_timeType.everyday.ToString())
-                    timeTypeSelect.SelectedIndex = 0;
-                else if (cache == AutoTaskData.ATDataHead_timeType.singleTimed.ToString())
-                    timeTypeSelect.SelectedIndex = 1;
-            }
-            {
-                string cache = AutoTaskData.GetData(index, AutoTaskData.ATDataHead.action)!.ToString();
-                if (cache == AutoTaskData.ATDataHead_action.shutdown.ToString())
-                    ActionSelect.SelectedIndex = 0;
-                else if (cache == AutoTaskData.ATDataHead_action.reboot.ToString())
-                    ActionSelect.SelectedIndex = 1;
-                else if (cache == AutoTaskData.ATDataHead_action.sleep.ToString())
-                    ActionSelect.SelectedIndex = 2;
-                else if (cache == AutoTaskData.ATDataHead_action.hibernate.ToString())
-                    ActionSelect.SelectedIndex = 3;
-                else if (cache == AutoTaskData.ATDataHead_action.userlock.ToString())
-                    ActionSelect.SelectedIndex = 4;
-                else if (cache == AutoTaskData.ATDataHead_action.useroff.ToString())
-                    ActionSelect.SelectedIndex = 5;
-            }
-            TimePicker.Value = AutoTaskData.ATtimeDataToDateTime(AutoTaskData.GetData(index, AutoTaskData.ATDataHead.timeData)!.ToString());
+			userChangeCheckSwitch = false;
+			SetUserIsChangeState(false);
+			int index = taskList.SelectedIndex;
+			if (AutoTaskData.GetData(index, AutoTaskData.ATDataHead.enable) == AutoTaskData.ATDataHead_enable.t.ToString())
+				enableCheck.Checked = true;
+			else enableCheck.Checked = false;
+			taskName_TextBox.Text = AutoTaskData.GetData(index, AutoTaskData.ATDataHead.name)!.ToString();
+			{
+				switch (Enum.Parse(typeof(ATDataHead_timeType), AutoTaskData.GetData(index, AutoTaskData.ATDataHead.timeType)!))
+				{
+					case AutoTaskData.ATDataHead_timeType.everyday:
+						timeTypeSelect.SelectedIndex = 0; break;
+					case AutoTaskData.ATDataHead_timeType.singleTimed:
+						timeTypeSelect.SelectedIndex = 1; break;
+					case ATDataHead_timeType.appStart:
+						timeTypeSelect.SelectedIndex = 2; break;
+				}
+			}
+			{
+				string cache = AutoTaskData.GetData(index, AutoTaskData.ATDataHead.action)!.ToString();
+				if (cache == AutoTaskData.ATDataHead_action.shutdown.ToString())
+					ActionSelect.SelectedIndex = 0;
+				else if (cache == AutoTaskData.ATDataHead_action.reboot.ToString())
+					ActionSelect.SelectedIndex = 1;
+				else if (cache == AutoTaskData.ATDataHead_action.sleep.ToString())
+					ActionSelect.SelectedIndex = 2;
+				else if (cache == AutoTaskData.ATDataHead_action.hibernate.ToString())
+					ActionSelect.SelectedIndex = 3;
+				else if (cache == AutoTaskData.ATDataHead_action.userlock.ToString())
+					ActionSelect.SelectedIndex = 4;
+				else if (cache == AutoTaskData.ATDataHead_action.useroff.ToString())
+					ActionSelect.SelectedIndex = 5;
+			}
+
+			switch (Enum.Parse(typeof(ATDataHead_timeType), AutoTaskData.GetData(index, AutoTaskData.ATDataHead.timeType)!))
+			{
+				case ATDataHead_timeType.everyday:
+				case ATDataHead_timeType.singleTimed:
+					TimePicker.Value = AutoTaskData.ATtimeDataToDateTime(AutoTaskData.GetData(index, AutoTaskData.ATDataHead.timeData)!.ToString());
+					break;
+				case ATDataHead_timeType.appStart:
+					TimeInput.Text = AutoTaskData.ATtimeDataToString(AutoTaskData.GetData(index, AutoTaskData.ATDataHead.timeData)!.ToString());
+					break;
+			}
 
 end:;
-            TaskListSelectCheck();
-            userChangeCheckSwitch = true;
-        }
-        #endregion
-        #endregion
+			TaskListSelectCheck();
+			userChangeCheckSwitch = true;
+		}
+		#endregion
+		#endregion
 
-        #region Button_Event
-        private void CreateButton_Click(object sender, EventArgs e)
-        {
-            if (userIsChange)
-            {
-                if (!UnsaveNotify())
-                    return;
-            }
-            AutoTaskData.CreateATData();
-            TaskListUpdate();
-            taskList.SelectedIndex = taskList.Items.Count - 1;//选择新创建的项
+		#region Button_Event
+		private void CreateButton_Click(object sender, EventArgs e)
+		{
+			if (userIsChange)
+			{
+				if (!UnsaveNotify())
+					return;
+			}
+			AutoTaskData.CreateATData();
+			TaskListUpdate();
+			taskList.SelectedIndex = taskList.Items.Count - 1;//选择新创建的项
 
-            DefendAutoTask.SetDefendTime(10);//设置配置项后进行保护
-            AutoTaskData.CountdownStateControl.UpdateData();//刷新自动任务执行程序
-        }
-        private void DeleteButton_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                AutoTaskData.RemoveATData(taskList.SelectedIndex);
-            }
-            catch { MessageBox.Show("删除失败!", Main.ThisFormText, MessageBoxButtons.OK, MessageBoxIcon.Error); }
-            TaskListUpdate();
+			DefendAutoTask.SetDefendTime(10);//设置配置项后进行保护
+			AutoTaskData.CountdownStateControl.UpdateData();//刷新自动任务执行程序
+		}
+		private void DeleteButton_Click(object sender, EventArgs e)
+		{
+			try
+			{
+				AutoTaskData.RemoveATData(taskList.SelectedIndex);
+			}
+			catch { MessageBox.Show("删除失败!", Main.ThisFormText, MessageBoxButtons.OK, MessageBoxIcon.Error); }
+			TaskListUpdate();
 
-            DefendAutoTask.SetDefendTime(10);//设置配置项后进行保护
-            AutoTaskData.CountdownStateControl.UpdateData();//刷新自动任务执行程序
-        }
-        private void SaveButton_Click(object sender, EventArgs e)
-        {
-            //检查内容合法性
-            if (timeTypeSelect.Text == "指定时间")
-            {
-                if (((long)Main.GetTimeStamp(TimePicker.Value) - (long)Main.GetTimeStamp(DateTime.Now)) > 0) { }
-                else
-                {
-                    MessageBox.Show("只能选择未来的时间！", Main.ThisFormText, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-            }
+			DefendAutoTask.SetDefendTime(10);//设置配置项后进行保护
+			AutoTaskData.CountdownStateControl.UpdateData();//刷新自动任务执行程序
+		}
+		private void SaveButton_Click(object sender, EventArgs e)
+		{
+			//检查内容合法性
+			switch (timeTypeSelect.Text)
+			{
+				case "指定时间":
+					if (((long)Main.GetTimeStamp(TimePicker.Value) - (long)Main.GetTimeStamp(DateTime.Now)) > 0) { }
+					else
+					{
+						MessageBox.Show("只能选择未来的时间！", Main.ThisFormText, MessageBoxButtons.OK, MessageBoxIcon.Error);
+						return;
+					}
+					break;
+				case "软件启动后":
+					if (FormatdInputBool(TimeInput.Text)) TimeInput.Text = atv.GetFormatdTime();//再次检查一遍合法性
+					else return;
+					break;
+			}
 
-            SetUserIsChangeState(false);
+			SetUserIsChangeState(false);
 
-            //将数据保存至数据组变量中
-            {
-                ATDataHead_enable aTDataHead_Enable;
-                if (enableCheck.Checked)
-                    aTDataHead_Enable = AutoTaskData.ATDataHead_enable.t;
-                else
-                    aTDataHead_Enable = AutoTaskData.ATDataHead_enable.f;
-                ATDataHead_timeType aTDataHead_TimeType;
-                string timeData;
-                switch (timeTypeSelect.Text)
-                {
-                    case "每天":
-                    default:
-                        aTDataHead_TimeType = AutoTaskData.ATDataHead_timeType.everyday;
-                        timeData = TimePicker.Value.ToString("0,0,0,HH,mm,ss");
-                        break;
-                    case "指定时间":
-                        aTDataHead_TimeType = AutoTaskData.ATDataHead_timeType.singleTimed;
-                        timeData = TimePicker.Value.ToString("yyyy,MM,dd,HH,mm,ss");
-                        break;
-                }
-                ATDataHead_action aTDataHead_Action;
-                switch (ActionSelect.Text)
-                {
-                    case "关机":
-                    default:
-                        aTDataHead_Action = ATDataHead_action.shutdown; break;
-                    case "重启":
-                        aTDataHead_Action = ATDataHead_action.reboot; break;
-                    case "睡眠":
-                        aTDataHead_Action = ATDataHead_action.sleep; break;
-                    case "休眠":
-                        aTDataHead_Action = ATDataHead_action.hibernate; break;
-                    case "锁定":
-                        aTDataHead_Action = ATDataHead_action.userlock; break;
-                    case "注销":
-                        aTDataHead_Action = ATDataHead_action.useroff; break;
-                }
+			//将数据保存至数据组变量中
+			{
+				ATDataHead_enable aTDataHead_Enable;
+				if (enableCheck.Checked)
+					aTDataHead_Enable = AutoTaskData.ATDataHead_enable.t;
+				else
+					aTDataHead_Enable = AutoTaskData.ATDataHead_enable.f;
+				ATDataHead_timeType aTDataHead_TimeType;
+				string timeData;
+				switch (timeTypeSelect.Text)
+				{
+					case "每天":
+					default:
+						aTDataHead_TimeType = AutoTaskData.ATDataHead_timeType.everyday;
+						timeData = TimePicker.Value.ToString("0,0,0,HH,mm,ss");
+						break;
+					case "指定时间":
+						aTDataHead_TimeType = AutoTaskData.ATDataHead_timeType.singleTimed;
+						timeData = TimePicker.Value.ToString("yyyy,MM,dd,HH,mm,ss");
+						break;
+					case "软件启动后":
+						aTDataHead_TimeType = ATDataHead_timeType.appStart;
+						timeData = $"-1,-1,-1,{TimeInput.Text.Split(':')[0]},{TimeInput.Text.Split(':')[1]},{TimeInput.Text.Split(':')[2]}";
+						break;
+				}
+				ATDataHead_action aTDataHead_Action;
+				switch (ActionSelect.Text)
+				{
+					case "关机":
+					default:
+						aTDataHead_Action = ATDataHead_action.shutdown; break;
+					case "重启":
+						aTDataHead_Action = ATDataHead_action.reboot; break;
+					case "睡眠":
+						aTDataHead_Action = ATDataHead_action.sleep; break;
+					case "休眠":
+						aTDataHead_Action = ATDataHead_action.hibernate; break;
+					case "锁定":
+						aTDataHead_Action = ATDataHead_action.userlock; break;
+					case "注销":
+						aTDataHead_Action = ATDataHead_action.useroff; break;
+				}
 
-                AutoTaskData.SetATData(taskList.SelectedIndex, [
-                    ATDataHead.name.ToString(),taskName_TextBox.Text,
-                ATDataHead.enable.ToString(),aTDataHead_Enable.ToString(),
-                ATDataHead.timeType.ToString(),aTDataHead_TimeType.ToString(),
-                ATDataHead.timeData.ToString(),timeData,
-                ATDataHead.action.ToString(),aTDataHead_Action.ToString()
-                    ]);
-            }
+				AutoTaskData.SetATData(taskList.SelectedIndex, [
+					ATDataHead.name.ToString(),taskName_TextBox.Text,
+				ATDataHead.enable.ToString(),aTDataHead_Enable.ToString(),
+				ATDataHead.timeType.ToString(),aTDataHead_TimeType.ToString(),
+				ATDataHead.timeData.ToString(),timeData,
+				ATDataHead.action.ToString(),aTDataHead_Action.ToString()
+					]);
+			}
 
-            TaskListUpdate();
+			TaskListUpdate();
 
-            DefendAutoTask.SetDefendTime(10);//设置配置项后进行保护
-            AutoTaskData.CountdownStateControl.UpdateData();//刷新自动任务执行程序
-        }
-        private void UnsaveButton_Click(object sender, EventArgs e)
-        {
-            SetUserIsChangeState(false);
-            TaskListUpdate();
-        }
-        #endregion
+			DefendAutoTask.SetDefendTime(10);//设置配置项后进行保护
+			AutoTaskData.CountdownStateControl.UpdateData();//刷新自动任务执行程序
+		}
+		private void UnsaveButton_Click(object sender, EventArgs e)
+		{
+			SetUserIsChangeState(false);
+			TaskListUpdate();
+		}
+		#endregion
 
-        #region Change_Event        
-        private void EnableCheck_CheckedChanged(object sender, EventArgs e)
-        {
-            UserChangeCheck();
-        }
+		#region Change_Event        
+		private void EnableCheck_CheckedChanged(object sender, EventArgs e)
+		{
+			UserChangeCheck();
+		}
 
-        private void TaskName_TextBox_TextChanged(object sender, EventArgs e)
-        {
-            UserChangeCheck();
-        }
+		private void TaskName_TextBox_TextChanged(object sender, EventArgs e)
+		{
+			UserChangeCheck();
+		}
 
-        private void ActionSelect_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            UserChangeCheck();
-        }
+		private void ActionSelect_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			UserChangeCheck();
+		}
 
-        private void TimePicker_ValueChanged(object sender, EventArgs e)
-        {
-            UserChangeCheck();
-        }
-        /// <summary>
-        /// 表示是否启用用户更改检查<br/>一般等待数据加载完毕后再启用用户更改检查，避免在部署数据时触发
-        /// </summary>
-        bool userChangeCheckSwitch = false;
-        /// <summary>
-        /// 表示用户是否已经更改了自动任务内容数据
-        /// </summary>
-        bool userIsChange = false;
-        /// <summary>
-        /// 检查用户是否更改了任务内容。
-        /// </summary>
-        void UserChangeCheck()
-        {
-            if (userChangeCheckSwitch && !userIsChange)
-            {
-                SetUserIsChangeState(true);
-            }
-        }
-        /// <summary>
-        /// 设置用户是否更改了任务内容的状态
-        /// </summary>
-        /// <param name="isEnabled">布尔值，是与否</param>
-        void SetUserIsChangeState(bool isEnabled)
-        {
-            saveButton.Enabled = isEnabled;
-            unsaveButton.Enabled = isEnabled;
-            userIsChange = isEnabled;
-        }
+		private void TimePicker_ValueChanged(object sender, EventArgs e)
+		{
+			UserChangeCheck();
+		}
+		private void TimeInput_TextChanged(object sender, EventArgs e)
+		{
+			UserChangeCheck();
+		}
+		/// <summary>
+		/// 表示是否启用用户更改检查<br/>一般等待数据加载完毕后再启用用户更改检查，避免在部署数据时触发
+		/// </summary>
+		bool userChangeCheckSwitch = false;
+		/// <summary>
+		/// 表示用户是否已经更改了自动任务内容数据
+		/// </summary>
+		bool userIsChange = false;
+		/// <summary>
+		/// 检查用户是否更改了任务内容。
+		/// </summary>
+		void UserChangeCheck()
+		{
+			if (userChangeCheckSwitch && !userIsChange)
+			{
+				SetUserIsChangeState(true);
+			}
+		}
+		/// <summary>
+		/// 设置用户是否更改了任务内容的状态
+		/// </summary>
+		/// <param name="isEnabled">布尔值，是与否</param>
+		void SetUserIsChangeState(bool isEnabled)
+		{
+			saveButton.Enabled = isEnabled;
+			unsaveButton.Enabled = isEnabled;
+			userIsChange = isEnabled;
+		}
 
-        /// <summary>
-        /// 未保存时离开时的用户弹窗提示
-        /// </summary>
-        /// <returns>根据用户的选择进行返回</returns>
-        static bool UnsaveNotify()
-        {
-            DialogResult dr = MessageBox.Show("当前有未保存的内容，是否继续？", Main.ThisFormText,
-                MessageBoxButtons.OKCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
-            if (dr == DialogResult.OK)
-                return true;
-            else
-                return false;
-        }
-        #endregion
-    }
-    internal static class AutoTaskData
+		/// <summary>
+		/// 未保存时离开时的用户弹窗提示
+		/// </summary>
+		/// <returns>根据用户的选择进行返回</returns>
+		static bool UnsaveNotify()
+		{
+			DialogResult dr = MessageBox.Show("当前有未保存的内容，是否继续？", Main.ThisFormText,
+				MessageBoxButtons.OKCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+			if (dr == DialogResult.OK)
+				return true;
+			else
+				return false;
+		}
+		#endregion
+
+
+		AfterTimeValue atv = new();
+		/// <summary>
+		/// 判断输入时间的内容和格式是否非法，且错误时做出相关处理
+		/// </summary>
+		/// <returns>返回布尔值</returns>
+		bool FormatdInputBool(string input)
+		{
+			string output = atv.FormatdInputTime(input);
+			if (output == "done")
+			{
+				return true;
+			}
+			else if (output == "ToBig")
+			{
+				MessageBox.Show("时间数值过大！", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+				return false;
+			}
+			else
+			{
+				MessageBox.Show("时间格式错误！", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+				return false;
+			}
+		}
+		private void TimeInput_Leave(object sender, EventArgs e)
+		{
+			if (TimeInput.Text != "" && FormatdInputBool(TimeInput.Text))
+				TimeInput.Text = atv.GetFormatdTime();
+		}
+	}
+	internal static class AutoTaskData
     {
         private static List<string[]> atData = [];
         /// <summary>
@@ -436,6 +517,7 @@ end:;
         {
             everyday//每天
                 , singleTimed//单次计时
+                , appStart//软件启动后
         }
         internal enum ATDataHead_action
         {
@@ -529,7 +611,8 @@ end:;
                 Thread t = new(() =>
                 {
                     IsEnable = false;
-                    while (updateWaitLock) { Thread.Sleep(1); }//等待计时线程关闭
+                    while (updateWaitLock && !Main.trueExitProgram/*加一个判断防止主线程退出后该线程锁死在这里*/) { Thread.Sleep(1); }//等待计时线程关闭
+					if (Main.trueExitProgram) goto exitThread;//如果主线程退出，则结束该线程
                     atdat = [];
                     atdat_index = -1;
                     for(int i=0;i<AutoTaskData.atData.Count;i++)//排序，引用最小的任务时间值
@@ -558,6 +641,8 @@ end:;
                     }
                     if (atdat_index != -1)
                         IsEnable = true;
+
+exitThread:;
                 }); t.Start();
             }
             /// <summary>
@@ -595,7 +680,7 @@ end:;
             }
         }
         /// <summary>
-        /// 将autoTaskData中的timeData的string类型的数据转换未DateTime类型的数据
+        /// 将autoTaskData中的timeData的string类型的数据转换为DateTime类型的数据
         /// </summary>
         /// <param name="autoTaskData_timeData">autoTaskData中的timeData数据</param>
         /// <returns>转换后的DateTime数据</returns>
@@ -603,17 +688,44 @@ end:;
         {
             string[] cache = autoTaskData_timeData.Split(',');
             DateTime dt;
-            if (cache[0] == "0" || cache[1] == "0" || cache[2] == "0")
+            if (cache[0] == "0" && cache[1] == "0" && cache[2] == "0")
             {
                 dt = new(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, int.Parse(cache[3]), int.Parse(cache[4]), int.Parse(cache[5]));
                 if (DateTime.Compare(dt, DateTime.Now) <= 0)//如果数据时间早于当前时间，则增加一天时间
                     dt.AddDays(1);
             }
+            else if (cache[0]=="-1" && cache[1]=="-1" && cache[2] == "-1")
+            {
+                dt = DateTime.Now;
+                dt = dt.AddHours(int.Parse(cache[3]));
+				dt = dt.AddMinutes(int.Parse(cache[4]));
+				dt = dt.AddSeconds(int.Parse(cache[5]));
+            }
             else
                 dt = new(int.Parse(cache[0]), int.Parse(cache[1]), int.Parse(cache[2]), int.Parse(cache[3]), int.Parse(cache[4]), int.Parse(cache[5]));
             return dt;
         }
-    }
+		/// <summary>
+		/// 将autoTaskData中的timeData的string类型的数据转换为可视化的string类型的数据
+		/// </summary>
+		/// <param name="autoTaskData_timeData">autoTaskData中的timeData数据</param>
+		/// <returns>转换后的string数据</returns>
+		internal static string ATtimeDataToString(string autoTaskData_timeData)
+		{
+			string[] cache = autoTaskData_timeData.Split(',');
+			string str;
+			if (cache[0] == "-1" && cache[1] == "-1" && cache[2] == "-1")
+			{
+				str = $"{cache[3]}:{cache[4]}:{cache[5]}";
+			}
+			else
+			{
+				str = "error";
+			}
+			return str;
+		}
+
+	}
     /// <summary>
     /// 自动任务防御程序，用于避免用户错误的设置或程序的Bug导致的严重后果。
     /// </summary>
