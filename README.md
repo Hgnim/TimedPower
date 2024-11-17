@@ -7,6 +7,9 @@
 [最新版本更新内容](update_log/latest_version.md)<br/>
 [历史版本更新内容](update_log/old_version.md)<br/>
 
+## 帮助文档
+前往[帮助文档](https://github.com/Hgnim/TimedPower/wiki)
+
 ## 亮点介绍
 - 该软件可以定时关机、重启、睡眠、休眠、锁定、注销。
 - 操作简单，外观简约。可设置任意时间后进行电源操作，也可以设置某个时间点定时操作。
