@@ -4,11 +4,11 @@ namespace TimedPower
 {
     internal static class Program
     {
-       public const string version = "2.4.4.20241117";
+       public const string version = "2.5.4.20241118";
         public const string aboutText =
 @$"程序名: 定时电源
 别名: TimedPower
-版本:V{version}
+版本: V{version}
 Copyright (C) 2024 Hgnim, All rights reserved.
 Github: https://github.com/Hgnim/TimedPower";
 		/// <summary>
@@ -17,12 +17,20 @@ Github: https://github.com/Hgnim/TimedPower";
 		[STAThread]
         static void Main(string[] args)
         {
-            {
-				_ = new System.Threading.Mutex(true, "single_test", out bool runone);
+			{
+				_ = new System.Threading.Mutex(true, "single_program", out bool runone);
 				if (!runone)
                 {
-                        MessageBox.Show("不允许同时启动多个程序实例！",TimedPower.Main.ThisFormText, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        return;
+					File.Delete(FilePath.commandFile);
+					StreamWriter streamWriter = new(FilePath.commandFile+".tmp", false, System.Text.Encoding.UTF8);
+					foreach (string arg in args)
+					{
+						streamWriter.WriteLine(arg);
+					}
+					streamWriter.Close();
+                    File.Move(FilePath.commandFile + ".tmp", FilePath.commandFile);
+					//MessageBox.Show("不允许同时启动多个程序实例！",TimedPower.Main.ThisFormText, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
                 }
             }
 

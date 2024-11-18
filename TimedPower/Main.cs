@@ -20,6 +20,10 @@ namespace TimedPower
         internal static readonly string ConfigDir = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "\\TimedPower\\";
         internal static readonly string MainDataFile = ConfigDir + "data.xml";
         internal static readonly string AutoTaskFile = ConfigDir + "autoTask.xml";
+
+		internal static readonly string TempDir = System.IO.Path.GetTempPath() + @"TimedPower\";
+		internal static readonly string CommandDir = @$"{TempDir}Command\";
+		internal static readonly string commandFile = CommandDir + "Command.dat";
     }
 	public partial class Main : Form
 	{
@@ -32,7 +36,7 @@ namespace TimedPower
 		}
 
 		AfterTimeValue atv = new();
-		#region Main_From
+		#region Main_From		
 		private void Main_Load(object sender, EventArgs e)
 		{
 			bool firstStart = false;//是否首次启动程序
@@ -40,8 +44,9 @@ namespace TimedPower
 			ActionSelect.SelectedIndex = 0;
 			TimeTypeSelect.SelectedIndex = 0;
 
-			if (!Directory.Exists(FilePath.ConfigDir))
-				Directory.CreateDirectory(FilePath.ConfigDir);
+			if (!Directory.Exists(FilePath.ConfigDir)) Directory.CreateDirectory(FilePath.ConfigDir);
+			if (!Directory.Exists(FilePath.TempDir)) Directory.CreateDirectory(FilePath.TempDir);
+			if (!Directory.Exists(FilePath.CommandDir)) Directory.CreateDirectory(FilePath.CommandDir);
 			if (!File.Exists(FilePath.MainDataFile))
 			{
 				XmlTextWriter xmlWriter = new(FilePath.MainDataFile, System.Text.Encoding.GetEncoding("utf-8")) { Formatting = System.Xml.Formatting.Indented };
@@ -69,6 +74,10 @@ namespace TimedPower
 
 				xmlWriter.WriteStartElement("TimeInput");
 				xmlWriter.WriteAttributeString("value", "");
+				xmlWriter.WriteEndElement();
+
+				xmlWriter.WriteStartElement("CloseToTaskBar");
+				xmlWriter.WriteAttributeString("boolean", "true");
 				xmlWriter.WriteEndElement();
 
 				xmlWriter.WriteFullEndElement();
@@ -111,6 +120,8 @@ namespace TimedPower
 							case "TimeInput":
 								try { TimeInput.Text = xmlE.GetAttribute("value"); } catch { }
 								break;
+							case "CloseToTaskBar":
+								try { CloseToTaskBar = bool.Parse(xmlE.GetAttribute("boolean")); }catch { }break;
 						}
 					}
 				}
@@ -147,15 +158,69 @@ namespace TimedPower
 			DefendAutoTask.SetDefendTime(30);//程序启动后将有30秒的自动任务防御时间
 			CountdownStateControl.IsEnable_Change += AutoTask_CountdownState_IsEnable_Change;
 			AutoTaskData.CountdownStateControl.UpdateData();//刷新自动任务
+
+
+			FileSystemWatcher commandWatcher = new(FilePath.CommandDir)
+			{
+				EnableRaisingEvents = true,
+				Filter = "Command.dat"
+			};
+			commandWatcher.Renamed += (s, e) =>
+			{
+				bool canStart = false;
+				{
+					bool wait = false;
+					this.Invoke(new Action(() =>
+					{
+						ShowMainForm();
+						canStart = StartButton.Visible;
+						wait = true;
+					}));
+					while (!wait) ;
+				}
+				if (canStart)
+				{
+					List<string> cacheReadArgs = [];
+					StreamReader sr = new(FilePath.commandFile, System.Text.Encoding.UTF8);
+					while (true)
+					{
+						string? read = sr.ReadLine();
+						if (read != null && read != "")
+						{
+							cacheReadArgs.Add(read);
+						}
+						else break;
+					}
+					sr.Close();
+					string[] cwReadArgs = [.. cacheReadArgs];
+
+					ArgsCompute ad = new()
+					{
+						PriArgs = cwReadArgs
+					};
+					if (ad.HaveArgs())
+					{
+						ad.Compute();
+						this.Invoke(new Action(() =>
+						{
+							AutoStartTimed(ad.Type, ad.Time);
+						}));
+					}
+				}
+			};
 		}
 		/// <summary>
 		/// 设置为true后将不会在Main_FormClosing函数中阻止程序退出<br/>
 		/// 部分块也会使用该变量来判断程序是否退出
 		/// </summary>
 		public static bool trueExitProgram = false;
+		/// <summary>
+		/// 是否在点击关闭按钮时最小化至托盘
+		/// </summary>
+		public static bool CloseToTaskBar = true;
 		private void Main_FormClosing(object sender, FormClosingEventArgs e)
 		{
-			if (!trueExitProgram)
+			if (!trueExitProgram && CloseToTaskBar)
 			{
 				this.Visible = false;
 				e.Cancel = true;
@@ -164,20 +229,20 @@ namespace TimedPower
 					DataSave();
 				}); t.Start();
 			}
-			else
-			{
-				bool wait = false;
-				Thread t = new(() =>
-				{
-					DataSave();
-					wait = true;
-				}); t.Start();
-				while (!wait) { Application.DoEvents(); Thread.Sleep(1); }
-			}
-
+			else Visible = false;
 		}
 		private void Main_FormClosed(object sender, FormClosedEventArgs e)
 		{
+			//确保该值在退出时为true，避免其它依赖此值的线程锁死
+			trueExitProgram = true;//此行代码不能删，因为还有可能时因为CloseToTaskBar值为false而退出，而trueExitProgram不会因此为true。需要再次设置确保其为true
+			bool wait = false;
+			Thread t = new(() =>
+			{
+				DataSave();
+				wait = true;
+			}); t.Start();
+			while (!wait) { Application.DoEvents(); Thread.Sleep(1); }
+
 			fuse = false;
 			fuse_autoTask = false;
 			DefendAutoTask.CloseDefend();
@@ -187,64 +252,136 @@ namespace TimedPower
 		{
 			this.Visible = false;
 			this.Opacity = 1;
-			bool showTheForm = true;///是否在函数最后显示窗体，如果有-hidden标签，则在最后不显示窗体
-			if (args.Length != 0)
+
+			ArgsCompute ad = new()
 			{
-				string type = "", time = "";
-				for (int i = 0; i < args.Length; i++)
+				PriArgs = args
+			};
+			if (ad.HaveArgs())
+			{
+				ad.Compute();
+				AutoStartTimed(ad.Type, ad.Time);
+			}
+
+			if (ad.ShowTheForm)
+				this.Visible = true;
+		}
+		/// <summary>
+		/// 自动调整控件并开始
+		/// </summary>
+		/// <param name="type"></param>
+		/// <param name="time"></param>
+		/// <returns>返回true表示成功，false则失败</returns>
+		private bool AutoStartTimed(ArgsCompute.AllTypes type, string time)
+		{
+			switch (type)
+			{
+				case ArgsCompute.AllTypes.shutdown:
+					//typeStr = "关机";
+					ActionSelect.SelectedIndex = 0;
+					break;
+				case ArgsCompute.AllTypes.reboot:
+					//typeStr = "重启";
+					ActionSelect.SelectedIndex = 1;
+					break;
+				case ArgsCompute.AllTypes.sleep:
+					//typeStr = "睡眠";
+					ActionSelect.SelectedIndex = 2;
+					break;
+				case ArgsCompute.AllTypes.hibernate:
+					//typeStr = "休眠";
+					ActionSelect.SelectedIndex = 3;
+					break;
+				case ArgsCompute.AllTypes.userlock:
+					//typeStr = "锁定";
+					ActionSelect.SelectedIndex = 4;
+					break;
+				case ArgsCompute.AllTypes.useroff:
+					//typeStr = "注销";
+					ActionSelect.SelectedIndex = 5;
+					break;
+				default:
+					return false;
+			}
+			TimeTypeSelect.SelectedIndex = 0;
+			TimeInput.Text = time;
+			StartButton_Click(null!, null!);
+			return true;
+		}
+		internal class ArgsCompute
+		{
+			private string[] priArgs = [];
+			/// <summary>
+			/// 使用类的其它方法之前，需将参数输入至类，用于之后的判断
+			/// </summary>
+			internal string[] PriArgs
+			{
+				set => priArgs = value;
+			}
+			internal enum AllTypes
+			{
+				none, shutdown, reboot, sleep, hibernate, userlock, useroff
+			};
+			private AllTypes type = AllTypes.none;
+			/// <summary>
+			/// 执行的类型
+			/// </summary>
+			internal AllTypes Type
+			{
+				get => type;
+			}
+			private string time = "";
+			/// <summary>
+			/// 倒计时时间
+			/// </summary>
+			internal string Time
+			{
+				get => time;
+			}
+			private bool showTheForm = true;
+			/// <summary>
+			/// 是否在函数最后显示窗体，如果有-hidden标签，则在最后不显示窗体
+			/// </summary>
+			internal bool ShowTheForm
+			{
+				get => showTheForm;
+			}
+
+			/// <summary>
+			/// 判断类中的参数变量是否包含参数值
+			/// </summary>
+			/// <returns></returns>
+			internal bool HaveArgs()
+			{
+				if (priArgs.Length != 0)
+					return true;
+				else return false;
+			}
+			/// <summary>
+			/// 处理参数并将返回值设置在类的属性里
+			/// </summary>
+			internal void Compute()
+			{
+				for (int i = 0; i < priArgs.Length; i++)
 				{
-					switch (args[i].ToLower())
+					switch (priArgs[i].ToLower())
 					{
 						case "-type":
 							i++;
-							type = args[i].ToLower();
+							type = (AllTypes)Enum.Parse(typeof(AllTypes), priArgs[i].ToLower());
 							break;
 						case "-time":
 							i++;
-							time = args[i].ToLower();
+							time = priArgs[i].ToLower();
 							break;
 						case "-hidden":
 							showTheForm = false;
 							break;
 					}
 				}
-				//string typeStr="";
-				switch (type)
-				{
-					case "shutdown":
-						//typeStr = "关机";
-						ActionSelect.SelectedIndex = 0;
-						break;
-					case "reboot":
-						//typeStr = "重启";
-						ActionSelect.SelectedIndex = 1;
-						break;
-					case "sleep":
-						//typeStr = "睡眠";
-						ActionSelect.SelectedIndex = 2;
-						break;
-					case "hibernate":
-						//typeStr = "休眠";
-						ActionSelect.SelectedIndex = 3;
-						break;
-					case "userlock":
-						//typeStr = "锁定";
-						ActionSelect.SelectedIndex = 4;
-						break;
-					case "useroff":
-						//typeStr = "注销";
-						ActionSelect.SelectedIndex = 5;
-						break;
-					default:
-						return;
-				}
-				TimeTypeSelect.SelectedIndex = 0;
-				TimeInput.Text = time;
-				StartButton_Click(null!, null!);
 			}
-			if (showTheForm)
-				this.Visible = true;
 		}
+
 		/// <summary>
 		/// 数据保存函数。注意，此函数必须在线程内运行，否则会导致主线程无响应
 		/// </summary>
@@ -253,6 +390,36 @@ namespace TimedPower
 			bool wait = false;
 			this.Invoke(new Action(() =>
 			{
+				bool[] checkExist = new bool[5];//用于排查是否有丢失项
+				XmlElement xmlEleDo(int id,XmlElement xmlEle,XmlDocument? xmlDoc=null)
+				{
+					switch (id)
+					{
+						case 0:
+							if (xmlDoc != null) xmlEle = xmlDoc.CreateElement("Window");
+							xmlEle.SetAttribute("x", this.Left.ToString());
+							xmlEle.SetAttribute("y", this.Top.ToString());
+							checkExist[0] = true;break;
+						case 1:
+							if (xmlDoc != null) xmlEle = xmlDoc.CreateElement("Action");
+							xmlEle.SetAttribute("index", ActionSelect.SelectedIndex.ToString());
+							checkExist[1] = true;break;
+						case 2:
+							if (xmlDoc != null) xmlEle = xmlDoc.CreateElement("TimeType");
+							xmlEle.SetAttribute("index", TimeTypeSelect.SelectedIndex.ToString());
+							checkExist[2] = true;break;
+						case 3:
+							if (xmlDoc != null) xmlEle = xmlDoc.CreateElement("TimeInput");
+							xmlEle.SetAttribute("value", TimeInput.Text);
+							checkExist[3] = true;break;
+						case 4:
+							if (xmlDoc != null) xmlEle = xmlDoc.CreateElement("CloseToTaskBar");
+							xmlEle.SetAttribute("boolean", CloseToTaskBar.ToString());
+							checkExist[4] = true;break;
+					}
+					return xmlEle;
+				}
+
 				XmlDocument xmlDoc = new();
 				XmlNodeList xmlNL;
 				XmlElement xmlEle;
@@ -264,18 +431,30 @@ namespace TimedPower
 					switch (xmlEle.Name)
 					{
 						case "Window":
-							xmlEle.SetAttribute("x", this.Left.ToString());
-							xmlEle.SetAttribute("y", this.Top.ToString());
+							xmlEleDo(0, xmlEle);
 							break;
 						case "Action":
-							xmlEle.SetAttribute("index", ActionSelect.SelectedIndex.ToString());
+							xmlEleDo(1, xmlEle);
 							break;
 						case "TimeType":
-							xmlEle.SetAttribute("index", TimeTypeSelect.SelectedIndex.ToString());
+							xmlEleDo(2, xmlEle);
 							break;
 						case "TimeInput":
-							xmlEle.SetAttribute("value", TimeInput.Text);
+							xmlEleDo(3, xmlEle);
 							break;
+						case "CloseToTaskBar":
+							xmlEleDo(4, xmlEle);
+							break;
+					}
+				}
+				xmlDoc.Save(FilePath.MainDataFile);
+
+				XmlNode xmlRoot= xmlDoc.SelectSingleNode("TimedPower_Data")!;
+				for (int i=0;i<checkExist.Length;i++)//检查，修补丢失的项
+				{
+					if (!checkExist[i])
+					{
+						xmlRoot.AppendChild( xmlEleDo(i,null!,xmlDoc));
 					}
 				}
 				xmlDoc.Save(FilePath.MainDataFile);
@@ -926,20 +1105,28 @@ namespace TimedPower
 			switch (e.Button)
 			{
 				case MouseButtons.Left:
-					if (this.Visible == false)
-						NotifyIcon_main_ContextMenu_ShowButton_Click(null!, null!);
-					else
-					{
-						TopMost = true;
-						TopMost = false;
-						this.Focus();
-					}
+					ShowMainForm();
 					break;
-			}					
+			}
+		}
+		private void ShowMainForm()
+		{
+			if (this.Visible == false)
+				NotifyIcon_main_ContextMenu_ShowButton_Click(null!, null!);
+			else
+			{
+				TopMost = true;
+				TopMost = false;
+				this.Focus();
+			}
 		}
 		#endregion
 
 		#region FormMenuStrip
+		private void FormMenuStrip_Opening(object sender, System.ComponentModel.CancelEventArgs e)
+		{
+			FormMenuStrip_CloseToTaskBarToggle.Checked = CloseToTaskBar;
+		}
 		private void AddOrFixWindowsRightClickMenu_MenuItem_Click(object sender, EventArgs e)
 		{
 			BatFile.WindowsRightClickMenu.RunAdd();
@@ -955,6 +1142,10 @@ namespace TimedPower
 		private void DisabledSelfStarting_Click(object sender, EventArgs e)
 		{
 			BatFile.WindowsSelfStarting.RunRemove();
+		}
+		private void FormMenuStrip_CloseToTaskBarToggle_CheckedChanged(object sender, EventArgs e)
+		{
+			CloseToTaskBar = FormMenuStrip_CloseToTaskBarToggle.Checked;
 		}
 		AutoTaskForm autoTaskForm;
 		private void AutoTask_ToolStripMenuItem_Click(object sender, EventArgs e)

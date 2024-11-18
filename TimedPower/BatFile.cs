@@ -6,7 +6,6 @@ namespace TimedPower
 {
     public static class BatFile
     {
-        static readonly string filePath = System.IO.Path.GetTempPath() + "TimedPower\\";
         /// <summary>
         /// 执行文件路径(本体程序位置路径)
         /// </summary>
@@ -16,8 +15,8 @@ namespace TimedPower
         /// </summary>
         public static class WindowsRightClickMenu
         {            
-            static readonly string addMenu_BatFilePath=filePath +"AddMenu.bat";
-            static readonly string removeMenu_BatFilePath = filePath + "RemoveMenu.bat";
+            static readonly string addMenu_BatFilePath=FilePath.TempDir +"AddMenu.bat";
+            static readonly string removeMenu_BatFilePath = FilePath.TempDir + "RemoveMenu.bat";
 
             static readonly string regPath = "HKEY_CLASSES_ROOT\\Directory\\Background\\shell\\TimedPower";
             static readonly string regPath2 = "HKEY_CLASSES_ROOT\\Directory\\Background\\shell\\TimedPower\\shell\\";//二级目录
@@ -85,12 +84,12 @@ namespace TimedPower
                 //{
                 /* if (!File.Exists(addMenu_BatFilePath) || !File.Exists(removeMenu_BatFilePath))
                  {
-                     Directory.CreateDirectory(filePath);
+                     Directory.CreateDirectory(FilePath.TempDir);
                      if (!File.Exists(addMenu_BatFilePath))    BatFile_Create("add");
                      if (!File.Exists(removeMenu_BatFilePath)) BatFile_Create("remove");
                  }*/
-                if (!Directory.Exists(filePath))
-                    Directory.CreateDirectory(filePath);
+                if (!Directory.Exists(FilePath.TempDir))
+                    Directory.CreateDirectory(FilePath.TempDir);
                 BatFile_Create("add");
                 BatFile_Create("remove");
                 //}
@@ -163,8 +162,8 @@ namespace TimedPower
         /// </summary>
         public static class WindowsSelfStarting
         {
-            static readonly string addThat_BatFilePath = filePath + "AddSelfStarting.bat";
-            static readonly string removeThat_BatFilePath = filePath + "RemoveSelfStarting.bat";
+            static readonly string addThat_BatFilePath = FilePath.TempDir + "AddSelfStarting.bat";
+            static readonly string removeThat_BatFilePath = FilePath.TempDir + "RemoveSelfStarting.bat";
 
             static readonly string regPath = "HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Run";
 
@@ -229,8 +228,8 @@ namespace TimedPower
             /// <returns>创建或检查成功返回true，创建文件失败则返回false</returns>
             static bool FileExistCheck()
             {
-                if (!Directory.Exists(filePath))
-                    Directory.CreateDirectory(filePath);
+                if (!Directory.Exists(FilePath.TempDir))
+                    Directory.CreateDirectory(FilePath.TempDir);
                 BatFile_Create(Action.add);
                 BatFile_Create(Action.remove);
                 return true;

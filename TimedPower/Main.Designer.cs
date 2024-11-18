@@ -74,6 +74,7 @@
 			帮助文档ToolStripMenuItem = new ToolStripMenuItem();
 			关于ToolStripMenuItem = new ToolStripMenuItem();
 			notifyIcon_main_ContextMenu_ExitButton = new ToolStripMenuItem();
+			FormMenuStrip_CloseToTaskBarToggle = new ToolStripMenuItem();
 			TimeInput_ContextMenu.SuspendLayout();
 			FormMenuStrip.SuspendLayout();
 			notifyIcon_main_ContextMenu.SuspendLayout();
@@ -263,15 +264,16 @@
 			// 
 			// FormMenuStrip
 			// 
-			FormMenuStrip.Items.AddRange(new ToolStripItem[] { windows右键菜单ToolStripMenuItem, 软件开机自启ToolStripMenuItem, autoTask_ToolStripMenuItem, toolStripMenuItem1, FormMenuStrip_Help });
+			FormMenuStrip.Items.AddRange(new ToolStripItem[] { windows右键菜单ToolStripMenuItem, 软件开机自启ToolStripMenuItem, FormMenuStrip_CloseToTaskBarToggle, autoTask_ToolStripMenuItem, toolStripMenuItem1, FormMenuStrip_Help });
 			FormMenuStrip.Name = "GyMenuStrip";
-			FormMenuStrip.Size = new Size(178, 98);
+			FormMenuStrip.Size = new Size(185, 142);
+			FormMenuStrip.Opening += FormMenuStrip_Opening;
 			// 
 			// windows右键菜单ToolStripMenuItem
 			// 
 			windows右键菜单ToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { AddOrFixWindowsRightClickMenu_MenuItem, RemoveWindowsRightClickMenu_MenuItem });
 			windows右键菜单ToolStripMenuItem.Name = "windows右键菜单ToolStripMenuItem";
-			windows右键菜单ToolStripMenuItem.Size = new Size(177, 22);
+			windows右键菜单ToolStripMenuItem.Size = new Size(184, 22);
 			windows右键菜单ToolStripMenuItem.Text = "Windows右键菜单";
 			// 
 			// AddOrFixWindowsRightClickMenu_MenuItem
@@ -292,7 +294,7 @@
 			// 
 			软件开机自启ToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { enabledSelfStarting, disabledSelfStarting });
 			软件开机自启ToolStripMenuItem.Name = "软件开机自启ToolStripMenuItem";
-			软件开机自启ToolStripMenuItem.Size = new Size(177, 22);
+			软件开机自启ToolStripMenuItem.Size = new Size(184, 22);
 			软件开机自启ToolStripMenuItem.Text = "软件开机自启";
 			// 
 			// enabledSelfStarting
@@ -312,20 +314,20 @@
 			// autoTask_ToolStripMenuItem
 			// 
 			autoTask_ToolStripMenuItem.Name = "autoTask_ToolStripMenuItem";
-			autoTask_ToolStripMenuItem.Size = new Size(177, 22);
+			autoTask_ToolStripMenuItem.Size = new Size(184, 22);
 			autoTask_ToolStripMenuItem.Text = "自动定时任务";
 			autoTask_ToolStripMenuItem.Click += AutoTask_ToolStripMenuItem_Click;
 			// 
 			// toolStripMenuItem1
 			// 
 			toolStripMenuItem1.Name = "toolStripMenuItem1";
-			toolStripMenuItem1.Size = new Size(174, 6);
+			toolStripMenuItem1.Size = new Size(181, 6);
 			// 
 			// FormMenuStrip_Help
 			// 
 			FormMenuStrip_Help.DropDownItems.AddRange(new ToolStripItem[] { FormMenuStrip_Help_HelpDoc, GyToolStripMenuItem });
 			FormMenuStrip_Help.Name = "FormMenuStrip_Help";
-			FormMenuStrip_Help.Size = new Size(177, 22);
+			FormMenuStrip_Help.Size = new Size(184, 22);
 			FormMenuStrip_Help.Text = "帮助";
 			// 
 			// FormMenuStrip_Help_HelpDoc
@@ -411,6 +413,14 @@
 			notifyIcon_main_ContextMenu_ExitButton.Text = "退出";
 			notifyIcon_main_ContextMenu_ExitButton.Click += NotifyIcon_main_ContextMenu_ExitButton_Click;
 			// 
+			// FormMenuStrip_CloseToTaskBarToggle
+			// 
+			FormMenuStrip_CloseToTaskBarToggle.CheckOnClick = true;
+			FormMenuStrip_CloseToTaskBarToggle.Name = "FormMenuStrip_CloseToTaskBarToggle";
+			FormMenuStrip_CloseToTaskBarToggle.Size = new Size(184, 22);
+			FormMenuStrip_CloseToTaskBarToggle.Text = "关闭时最小化至托盘";
+			FormMenuStrip_CloseToTaskBarToggle.CheckedChanged += FormMenuStrip_CloseToTaskBarToggle_CheckedChanged;
+			// 
 			// Main
 			// 
 			AutoScaleDimensions = new SizeF(7F, 17F);
@@ -487,5 +497,6 @@
 		private ToolStripMenuItem 帮助文档ToolStripMenuItem;
 		private ToolStripMenuItem 关于ToolStripMenuItem;
 		private ToolStripMenuItem 自动定时任务ToolStripMenuItem;
+		private ToolStripMenuItem FormMenuStrip_CloseToTaskBarToggle;
 	}
 }
