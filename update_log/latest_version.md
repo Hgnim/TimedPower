@@ -1,5 +1,4 @@
 [返回](../README.md)
 
-- V2.5.4.20241118更新内容:
-  - 修复了软件打开时无法使用右键菜单一键启动该软件并计时的问题
-  - 新增可选是否退出时最小化至托盘
+- V2.6.4.20241120更新内容:
+  - 添加了检查更新功能。该功能的动态链接库来自于[EasyUpdateFromGithub](https://github.com/Hgnim/EasyUpdateFromGithub)

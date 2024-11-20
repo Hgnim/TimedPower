@@ -59,9 +59,13 @@
 			软件开机自启ToolStripMenuItem = new ToolStripMenuItem();
 			enabledSelfStarting = new ToolStripMenuItem();
 			disabledSelfStarting = new ToolStripMenuItem();
+			FormMenuStrip_CloseToTaskBarToggle = new ToolStripMenuItem();
 			autoTask_ToolStripMenuItem = new ToolStripMenuItem();
 			toolStripMenuItem1 = new ToolStripSeparator();
 			FormMenuStrip_Help = new ToolStripMenuItem();
+			FormMenuStrip_Help_CheckUpdate = new ToolStripMenuItem();
+			FormMenuStrip_Help_AutoCheckUpdate = new ToolStripMenuItem();
+			toolStripMenuItem3 = new ToolStripSeparator();
 			FormMenuStrip_Help_HelpDoc = new ToolStripMenuItem();
 			GyToolStripMenuItem = new ToolStripMenuItem();
 			notifyIcon_main = new NotifyIcon(components);
@@ -71,10 +75,12 @@
 			自动定时任务ToolStripMenuItem = new ToolStripMenuItem();
 			toolStripMenuItem2 = new ToolStripSeparator();
 			帮助ToolStripMenuItem = new ToolStripMenuItem();
+			nmc_CheckUpdate = new ToolStripMenuItem();
+			nmc__AutoCheckUpdate = new ToolStripMenuItem();
+			toolStripMenuItem4 = new ToolStripSeparator();
 			帮助文档ToolStripMenuItem = new ToolStripMenuItem();
 			关于ToolStripMenuItem = new ToolStripMenuItem();
 			notifyIcon_main_ContextMenu_ExitButton = new ToolStripMenuItem();
-			FormMenuStrip_CloseToTaskBarToggle = new ToolStripMenuItem();
 			TimeInput_ContextMenu.SuspendLayout();
 			FormMenuStrip.SuspendLayout();
 			notifyIcon_main_ContextMenu.SuspendLayout();
@@ -266,7 +272,7 @@
 			// 
 			FormMenuStrip.Items.AddRange(new ToolStripItem[] { windows右键菜单ToolStripMenuItem, 软件开机自启ToolStripMenuItem, FormMenuStrip_CloseToTaskBarToggle, autoTask_ToolStripMenuItem, toolStripMenuItem1, FormMenuStrip_Help });
 			FormMenuStrip.Name = "GyMenuStrip";
-			FormMenuStrip.Size = new Size(185, 142);
+			FormMenuStrip.Size = new Size(185, 120);
 			FormMenuStrip.Opening += FormMenuStrip_Opening;
 			// 
 			// windows右键菜单ToolStripMenuItem
@@ -311,6 +317,14 @@
 			disabledSelfStarting.Text = "禁用开机自启";
 			disabledSelfStarting.Click += DisabledSelfStarting_Click;
 			// 
+			// FormMenuStrip_CloseToTaskBarToggle
+			// 
+			FormMenuStrip_CloseToTaskBarToggle.CheckOnClick = true;
+			FormMenuStrip_CloseToTaskBarToggle.Name = "FormMenuStrip_CloseToTaskBarToggle";
+			FormMenuStrip_CloseToTaskBarToggle.Size = new Size(184, 22);
+			FormMenuStrip_CloseToTaskBarToggle.Text = "关闭时最小化至托盘";
+			FormMenuStrip_CloseToTaskBarToggle.CheckedChanged += FormMenuStrip_CloseToTaskBarToggle_CheckedChanged;
+			// 
 			// autoTask_ToolStripMenuItem
 			// 
 			autoTask_ToolStripMenuItem.Name = "autoTask_ToolStripMenuItem";
@@ -325,22 +339,43 @@
 			// 
 			// FormMenuStrip_Help
 			// 
-			FormMenuStrip_Help.DropDownItems.AddRange(new ToolStripItem[] { FormMenuStrip_Help_HelpDoc, GyToolStripMenuItem });
+			FormMenuStrip_Help.DropDownItems.AddRange(new ToolStripItem[] { FormMenuStrip_Help_CheckUpdate, FormMenuStrip_Help_AutoCheckUpdate, toolStripMenuItem3, FormMenuStrip_Help_HelpDoc, GyToolStripMenuItem });
 			FormMenuStrip_Help.Name = "FormMenuStrip_Help";
 			FormMenuStrip_Help.Size = new Size(184, 22);
 			FormMenuStrip_Help.Text = "帮助";
 			// 
+			// FormMenuStrip_Help_CheckUpdate
+			// 
+			FormMenuStrip_Help_CheckUpdate.Name = "FormMenuStrip_Help_CheckUpdate";
+			FormMenuStrip_Help_CheckUpdate.Size = new Size(180, 22);
+			FormMenuStrip_Help_CheckUpdate.Text = "检查更新";
+			FormMenuStrip_Help_CheckUpdate.Click += FormMenuStrip_Help_CheckUpdate_Click;
+			// 
+			// FormMenuStrip_Help_AutoCheckUpdate
+			// 
+			FormMenuStrip_Help_AutoCheckUpdate.Checked = true;
+			FormMenuStrip_Help_AutoCheckUpdate.CheckState = CheckState.Checked;
+			FormMenuStrip_Help_AutoCheckUpdate.Name = "FormMenuStrip_Help_AutoCheckUpdate";
+			FormMenuStrip_Help_AutoCheckUpdate.Size = new Size(180, 22);
+			FormMenuStrip_Help_AutoCheckUpdate.Text = "自动检测更新";
+			FormMenuStrip_Help_AutoCheckUpdate.Click += FormMenuStrip_Help_AutoCheckUpdate_Click;
+			// 
+			// toolStripMenuItem3
+			// 
+			toolStripMenuItem3.Name = "toolStripMenuItem3";
+			toolStripMenuItem3.Size = new Size(177, 6);
+			// 
 			// FormMenuStrip_Help_HelpDoc
 			// 
 			FormMenuStrip_Help_HelpDoc.Name = "FormMenuStrip_Help_HelpDoc";
-			FormMenuStrip_Help_HelpDoc.Size = new Size(124, 22);
+			FormMenuStrip_Help_HelpDoc.Size = new Size(180, 22);
 			FormMenuStrip_Help_HelpDoc.Text = "帮助文档";
 			FormMenuStrip_Help_HelpDoc.Click += FormMenuStrip_Help_HelpDoc_Click;
 			// 
 			// GyToolStripMenuItem
 			// 
 			GyToolStripMenuItem.Name = "GyToolStripMenuItem";
-			GyToolStripMenuItem.Size = new Size(124, 22);
+			GyToolStripMenuItem.Size = new Size(180, 22);
 			GyToolStripMenuItem.Text = "关于";
 			GyToolStripMenuItem.Click += GyToolStripMenuItem_Click;
 			// 
@@ -356,70 +391,83 @@
 			// 
 			notifyIcon_main_ContextMenu.Items.AddRange(new ToolStripItem[] { notifyIcon_main_ContextMenu_ShowButton, notifyIcon_main_ContextMenu_HiddenButton, 自动定时任务ToolStripMenuItem, toolStripMenuItem2, 帮助ToolStripMenuItem, notifyIcon_main_ContextMenu_ExitButton });
 			notifyIcon_main_ContextMenu.Name = "notifyIcon_main_ContextMenu";
-			notifyIcon_main_ContextMenu.Size = new Size(149, 120);
+			notifyIcon_main_ContextMenu.Size = new Size(181, 142);
 			notifyIcon_main_ContextMenu.Opening += NotifyIcon_main_ContextMenu_Opening;
 			// 
 			// notifyIcon_main_ContextMenu_ShowButton
 			// 
 			notifyIcon_main_ContextMenu_ShowButton.Name = "notifyIcon_main_ContextMenu_ShowButton";
-			notifyIcon_main_ContextMenu_ShowButton.Size = new Size(148, 22);
+			notifyIcon_main_ContextMenu_ShowButton.Size = new Size(180, 22);
 			notifyIcon_main_ContextMenu_ShowButton.Text = "显示主窗口";
 			notifyIcon_main_ContextMenu_ShowButton.Click += NotifyIcon_main_ContextMenu_ShowButton_Click;
 			// 
 			// notifyIcon_main_ContextMenu_HiddenButton
 			// 
 			notifyIcon_main_ContextMenu_HiddenButton.Name = "notifyIcon_main_ContextMenu_HiddenButton";
-			notifyIcon_main_ContextMenu_HiddenButton.Size = new Size(148, 22);
+			notifyIcon_main_ContextMenu_HiddenButton.Size = new Size(180, 22);
 			notifyIcon_main_ContextMenu_HiddenButton.Text = "隐藏主窗口";
 			notifyIcon_main_ContextMenu_HiddenButton.Click += NotifyIcon_main_ContextMenu_HiddenButton_Click;
 			// 
 			// 自动定时任务ToolStripMenuItem
 			// 
 			自动定时任务ToolStripMenuItem.Name = "自动定时任务ToolStripMenuItem";
-			自动定时任务ToolStripMenuItem.Size = new Size(148, 22);
+			自动定时任务ToolStripMenuItem.Size = new Size(180, 22);
 			自动定时任务ToolStripMenuItem.Text = "自动定时任务";
 			自动定时任务ToolStripMenuItem.Click += AutoTask_ToolStripMenuItem_Click;
 			// 
 			// toolStripMenuItem2
 			// 
 			toolStripMenuItem2.Name = "toolStripMenuItem2";
-			toolStripMenuItem2.Size = new Size(145, 6);
+			toolStripMenuItem2.Size = new Size(177, 6);
 			// 
 			// 帮助ToolStripMenuItem
 			// 
-			帮助ToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { 帮助文档ToolStripMenuItem, 关于ToolStripMenuItem });
+			帮助ToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { nmc_CheckUpdate, nmc__AutoCheckUpdate, toolStripMenuItem4, 帮助文档ToolStripMenuItem, 关于ToolStripMenuItem });
 			帮助ToolStripMenuItem.Name = "帮助ToolStripMenuItem";
-			帮助ToolStripMenuItem.Size = new Size(148, 22);
+			帮助ToolStripMenuItem.Size = new Size(180, 22);
 			帮助ToolStripMenuItem.Text = "帮助";
+			// 
+			// nmc_CheckUpdate
+			// 
+			nmc_CheckUpdate.Name = "nmc_CheckUpdate";
+			nmc_CheckUpdate.Size = new Size(180, 22);
+			nmc_CheckUpdate.Text = "检查更新";
+			nmc_CheckUpdate.Click += FormMenuStrip_Help_CheckUpdate_Click;
+			// 
+			// nmc__AutoCheckUpdate
+			// 
+			nmc__AutoCheckUpdate.Checked = true;
+			nmc__AutoCheckUpdate.CheckState = CheckState.Checked;
+			nmc__AutoCheckUpdate.Name = "nmc__AutoCheckUpdate";
+			nmc__AutoCheckUpdate.Size = new Size(180, 22);
+			nmc__AutoCheckUpdate.Text = "自动检查更新";
+			nmc__AutoCheckUpdate.Click += FormMenuStrip_Help_AutoCheckUpdate_Click;
+			// 
+			// toolStripMenuItem4
+			// 
+			toolStripMenuItem4.Name = "toolStripMenuItem4";
+			toolStripMenuItem4.Size = new Size(177, 6);
 			// 
 			// 帮助文档ToolStripMenuItem
 			// 
 			帮助文档ToolStripMenuItem.Name = "帮助文档ToolStripMenuItem";
-			帮助文档ToolStripMenuItem.Size = new Size(124, 22);
+			帮助文档ToolStripMenuItem.Size = new Size(180, 22);
 			帮助文档ToolStripMenuItem.Text = "帮助文档";
 			帮助文档ToolStripMenuItem.Click += FormMenuStrip_Help_HelpDoc_Click;
 			// 
 			// 关于ToolStripMenuItem
 			// 
 			关于ToolStripMenuItem.Name = "关于ToolStripMenuItem";
-			关于ToolStripMenuItem.Size = new Size(124, 22);
+			关于ToolStripMenuItem.Size = new Size(180, 22);
 			关于ToolStripMenuItem.Text = "关于";
 			关于ToolStripMenuItem.Click += GyToolStripMenuItem_Click;
 			// 
 			// notifyIcon_main_ContextMenu_ExitButton
 			// 
 			notifyIcon_main_ContextMenu_ExitButton.Name = "notifyIcon_main_ContextMenu_ExitButton";
-			notifyIcon_main_ContextMenu_ExitButton.Size = new Size(148, 22);
+			notifyIcon_main_ContextMenu_ExitButton.Size = new Size(180, 22);
 			notifyIcon_main_ContextMenu_ExitButton.Text = "退出";
 			notifyIcon_main_ContextMenu_ExitButton.Click += NotifyIcon_main_ContextMenu_ExitButton_Click;
-			// 
-			// FormMenuStrip_CloseToTaskBarToggle
-			// 
-			FormMenuStrip_CloseToTaskBarToggle.CheckOnClick = true;
-			FormMenuStrip_CloseToTaskBarToggle.Name = "FormMenuStrip_CloseToTaskBarToggle";
-			FormMenuStrip_CloseToTaskBarToggle.Size = new Size(184, 22);
-			FormMenuStrip_CloseToTaskBarToggle.Text = "关闭时最小化至托盘";
-			FormMenuStrip_CloseToTaskBarToggle.CheckedChanged += FormMenuStrip_CloseToTaskBarToggle_CheckedChanged;
 			// 
 			// Main
 			// 
@@ -498,5 +546,11 @@
 		private ToolStripMenuItem 关于ToolStripMenuItem;
 		private ToolStripMenuItem 自动定时任务ToolStripMenuItem;
 		private ToolStripMenuItem FormMenuStrip_CloseToTaskBarToggle;
+		private ToolStripMenuItem FormMenuStrip_Help_CheckUpdate;
+		private ToolStripMenuItem FormMenuStrip_Help_AutoCheckUpdate;
+		private ToolStripSeparator toolStripMenuItem3;
+		private ToolStripMenuItem nmc_CheckUpdate;
+		private ToolStripMenuItem nmc__AutoCheckUpdate;
+		private ToolStripSeparator toolStripMenuItem4;
 	}
 }

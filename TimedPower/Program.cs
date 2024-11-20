@@ -1,16 +1,17 @@
-using System.Runtime.InteropServices;
+using EasyUpdateFromGithub;
 
 namespace TimedPower
 {
     internal static class Program
     {
-       public const string version = "2.5.4.20241118";
+       public const string version = "2.6.4.20241120";
         public const string aboutText =
 @$"程序名: 定时电源
 别名: TimedPower
 版本: V{version}
 Copyright (C) 2024 Hgnim, All rights reserved.
 Github: https://github.com/Hgnim/TimedPower";
+        public static UpdateFromGithub ufg=null!;
 		/// <summary>
 		///  The main entry point for the application.
 		/// </summary>
@@ -33,6 +34,12 @@ Github: https://github.com/Hgnim/TimedPower";
                     return;
                 }
             }
+            ufg = new()
+            {
+                EasySetCacheDir = FilePath.name,
+                ProgramVersion = version,
+                RepositoryURL = "https://github.com/Hgnim/TimedPower"
+            };
 
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.

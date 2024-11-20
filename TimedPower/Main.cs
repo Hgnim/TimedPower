@@ -1,30 +1,26 @@
 using Microsoft.Toolkit.Uwp.Notifications;
-using Microsoft.Win32;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Diagnostics.PerformanceData;
-using System.Runtime.InteropServices;
-using System.Security.Cryptography.X509Certificates;
-using System.Text.RegularExpressions;
 using Windows.Foundation.Collections;
 using static TimedPower.TaskbarProgressBar;
 using System.Xml;
-using Windows.Media.Core;
 using static TimedPower.AutoTaskData;
+using static TimedPower.Program;
+using EasyUpdateFromGithub;
 
 namespace TimedPower
 {
     internal readonly struct FilePath
     {
-        internal static readonly string ConfigDir = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "\\TimedPower\\";
+		internal static readonly string name = "TimedPower";
+
+		internal static readonly string ConfigDir = $"{Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData)}\\{name}\\";//踩坑提醒，之前该字符串使用@$前缀，而其中的\会将{转义，报出非常莫名其妙毫不相干的错误，在此作为提醒。
         internal static readonly string MainDataFile = ConfigDir + "data.xml";
         internal static readonly string AutoTaskFile = ConfigDir + "autoTask.xml";
 
-		internal static readonly string TempDir = System.IO.Path.GetTempPath() + @"TimedPower\";
+		internal static readonly string TempDir = System.IO.Path.GetTempPath() + @$"{name}\";
 		internal static readonly string CommandDir = @$"{TempDir}Command\";
 		internal static readonly string commandFile = CommandDir + "Command.dat";
-    }
+	}
 	public partial class Main : Form
 	{
 		static string[] args = [];
@@ -78,6 +74,10 @@ namespace TimedPower
 
 				xmlWriter.WriteStartElement("CloseToTaskBar");
 				xmlWriter.WriteAttributeString("boolean", "true");
+				xmlWriter.WriteEndElement(); 
+
+				xmlWriter.WriteStartElement("AutoCheckUpdate");
+				xmlWriter.WriteAttributeString("boolean", "true");
 				xmlWriter.WriteEndElement();
 
 				xmlWriter.WriteFullEndElement();
@@ -121,7 +121,11 @@ namespace TimedPower
 								try { TimeInput.Text = xmlE.GetAttribute("value"); } catch { }
 								break;
 							case "CloseToTaskBar":
-								try { CloseToTaskBar = bool.Parse(xmlE.GetAttribute("boolean")); }catch { }break;
+								try { CloseToTaskBar = bool.Parse(xmlE.GetAttribute("boolean")); } catch { }
+								break;
+							case "AutoCheckUpdate":
+								try { IsAutoCheckUpdate = bool.Parse(xmlE.GetAttribute("boolean")); }catch { }
+								break;
 						}
 					}
 				}
@@ -265,6 +269,15 @@ namespace TimedPower
 
 			if (ad.ShowTheForm)
 				this.Visible = true;
+
+			if (IsAutoCheckUpdate)
+			{
+				Task.Run(() =>
+				{
+					Thread.Sleep(4000);//等待一段时间后再进行自动更新检查
+					ProgramUpdate(true);
+				});
+			}
 		}
 		/// <summary>
 		/// 自动调整控件并开始
@@ -390,8 +403,8 @@ namespace TimedPower
 			bool wait = false;
 			this.Invoke(new Action(() =>
 			{
-				bool[] checkExist = new bool[5];//用于排查是否有丢失项
-				XmlElement xmlEleDo(int id,XmlElement xmlEle,XmlDocument? xmlDoc=null)
+				bool[] checkExist = new bool[6];//用于排查是否有丢失项
+				XmlElement xmlEleDo(int id, XmlElement xmlEle, XmlDocument? xmlDoc = null)
 				{
 					switch (id)
 					{
@@ -399,23 +412,27 @@ namespace TimedPower
 							if (xmlDoc != null) xmlEle = xmlDoc.CreateElement("Window");
 							xmlEle.SetAttribute("x", this.Left.ToString());
 							xmlEle.SetAttribute("y", this.Top.ToString());
-							checkExist[0] = true;break;
+							checkExist[0] = true; break;
 						case 1:
 							if (xmlDoc != null) xmlEle = xmlDoc.CreateElement("Action");
 							xmlEle.SetAttribute("index", ActionSelect.SelectedIndex.ToString());
-							checkExist[1] = true;break;
+							checkExist[1] = true; break;
 						case 2:
 							if (xmlDoc != null) xmlEle = xmlDoc.CreateElement("TimeType");
 							xmlEle.SetAttribute("index", TimeTypeSelect.SelectedIndex.ToString());
-							checkExist[2] = true;break;
+							checkExist[2] = true; break;
 						case 3:
 							if (xmlDoc != null) xmlEle = xmlDoc.CreateElement("TimeInput");
 							xmlEle.SetAttribute("value", TimeInput.Text);
-							checkExist[3] = true;break;
+							checkExist[3] = true; break;
 						case 4:
 							if (xmlDoc != null) xmlEle = xmlDoc.CreateElement("CloseToTaskBar");
 							xmlEle.SetAttribute("boolean", CloseToTaskBar.ToString());
-							checkExist[4] = true;break;
+							checkExist[4] = true; break;
+						case 5:
+							if (xmlDoc != null) xmlEle = xmlDoc.CreateElement("AutoCheckUpdate");
+							xmlEle.SetAttribute("boolean", IsAutoCheckUpdate.ToString());
+							checkExist[5] = true; break;
 					}
 					return xmlEle;
 				}
@@ -445,16 +462,19 @@ namespace TimedPower
 						case "CloseToTaskBar":
 							xmlEleDo(4, xmlEle);
 							break;
+						case "AutoCheckUpdate":
+							xmlEleDo(5, xmlEle);
+							break;
 					}
 				}
 				xmlDoc.Save(FilePath.MainDataFile);
 
-				XmlNode xmlRoot= xmlDoc.SelectSingleNode("TimedPower_Data")!;
-				for (int i=0;i<checkExist.Length;i++)//检查，修补丢失的项
+				XmlNode xmlRoot = xmlDoc.SelectSingleNode("TimedPower_Data")!;
+				for (int i = 0; i < checkExist.Length; i++)//检查，修补丢失的项
 				{
 					if (!checkExist[i])
 					{
-						xmlRoot.AppendChild( xmlEleDo(i,null!,xmlDoc));
+						xmlRoot.AppendChild(xmlEleDo(i, null!, xmlDoc));
 					}
 				}
 				xmlDoc.Save(FilePath.MainDataFile);
@@ -463,6 +483,72 @@ namespace TimedPower
 				wait = true;
 			}));
 			while (!wait) ;
+		}
+
+		/// <summary>
+		/// 是否正在检测更新，避免重复检查
+		/// </summary>
+		bool isCheckingUpdate = false;
+		/// <summary>
+		/// 是否正在检测更新，避免重复检查
+		/// </summary>
+		bool IsCheckingUpdate
+		{
+			set
+			{
+				isCheckingUpdate = value;
+				FormMenuStrip_Help_CheckUpdate.Enabled = !value;
+				nmc_CheckUpdate.Enabled=!value;
+			}
+		}
+		/// <summary>
+		/// 是否自动检查更新
+		/// </summary>
+		bool IsAutoCheckUpdate = true;
+		/// <summary>
+		/// 检查程序更新
+		/// </summary>
+		/// <param name="isAuto">是否是自动检查更新，如果不是，则在检查完后反馈</param>
+		async void ProgramUpdate(bool isAuto=false)
+		{
+			if (!isCheckingUpdate)
+			{
+				IsCheckingUpdate = true;
+				try
+				{
+					if (await ufg.CheckUpdateAsync())
+					{
+						switch (MessageBox.Show("检查到可用的更新，是否进行更新？", this.Text, MessageBoxButtons.YesNo, MessageBoxIcon.Information))
+						{
+							case DialogResult.Yes:
+								UpdateFromGithub.InfoOfInstall? ioi = await ufg.DownloadReleaseAsync(0);
+								if (ioi != null)
+								{
+									if (MessageBox.Show("最新版本下载完毕，是否执行安装？", this.Text, MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+									{
+										ufg.InstallFile(ioi,waitTime: 900);
+										this.Invoke(new Action(() =>
+										{
+											NotifyIcon_main_ContextMenu_ExitButton_Click(null!, null!);
+										}));
+									}
+								}
+								else
+								{
+									MessageBox.Show("下载更新失败！", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+						}
+								break;
+							default:
+								break;
+						}
+					}
+					else if (!isAuto)
+						MessageBox.Show("当前已是最新版本", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
+				}
+				catch { if(!isAuto)
+					MessageBox.Show("更新检查失败！",this.Text,MessageBoxButtons.OK, MessageBoxIcon.Error); }
+				IsCheckingUpdate = false;
+			}
 		}
 		#endregion
 		private void TimeTypeSelect_SelectedIndexChanged(object sender, EventArgs e)
@@ -1073,16 +1159,9 @@ namespace TimedPower
 		#region NotifyIcon_main_ContextMenu_EVENT
 		private void NotifyIcon_main_ContextMenu_Opening(object sender, System.ComponentModel.CancelEventArgs e)
 		{
-			if (this.Visible)
-			{
-				notifyIcon_main_ContextMenu_ShowButton.Enabled = false;
-				notifyIcon_main_ContextMenu_HiddenButton.Enabled = true;
-			}
-			else
-			{
-				notifyIcon_main_ContextMenu_ShowButton.Enabled = true;
-				notifyIcon_main_ContextMenu_HiddenButton.Enabled = false;
-			}
+			notifyIcon_main_ContextMenu_ShowButton.Enabled = !Visible;
+			notifyIcon_main_ContextMenu_HiddenButton.Enabled = Visible;
+			nmc__AutoCheckUpdate.Checked = IsAutoCheckUpdate;
 		}
 		private void NotifyIcon_main_ContextMenu_ShowButton_Click(object sender, EventArgs e)
 		{
@@ -1126,6 +1205,7 @@ namespace TimedPower
 		private void FormMenuStrip_Opening(object sender, System.ComponentModel.CancelEventArgs e)
 		{
 			FormMenuStrip_CloseToTaskBarToggle.Checked = CloseToTaskBar;
+			FormMenuStrip_Help_AutoCheckUpdate.Checked = IsAutoCheckUpdate;
 		}
 		private void AddOrFixWindowsRightClickMenu_MenuItem_Click(object sender, EventArgs e)
 		{
@@ -1159,6 +1239,17 @@ namespace TimedPower
 			{
 				autoTaskForm.Focus();
 			}
+		}
+		private void FormMenuStrip_Help_CheckUpdate_Click(object sender, EventArgs e)
+		{
+			Task.Run(() =>
+			{
+				ProgramUpdate();
+			});
+		}
+		private void FormMenuStrip_Help_AutoCheckUpdate_Click(object sender, EventArgs e)
+		{
+			IsAutoCheckUpdate=!IsAutoCheckUpdate;
 		}
 		private void FormMenuStrip_Help_HelpDoc_Click(object sender, EventArgs e)
 		{
