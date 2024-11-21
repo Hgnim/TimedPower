@@ -516,9 +516,15 @@ namespace TimedPower
 				IsCheckingUpdate = true;
 				try
 				{
-					if (await ufg.CheckUpdateAsync())
+					UpdateFromGithub.CheckUpdateValue cuv = await ufg.CheckUpdateAsync();
+					if (cuv.haveUpdate)
 					{
-						switch (MessageBox.Show("检查到可用的更新，是否进行更新？", this.Text, MessageBoxButtons.YesNo, MessageBoxIcon.Information))
+						switch (MessageBox.Show(
+@$"检查到可用的更新，是否进行更新？
+当前版本: V{version}
+最新版本: {cuv.newVersionStr}
+发布时间: {DateTime.Parse(cuv.publishedTime).AddHours(8)}"/*将UTC时间转换为北京时间*/
+										, this.Text, MessageBoxButtons.YesNo, MessageBoxIcon.Information))
 						{
 							case DialogResult.Yes:
 								UpdateFromGithub.InfoOfInstall? ioi = await ufg.DownloadReleaseAsync(0);
