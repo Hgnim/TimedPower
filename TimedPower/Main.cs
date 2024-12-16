@@ -517,32 +517,39 @@ namespace TimedPower
 				try
 				{
 					UpdateFromGithub.CheckUpdateValue cuv = await ufg.CheckUpdateAsync();
-					if (cuv.haveUpdate)
+					if (cuv.HaveUpdate)
 					{
 						switch (MessageBox.Show(
 @$"检查到可用的更新，是否进行更新？
 当前版本: V{version}
-最新版本: {cuv.newVersionStr}
-发布时间: {DateTime.Parse(cuv.publishedTime).AddHours(8)}"/*将UTC时间转换为北京时间*/
+最新版本: {cuv.LatestVersionStr}
+发布时间: {DateTime.Parse(cuv.PublishedTime_Local.ToString()).AddHours(8)}"/*将UTC时间转换为北京时间*/
 										, this.Text, MessageBoxButtons.YesNo, MessageBoxIcon.Information))
 						{
 							case DialogResult.Yes:
-								UpdateFromGithub.InfoOfInstall? ioi = await ufg.DownloadReleaseAsync(0);
-								if (ioi != null)
+								void errorMsg(){
+									MessageBox.Show("下载更新失败！", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+								}
+								try
 								{
-									if (MessageBox.Show("最新版本下载完毕，是否执行安装？", this.Text, MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+									UpdateFromGithub.InfoOfInstall? ioi = await ufg.DownloadReleaseAsync(0);
+									if (ioi != null)
 									{
-										ufg.InstallFile(ioi,waitTime: 900);
-										this.Invoke(new Action(() =>
+										if (MessageBox.Show("最新版本下载完毕，是否执行安装？", this.Text, MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
 										{
-											NotifyIcon_main_ContextMenu_ExitButton_Click(null!, null!);
-										}));
+										ufg.InstallFile(ioi,waitTime: 900);
+											this.Invoke(new Action(() =>
+											{
+												NotifyIcon_main_ContextMenu_ExitButton_Click(null!, null!);
+											}));
+										}
+									}
+									else
+									{
+										errorMsg();
 									}
 								}
-								else
-								{
-									MessageBox.Show("下载更新失败！", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
-						}
+								catch { errorMsg(); }
 								break;
 							default:
 								break;

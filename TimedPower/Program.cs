@@ -4,7 +4,7 @@ namespace TimedPower
 {
     internal static class Program
     {
-       public const string version = "2.6.5.20241121";
+       public const string version = "2.6.6.20241216";
         public const string aboutText =
 @$"程序名: 定时电源
 别名: TimedPower
