@@ -5,11 +5,13 @@ namespace TimedPower
 {
     public static partial class PowerInvoke
     {
+#pragma warning disable IDE0079
 #pragma warning disable CA1401 // P/Invokes 应该是不可见的
-        [LibraryImport("user32")]
-        public static partial void LockWorkStation();
+		[LibraryImport("user32")]
+		public static partial void LockWorkStation();
 #pragma warning restore CA1401 // P/Invokes 应该是不可见的
-        [LibraryImport("PowrProf.dll")]
+#pragma warning restore IDE0079
+		[LibraryImport("PowrProf.dll")]
         [return: MarshalAs(UnmanagedType.Bool)]
         public static partial bool SetSuspendState([MarshalAs(UnmanagedType.Bool)] bool hiberate, [MarshalAs(UnmanagedType.Bool)] bool forceCritical, [MarshalAs(UnmanagedType.Bool)] bool disableWakeEvent);
 

@@ -2,15 +2,19 @@ using EasyUpdateFromGithub;
 
 namespace TimedPower
 {
-    internal static class Program
-    {
-       public const string version = "2.6.6.20241216";
-        public const string aboutText =
+    internal readonly struct PInfo {
+		internal const string name = "TimedPower";
+		public const string version = "2.6.7.20241223";
+		internal const string githubUrl = "https://github.com/Hgnim/TimedPower";
+		public const string aboutText =
 @$"程序名: 定时电源
-别名: TimedPower
+别名: {name}
 版本: V{version}
 Copyright (C) 2024 Hgnim, All rights reserved.
-Github: https://github.com/Hgnim/TimedPower";
+Github: {githubUrl}";
+	}
+		internal static class Program
+    {       
         public static UpdateFromGithub ufg=null!;
 		/// <summary>
 		///  The main entry point for the application.
@@ -36,13 +40,11 @@ Github: https://github.com/Hgnim/TimedPower";
             }
             ufg = new()
             {
-                EasySetCacheDir = FilePath.name,
-                ProgramVersion = version,
-                RepositoryURL = "https://github.com/Hgnim/TimedPower"
-            };
+                EasySetCacheDir = PInfo.name,
+                ProgramVersion = PInfo.version,
+                RepositoryURL = PInfo.githubUrl
+			};
 
-            // To customize application configuration such as set high DPI settings or default font,
-            // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
             Application.Run(new Main(args));
         }

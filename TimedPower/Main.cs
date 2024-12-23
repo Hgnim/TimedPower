@@ -6,21 +6,11 @@ using System.Xml;
 using static TimedPower.AutoTaskData;
 using static TimedPower.Program;
 using EasyUpdateFromGithub;
+using static TimedPower.DataCore;
+using static TimedPower.DataCore.DataFiles;
 
 namespace TimedPower
-{
-    internal readonly struct FilePath
-    {
-		internal static readonly string name = "TimedPower";
-
-		internal static readonly string ConfigDir = $"{Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData)}\\{name}\\";//踩坑提醒，之前该字符串使用@$前缀，而其中的\会将{转义，报出非常莫名其妙毫不相干的错误，在此作为提醒。
-        internal static readonly string MainDataFile = ConfigDir + "data.xml";
-        internal static readonly string AutoTaskFile = ConfigDir + "autoTask.xml";
-
-		internal static readonly string TempDir = System.IO.Path.GetTempPath() + @$"{name}\";
-		internal static readonly string CommandDir = @$"{TempDir}Command\";
-		internal static readonly string commandFile = CommandDir + "Command.dat";
-	}
+{    
 	public partial class Main : Form
 	{
 		static string[] args = [];
@@ -31,85 +21,61 @@ namespace TimedPower
 			InitializeComponent();
 		}
 
-		AfterTimeValue atv = new();
+		readonly AfterTimeValue atv = new();
 		#region Main_From		
 		private void Main_Load(object sender, EventArgs e)
 		{
-			bool firstStart = false;//是否首次启动程序
-
 			ActionSelect.SelectedIndex = 0;
 			TimeTypeSelect.SelectedIndex = 0;
 
 			if (!Directory.Exists(FilePath.ConfigDir)) Directory.CreateDirectory(FilePath.ConfigDir);
 			if (!Directory.Exists(FilePath.TempDir)) Directory.CreateDirectory(FilePath.TempDir);
 			if (!Directory.Exists(FilePath.CommandDir)) Directory.CreateDirectory(FilePath.CommandDir);
-			if (!File.Exists(FilePath.MainDataFile))
-			{
-				XmlTextWriter xmlWriter = new(FilePath.MainDataFile, System.Text.Encoding.GetEncoding("utf-8")) { Formatting = System.Xml.Formatting.Indented };
-
-				xmlWriter.WriteRaw("<?xml version=\"1.0\" encoding=\"utf-8\" ?>");
-				xmlWriter.WriteComment("注意，私自修改数据文件导致的程序错误开发者概不负责!");
-				xmlWriter.WriteStartElement("TimedPower_Data");
-
-				xmlWriter.WriteStartElement("first");
-				xmlWriter.WriteAttributeString("value", "1");
-				xmlWriter.WriteEndElement();
-
-				xmlWriter.WriteStartElement("Window");
-				xmlWriter.WriteAttributeString("x", this.Left.ToString());
-				xmlWriter.WriteAttributeString("y", this.Top.ToString());
-				xmlWriter.WriteEndElement();
-
-				xmlWriter.WriteStartElement("Action");
-				xmlWriter.WriteAttributeString("index", ActionSelect.SelectedIndex.ToString());
-				xmlWriter.WriteEndElement();
-
-				xmlWriter.WriteStartElement("TimeType");
-				xmlWriter.WriteAttributeString("index", TimeTypeSelect.SelectedIndex.ToString());
-				xmlWriter.WriteEndElement();
-
-				xmlWriter.WriteStartElement("TimeInput");
-				xmlWriter.WriteAttributeString("value", "");
-				xmlWriter.WriteEndElement();
-
-				xmlWriter.WriteStartElement("CloseToTaskBar");
-				xmlWriter.WriteAttributeString("boolean", "true");
-				xmlWriter.WriteEndElement(); 
-
-				xmlWriter.WriteStartElement("AutoCheckUpdate");
-				xmlWriter.WriteAttributeString("boolean", "true");
-				xmlWriter.WriteEndElement();
-
-				xmlWriter.WriteFullEndElement();
-				xmlWriter.Close();
-			}
-			else
-			{
-				try
+			if(File.Exists(FilePath.MainDataFile)) {
+				DataFile.ReadData();
 				{
+					do {
+						if (!(mainData.Window.X >= 0 && mainData.Window.X + this.Width <= System.Windows.Forms.SystemInformation.PrimaryMonitorSize.Width))
+							break;
+						if (!(mainData.Window.Y >= 0 && mainData.Window.Y + this.Height <= System.Windows.Forms.SystemInformation.PrimaryMonitorSize.Height))
+							break;
+						this.Left = mainData.Window.X;
+						this.Top = mainData.Window.Y;
+					} while (false);
+
+					ActionSelect.SelectedIndex = mainData.Action;
+
+					TimeTypeSelect.SelectedIndex = mainData.TimeType;
+
+					TimeInput.Text = mainData.TimeInput;
+
+					CloseToTaskBar = mainData.CloseToTaskBar;
+
+					IsAutoCheckUpdate = mainData.AutoCheckUpdate;
+				}
+			}
+			else if (File.Exists(FilePath.MainDataFile_Obsolete)) {
+				//检查程序是否还存在旧的2.6.6版本前的xml格式的数据文件，如果存在则读取
+				try {
 					XmlDocument xmlDoc = new();
 					XmlNode xmlRoot;
-					xmlDoc.Load(FilePath.MainDataFile);
+					xmlDoc.Load(FilePath.MainDataFile_Obsolete);
 					xmlRoot = xmlDoc.SelectSingleNode("TimedPower_Data")!;
 					XmlNodeList xmlNL = xmlRoot.ChildNodes;
-					foreach (XmlNode xn in xmlNL)
-					{
+					foreach (XmlNode xn in xmlNL) {
 						XmlElement xmlE = (XmlElement)xn;
-						switch (xmlE.Name)
-						{
+						switch (xmlE.Name) {
 							case "first":
-								try { firstStart = Convert.ToBoolean(int.Parse(xmlE.GetAttribute("value"))); } catch { }
+								try { DataFiles.mainData.First = !Convert.ToBoolean(int.Parse(xmlE.GetAttribute("value"))); } catch { }
 								break;
 							case "Window":
-								try
-								{
+								try {
 									int[] temp = [int.Parse(xmlE.GetAttribute("x")), int.Parse(xmlE.GetAttribute("y"))];
 									if (temp[0] >= 0 && temp[0] + this.Width <= System.Windows.Forms.SystemInformation.PrimaryMonitorSize.Width)
 										this.Left = temp[0];
 									if (temp[1] >= 0 && temp[1] + this.Height <= System.Windows.Forms.SystemInformation.PrimaryMonitorSize.Height)
 										this.Top = temp[1];
-								}
-								catch { }
+								} catch { }
 								break;
 							case "Action":
 								try { ActionSelect.SelectedIndex = int.Parse(xmlE.GetAttribute("index")); } catch { }
@@ -124,12 +90,12 @@ namespace TimedPower
 								try { CloseToTaskBar = bool.Parse(xmlE.GetAttribute("boolean")); } catch { }
 								break;
 							case "AutoCheckUpdate":
-								try { IsAutoCheckUpdate = bool.Parse(xmlE.GetAttribute("boolean")); }catch { }
+								try { IsAutoCheckUpdate = bool.Parse(xmlE.GetAttribute("boolean")); } catch { }
 								break;
 						}
 					}
-				}
-				catch { }
+					File.Delete(FilePath.MainDataFile_Obsolete);
+				} catch { }
 			}
 			if (!File.Exists(FilePath.AutoTaskFile))
 			{
@@ -144,8 +110,9 @@ namespace TimedPower
 				xmlWriter.Close();
 			}
 			AutoTaskData.GetDataFromFile();
-			if (!firstStart)
+			if (DataFiles.mainData.First)
 			{
+				DataFiles.mainData.First=false;
 				if (MessageBox.Show("是否将快捷按钮添加至Windows右键菜单？稍后也可以右键程序进行设置。", this.Text, MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
 				{
 					AddOrFixWindowsRightClickMenu_MenuItem_Click(null!, null!);
@@ -400,89 +367,21 @@ namespace TimedPower
 		/// </summary>
 		void DataSave()
 		{
-			bool wait = false;
+			AutoResetEvent wait = new(false);
 			this.Invoke(new Action(() =>
 			{
-				bool[] checkExist = new bool[6];//用于排查是否有丢失项
-				XmlElement xmlEleDo(int id, XmlElement xmlEle, XmlDocument? xmlDoc = null)
-				{
-					switch (id)
-					{
-						case 0:
-							if (xmlDoc != null) xmlEle = xmlDoc.CreateElement("Window");
-							xmlEle.SetAttribute("x", this.Left.ToString());
-							xmlEle.SetAttribute("y", this.Top.ToString());
-							checkExist[0] = true; break;
-						case 1:
-							if (xmlDoc != null) xmlEle = xmlDoc.CreateElement("Action");
-							xmlEle.SetAttribute("index", ActionSelect.SelectedIndex.ToString());
-							checkExist[1] = true; break;
-						case 2:
-							if (xmlDoc != null) xmlEle = xmlDoc.CreateElement("TimeType");
-							xmlEle.SetAttribute("index", TimeTypeSelect.SelectedIndex.ToString());
-							checkExist[2] = true; break;
-						case 3:
-							if (xmlDoc != null) xmlEle = xmlDoc.CreateElement("TimeInput");
-							xmlEle.SetAttribute("value", TimeInput.Text);
-							checkExist[3] = true; break;
-						case 4:
-							if (xmlDoc != null) xmlEle = xmlDoc.CreateElement("CloseToTaskBar");
-							xmlEle.SetAttribute("boolean", CloseToTaskBar.ToString());
-							checkExist[4] = true; break;
-						case 5:
-							if (xmlDoc != null) xmlEle = xmlDoc.CreateElement("AutoCheckUpdate");
-							xmlEle.SetAttribute("boolean", IsAutoCheckUpdate.ToString());
-							checkExist[5] = true; break;
-					}
-					return xmlEle;
-				}
-
-				XmlDocument xmlDoc = new();
-				XmlNodeList xmlNL;
-				XmlElement xmlEle;
-				xmlDoc.Load(FilePath.MainDataFile);
-				xmlNL = xmlDoc.SelectSingleNode("TimedPower_Data")!.ChildNodes;
-				foreach (XmlNode xn in xmlNL)
-				{
-					xmlEle = (XmlElement)xn;
-					switch (xmlEle.Name)
-					{
-						case "Window":
-							xmlEleDo(0, xmlEle);
-							break;
-						case "Action":
-							xmlEleDo(1, xmlEle);
-							break;
-						case "TimeType":
-							xmlEleDo(2, xmlEle);
-							break;
-						case "TimeInput":
-							xmlEleDo(3, xmlEle);
-							break;
-						case "CloseToTaskBar":
-							xmlEleDo(4, xmlEle);
-							break;
-						case "AutoCheckUpdate":
-							xmlEleDo(5, xmlEle);
-							break;
-					}
-				}
-				xmlDoc.Save(FilePath.MainDataFile);
-
-				XmlNode xmlRoot = xmlDoc.SelectSingleNode("TimedPower_Data")!;
-				for (int i = 0; i < checkExist.Length; i++)//检查，修补丢失的项
-				{
-					if (!checkExist[i])
-					{
-						xmlRoot.AppendChild(xmlEleDo(i, null!, xmlDoc));
-					}
-				}
-				xmlDoc.Save(FilePath.MainDataFile);
+				mainData.Window = new() { X=this.Left,Y=this.Top };
+				mainData.Action = ActionSelect.SelectedIndex;
+				mainData.TimeType = TimeTypeSelect.SelectedIndex;
+				mainData.TimeInput = TimeInput.Text;
+				mainData.CloseToTaskBar = CloseToTaskBar;
+				mainData.AutoCheckUpdate = IsAutoCheckUpdate;
+				DataFile.SaveData();
 
 				AutoTaskData.SaveToFile();
-				wait = true;
+				wait.Set();
 			}));
-			while (!wait) ;
+			wait.WaitOne();
 		}
 
 		/// <summary>
@@ -517,13 +416,19 @@ namespace TimedPower
 				try
 				{
 					UpdateFromGithub.CheckUpdateValue cuv = await ufg.CheckUpdateAsync();
+#pragma warning disable IDE0079
+#pragma warning disable SYSLIB1045
+					UpdateFromGithub.InfoOfDownloadFile iodf = await ufg.GetDownloadFileInfoAsync(fileRegex: new(@".+"));
+#pragma warning restore SYSLIB1045
+#pragma warning restore IDE0079
 					if (cuv.HaveUpdate)
 					{
 						switch (MessageBox.Show(
 @$"检查到可用的更新，是否进行更新？
-当前版本: V{version}
+当前版本: V{PInfo.version}
 最新版本: {cuv.LatestVersionStr}
-发布时间: {DateTime.Parse(cuv.PublishedTime_Local.ToString()).AddHours(8)}"/*将UTC时间转换为北京时间*/
+发布时间: {cuv.PublishedTime_Local}
+大小: {iodf.Size}"
 										, this.Text, MessageBoxButtons.YesNo, MessageBoxIcon.Information))
 						{
 							case DialogResult.Yes:
@@ -532,7 +437,7 @@ namespace TimedPower
 								}
 								try
 								{
-									UpdateFromGithub.InfoOfInstall? ioi = await ufg.DownloadReleaseAsync(0);
+									UpdateFromGithub.InfoOfInstall? ioi = await ufg.DownloadReleaseAsync(iodf);
 									if (ioi != null)
 									{
 										if (MessageBox.Show("最新版本下载完毕，是否执行安装？", this.Text, MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
@@ -557,6 +462,7 @@ namespace TimedPower
 					}
 					else if (!isAuto)
 						MessageBox.Show("当前已是最新版本", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
+#pragma warning restore IDE0079 // 请删除不必要的忽略
 				}
 				catch { if(!isAuto)
 					MessageBox.Show("更新检查失败！",this.Text,MessageBoxButtons.OK, MessageBoxIcon.Error); }
@@ -873,7 +779,7 @@ namespace TimedPower
 			}
 		}
 
-		AfterTimeValue countdown_autoTask;
+		AfterTimeValue? countdown_autoTask;
 		/// <summary>
 		/// autoTask的保险变量
 		/// </summary>
@@ -884,31 +790,15 @@ namespace TimedPower
 
 			void LastWarning(AutoTaskData.ATDataHead_action type, string time, string taskName)
 			{
-				string typeStr;
-				switch (type)
-				{
-					case AutoTaskData.ATDataHead_action.shutdown:
-						typeStr = "关机";
-						break;
-					case ATDataHead_action.reboot:
-						typeStr = "重启";
-						break;
-					case ATDataHead_action.sleep:
-						typeStr = "睡眠";
-						break;
-					case ATDataHead_action.hibernate:
-						typeStr = "休眠";
-						break;
-					case ATDataHead_action.userlock:
-						typeStr = "锁定";
-						break;
-					case ATDataHead_action.useroff:
-						typeStr = "注销";
-						break;
-					default:
-						typeStr = "错误";
-						break;
-				}
+				string typeStr = type switch {
+					AutoTaskData.ATDataHead_action.shutdown => "关机",
+					ATDataHead_action.reboot => "重启",
+					ATDataHead_action.sleep => "睡眠",
+					ATDataHead_action.hibernate => "休眠",
+					ATDataHead_action.userlock => "锁定",
+					ATDataHead_action.useroff => "注销",
+					_ => "错误",
+				};
 				//侦听Windows通知点击事件
 				ToastNotificationManagerCompat.OnActivated += toastArgs =>
 				{
@@ -1240,7 +1130,7 @@ namespace TimedPower
 		{
 			CloseToTaskBar = FormMenuStrip_CloseToTaskBarToggle.Checked;
 		}
-		AutoTaskForm autoTaskForm;
+		AutoTaskForm? autoTaskForm;
 		private void AutoTask_ToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			if (autoTaskForm == null || autoTaskForm.IsStart == false)
@@ -1270,7 +1160,7 @@ namespace TimedPower
 		}
 		private void GyToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			MessageBox.Show(Program.aboutText, "关于");
+			MessageBox.Show(PInfo.aboutText, "关于");
 		}
 		#endregion
 	}

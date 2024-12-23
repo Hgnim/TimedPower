@@ -71,7 +71,7 @@ namespace TimedPower
                     process.WaitForExit();
                 }
                 catch (Win32Exception) { MessageBox.Show("用户取消了授权", Main.ThisFormText, MessageBoxButtons.OK, MessageBoxIcon.Error); }
-                catch { MessageBox.Show("发生位置错误！", Main.ThisFormText, MessageBoxButtons.OK, MessageBoxIcon.Error); }
+                catch { MessageBox.Show("发生未知错误！", Main.ThisFormText, MessageBoxButtons.OK, MessageBoxIcon.Error); }
                 process.Close();
             }
             /// <summary>
@@ -219,7 +219,7 @@ namespace TimedPower
                     process.WaitForExit();
                 }
                 catch (Win32Exception) { MessageBox.Show("用户取消了授权", Main.ThisFormText, MessageBoxButtons.OK, MessageBoxIcon.Error); }
-                catch { MessageBox.Show("发生位置错误！", Main.ThisFormText, MessageBoxButtons.OK, MessageBoxIcon.Error); }
+                catch { MessageBox.Show("发生未知错误！", Main.ThisFormText, MessageBoxButtons.OK, MessageBoxIcon.Error); }
                 process.Close();
             }
             /// <summary>

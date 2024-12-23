@@ -272,24 +272,14 @@ end:;
 						timeData = $"-1,-1,-1,{TimeInput.Text.Split(':')[0]},{TimeInput.Text.Split(':')[1]},{TimeInput.Text.Split(':')[2]}";
 						break;
 				}
-				ATDataHead_action aTDataHead_Action;
-				switch (ActionSelect.Text)
-				{
-					case "关机":
-					default:
-						aTDataHead_Action = ATDataHead_action.shutdown; break;
-					case "重启":
-						aTDataHead_Action = ATDataHead_action.reboot; break;
-					case "睡眠":
-						aTDataHead_Action = ATDataHead_action.sleep; break;
-					case "休眠":
-						aTDataHead_Action = ATDataHead_action.hibernate; break;
-					case "锁定":
-						aTDataHead_Action = ATDataHead_action.userlock; break;
-					case "注销":
-						aTDataHead_Action = ATDataHead_action.useroff; break;
-				}
-
+				var aTDataHead_Action = ActionSelect.Text switch {
+					"重启" => ATDataHead_action.reboot,
+					"睡眠" => ATDataHead_action.sleep,
+					"休眠" => ATDataHead_action.hibernate,
+					"锁定" => ATDataHead_action.userlock,
+					"注销" => ATDataHead_action.useroff,
+					_ => ATDataHead_action.shutdown,
+				};
 				AutoTaskData.SetATData(taskList.SelectedIndex, [
 					ATDataHead.name.ToString(),taskName_TextBox.Text,
 				ATDataHead.enable.ToString(),aTDataHead_Enable.ToString(),
@@ -380,7 +370,7 @@ end:;
 		#endregion
 
 
-		AfterTimeValue atv = new();
+		readonly AfterTimeValue atv = new();
 		/// <summary>
 		/// 判断输入时间的内容和格式是否非法，且错误时做出相关处理
 		/// </summary>
@@ -411,7 +401,7 @@ end:;
 	}
 	internal static class AutoTaskData
     {
-        private static List<string[]> atData = [];
+        private static readonly List<string[]> atData = [];
         /// <summary>
         /// 根据数据头获取AutoTaskData.atData变量的指定数据
         /// </summary>
