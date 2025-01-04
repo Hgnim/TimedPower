@@ -29,8 +29,7 @@
 		///  Required method for Designer support - do not modify
 		///  the contents of this method with the code editor.
 		/// </summary>
-		private void InitializeComponent()
-		{
+		private void InitializeComponent() {
 			components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
 			ActionSelect = new ComboBox();
@@ -53,6 +52,8 @@
 			StartButton = new Button();
 			StopButton = new Button();
 			FormMenuStrip = new ContextMenuStrip(components);
+			FormMenuStrip_NewTaskFile = new ToolStripMenuItem();
+			toolStripMenuItem5 = new ToolStripSeparator();
 			windows右键菜单ToolStripMenuItem = new ToolStripMenuItem();
 			AddOrFixWindowsRightClickMenu_MenuItem = new ToolStripMenuItem();
 			RemoveWindowsRightClickMenu_MenuItem = new ToolStripMenuItem();
@@ -270,10 +271,22 @@
 			// 
 			// FormMenuStrip
 			// 
-			FormMenuStrip.Items.AddRange(new ToolStripItem[] { windows右键菜单ToolStripMenuItem, 软件开机自启ToolStripMenuItem, FormMenuStrip_CloseToTaskBarToggle, autoTask_ToolStripMenuItem, toolStripMenuItem1, FormMenuStrip_Help });
+			FormMenuStrip.Items.AddRange(new ToolStripItem[] { FormMenuStrip_NewTaskFile, toolStripMenuItem5, windows右键菜单ToolStripMenuItem, 软件开机自启ToolStripMenuItem, FormMenuStrip_CloseToTaskBarToggle, autoTask_ToolStripMenuItem, toolStripMenuItem1, FormMenuStrip_Help });
 			FormMenuStrip.Name = "GyMenuStrip";
-			FormMenuStrip.Size = new Size(185, 120);
+			FormMenuStrip.Size = new Size(185, 148);
 			FormMenuStrip.Opening += FormMenuStrip_Opening;
+			// 
+			// FormMenuStrip_NewTaskFile
+			// 
+			FormMenuStrip_NewTaskFile.Name = "FormMenuStrip_NewTaskFile";
+			FormMenuStrip_NewTaskFile.Size = new Size(184, 22);
+			FormMenuStrip_NewTaskFile.Text = "新建任务文件";
+			FormMenuStrip_NewTaskFile.Click += FormMenuStrip_NewTaskFile_Click;
+			// 
+			// toolStripMenuItem5
+			// 
+			toolStripMenuItem5.Name = "toolStripMenuItem5";
+			toolStripMenuItem5.Size = new Size(181, 6);
 			// 
 			// windows右键菜单ToolStripMenuItem
 			// 
@@ -347,7 +360,7 @@
 			// FormMenuStrip_Help_CheckUpdate
 			// 
 			FormMenuStrip_Help_CheckUpdate.Name = "FormMenuStrip_Help_CheckUpdate";
-			FormMenuStrip_Help_CheckUpdate.Size = new Size(180, 22);
+			FormMenuStrip_Help_CheckUpdate.Size = new Size(148, 22);
 			FormMenuStrip_Help_CheckUpdate.Text = "检查更新";
 			FormMenuStrip_Help_CheckUpdate.Click += FormMenuStrip_Help_CheckUpdate_Click;
 			// 
@@ -356,26 +369,26 @@
 			FormMenuStrip_Help_AutoCheckUpdate.Checked = true;
 			FormMenuStrip_Help_AutoCheckUpdate.CheckState = CheckState.Checked;
 			FormMenuStrip_Help_AutoCheckUpdate.Name = "FormMenuStrip_Help_AutoCheckUpdate";
-			FormMenuStrip_Help_AutoCheckUpdate.Size = new Size(180, 22);
+			FormMenuStrip_Help_AutoCheckUpdate.Size = new Size(148, 22);
 			FormMenuStrip_Help_AutoCheckUpdate.Text = "自动检测更新";
 			FormMenuStrip_Help_AutoCheckUpdate.Click += FormMenuStrip_Help_AutoCheckUpdate_Click;
 			// 
 			// toolStripMenuItem3
 			// 
 			toolStripMenuItem3.Name = "toolStripMenuItem3";
-			toolStripMenuItem3.Size = new Size(177, 6);
+			toolStripMenuItem3.Size = new Size(145, 6);
 			// 
 			// FormMenuStrip_Help_HelpDoc
 			// 
 			FormMenuStrip_Help_HelpDoc.Name = "FormMenuStrip_Help_HelpDoc";
-			FormMenuStrip_Help_HelpDoc.Size = new Size(180, 22);
+			FormMenuStrip_Help_HelpDoc.Size = new Size(148, 22);
 			FormMenuStrip_Help_HelpDoc.Text = "帮助文档";
 			FormMenuStrip_Help_HelpDoc.Click += FormMenuStrip_Help_HelpDoc_Click;
 			// 
 			// GyToolStripMenuItem
 			// 
 			GyToolStripMenuItem.Name = "GyToolStripMenuItem";
-			GyToolStripMenuItem.Size = new Size(180, 22);
+			GyToolStripMenuItem.Size = new Size(148, 22);
 			GyToolStripMenuItem.Text = "关于";
 			GyToolStripMenuItem.Click += GyToolStripMenuItem_Click;
 			// 
@@ -391,46 +404,46 @@
 			// 
 			notifyIcon_main_ContextMenu.Items.AddRange(new ToolStripItem[] { notifyIcon_main_ContextMenu_ShowButton, notifyIcon_main_ContextMenu_HiddenButton, 自动定时任务ToolStripMenuItem, toolStripMenuItem2, 帮助ToolStripMenuItem, notifyIcon_main_ContextMenu_ExitButton });
 			notifyIcon_main_ContextMenu.Name = "notifyIcon_main_ContextMenu";
-			notifyIcon_main_ContextMenu.Size = new Size(181, 142);
+			notifyIcon_main_ContextMenu.Size = new Size(149, 120);
 			notifyIcon_main_ContextMenu.Opening += NotifyIcon_main_ContextMenu_Opening;
 			// 
 			// notifyIcon_main_ContextMenu_ShowButton
 			// 
 			notifyIcon_main_ContextMenu_ShowButton.Name = "notifyIcon_main_ContextMenu_ShowButton";
-			notifyIcon_main_ContextMenu_ShowButton.Size = new Size(180, 22);
+			notifyIcon_main_ContextMenu_ShowButton.Size = new Size(148, 22);
 			notifyIcon_main_ContextMenu_ShowButton.Text = "显示主窗口";
 			notifyIcon_main_ContextMenu_ShowButton.Click += NotifyIcon_main_ContextMenu_ShowButton_Click;
 			// 
 			// notifyIcon_main_ContextMenu_HiddenButton
 			// 
 			notifyIcon_main_ContextMenu_HiddenButton.Name = "notifyIcon_main_ContextMenu_HiddenButton";
-			notifyIcon_main_ContextMenu_HiddenButton.Size = new Size(180, 22);
+			notifyIcon_main_ContextMenu_HiddenButton.Size = new Size(148, 22);
 			notifyIcon_main_ContextMenu_HiddenButton.Text = "隐藏主窗口";
 			notifyIcon_main_ContextMenu_HiddenButton.Click += NotifyIcon_main_ContextMenu_HiddenButton_Click;
 			// 
 			// 自动定时任务ToolStripMenuItem
 			// 
 			自动定时任务ToolStripMenuItem.Name = "自动定时任务ToolStripMenuItem";
-			自动定时任务ToolStripMenuItem.Size = new Size(180, 22);
+			自动定时任务ToolStripMenuItem.Size = new Size(148, 22);
 			自动定时任务ToolStripMenuItem.Text = "自动定时任务";
 			自动定时任务ToolStripMenuItem.Click += AutoTask_ToolStripMenuItem_Click;
 			// 
 			// toolStripMenuItem2
 			// 
 			toolStripMenuItem2.Name = "toolStripMenuItem2";
-			toolStripMenuItem2.Size = new Size(177, 6);
+			toolStripMenuItem2.Size = new Size(145, 6);
 			// 
 			// 帮助ToolStripMenuItem
 			// 
 			帮助ToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { nmc_CheckUpdate, nmc__AutoCheckUpdate, toolStripMenuItem4, 帮助文档ToolStripMenuItem, 关于ToolStripMenuItem });
 			帮助ToolStripMenuItem.Name = "帮助ToolStripMenuItem";
-			帮助ToolStripMenuItem.Size = new Size(180, 22);
+			帮助ToolStripMenuItem.Size = new Size(148, 22);
 			帮助ToolStripMenuItem.Text = "帮助";
 			// 
 			// nmc_CheckUpdate
 			// 
 			nmc_CheckUpdate.Name = "nmc_CheckUpdate";
-			nmc_CheckUpdate.Size = new Size(180, 22);
+			nmc_CheckUpdate.Size = new Size(148, 22);
 			nmc_CheckUpdate.Text = "检查更新";
 			nmc_CheckUpdate.Click += FormMenuStrip_Help_CheckUpdate_Click;
 			// 
@@ -439,33 +452,33 @@
 			nmc__AutoCheckUpdate.Checked = true;
 			nmc__AutoCheckUpdate.CheckState = CheckState.Checked;
 			nmc__AutoCheckUpdate.Name = "nmc__AutoCheckUpdate";
-			nmc__AutoCheckUpdate.Size = new Size(180, 22);
+			nmc__AutoCheckUpdate.Size = new Size(148, 22);
 			nmc__AutoCheckUpdate.Text = "自动检查更新";
 			nmc__AutoCheckUpdate.Click += FormMenuStrip_Help_AutoCheckUpdate_Click;
 			// 
 			// toolStripMenuItem4
 			// 
 			toolStripMenuItem4.Name = "toolStripMenuItem4";
-			toolStripMenuItem4.Size = new Size(177, 6);
+			toolStripMenuItem4.Size = new Size(145, 6);
 			// 
 			// 帮助文档ToolStripMenuItem
 			// 
 			帮助文档ToolStripMenuItem.Name = "帮助文档ToolStripMenuItem";
-			帮助文档ToolStripMenuItem.Size = new Size(180, 22);
+			帮助文档ToolStripMenuItem.Size = new Size(148, 22);
 			帮助文档ToolStripMenuItem.Text = "帮助文档";
 			帮助文档ToolStripMenuItem.Click += FormMenuStrip_Help_HelpDoc_Click;
 			// 
 			// 关于ToolStripMenuItem
 			// 
 			关于ToolStripMenuItem.Name = "关于ToolStripMenuItem";
-			关于ToolStripMenuItem.Size = new Size(180, 22);
+			关于ToolStripMenuItem.Size = new Size(148, 22);
 			关于ToolStripMenuItem.Text = "关于";
 			关于ToolStripMenuItem.Click += GyToolStripMenuItem_Click;
 			// 
 			// notifyIcon_main_ContextMenu_ExitButton
 			// 
 			notifyIcon_main_ContextMenu_ExitButton.Name = "notifyIcon_main_ContextMenu_ExitButton";
-			notifyIcon_main_ContextMenu_ExitButton.Size = new Size(180, 22);
+			notifyIcon_main_ContextMenu_ExitButton.Size = new Size(148, 22);
 			notifyIcon_main_ContextMenu_ExitButton.Text = "退出";
 			notifyIcon_main_ContextMenu_ExitButton.Click += NotifyIcon_main_ContextMenu_ExitButton_Click;
 			// 
@@ -552,5 +565,7 @@
 		private ToolStripMenuItem nmc_CheckUpdate;
 		private ToolStripMenuItem nmc__AutoCheckUpdate;
 		private ToolStripSeparator toolStripMenuItem4;
+		private ToolStripSeparator toolStripMenuItem5;
+		private ToolStripMenuItem FormMenuStrip_NewTaskFile;
 	}
 }

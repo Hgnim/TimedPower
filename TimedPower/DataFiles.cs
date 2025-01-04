@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using YamlDotNet.Serialization;
 using YamlDotNet.Serialization.NamingConventions;
 using static TimedPower.DataCore.DataFiles;
+using static TimedPower.DataFile;
 using static TimedPower.FilePath;
 
 namespace TimedPower {
@@ -44,6 +45,44 @@ namespace TimedPower {
 			public required string TimeInput { get; set; }
 			public required bool CloseToTaskBar {  get; set; }
 			public required bool AutoCheckUpdate { get; set; }
+		}
+	}
+	public struct TimedPowerTask {
+		public enum TaskTimeType {
+			after//在此之后
+			, ontime//在此时
+		}
+		public enum TaskAction {
+			shutdown, reboot, useroff, userlock, sleep, hibernate
+		}
+		public class TPT {
+			public required string Name { get; set; }
+			public required TaskAction Action { get; set; }
+			public required string Time { get; set; }
+			public required TaskTimeType TimeType { get; set; }
+			public required int FileVersion { get; set; }
+			private bool littleTimeWarning = true;
+			public bool LittleTimeWarning {
+				get => littleTimeWarning;
+				set => littleTimeWarning = value;
+			}
+		}
+		internal static TPT? TPTRead(string filePath) {
+			IDeserializer yamlD = new DeserializerBuilder()
+				.WithNamingConvention(UnderscoredNamingConvention.Instance)
+					.Build();
+
+			if (File.Exists(filePath))
+				return yamlD.Deserialize<TPT>(File.ReadAllText(filePath));
+			else
+				return null;
+		}
+		internal static void TPTSave(string filePath, TPT data) {
+			ISerializer yamlS = new SerializerBuilder()
+				.WithNamingConvention(UnderscoredNamingConvention.Instance)
+				.Build();
+
+			File.WriteAllText(filePath, yamlS.Serialize(data));
 		}
 	}
 }
