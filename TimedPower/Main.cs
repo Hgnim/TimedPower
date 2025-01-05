@@ -425,7 +425,10 @@ namespace TimedPower
 当前版本: V{PInfo.version}
 最新版本: {cuv.LatestVersionStr}
 发布时间: {cuv.PublishedTime_Local}
-大小: {iodf.Size}"
+大小: {iodf.Size}
+发行说明:
+{cuv.ReleaseName}
+{cuv.ReleaseBody}"
 										, Text, MessageBoxButtons.YesNo, MessageBoxIcon.Information)) {
 							case DialogResult.Yes:
 								void errorMsg() => _ = MessageBox.Show("下载更新失败！", Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -1020,7 +1023,6 @@ namespace TimedPower
 			};
 			if (saveFileDialog.ShowDialog() == DialogResult.OK) {
 				TPTSave(saveFileDialog.FileName, new() {
-					Name = "新建任务",
 					Action = TimedPowerTask.TaskAction.userlock,
 					Time="5min",
 					TimeType = TimedPowerTask.TaskTimeType.after,

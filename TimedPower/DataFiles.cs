@@ -56,7 +56,6 @@ namespace TimedPower {
 			shutdown, reboot, useroff, userlock, sleep, hibernate
 		}
 		public class TPT {
-			public required string Name { get; set; }
 			public required TaskAction Action { get; set; }
 			public required string Time { get; set; }
 			public required TaskTimeType TimeType { get; set; }
@@ -72,10 +71,10 @@ namespace TimedPower {
 				.WithNamingConvention(UnderscoredNamingConvention.Instance)
 					.Build();
 
-			if (File.Exists(filePath))
-				return yamlD.Deserialize<TPT>(File.ReadAllText(filePath));
-			else
-				return null;
+			return 
+				File.Exists(filePath) 
+				? yamlD.Deserialize<TPT>(File.ReadAllText(filePath)) 
+				: null;
 		}
 		internal static void TPTSave(string filePath, TPT data) {
 			ISerializer yamlS = new SerializerBuilder()
