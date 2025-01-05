@@ -26,19 +26,19 @@ namespace TimedPower
 			ActionSelect.SelectedIndex = 0;
 			TimeTypeSelect.SelectedIndex = 0;
 
-			if (!Directory.Exists(FilePath.ConfigDir)) Directory.CreateDirectory(FilePath.ConfigDir);
-			if (!Directory.Exists(FilePath.TempDir)) Directory.CreateDirectory(FilePath.TempDir);
-			if (!Directory.Exists(FilePath.CommandDir)) Directory.CreateDirectory(FilePath.CommandDir);
+			if (!Directory.Exists(FilePath.ConfigDir)) _ = Directory.CreateDirectory(FilePath.ConfigDir);
+			if (!Directory.Exists(FilePath.TempDir)) _ = Directory.CreateDirectory(FilePath.TempDir);
+			if (!Directory.Exists(FilePath.CommandDir)) _ = Directory.CreateDirectory(FilePath.CommandDir);
 			if (File.Exists(FilePath.MainDataFile)) {
 				DataFile.ReadData();
 				{
 					do {
-						if (!(mainData.Window.X >= 0 && mainData.Window.X + this.Width <= System.Windows.Forms.SystemInformation.PrimaryMonitorSize.Width))
+						if (!(mainData.Window.X >= 0 && mainData.Window.X + Width <= System.Windows.Forms.SystemInformation.PrimaryMonitorSize.Width))
 							break;
-						if (!(mainData.Window.Y >= 0 && mainData.Window.Y + this.Height <= System.Windows.Forms.SystemInformation.PrimaryMonitorSize.Height))
+						if (!(mainData.Window.Y >= 0 && mainData.Window.Y + Height <= System.Windows.Forms.SystemInformation.PrimaryMonitorSize.Height))
 							break;
-						this.Left = mainData.Window.X;
-						this.Top = mainData.Window.Y;
+						Left = mainData.Window.X;
+						Top = mainData.Window.Y;
 					} while (false);
 
 					ActionSelect.SelectedIndex = mainData.Action;
@@ -69,10 +69,10 @@ namespace TimedPower
 							case "Window":
 								try {
 									int[] temp = [int.Parse(xmlE.GetAttribute("x")), int.Parse(xmlE.GetAttribute("y"))];
-									if (temp[0] >= 0 && temp[0] + this.Width <= System.Windows.Forms.SystemInformation.PrimaryMonitorSize.Width)
-										this.Left = temp[0];
-									if (temp[1] >= 0 && temp[1] + this.Height <= System.Windows.Forms.SystemInformation.PrimaryMonitorSize.Height)
-										this.Top = temp[1];
+									if (temp[0] >= 0 && temp[0] + Width <= System.Windows.Forms.SystemInformation.PrimaryMonitorSize.Width)
+										Left = temp[0];
+									if (temp[1] >= 0 && temp[1] + Height <= System.Windows.Forms.SystemInformation.PrimaryMonitorSize.Height)
+										Top = temp[1];
 								} catch { }
 								break;
 							case "Action":
@@ -109,15 +109,15 @@ namespace TimedPower
 			AutoTaskData.GetDataFromFile();
 			if (DataFiles.mainData.First) {
 				DataFiles.mainData.First = false;
-				if (MessageBox.Show("是否将快捷按钮添加至Windows右键菜单？稍后也可以右键程序进行设置。", this.Text, MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes) {
+				if (MessageBox.Show("是否将快捷按钮添加至Windows右键菜单？稍后也可以右键程序进行设置。", Text, MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes) {
 					AddOrFixWindowsRightClickMenu_MenuItem_Click(null!, null!);
 				}
 				if (MessageBox.Show("是否启用软件开机自动启动？这可以为自动定时任务功能带来更好的体验。稍后也可以右键程序进行设置。",
-					this.Text, MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes) {
+					Text, MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes) {
 					EnabledSelfStarting_Click(null!, null!);
 				}
-				MessageBox.Show("提示：点击软件的关闭按钮后将会最小化至任务栏托盘。若想关闭软件，请右键任务栏托盘的该软件的小图标后点击退出即可。",
-					this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
+				_ = MessageBox.Show("提示：点击软件的关闭按钮后将会最小化至任务栏托盘。若想关闭软件，请右键任务栏托盘的该软件的小图标后点击退出即可。",
+					Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
 			}
 
 			DefendAutoTask.SetDefendTime(30);//程序启动后将有30秒的自动任务防御时间
@@ -134,7 +134,7 @@ namespace TimedPower
 				bool canStart = false;
 				{
 					bool wait = false;
-					this.Invoke(new Action(() => {
+					Invoke(new Action(() => {
 						ShowMainForm();
 						canStart = StartButton.Visible;
 						wait = true;
@@ -146,7 +146,7 @@ namespace TimedPower
 					StreamReader sr = new(FilePath.commandFile, System.Text.Encoding.UTF8);
 					while (true) {
 						string? read = sr.ReadLine();
-						if (read != null && read != "") {
+						if (read is not null and not "") {//同(read != null && read != "")
 							cacheReadArgs.Add(read);
 						}
 						else break;
@@ -159,9 +159,7 @@ namespace TimedPower
 					};
 					if (ad.HaveArgs()) {
 						if (ad.Compute()) {
-							this.Invoke(new Action(() => {
-								AutoStartTimed(ad);
-							}));
+							Invoke(new Action(() => _ = AutoStartTimed(ad)));
 						}
 					}
 				}
@@ -178,11 +176,9 @@ namespace TimedPower
 		public static bool CloseToTaskBar = true;
 		private void Main_FormClosing(object sender, FormClosingEventArgs e) {
 			if (!trueExitProgram && CloseToTaskBar) {
-				this.Visible = false;
+				Visible = false;
 				e.Cancel = true;
-				Thread t = new(() => {
-					DataSave();
-				}); t.Start();
+				Thread t = new(() => DataSave()); t.Start();
 			}
 			else Visible = false;
 		}
@@ -202,22 +198,22 @@ namespace TimedPower
 			ToastNotificationManagerCompat.Uninstall();//清除且卸载所有通知（实测使用该方法后该实例将无法再发送通知）                      
 		}
 		private void Main_Shown(object sender, EventArgs e) {
-			this.Visible = false;
-			this.Opacity = 1;
+			Visible = false;
+			Opacity = 1;
 
 			ArgsCompute ad = new() {
 				PriArgs = args
 			};
 			if (ad.HaveArgs()) {
 				if(ad.Compute())
-					AutoStartTimed(ad);
+					_ = AutoStartTimed(ad);
 			}
 
 			if (ad.ShowTheForm)
-				this.Visible = true;
+				Visible = true;
 
 			if (IsAutoCheckUpdate) {
-				Task.Run(() => {
+				_ = Task.Run(() => {
 					Thread.Sleep(4000);//等待一段时间后再进行自动更新检查
 					ProgramUpdate(true);
 				});
@@ -314,19 +310,13 @@ namespace TimedPower
 			/// <summary>
 			/// 是否在函数最后显示窗体，如果有-hidden标签，则在最后不显示窗体
 			/// </summary>
-			internal bool ShowTheForm {
-				get => showTheForm;
-			}
+			internal bool ShowTheForm => showTheForm;
 
 			/// <summary>
 			/// 判断类中的参数变量是否包含参数值
 			/// </summary>
 			/// <returns></returns>
-			internal bool HaveArgs() {
-				if (priArgs.Length != 0)
-					return true;
-				else return false;
-			}
+			internal bool HaveArgs() => priArgs.Length != 0;
 			/// <summary>
 			/// 处理参数并将返回值设置在类的属性里
 			/// </summary>
@@ -382,8 +372,8 @@ namespace TimedPower
 		/// </summary>
 		void DataSave() {
 			AutoResetEvent wait = new(false);
-			this.Invoke(new Action(() => {
-				mainData.Window = new() { X = this.Left, Y = this.Top };
+			Invoke(new Action(() => {
+				mainData.Window = new() { X = Left, Y = Top };
 				mainData.Action = ActionSelect.SelectedIndex;
 				mainData.TimeType = TimeTypeSelect.SelectedIndex;
 				mainData.TimeInput = TimeInput.Text;
@@ -392,9 +382,9 @@ namespace TimedPower
 				DataFile.SaveData();
 
 				AutoTaskData.SaveToFile();
-				wait.Set();
+				_ = wait.Set();
 			}));
-			wait.WaitOne();
+			_ = wait.WaitOne();
 		}
 
 		/// <summary>
@@ -436,19 +426,15 @@ namespace TimedPower
 最新版本: {cuv.LatestVersionStr}
 发布时间: {cuv.PublishedTime_Local}
 大小: {iodf.Size}"
-										, this.Text, MessageBoxButtons.YesNo, MessageBoxIcon.Information)) {
+										, Text, MessageBoxButtons.YesNo, MessageBoxIcon.Information)) {
 							case DialogResult.Yes:
-								void errorMsg() {
-									MessageBox.Show("下载更新失败！", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
-								}
+								void errorMsg() => _ = MessageBox.Show("下载更新失败！", Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
 								try {
 									UpdateFromGithub.InfoOfInstall? ioi = await ufg.DownloadReleaseAsync(iodf);
 									if (ioi != null) {
-										if (MessageBox.Show("最新版本下载完毕，是否执行安装？", this.Text, MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes) {
+										if (MessageBox.Show("最新版本下载完毕，是否执行安装？", Text, MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes) {
 											ufg.InstallFile(ioi, waitTime: 900);
-											this.Invoke(new Action(() => {
-												NotifyIcon_main_ContextMenu_ExitButton_Click(null!, null!);
-											}));
+											Invoke(new Action(() => NotifyIcon_main_ContextMenu_ExitButton_Click(null!, null!)));
 										}
 									}
 									else {
@@ -461,11 +447,11 @@ namespace TimedPower
 						}
 					}
 					else if (!isAuto)
-						MessageBox.Show("当前已是最新版本", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
+						_ = MessageBox.Show("当前已是最新版本", Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
 #pragma warning restore IDE0079 // 请删除不必要的忽略
 				} catch {
 					if (!isAuto)
-						MessageBox.Show("更新检查失败！", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+						_ = MessageBox.Show("更新检查失败！", Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
 				}
 				IsCheckingUpdate = false;
 			}
@@ -495,7 +481,7 @@ namespace TimedPower
 		private void TimeInput_KeyUp(object sender, KeyEventArgs e) {
 			if (e.KeyCode == Keys.Enter) {
 				e.Handled = true;
-				StartButton.Focus();
+				_ = StartButton.Focus();
 			}
 		}
 		private void TimeInput_KeyPress(object sender, KeyPressEventArgs e) {//避免按下回车键报警
@@ -551,7 +537,7 @@ namespace TimedPower
 		private void TimePicker_KeyUp(object sender, KeyEventArgs e) {
 			if (e.KeyCode == Keys.Enter) {
 				e.Handled = true;
-				StartButton.Focus();
+				_ = StartButton.Focus();
 			}
 		}
 		private void TimePicker_KeyPress(object sender, KeyPressEventArgs e) {
@@ -577,7 +563,7 @@ namespace TimedPower
 				case "此时":
 					if (((long)GetTimeStamp(TimePicker.Value) - (long)GetTimeStamp(DateTime.Now)) > 0) { }
 					else {
-						MessageBox.Show("只能选择未来的时间！", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+						_ = MessageBox.Show("只能选择未来的时间！", Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
 						return;
 					}
 					break;
@@ -600,7 +586,7 @@ namespace TimedPower
 			countdownLabel.Text = countdown!.GetFormatdTime();
 			if (!littleTimeWarningDis) {
 				if (countdown!.AllSeconds <= 5) {
-					if (MessageBox.Show("计时时间小于等于5秒，确定继续吗？", this.Text, MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+					if (MessageBox.Show("计时时间小于等于5秒，确定继续吗？", Text, MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
 						!= DialogResult.Yes) {
 						StopButton_Click(null!, null!);
 						return;
@@ -630,12 +616,12 @@ namespace TimedPower
 					ValueSet userInput = toastArgs.UserInput;
 
 					if (args.ToString() == "StopCountdown;TimeWarning")
-						this.Invoke(new Action(() => { if (fuse) StopButton_Click(null!, null!); }));
+						Invoke(new Action(() => { if (fuse) StopButton_Click(null!, null!); }));
 					else if (args.ToString() == "TimeWarning") {
-						this.Invoke(new Action(() => {
+						Invoke(new Action(() => {
 							[System.Runtime.InteropServices.DllImport("user32.dll", EntryPoint = "SetForegroundWindow")]
 							static extern bool SetForegroundWindow(IntPtr hWnd);
-							SetForegroundWindow(this.Handle);
+							SetForegroundWindow(Handle);
 						}));
 					}
 				};
@@ -651,13 +637,13 @@ namespace TimedPower
 			string actionSelect = "";
 			{
 				bool threadLock = false;
-				this.Invoke(new Action(() => { actionSelect = ActionSelect.SelectedItem!.ToString()!; threadLock = true; }));
+				Invoke(new Action(() => { actionSelect = ActionSelect.SelectedItem!.ToString()!; threadLock = true; }));
 				while (!threadLock) { }
 			}
 			string typeSelect = "";
 			{
 				bool threadLock = false;
-				this.Invoke(new Action(() => { typeSelect = TimeTypeSelect.SelectedItem!.ToString()!; threadLock = true; }));
+				Invoke(new Action(() => { typeSelect = TimeTypeSelect.SelectedItem!.ToString()!; threadLock = true; }));
 				while (!threadLock) { }
 			}
 			switch (typeSelect) {
@@ -675,7 +661,7 @@ namespace TimedPower
 						}
 						Sleep(1000);
 						countdown.OnlySeconds--;
-						try { this.Invoke(new Action(() => { countdownLabel.Text = countdown.GetFormatdTime(); })); } catch { }
+						try { Invoke(new Action(() => countdownLabel.Text = countdown.GetFormatdTime())); } catch { }
 					}
 					break;
 				case "此时": {
@@ -683,12 +669,12 @@ namespace TimedPower
 						void TimeReload()//将时间差刷新至countdown内，且将格式化的数据刷新至UI
 						{
 							countdown!.SetTimeValue(seconds: ((long)endTimeStamp - (long)GetTimeStamp(DateTime.Now)));
-							try { this.Invoke(new Action(() => { countdownLabel.Text = countdown.GetFormatdTime(); })); } catch { }
+							try { Invoke(new Action(() => countdownLabel.Text = countdown.GetFormatdTime())); } catch { }
 						}
 
 						{
 							bool threadLock = false;
-							this.Invoke(new Action(() => { endTimeStamp = GetTimeStamp(TimePicker.Value); threadLock = true; }));
+							Invoke(new Action(() => { endTimeStamp = GetTimeStamp(TimePicker.Value); threadLock = true; }));
 							while (!threadLock) { }
 						}
 						TimeReload();
@@ -712,7 +698,7 @@ namespace TimedPower
 			if (fuse) {
 				DataSave();//操作前保存所有
 #if DEBUG
-				MessageBox.Show("调试模式：已假装执行" + actionSelect + "操作", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
+				MessageBox.Show("调试模式：已假装执行" + actionSelect + "操作", Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
 #else
 				switch (actionSelect) {
 					case "关机":
@@ -735,9 +721,9 @@ namespace TimedPower
 						break;
 				}
 #endif
-				this.Invoke(new Action(() => {
+				Invoke(new Action(() => {
 					trueExitProgram = true;
-					this.Close();
+					Close();
 				}));
 				/*this.Invoke(new Action(() =>{ if (fuse) StopButton_Click(null!, null!);}));*/
 			}
@@ -769,12 +755,12 @@ namespace TimedPower
 					ValueSet userInput = toastArgs.UserInput;
 
 					if (args.ToString() == "StopCountdown;TimeWarning_autoTask")
-						this.Invoke(new Action(() => { if (fuse_autoTask) AutoTaskData.CountdownStateControl.StopNowTask(); }));
+						Invoke(new Action(() => { if (fuse_autoTask) AutoTaskData.CountdownStateControl.StopNowTask(); }));
 					else if (args.ToString() == "TimeWarning_autoTask") {
-						this.Invoke(new Action(() => {
+						Invoke(new Action(() => {
 							[System.Runtime.InteropServices.DllImport("user32.dll", EntryPoint = "SetForegroundWindow")]
 							static extern bool SetForegroundWindow(IntPtr hWnd);
-							SetForegroundWindow(this.Handle);
+							SetForegroundWindow(Handle);
 						}));
 					}
 				};
@@ -798,10 +784,7 @@ namespace TimedPower
 			{
 				long endTimeStamp = 0;
 				void TimeReload()//将时间差刷新至countdown内
-				{
-					countdown_autoTask.SetTimeValue(seconds: ((long)endTimeStamp - (long)GetTimeStamp(DateTime.Now)));
-					//try { this.Invoke(new Action(() => { countdownLabel.Text = countdown_autoTask.GetFormatdTime(); })); } catch { }//将格式化的数据刷新至UI
-				}
+=> countdown_autoTask.SetTimeValue(seconds: ((long)endTimeStamp - (long)GetTimeStamp(DateTime.Now)));//try { this.Invoke(new Action(() => { countdownLabel.Text = countdown_autoTask.GetFormatdTime(); })); } catch { }//将格式化的数据刷新至UI
 
 				endTimeStamp = GetTimeStamp(AutoTaskData.CountdownStateControl.GetDateTime());
 
@@ -827,7 +810,7 @@ namespace TimedPower
 				{
 					DataSave();//操作前保存所有
 #if DEBUG
-				MessageBox.Show("调试模式：已假装执行" + actionSelect + "操作", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
+				MessageBox.Show("调试模式：已假装执行" + actionSelect + "操作", Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
 #else
 					switch (actionSelect) {
 						case AutoTaskData.ATDataHead_action.shutdown:
@@ -853,9 +836,9 @@ namespace TimedPower
 				}
 				else
 					DefendAutoTask.DefendMessage_Msgbox();
-				this.Invoke(new Action(() => {
+				Invoke(new Action(() => {
 					trueExitProgram = true;
-					this.Close();
+					Close();
 				}));
 				/*this.Invoke(new Action(() =>{ if (fuse_autoTask) StopButton_Click(null!, null!);}));*/
 			}
@@ -882,11 +865,11 @@ namespace TimedPower
 				return true;
 			}
 			else if (output == "ToBig") {
-				MessageBox.Show("时间数值过大！", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+				_ = MessageBox.Show("时间数值过大！", Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
 				return false;
 			}
 			else {
-				MessageBox.Show("时间格式错误！", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+				_ = MessageBox.Show("时间格式错误！", Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
 				return false;
 			}
 		}
@@ -930,8 +913,8 @@ namespace TimedPower
 		/// </summary>
 		/// <param name="ms">单位: 毫秒</param>
 		static void Sleep(int ms) {
-			var sw = Stopwatch.StartNew();
-			var sleepMs = ms - 16;
+			Stopwatch sw = Stopwatch.StartNew();
+			int sleepMs = ms - 16;
 			if (sleepMs > 0) {
 				Thread.Sleep(sleepMs);
 			}
@@ -945,14 +928,10 @@ namespace TimedPower
 		/// <param name="dateTime">需要转换的DateTime类型</param>
 		/// <param name="accurateToMilliseconds">是否精确到毫秒</param>
 		/// <returns>返回long类型时间戳</returns>
-		public static long GetTimeStamp(DateTime dateTime, bool accurateToMilliseconds = false) {
-			if (accurateToMilliseconds) {
-				return new DateTimeOffset(dateTime).ToUnixTimeMilliseconds();
-			}
-			else {
-				return new DateTimeOffset(dateTime).ToUnixTimeSeconds();
-			}
-		}
+		public static long GetTimeStamp(DateTime dateTime, bool accurateToMilliseconds = false) => 
+			accurateToMilliseconds
+				? new DateTimeOffset(dateTime).ToUnixTimeMilliseconds()
+				: new DateTimeOffset(dateTime).ToUnixTimeSeconds();
 
 		static class CountdownProgressControl {
 			private static long StartValue;
@@ -967,9 +946,9 @@ namespace TimedPower
 				StartValue = startValue;
 				TaskbarManager.SetProgressValue(1, 1);
 
-				if (startValue <= stage1 && startValue > stage2)
+				if (startValue is <= stage1 and > stage2)//同(startValue <= stage1 && startValue > stage2)
 					TaskbarManager.SetProgressState(TaskbarProgressBarState.Paused);
-				else if (startValue <= stage2 && startValue > stage3)
+				else if (startValue is <= stage2 and > stage3)
 					TaskbarManager.SetProgressState(TaskbarProgressBarState.Error);
 				else if (startValue <= stage3)
 					TaskbarManager.SetProgressState(TaskbarProgressBarState.NoProgress);
@@ -991,9 +970,7 @@ namespace TimedPower
 				}
 				TaskbarManager.SetProgressValue((int)(((float)nowValue / (float)StartValue) * 100), 100);
 			}
-			public static void Close() {
-				TaskbarManager.SetProgressState(TaskbarProgressBarState.NoProgress);
-			}
+			public static void Close() => TaskbarManager.SetProgressState(TaskbarProgressBarState.NoProgress);
 		}
 
 		#region notifyIcon_main_EVENT
@@ -1003,17 +980,13 @@ namespace TimedPower
 			notifyIcon_main_ContextMenu_HiddenButton.Enabled = Visible;
 			nmc__AutoCheckUpdate.Checked = IsAutoCheckUpdate;
 		}
-		private void NotifyIcon_main_ContextMenu_ShowButton_Click(object sender, EventArgs e) {
-			this.Visible = true;
-		}
+		private void NotifyIcon_main_ContextMenu_ShowButton_Click(object sender, EventArgs e) => Visible = true;
 
-		private void NotifyIcon_main_ContextMenu_HiddenButton_Click(object sender, EventArgs e) {
-			this.Visible = false;
-		}
+		private void NotifyIcon_main_ContextMenu_HiddenButton_Click(object sender, EventArgs e) => Visible = false;
 
 		private void NotifyIcon_main_ContextMenu_ExitButton_Click(object sender, EventArgs e) {
 			trueExitProgram = true;
-			this.Close();
+			Close();
 		}
 		#endregion
 		private void NotifyIcon_main_MouseClick(object sender, MouseEventArgs e) {
@@ -1027,12 +1000,12 @@ namespace TimedPower
 		/// 显示主窗口
 		/// </summary>
 		private void ShowMainForm() {
-			if (this.Visible == false)
+			if (Visible == false)
 				NotifyIcon_main_ContextMenu_ShowButton_Click(null!, null!);
 			else {
 				TopMost = true;
 				TopMost = false;
-				this.Focus();
+				_ = Focus();
 			}
 		}
 		#endregion
@@ -1059,21 +1032,11 @@ namespace TimedPower
 			FormMenuStrip_CloseToTaskBarToggle.Checked = CloseToTaskBar;
 			FormMenuStrip_Help_AutoCheckUpdate.Checked = IsAutoCheckUpdate;
 		}
-		private void AddOrFixWindowsRightClickMenu_MenuItem_Click(object sender, EventArgs e) {
-			BatFile.WindowsRightClickMenu.RunAdd();
-		}
-		private void RemoveWindowsRightClickMenu_MenuItem_Click(object sender, EventArgs e) {
-			BatFile.WindowsRightClickMenu.RunRemove();
-		}
-		private void EnabledSelfStarting_Click(object sender, EventArgs e) {
-			BatFile.WindowsSelfStarting.RunAdd();
-		}
-		private void DisabledSelfStarting_Click(object sender, EventArgs e) {
-			BatFile.WindowsSelfStarting.RunRemove();
-		}
-		private void FormMenuStrip_CloseToTaskBarToggle_CheckedChanged(object sender, EventArgs e) {
-			CloseToTaskBar = FormMenuStrip_CloseToTaskBarToggle.Checked;
-		}
+		private void AddOrFixWindowsRightClickMenu_MenuItem_Click(object sender, EventArgs e) => BatFile.WindowsRightClickMenu.RunAdd();
+		private void RemoveWindowsRightClickMenu_MenuItem_Click(object sender, EventArgs e) => BatFile.WindowsRightClickMenu.RunRemove();
+		private void EnabledSelfStarting_Click(object sender, EventArgs e) => BatFile.WindowsSelfStarting.RunAdd();
+		private void DisabledSelfStarting_Click(object sender, EventArgs e) => BatFile.WindowsSelfStarting.RunRemove();
+		private void FormMenuStrip_CloseToTaskBarToggle_CheckedChanged(object sender, EventArgs e) => CloseToTaskBar = FormMenuStrip_CloseToTaskBarToggle.Checked;
 		AutoTaskForm? autoTaskForm;
 		private void AutoTask_ToolStripMenuItem_Click(object sender, EventArgs e) {
 			if (autoTaskForm == null || autoTaskForm.IsStart == false) {
@@ -1081,23 +1044,13 @@ namespace TimedPower
 				autoTaskForm.Show/*Dialog*/();
 			}
 			else {
-				autoTaskForm.Focus();
+				_ = autoTaskForm.Focus();
 			}
 		}
-		private void FormMenuStrip_Help_CheckUpdate_Click(object sender, EventArgs e) {
-			Task.Run(() => {
-				ProgramUpdate();
-			});
-		}
-		private void FormMenuStrip_Help_AutoCheckUpdate_Click(object sender, EventArgs e) {
-			IsAutoCheckUpdate = !IsAutoCheckUpdate;
-		}
-		private void FormMenuStrip_Help_HelpDoc_Click(object sender, EventArgs e) {
-			System.Diagnostics.Process.Start("explorer.exe", "https://github.com/Hgnim/TimedPower/wiki");
-		}
-		private void GyToolStripMenuItem_Click(object sender, EventArgs e) {
-			MessageBox.Show(PInfo.aboutText, "关于");
-		}
+		private void FormMenuStrip_Help_CheckUpdate_Click(object sender, EventArgs e) => _ = Task.Run(() => ProgramUpdate());
+		private void FormMenuStrip_Help_AutoCheckUpdate_Click(object sender, EventArgs e) => IsAutoCheckUpdate = !IsAutoCheckUpdate;
+		private void FormMenuStrip_Help_HelpDoc_Click(object sender, EventArgs e) => _ = System.Diagnostics.Process.Start("explorer.exe", "https://github.com/Hgnim/TimedPower/wiki");
+		private void GyToolStripMenuItem_Click(object sender, EventArgs e) => _ = MessageBox.Show(PInfo.aboutText, "关于");
 		#endregion
 	}
 }

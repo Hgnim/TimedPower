@@ -18,7 +18,7 @@ namespace TimedPower
 
             static TaskbarManager()
             {
-                var currentProcess = Process.GetCurrentProcess();
+				Process currentProcess = Process.GetCurrentProcess();
                 if (currentProcess != null && currentProcess.MainWindowHandle != IntPtr.Zero)
                     ownerHandle = currentProcess.MainWindowHandle;
             }

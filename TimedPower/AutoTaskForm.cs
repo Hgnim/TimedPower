@@ -17,15 +17,9 @@ namespace TimedPower
 {
 	public partial class AutoTaskForm : Form
 	{
-		public bool IsStart
-		{
-			get { return isStart; }
-		}
+		public bool IsStart => isStart;
 		bool isStart = false;
-		public AutoTaskForm()
-		{
-			InitializeComponent();
-		}
+		public AutoTaskForm() => InitializeComponent();
 
 		private void AutoTaskForm_Load(object sender, EventArgs e)
 		{
@@ -34,10 +28,7 @@ namespace TimedPower
 
 			isStart = true;
 		}
-		private void AutoTaskForm_FormClosed(object sender, FormClosedEventArgs e)
-		{
-			isStart =false;
-		}
+		private void AutoTaskForm_FormClosed(object sender, FormClosedEventArgs e) => isStart = false;
 		private void AutoTaskForm_FormClosing(object sender, FormClosingEventArgs e)
 		{
 			if (userIsChange)
@@ -83,46 +74,32 @@ namespace TimedPower
 			taskList.Items.Clear();
 			for (int i = 0; i < AutoTaskData.GetATDataCount(); i++)
 			{
-				taskList.Items.Add(AutoTaskData.GetData(i, AutoTaskData.ATDataHead.name)!);
+				_ = taskList.Items.Add(AutoTaskData.GetData(i, AutoTaskData.ATDataHead.name)!);
 			}
 			TaskListSelectCheck();
 			if (taskList_LastSelect != -1)
 			{
-				if (taskList_LastSelect < taskList.Items.Count)//将之前选中的项重新选中，如果没有当前项，则选中当前已有的最大的编号所指向的项
-					taskList.SelectedIndex = taskList_LastSelect;
-				else taskList.SelectedIndex = taskList.Items.Count - 1;
+				taskList.SelectedIndex = taskList_LastSelect < taskList.Items.Count ? taskList_LastSelect : taskList.Items.Count - 1;
 			}
 		}
 		/// <summary>
 		/// 检查列表项目是否为0，或者未被选中。因此来控制信息面板的启用状态
 		/// </summary>
-		void TaskListSelectCheck()
-		{
-			if (taskList.Items.Count == 0 || taskList.SelectedIndex == -1)
-				infoPanel.Enabled = false;
-			else
-				infoPanel.Enabled = true;
-		}
+		void TaskListSelectCheck() => infoPanel.Enabled = taskList.Items.Count != 0 && taskList.SelectedIndex != -1;
 		#region TaskList_UIEvent
 		private void TaskList_DrawItem(object sender, DrawItemEventArgs e)
 		{
 			if (e.Index >= 0)
 			{
 				e.DrawBackground();
-				Brush mybsh;
+				Brush mybsh = AutoTaskData.GetData(e.Index, AutoTaskData.ATDataHead.enable) == AutoTaskData.ATDataHead_enable.t.ToString()
+					? Brushes.Green
+					: Brushes.Red;
 				//根据任务的启动状态绘制列表中的项目颜色
-				if (AutoTaskData.GetData(e.Index, AutoTaskData.ATDataHead.enable) == AutoTaskData.ATDataHead_enable.t.ToString())
-				{
-					mybsh = Brushes.Green;
-				}
-				else
-				{
-					mybsh = Brushes.Red;
-				}
 				/*else if (listBox1.Items[e.Index].ToString().IndexOf("test2") != -1)
-                {
-                    mybsh = Brushes.Red;
-                }*/
+{
+	mybsh = Brushes.Red;
+}*/
 				// 焦点框
 				e.DrawFocusRectangle();
 				//文本 
@@ -150,9 +127,7 @@ namespace TimedPower
 			userChangeCheckSwitch = false;
 			SetUserIsChangeState(false);
 			int index = taskList.SelectedIndex;
-			if (AutoTaskData.GetData(index, AutoTaskData.ATDataHead.enable) == AutoTaskData.ATDataHead_enable.t.ToString())
-				enableCheck.Checked = true;
-			else enableCheck.Checked = false;
+			enableCheck.Checked = AutoTaskData.GetData(index, AutoTaskData.ATDataHead.enable) == AutoTaskData.ATDataHead_enable.t.ToString();
 			taskName_TextBox.Text = AutoTaskData.GetData(index, AutoTaskData.ATDataHead.name)!.ToString();
 			{
 				switch (Enum.Parse(typeof(ATDataHead_timeType), AutoTaskData.GetData(index, AutoTaskData.ATDataHead.timeType)!))
@@ -220,7 +195,7 @@ end:;
 			{
 				AutoTaskData.RemoveATData(taskList.SelectedIndex);
 			}
-			catch { MessageBox.Show("删除失败!", Main.ThisFormText, MessageBoxButtons.OK, MessageBoxIcon.Error); }
+			catch { _ = MessageBox.Show("删除失败!", Main.ThisFormText, MessageBoxButtons.OK, MessageBoxIcon.Error); }
 			TaskListUpdate();
 
 			DefendAutoTask.SetDefendTime(10);//设置配置项后进行保护
@@ -235,7 +210,7 @@ end:;
 					if (((long)Main.GetTimeStamp(TimePicker.Value) - (long)Main.GetTimeStamp(DateTime.Now)) > 0) { }
 					else
 					{
-						MessageBox.Show("只能选择未来的时间！", Main.ThisFormText, MessageBoxButtons.OK, MessageBoxIcon.Error);
+						_ = MessageBox.Show("只能选择未来的时间！", Main.ThisFormText, MessageBoxButtons.OK, MessageBoxIcon.Error);
 						return;
 					}
 					break;
@@ -249,11 +224,7 @@ end:;
 
 			//将数据保存至数据组变量中
 			{
-				ATDataHead_enable aTDataHead_Enable;
-				if (enableCheck.Checked)
-					aTDataHead_Enable = AutoTaskData.ATDataHead_enable.t;
-				else
-					aTDataHead_Enable = AutoTaskData.ATDataHead_enable.f;
+				ATDataHead_enable aTDataHead_Enable = enableCheck.Checked ? AutoTaskData.ATDataHead_enable.t : AutoTaskData.ATDataHead_enable.f;
 				ATDataHead_timeType aTDataHead_TimeType;
 				string timeData;
 				switch (timeTypeSelect.Text)
@@ -272,7 +243,7 @@ end:;
 						timeData = $"-1,-1,-1,{TimeInput.Text.Split(':')[0]},{TimeInput.Text.Split(':')[1]},{TimeInput.Text.Split(':')[2]}";
 						break;
 				}
-				var aTDataHead_Action = ActionSelect.Text switch {
+				ATDataHead_action aTDataHead_Action = ActionSelect.Text switch {
 					"重启" => ATDataHead_action.reboot,
 					"睡眠" => ATDataHead_action.sleep,
 					"休眠" => ATDataHead_action.hibernate,
@@ -302,29 +273,14 @@ end:;
 		#endregion
 
 		#region Change_Event        
-		private void EnableCheck_CheckedChanged(object sender, EventArgs e)
-		{
-			UserChangeCheck();
-		}
+		private void EnableCheck_CheckedChanged(object sender, EventArgs e) => UserChangeCheck();
 
-		private void TaskName_TextBox_TextChanged(object sender, EventArgs e)
-		{
-			UserChangeCheck();
-		}
+		private void TaskName_TextBox_TextChanged(object sender, EventArgs e) => UserChangeCheck();
 
-		private void ActionSelect_SelectedIndexChanged(object sender, EventArgs e)
-		{
-			UserChangeCheck();
-		}
+		private void ActionSelect_SelectedIndexChanged(object sender, EventArgs e) => UserChangeCheck();
 
-		private void TimePicker_ValueChanged(object sender, EventArgs e)
-		{
-			UserChangeCheck();
-		}
-		private void TimeInput_TextChanged(object sender, EventArgs e)
-		{
-			UserChangeCheck();
-		}
+		private void TimePicker_ValueChanged(object sender, EventArgs e) => UserChangeCheck();
+		private void TimeInput_TextChanged(object sender, EventArgs e) => UserChangeCheck();
 		/// <summary>
 		/// 表示是否启用用户更改检查<br/>一般等待数据加载完毕后再启用用户更改检查，避免在部署数据时触发
 		/// </summary>
@@ -362,10 +318,7 @@ end:;
 		{
 			DialogResult dr = MessageBox.Show("当前有未保存的内容，是否继续？", Main.ThisFormText,
 				MessageBoxButtons.OKCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
-			if (dr == DialogResult.OK)
-				return true;
-			else
-				return false;
+			return dr == DialogResult.OK;
 		}
 		#endregion
 
@@ -384,12 +337,12 @@ end:;
 			}
 			else if (output == "ToBig")
 			{
-				MessageBox.Show("时间数值过大！", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+				_ = MessageBox.Show("时间数值过大！", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
 				return false;
 			}
 			else
 			{
-				MessageBox.Show("时间格式错误！", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+				_ = MessageBox.Show("时间格式错误！", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
 				return false;
 			}
 		}
@@ -461,45 +414,33 @@ end:;
             }
             return autoTask;
         }
-        /// <summary>
-        /// 获取数据组的个数
-        /// </summary>
-        /// <returns></returns>
-        internal static int GetATDataCount()
-        {
-            return atData.Count;
-        }
-        /// <summary>
-        /// 新建一个自动任务数据组
-        /// </summary>
-        internal static void CreateATData()
-        {
-            atData.Add([
-                ATDataHead.name.ToString(),"新的自动任务",
-                ATDataHead.enable.ToString(),ATDataHead_enable.f.ToString(),
-                ATDataHead.timeType.ToString(),ATDataHead_timeType.everyday.ToString(),
-                ATDataHead.timeData.ToString(),"0,0,0,"+DateTime.Now.ToString("HH,mm,ss"),
-                ATDataHead.action.ToString(),ATDataHead_action.shutdown.ToString()
-                ]);
-        }
-        /// <summary>
-        /// 设置自动任务数据组
-        /// </summary>
-        /// <param name="index">数据组编号</param>
-        /// <param name="data">数据组</param>
-        internal static void SetATData(int index, string[] data)
-        {
-            atData[index] = data;
-        }
-        /// <summary>
-        /// 删除指定编号的数据组
-        /// </summary>
-        /// <param name="index">数据组编号</param>
-        internal static void RemoveATData(int index)
-        {
-            atData.RemoveAt(index);
-        }
-        internal enum ATDataHead
+		/// <summary>
+		/// 获取数据组的个数
+		/// </summary>
+		/// <returns></returns>
+		internal static int GetATDataCount() => atData.Count;
+		/// <summary>
+		/// 新建一个自动任务数据组
+		/// </summary>
+		internal static void CreateATData() => atData.Add([
+				ATDataHead.name.ToString(),"新的自动任务",
+				ATDataHead.enable.ToString(),ATDataHead_enable.f.ToString(),
+				ATDataHead.timeType.ToString(),ATDataHead_timeType.everyday.ToString(),
+				ATDataHead.timeData.ToString(),"0,0,0,"+DateTime.Now.ToString("HH,mm,ss"),
+				ATDataHead.action.ToString(),ATDataHead_action.shutdown.ToString()
+				]);
+		/// <summary>
+		/// 设置自动任务数据组
+		/// </summary>
+		/// <param name="index">数据组编号</param>
+		/// <param name="data">数据组</param>
+		internal static void SetATData(int index, string[] data) => atData[index] = data;
+		/// <summary>
+		/// 删除指定编号的数据组
+		/// </summary>
+		/// <param name="index">数据组编号</param>
+		internal static void RemoveATData(int index) => atData.RemoveAt(index);
+		internal enum ATDataHead
         {
             enable, name, timeType, action, timeData
         }
@@ -557,7 +498,7 @@ end:;
                 xmlE = xmlDoc.CreateElement("item");
                 foreach (ATDataHead at in Enum.GetValues(typeof(ATDataHead)))
                     xmlE.SetAttribute(at.ToString(), GetData(i, at));
-                xmlRoot.AppendChild(xmlE);
+				_ = xmlRoot.AppendChild(xmlE);
             }
             xmlDoc.Save(FilePath.AutoTaskFile);
         }
@@ -572,19 +513,17 @@ end:;
             /// <summary>
             /// 是否启动
             /// </summary>
-            internal static bool IsEnable
-            {
-                get { return isEnable; }
-                set
-                {
-                    isEnable = value;
-                    IsEnable_Change!(isEnable);
-                }
-            }
-            /// <summary>
-            /// 自动任务数据组编号
-            /// </summary>
-            static int atdat_index=-1;
+            internal static bool IsEnable {
+				get => isEnable;
+				set {
+					isEnable = value;
+					IsEnable_Change!(isEnable);
+				}
+			}
+			/// <summary>
+			/// 自动任务数据组编号
+			/// </summary>
+			static int atdat_index=-1;
             /// <summary>
             /// 自动任务数据组
             /// </summary>
@@ -635,35 +574,25 @@ end:;
 exitThread:;
                 }); t.Start();
             }
-            /// <summary>
-            /// 获取本地单个数据组中的时间数据
-            /// </summary>
-            /// <returns></returns>
-            internal static DateTime GetDateTime()
-            {
-                return AutoTaskData.ATtimeDataToDateTime(GetData(atdat, ATDataHead.timeData)!);
-            }
-            /// <summary>
-            /// 获取本地单个数据组中的任务名数据
-            /// </summary>
-            /// <returns></returns>
-            internal static string GetTaskName()
-            {
-                return GetData(atdat, ATDataHead.name)!;
-            }
-            /// <summary>
-            /// 获取本地单个数据组中的操作类型数据
-            /// </summary>
-            /// <returns></returns>
-            internal static ATDataHead_action GetAction()
-            {
-                return (ATDataHead_action)Enum.Parse(typeof(ATDataHead_action), GetData(atdat,ATDataHead.action)!);
-
-            }
-            /// <summary>
-            /// 终止并禁用当前自动任务
-            /// </summary>
-            internal static void StopNowTask()
+			/// <summary>
+			/// 获取本地单个数据组中的时间数据
+			/// </summary>
+			/// <returns></returns>
+			internal static DateTime GetDateTime() => AutoTaskData.ATtimeDataToDateTime(GetData(atdat, ATDataHead.timeData)!);
+			/// <summary>
+			/// 获取本地单个数据组中的任务名数据
+			/// </summary>
+			/// <returns></returns>
+			internal static string GetTaskName() => GetData(atdat, ATDataHead.name)!;
+			/// <summary>
+			/// 获取本地单个数据组中的操作类型数据
+			/// </summary>
+			/// <returns></returns>
+			internal static ATDataHead_action GetAction() => (ATDataHead_action)Enum.Parse(typeof(ATDataHead_action), GetData(atdat, ATDataHead.action)!);
+			/// <summary>
+			/// 终止并禁用当前自动任务
+			/// </summary>
+			internal static void StopNowTask()
             {
                 atData[atdat_index] = SetData(atdat, ATDataHead.enable, ATDataHead_enable.f.ToString());//将正在进行的任务禁用
                 UpdateData();//刷新自动任务数据
@@ -682,7 +611,7 @@ exitThread:;
             {
                 dt = new(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, int.Parse(cache[3]), int.Parse(cache[4]), int.Parse(cache[5]));
                 if (DateTime.Compare(dt, DateTime.Now) <= 0)//如果数据时间早于当前时间，则增加一天时间
-                    dt.AddDays(1);
+					_ = dt.AddDays(1);
             }
             else if (cache[0]=="-1" && cache[1]=="-1" && cache[2] == "-1")
             {
@@ -703,18 +632,9 @@ exitThread:;
 		internal static string ATtimeDataToString(string autoTaskData_timeData)
 		{
 			string[] cache = autoTaskData_timeData.Split(',');
-			string str;
-			if (cache[0] == "-1" && cache[1] == "-1" && cache[2] == "-1")
-			{
-				str = $"{cache[3]}:{cache[4]}:{cache[5]}";
-			}
-			else
-			{
-				str = "error";
-			}
+			string str = cache[0] == "-1" && cache[1] == "-1" && cache[2] == "-1" ? $"{cache[3]}:{cache[4]}:{cache[5]}" : "error";
 			return str;
 		}
-
 	}
     /// <summary>
     /// 自动任务防御程序，用于避免用户错误的设置或程序的Bug导致的严重后果。
@@ -747,31 +667,20 @@ exitThread:;
                 }
             });t.Start();
         }
-        /// <summary>
-        /// 当前防御程序的状态
-        /// </summary>
-        /// <returns>如果防御程序正在运行，则返回true；反之则返回false</returns>
-        internal static bool DefendState()
-        {
-            if (defendTime <= 0)
-                return false;
-            return true;
-        }
-        /// <summary>
-        /// 弹出自动定时保护程序阻止操作后的信息
-        /// </summary>
-        internal static void DefendMessage_Msgbox()
-        {
-            MessageBox.Show("警告，自动定时任务保护程序已阻止了一个可能的异常任务操作。\r\n" +
-                "自动定时任务保护程序将在程序启动的30秒内和更改完自动定时任务设置的10秒内阻止任何电源操作。以避免可能的误操作。\r\n" +
-                "点击确认以退出程序。",Main.ThisFormText,MessageBoxButtons.OK,MessageBoxIcon.Warning);
-        }
-        /// <summary>
-        /// 关闭保护程序，一般在软件关闭时调用
-        /// </summary>
-        internal static void CloseDefend()
-        {
-            defendTime = 0;
-        }
-    }
+		/// <summary>
+		/// 当前防御程序的状态
+		/// </summary>
+		/// <returns>如果防御程序正在运行，则返回true；反之则返回false</returns>
+		internal static bool DefendState() => defendTime > 0;
+		/// <summary>
+		/// 弹出自动定时保护程序阻止操作后的信息
+		/// </summary>
+		internal static void DefendMessage_Msgbox() => _ = MessageBox.Show("警告，自动定时任务保护程序已阻止了一个可能的异常任务操作。\r\n" +
+				"自动定时任务保护程序将在程序启动的30秒内和更改完自动定时任务设置的10秒内阻止任何电源操作。以避免可能的误操作。\r\n" +
+				"点击确认以退出程序。", Main.ThisFormText, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+		/// <summary>
+		/// 关闭保护程序，一般在软件关闭时调用
+		/// </summary>
+		internal static void CloseDefend() => defendTime = 0;
+	}
 }
