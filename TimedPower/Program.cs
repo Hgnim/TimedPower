@@ -17,8 +17,13 @@ namespace TimedPower
                 {
 					File.Delete(FilePath.commandFile);
                     using (StreamWriter sw = new(FilePath.commandFile + ".tmp", false, System.Text.Encoding.UTF8)) {
-                        foreach (string arg in args) {
-                            sw.WriteLine(arg);
+                        if (args.Length > 0) {
+                            foreach (string arg in args) {
+                                sw.WriteLine(arg);
+                            }
+                        }
+                        else {
+                            sw.WriteLine("-focus");//如果没有参数，则代表时用户双击打开，则传递获取焦点参数
                         }
                     }
                     File.Move(FilePath.commandFile + ".tmp", FilePath.commandFile);

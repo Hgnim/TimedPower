@@ -160,7 +160,7 @@ namespace TimedPower
 					if (ad.HaveArgs()) {
 						if (ad.Compute()) {
 							this.Invoke(new Action(() => {
-								AutoStartTimed(ad.TkAction, ad.Time, ad.TimeType);
+								AutoStartTimed(ad);
 							}));
 						}
 					}
@@ -210,7 +210,7 @@ namespace TimedPower
 			};
 			if (ad.HaveArgs()) {
 				if(ad.Compute())
-					AutoStartTimed(ad.TkAction, ad.Time, ad.TimeType);
+					AutoStartTimed(ad);
 			}
 
 			if (ad.ShowTheForm)
@@ -229,47 +229,53 @@ namespace TimedPower
 		/// <param name="action"></param>
 		/// <param name="time"></param>
 		/// <returns>返回true表示成功，false则失败</returns>
-		private bool AutoStartTimed(TaskAction? action, string time,TaskTimeType timeType) {
-			switch (action) {
-				case TaskAction.shutdown:
-					//typeStr = "关机";
-					ActionSelect.SelectedIndex = 0;
-					break;
-				case TaskAction.reboot:
-					//typeStr = "重启";
-					ActionSelect.SelectedIndex = 1;
-					break;
-				case TaskAction.sleep:
-					//typeStr = "睡眠";
-					ActionSelect.SelectedIndex = 2;
-					break;
-				case TaskAction.hibernate:
-					//typeStr = "休眠";
-					ActionSelect.SelectedIndex = 3;
-					break;
-				case TaskAction.userlock:
-					//typeStr = "锁定";
-					ActionSelect.SelectedIndex = 4;
-					break;
-				case TaskAction.useroff:
-					//typeStr = "注销";
-					ActionSelect.SelectedIndex = 5;
-					break;
-				case null:
-					return false;
+		private bool AutoStartTimed(ArgsCompute ac) {
+			if (ac.GetFocus) {
+				ShowMainForm();
+				return true;
 			}
-			switch (timeType) {
-				case TaskTimeType.after:
-					TimeTypeSelect.SelectedIndex = 0;
-					TimeInput.Text = time;
-					break;
-				case TaskTimeType.ontime:
-					TimeTypeSelect.SelectedIndex = 1;
-					TimePicker.Value = DateTime.Parse(time);
-					break;
+			else {
+				switch (ac.TkAction) {
+					case TaskAction.shutdown:
+						//typeStr = "关机";
+						ActionSelect.SelectedIndex = 0;
+						break;
+					case TaskAction.reboot:
+						//typeStr = "重启";
+						ActionSelect.SelectedIndex = 1;
+						break;
+					case TaskAction.sleep:
+						//typeStr = "睡眠";
+						ActionSelect.SelectedIndex = 2;
+						break;
+					case TaskAction.hibernate:
+						//typeStr = "休眠";
+						ActionSelect.SelectedIndex = 3;
+						break;
+					case TaskAction.userlock:
+						//typeStr = "锁定";
+						ActionSelect.SelectedIndex = 4;
+						break;
+					case TaskAction.useroff:
+						//typeStr = "注销";
+						ActionSelect.SelectedIndex = 5;
+						break;
+					case null:
+						return false;
+				}
+				switch (ac.TimeType) {
+					case TaskTimeType.after:
+						TimeTypeSelect.SelectedIndex = 0;
+						TimeInput.Text = ac.Time;
+						break;
+					case TaskTimeType.ontime:
+						TimeTypeSelect.SelectedIndex = 1;
+						TimePicker.Value = DateTime.Parse(ac.Time);
+						break;
+				}
+				StartButton_Click(null!, null!);
+				return true;
 			}
-			StartButton_Click(null!, null!);
-			return true;
 		}
 		/// <summary>
 		/// 参数处理类
@@ -283,6 +289,8 @@ namespace TimedPower
 				set => priArgs = value;
 			}
 
+			private bool getFocus=false;
+			internal bool GetFocus=> getFocus;
 
 			private TaskAction? tkAction = null;
 			/// <summary>
@@ -323,46 +331,49 @@ namespace TimedPower
 			/// 处理参数并将返回值设置在类的属性里
 			/// </summary>
 			/// <returns>处理成功返回true，否则返回false</returns>
-			internal bool Compute() {
-				if (priArgs.Length == 1) {
-					if (File.Exists(priArgs[0])) {
-						TPT? tpt= TPTRead(priArgs[0]);
-						if (tpt != null) {
-							tkAction = tpt.Action;
-							time = tpt.Time;
-							timeType = tpt.TimeType;
-							if(!tpt.LittleTimeWarning)
-								littleTimeWarningDis = true;
-							return true;
-						}
-						else
-							return false;
-					}
-					else
-						return false;
-				}
-				else {
+			internal bool Compute() {				
 					for (int i = 0; i < priArgs.Length; i++) {
-						switch (priArgs[i].ToLower()) {
-							case "-type":
-								i++;
-								tkAction = (TaskAction)Enum.Parse(typeof(TaskAction), priArgs[i].ToLower());
-								break;
-							case "-time":
-								i++;
-								time = priArgs[i].ToLower();
-								break;
-							case "-timeType":
-								i++;
-								timeType = (TaskTimeType)Enum.Parse(typeof(TaskTimeType), priArgs[i].ToLower());
-								break;
-							case "-hidden":
-								showTheForm = false;
-								break;
-						}
+				    switch (priArgs[i].ToLower()) {
+						case "-type":
+							i++;
+							tkAction = (TaskAction)Enum.Parse(typeof(TaskAction), priArgs[i].ToLower());
+							break;
+						case "-time":
+							i++;
+							time = priArgs[i].ToLower();
+							break;
+						case "-timeType":
+							i++;
+							timeType = (TaskTimeType)Enum.Parse(typeof(TaskTimeType), priArgs[i].ToLower());
+							break;
+						case "-hidden":
+							showTheForm = false;
+							break;
+						case "-focus":
+							getFocus = true;
+							break;
+						default:
+							if (priArgs.Length == 1) {
+								if (File.Exists(priArgs[0])) {
+									TPT? tpt = TPTRead(priArgs[0]);
+									if (tpt != null) {
+										tkAction = tpt.Action;
+										time = tpt.Time;
+										timeType = tpt.TimeType;
+										if (!tpt.LittleTimeWarning)
+											littleTimeWarningDis = true;
+										return true;
+									}
+									else
+										return false;
+								}
+								else
+									return false;
+							}
+							break;
 					}
-					return true;
 				}
+					return true;
 			}
 		}
 
@@ -1012,6 +1023,9 @@ namespace TimedPower
 					break;
 			}
 		}
+		/// <summary>
+		/// 显示主窗口
+		/// </summary>
 		private void ShowMainForm() {
 			if (this.Visible == false)
 				NotifyIcon_main_ContextMenu_ShowButton_Click(null!, null!);
