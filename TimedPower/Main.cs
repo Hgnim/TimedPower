@@ -170,6 +170,7 @@ namespace TimedPower
 			statsData.StartNum++;//添加统计
 			Task.Run(() => {
 				string numStr = statsData.StartNum.ToString();
+				if (!(numStr.Length > 1)) return;
 				if (numStr[0] != '1') return;
 				for(int i=1; i<numStr.Length; i++) {
 					if (numStr[i] != '0') return;
