@@ -9,7 +9,7 @@ namespace TimedPower {
 	internal readonly struct PInfo {
 		internal const string alias = "定时电源";
 		internal const string name = "TimedPower";
-		public const string version = "2.7.7.20250104-pre1";
+		public const string version = "2.7.7.20250106-pre2";
 		public static string ShortVersion {
 			get {
 				string[] v = version.Split('.');
