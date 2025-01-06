@@ -50,6 +50,15 @@ namespace TimedPower
 					CloseToTaskBar = mainData.CloseToTaskBar;
 
 					IsAutoCheckUpdate = mainData.AutoCheckUpdate;
+
+					//根据不同版本的变化进行更新操作
+					if (mainData.Version < PInfo.ShortVersionNum) {
+						if (mainData.Version < 277) {
+							MessageBox.Show("因当前程序版本更新，需要删除旧的注册表数据。如果取消，后续可使用软件开源仓库中提供的脚本进行删除。", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
+							//新版本的注册表数据将保存在用户目录，旧版本中存放在注册表系统目录中的数据需要被删除，避免重复
+							BatFileControl.RunBat(["RemoveOldVersionRegData.bat"], true);
+						}
+					}
 				}
 			}
 			else if (File.Exists(FilePath.MainDataFile_Obsolete)) {
@@ -109,15 +118,7 @@ namespace TimedPower
 			AutoTaskData.GetDataFromFile();
 			if (DataFiles.mainData.First) {
 				DataFiles.mainData.First = false;
-				if (MessageBox.Show("是否将快捷按钮添加至Windows右键菜单？稍后也可以右键程序进行设置。", Text, MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes) {
-					AddOrFixWindowsRightClickMenu_MenuItem_Click(null!, null!);
-				}
-				if (MessageBox.Show("是否启用软件开机自动启动？这可以为自动定时任务功能带来更好的体验。稍后也可以右键程序进行设置。",
-					Text, MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes) {
-					EnabledSelfStarting_Click(null!, null!);
-				}
-				_ = MessageBox.Show("提示：点击软件的关闭按钮后将会最小化至任务栏托盘。若想关闭软件，请右键任务栏托盘的该软件的小图标后点击退出即可。",
-					Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
+
 			}
 
 			DefendAutoTask.SetDefendTime(30);//程序启动后将有30秒的自动任务防御时间
@@ -205,7 +206,7 @@ namespace TimedPower
 				PriArgs = args
 			};
 			if (ad.HaveArgs()) {
-				if(ad.Compute())
+				if (ad.Compute())
 					_ = AutoStartTimed(ad);
 			}
 
@@ -285,8 +286,8 @@ namespace TimedPower
 				set => priArgs = value;
 			}
 
-			private bool getFocus=false;
-			internal bool GetFocus=> getFocus;
+			private bool getFocus = false;
+			internal bool GetFocus => getFocus;
 
 			private TaskAction? tkAction = null;
 			/// <summary>
@@ -304,7 +305,7 @@ namespace TimedPower
 			/// <summary>
 			/// 倒计时时间
 			/// </summary>
-			internal string Time  => time;
+			internal string Time => time;
 
 			private bool showTheForm = true;
 			/// <summary>
@@ -321,10 +322,10 @@ namespace TimedPower
 			/// 处理参数并将返回值设置在类的属性里
 			/// </summary>
 			/// <returns>处理成功返回true，否则返回false</returns>
-			internal bool Compute() {				
-					for (int i = 0; i < priArgs.Length; i++) {
-				    switch (priArgs[i].ToLower()) {
-						case "-type":
+			internal bool Compute() {
+				for (int i = 0; i < priArgs.Length; i++) {
+					switch (priArgs[i].ToLower()) {
+						case "-action":
 							i++;
 							tkAction = (TaskAction)Enum.Parse(typeof(TaskAction), priArgs[i].ToLower());
 							break;
@@ -363,7 +364,7 @@ namespace TimedPower
 							break;
 					}
 				}
-					return true;
+				return true;
 			}
 		}
 
@@ -379,6 +380,7 @@ namespace TimedPower
 				mainData.TimeInput = TimeInput.Text;
 				mainData.CloseToTaskBar = CloseToTaskBar;
 				mainData.AutoCheckUpdate = IsAutoCheckUpdate;
+				if (mainData.Version < PInfo.ShortVersionNum) mainData.Version = PInfo.ShortVersionNum;
 				DataFile.SaveData();
 
 				AutoTaskData.SaveToFile();
@@ -595,7 +597,8 @@ namespace TimedPower
 						return;
 					}
 				}
-			}else
+			}
+			else
 				littleTimeWarningDis = false;
 			CountdownProgressControl.SetStartValue(countdown.AllSeconds);
 
@@ -813,7 +816,7 @@ namespace TimedPower
 				{
 					DataSave();//操作前保存所有
 #if DEBUG
-				MessageBox.Show("调试模式：已假装执行" + actionSelect + "操作", Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
+					MessageBox.Show("调试模式：已假装执行" + actionSelect + "操作", Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
 #else
 					switch (actionSelect) {
 						case AutoTaskData.ATDataHead_action.shutdown:
@@ -931,7 +934,7 @@ namespace TimedPower
 		/// <param name="dateTime">需要转换的DateTime类型</param>
 		/// <param name="accurateToMilliseconds">是否精确到毫秒</param>
 		/// <returns>返回long类型时间戳</returns>
-		public static long GetTimeStamp(DateTime dateTime, bool accurateToMilliseconds = false) => 
+		public static long GetTimeStamp(DateTime dateTime, bool accurateToMilliseconds = false) =>
 			accurateToMilliseconds
 				? new DateTimeOffset(dateTime).ToUnixTimeMilliseconds()
 				: new DateTimeOffset(dateTime).ToUnixTimeSeconds();
@@ -1013,7 +1016,10 @@ namespace TimedPower
 		}
 		#endregion
 
-		#region FormMenuStrip
+		#region FormMenuStrip		
+		private void FormMenuStrip_Opening(object sender, System.ComponentModel.CancelEventArgs e) {
+			FormMenuStrip_Help_AutoCheckUpdate.Checked = IsAutoCheckUpdate;
+		}
 		private void FormMenuStrip_NewTaskFile_Click(object sender, EventArgs e) {
 			SaveFileDialog saveFileDialog = new() {
 				Title = "新建任务模板文件",
@@ -1024,21 +1030,16 @@ namespace TimedPower
 			if (saveFileDialog.ShowDialog() == DialogResult.OK) {
 				TPTSave(saveFileDialog.FileName, new() {
 					Action = TimedPowerTask.TaskAction.userlock,
-					Time="5min",
+					Time = "5min",
 					TimeType = TimedPowerTask.TaskTimeType.after,
-					FileVersion=PInfo.ShortVersionNum
+					FileVersion = PInfo.ShortVersionNum
 				});
 			}
 		}
-		private void FormMenuStrip_Opening(object sender, System.ComponentModel.CancelEventArgs e) {
-			FormMenuStrip_CloseToTaskBarToggle.Checked = CloseToTaskBar;
-			FormMenuStrip_Help_AutoCheckUpdate.Checked = IsAutoCheckUpdate;
+		private void FormMenuStrip_Setting_Click(object sender, EventArgs e) {
+			SettingForm sf= new();
+			sf.ShowDialog();
 		}
-		private void AddOrFixWindowsRightClickMenu_MenuItem_Click(object sender, EventArgs e) => BatFile.WindowsRightClickMenu.RunAdd();
-		private void RemoveWindowsRightClickMenu_MenuItem_Click(object sender, EventArgs e) => BatFile.WindowsRightClickMenu.RunRemove();
-		private void EnabledSelfStarting_Click(object sender, EventArgs e) => BatFile.WindowsSelfStarting.RunAdd();
-		private void DisabledSelfStarting_Click(object sender, EventArgs e) => BatFile.WindowsSelfStarting.RunRemove();
-		private void FormMenuStrip_CloseToTaskBarToggle_CheckedChanged(object sender, EventArgs e) => CloseToTaskBar = FormMenuStrip_CloseToTaskBarToggle.Checked;
 		AutoTaskForm? autoTaskForm;
 		private void AutoTask_ToolStripMenuItem_Click(object sender, EventArgs e) {
 			if (autoTaskForm == null || autoTaskForm.IsStart == false) {

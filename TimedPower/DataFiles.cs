@@ -45,6 +45,7 @@ namespace TimedPower {
 			public required string TimeInput { get; set; }
 			public required bool CloseToTaskBar {  get; set; }
 			public required bool AutoCheckUpdate { get; set; }
+			public required uint Version { get; set; }
 		}
 	}
 	public struct TimedPowerTask {
@@ -59,7 +60,7 @@ namespace TimedPower {
 			public required TaskAction Action { get; set; }
 			public required string Time { get; set; }
 			public required TaskTimeType TimeType { get; set; }
-			public required int FileVersion { get; set; }
+			public required uint FileVersion { get; set; }
 			private bool littleTimeWarning = true;
 			public bool LittleTimeWarning {
 				get => littleTimeWarning;
