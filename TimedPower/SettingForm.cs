@@ -152,5 +152,13 @@ namespace TimedPower {
 				}
 			}
 		}
+		/*internal static bool TptFileLink {
+			get {
+
+			}
+			set {
+
+			}
+		}*/
 	}
 }

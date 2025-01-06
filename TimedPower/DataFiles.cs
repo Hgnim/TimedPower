@@ -18,9 +18,14 @@ namespace TimedPower {
 			ISerializer yamlS = new SerializerBuilder()
 				.WithNamingConvention(CamelCaseNamingConvention.Instance)
 				.Build();
-			using StreamWriter sw = new(MainDataFile, false);
-			sw.WriteLine("#注意，私自修改数据文件导致的程序错误开发者概不负责!");
-			sw.Write(yamlS.Serialize(mainData));
+			using (StreamWriter sw = new(MainDataFile, false)) {
+				sw.WriteLine("#注意，私自修改数据文件导致的程序错误开发者概不负责!");
+				sw.Write(yamlS.Serialize(mainData));
+			}
+			using (StreamWriter sw = new(StatsDataFile, false)) {
+				sw.WriteLine("#注意，私自修改数据文件导致的程序错误开发者概不负责!");
+				sw.Write(yamlS.Serialize(statsData));
+			}
 		}
 		/// <summary>
 		/// 读取数据文件并将数据写入实例中
@@ -32,6 +37,8 @@ namespace TimedPower {
 
 			if (File.Exists(MainDataFile))
 				mainData = yamlD.Deserialize<MainData>(File.ReadAllText(MainDataFile));
+			if(File.Exists(StatsDataFile))
+				statsData= yamlD.Deserialize<StatsData>(File.ReadAllText(StatsDataFile));
 		}
 		public struct MainData {
 			public struct SmallPoint {
@@ -46,6 +53,10 @@ namespace TimedPower {
 			public required bool CloseToTaskBar {  get; set; }
 			public required bool AutoCheckUpdate { get; set; }
 			public required uint Version { get; set; }
+		}
+		public struct StatsData {
+			public required int StartNum { get; set; }
+			public required int DoActionNum { get; set; }
 		}
 	}
 	public struct TimedPowerTask {

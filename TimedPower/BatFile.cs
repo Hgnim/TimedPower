@@ -1,8 +1,6 @@
-﻿using SharpCompress.Common;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Diagnostics;
 using System.Reflection;
-using System.Text;
 
 namespace TimedPower
 {

@@ -165,6 +165,20 @@ namespace TimedPower
 					}
 				}
 			};
+
+
+			statsData.StartNum++;//添加统计
+			Task.Run(() => {
+				string numStr = statsData.StartNum.ToString();
+				if (numStr[0] != '1') return;
+				for(int i=1; i<numStr.Length; i++) {
+					if (numStr[i] != '0') return;
+				}
+				if (MessageBox.Show($"该软件已经为你服务{statsData.StartNum}次啦。如果觉得好用，还请前往该软件的Github仓库中点亮Star以支持开发者！","感谢使用",
+					MessageBoxButtons.YesNo,MessageBoxIcon.None,MessageBoxDefaultButton.Button1) == DialogResult.Yes) {
+					Process.Start("explorer.exe", PInfo.githubUrl);
+				}
+			});
 		}
 		/// <summary>
 		/// 设置为true后将不会在Main_FormClosing函数中阻止程序退出<br/>
@@ -560,6 +574,7 @@ namespace TimedPower
 		static bool fuse = false;//保险变量，倒计时和执行电源操作时必须为true
 		static bool littleTimeWarningDis = false;//是否禁用时间小于等于5秒的警告，该警告目前只能临时禁用
 		private void StartButton_Click(object sender, EventArgs e) {
+			statsData.DoActionNum++;
 			switch (TimeTypeSelect.SelectedItem!.ToString()) {
 				case "此后":
 					if (FormatdInputBool(TimeInput.Text)) TimeInput.Text = atv.GetFormatdTime();
@@ -1052,8 +1067,11 @@ namespace TimedPower
 		}
 		private void FormMenuStrip_Help_CheckUpdate_Click(object sender, EventArgs e) => _ = Task.Run(() => ProgramUpdate());
 		private void FormMenuStrip_Help_AutoCheckUpdate_Click(object sender, EventArgs e) => IsAutoCheckUpdate = !IsAutoCheckUpdate;
-		private void FormMenuStrip_Help_HelpDoc_Click(object sender, EventArgs e) => _ = System.Diagnostics.Process.Start("explorer.exe", "https://github.com/Hgnim/TimedPower/wiki");
-		private void GyToolStripMenuItem_Click(object sender, EventArgs e) => _ = MessageBox.Show(PInfo.aboutText, "关于");
+		private void FormMenuStrip_Help_HelpDoc_Click(object sender, EventArgs e) => _ = System.Diagnostics.Process.Start("explorer.exe", PInfo.githubWiki);
+		private void GyToolStripMenuItem_Click(object sender, EventArgs e) {
+			AboutForm af = new();
+			af.ShowDialog();
+		}
 		#endregion
 	}
 }

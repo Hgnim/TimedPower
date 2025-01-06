@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace TimedPower {
 	internal readonly struct PInfo {
+		internal const string alias = "定时电源";
 		internal const string name = "TimedPower";
 		public const string version = "2.7.7.20250104-pre1";
 		public static string ShortVersion {
@@ -22,12 +23,8 @@ namespace TimedPower {
 			}
 		}
 		internal const string githubUrl = "https://github.com/Hgnim/TimedPower";
-		public const string aboutText =
-@$"程序名: 定时电源
-别名: {name}
-版本: V{version}
-Copyright (C) 2024-2025 Hgnim, All rights reserved.
-Github: {githubUrl}";
+		internal const string githubWiki = "https://github.com/Hgnim/TimedPower/wiki";
+		internal const string copyright = "Copyright (C) 2024-2025 Hgnim, All rights reserved.";
 	}
 	internal struct DataCore {
 		internal struct DataFiles {
@@ -41,6 +38,10 @@ Github: {githubUrl}";
 				AutoCheckUpdate = true,
 				Version = 0
 			};
+			public static DataFile.StatsData statsData = new() {
+				StartNum = 0,
+				DoActionNum = 0,
+			};
 		}
 	}
 	internal readonly struct FilePath {
@@ -50,6 +51,7 @@ Github: {githubUrl}";
 		internal static readonly string MainDataFile = ConfigDir + "data.yml";
 		internal static readonly string MainDataFile_Obsolete = ConfigDir + "data.xml";
 		internal static readonly string AutoTaskFile = ConfigDir + "autoTask.xml";
+		internal static readonly string StatsDataFile = ConfigDir + "stats.yml";
 
 		internal static readonly string TempDir = System.IO.Path.GetTempPath() + @$"{PInfo.name}\";
 		internal static readonly string CommandDir = @$"{TempDir}Command\";
