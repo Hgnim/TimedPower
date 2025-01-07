@@ -9,7 +9,7 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <ApplicationIcon>TimedPower_logo.ico</ApplicationIcon>
 
-	  <AssemblyTitle>用于定时电源操作</AssemblyTitle>
+	  <AssemblyTitle>定时电源操作工具</AssemblyTitle>
 	  <Company>Hgnim</Company>
 	  <Product>TimedPower</Product>
 	  <Description>定时电源</Description>

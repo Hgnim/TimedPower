@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using YamlDotNet.Serialization;
+﻿using YamlDotNet.Serialization;
 using YamlDotNet.Serialization.NamingConventions;
 using static TimedPower.DataCore.DataFiles;
-using static TimedPower.DataFile;
-using static TimedPower.FilePath;
+using static TimedPower.DataCore.FilePath;
 
 namespace TimedPower {
 	public struct DataFile {
@@ -54,6 +48,7 @@ namespace TimedPower {
 			public struct SettingS {
 				public required bool CloseToTaskBar { get; set; }
 				public required bool AutoCheckUpdate { get; set; }
+				public required DataCore.LanguageData.Language.Langs Language { get; set; }
 			}
 			public required SettingS Setting {  get; set; }
 			public required uint Version { get; set; }
@@ -67,6 +62,7 @@ namespace TimedPower {
 				Setting = new() {
 					CloseToTaskBar = true,
 					AutoCheckUpdate = true,
+					Language=DataCore.LanguageData.Language.Langs.zh_cn,
 				};
 				Version = 0;
 			}

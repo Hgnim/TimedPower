@@ -2,10 +2,28 @@
 {
     partial class AutoTaskForm
     {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
-        private System.ComponentModel.IContainer components = null;
+
+		/// <summary>
+		/// 对应控件的选项枚举，注意，此处枚举排序必须和控件中的项目排序一致
+		/// </summary>
+		internal enum ActionSelectItems {
+			shutdown,
+			reboot,
+			sleep,
+			hibernate,
+			userlock,
+			useroff
+		}
+		internal enum TimeTypeSelectItems {
+			everyday,
+			singleTimed,
+			appStart
+		}
+
+		/// <summary>
+		/// Required designer variable.
+		/// </summary>
+		private System.ComponentModel.IContainer components = null;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -216,6 +234,7 @@
 			label2.Size = new Size(37, 20);
 			label2.TabIndex = 0;
 			label2.Text = "操作";
+			label2.SendToBack();
 			// 
 			// ActionSelect
 			// 

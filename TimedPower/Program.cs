@@ -1,4 +1,6 @@
 using EasyUpdateFromGithub;
+using System.ComponentModel.Design;
+using static TimedPower.DataCore;
 
 namespace TimedPower
 {
@@ -14,7 +16,9 @@ namespace TimedPower
 			{
 				_ = new System.Threading.Mutex(true, "single_program", out bool runone);
 				if (!runone)
-                {
+				{
+                    if(!Directory.Exists(FilePath.CommandDir))
+                        Directory.CreateDirectory(FilePath.CommandDir);
 					File.Delete(FilePath.commandFile);
                     using (StreamWriter sw = new(FilePath.commandFile + ".tmp", false, System.Text.Encoding.UTF8)) {
                         if (args.Length > 0) {

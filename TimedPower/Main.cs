@@ -9,19 +9,43 @@ using EasyUpdateFromGithub;
 using static TimedPower.DataCore;
 using static TimedPower.DataCore.DataFiles;
 using static TimedPower.TimedPowerTask;
+using System.Resources;
+using System.Globalization;
 
 namespace TimedPower
 {
-	public partial class Main : Form {
+	public partial class Main : Form {		
 		static string[] args = [];
 
 		public Main(string[] args) {
 			Main.args = args;
+
 			InitializeComponent();
+
+			ProgramLanguage.UpdateLanguage += UpdateLanguage;
+
+			if (File.Exists(FilePath.MainDataFile)) {
+				DataFile.ReadData();
+				ProgramLanguage.SettingValue = mainData.Setting.Language;
+			}
 		}
+		static ResourceManager? langRes;
+		static string GetLangStr(string key, string head = "main") => langRes?.GetString($"{head}.{key}", CultureInfo.CurrentUICulture)!;
+		void UpdateLanguage() {
+			LanguageData.UpdateLanguageResource(out langRes, FilePath.MainLanguageFile);
+			if (countdownThread==null || !countdownThread.IsAlive) {//必须在主要计时器停止工作的情况下刷新主页，否则会导致UI异常
+				LanguageData.UpdateFormLanguage(this,
+					moreObj: [new LanguageData.CustomObjName() { Name = nameof(notifyIcon_main), Obj = notifyIcon_main }]);
+			}
+		}
+
 
 		readonly AfterTimeValue atv = new();
 		#region Main_From		
+		/// <summary>
+		/// 监视命令文件夹，用于接收命令
+		/// </summary>
+		FileSystemWatcher? commandWatcher;
 		private void Main_Load(object sender, EventArgs e) {
 			ActionSelect.SelectedIndex = 0;
 			TimeTypeSelect.SelectedIndex = 0;
@@ -30,7 +54,7 @@ namespace TimedPower
 			if (!Directory.Exists(FilePath.TempDir)) _ = Directory.CreateDirectory(FilePath.TempDir);
 			if (!Directory.Exists(FilePath.CommandDir)) _ = Directory.CreateDirectory(FilePath.CommandDir);
 			if (File.Exists(FilePath.MainDataFile)) {
-				DataFile.ReadData();
+				//将读取文件函数调用转移至类初始化区域
 				{
 					do {
 						if (!(mainData.Window.X >= 0 && mainData.Window.X + Width <= System.Windows.Forms.SystemInformation.PrimaryMonitorSize.Width))
@@ -54,7 +78,7 @@ namespace TimedPower
 					//根据不同版本的变化进行更新操作
 					if (mainData.Version < PInfo.ShortVersionNum) {
 						if (mainData.Version < 277) {
-							MessageBox.Show("因当前程序版本更新，需要删除旧的注册表数据。如果取消，后续可使用软件开源仓库中提供的脚本进行删除。", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
+							MessageBox.Show(GetLangStr("messagebox.newVersionNeedRemoveOldVersionReg"), this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
 							//新版本的注册表数据将保存在用户目录，旧版本中存放在注册表系统目录中的数据需要被删除，避免重复
 							BatFileControl.RunBat(["RemoveOldVersionRegData.bat"], true);
 						}
@@ -127,7 +151,7 @@ namespace TimedPower
 
 
 			//监视命令文件夹，用于接收命令
-			FileSystemWatcher commandWatcher = new(FilePath.CommandDir) {
+			commandWatcher = new(FilePath.CommandDir) {
 				EnableRaisingEvents = true,
 				Filter = "Command.dat"
 			};
@@ -175,7 +199,7 @@ namespace TimedPower
 				for(int i=1; i<numStr.Length; i++) {
 					if (numStr[i] != '0') return;
 				}
-				if (MessageBox.Show($"该软件已经为你服务{statsData.StartNum}次啦。如果觉得好用，还请前往该软件的Github仓库中点亮Star以支持开发者！","感谢使用",
+				if (MessageBox.Show(string.Format(GetLangStr("messagebox.thanksToUse"), statsData.StartNum), GetLangStr("messagebox.thanksToUse2"),
 					MessageBoxButtons.YesNo,MessageBoxIcon.None,MessageBoxDefaultButton.Button1) == DialogResult.Yes) {
 					Process.Start("explorer.exe", PInfo.githubUrl);
 				}
@@ -190,6 +214,17 @@ namespace TimedPower
 		/// 是否在点击关闭按钮时最小化至托盘
 		/// </summary>
 		public static bool CloseToTaskBar = true;
+		internal struct ProgramLanguage {
+			internal static LanguageData.Language.Langs SettingValue {
+				get => LanguageData.GetLanguage();
+				set {
+					LanguageData.ChangeLanguage(value);
+					UpdateLanguage?.Invoke();
+				}
+			}
+			internal static event Action? UpdateLanguage;
+		}
+		
 		private void Main_FormClosing(object sender, FormClosingEventArgs e) {
 			if (!trueExitProgram && CloseToTaskBar) {
 				Visible = false;
@@ -249,27 +284,21 @@ namespace TimedPower
 			else {
 				switch (ac.TkAction) {
 					case TaskAction.shutdown:
-						//typeStr = "关机";
 						ActionSelect.SelectedIndex = 0;
 						break;
 					case TaskAction.reboot:
-						//typeStr = "重启";
 						ActionSelect.SelectedIndex = 1;
 						break;
 					case TaskAction.sleep:
-						//typeStr = "睡眠";
 						ActionSelect.SelectedIndex = 2;
 						break;
 					case TaskAction.hibernate:
-						//typeStr = "休眠";
 						ActionSelect.SelectedIndex = 3;
 						break;
 					case TaskAction.userlock:
-						//typeStr = "锁定";
 						ActionSelect.SelectedIndex = 4;
 						break;
 					case TaskAction.useroff:
-						//typeStr = "注销";
 						ActionSelect.SelectedIndex = 5;
 						break;
 					case null:
@@ -396,6 +425,7 @@ namespace TimedPower
 				mainData.Setting = new() {
 					CloseToTaskBar = CloseToTaskBar,
 					AutoCheckUpdate = IsAutoCheckUpdate,
+					Language=ProgramLanguage.SettingValue,
 				};
 				if (mainData.Version < PInfo.ShortVersionNum) mainData.Version = PInfo.ShortVersionNum;
 				DataFile.SaveData();
@@ -440,21 +470,16 @@ namespace TimedPower
 #pragma warning restore IDE0079
 					if (cuv.HaveUpdate) {
 						switch (MessageBox.Show(
-@$"检查到可用的更新，是否进行更新？
-当前版本: V{PInfo.version}
-最新版本: {cuv.LatestVersionStr}
-发布时间: {cuv.PublishedTime_Local}
-大小: {iodf.Size}
-发行说明:
-{cuv.ReleaseName}
-{cuv.ReleaseBody}"
+							string.Format(GetLangStr("messagebox.haveUpdate"),
+							PInfo.version, cuv.LatestVersionStr, cuv.PublishedTime_Local, iodf.Size, cuv.ReleaseName, cuv.ReleaseBody)
 										, Text, MessageBoxButtons.YesNo, MessageBoxIcon.Information)) {
 							case DialogResult.Yes:
-								void errorMsg() => _ = MessageBox.Show("下载更新失败！", Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+								void errorMsg() => _ = MessageBox.Show(GetLangStr("messagebox.downloadUpdateFailed")
+									, Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
 								try {
 									UpdateFromGithub.InfoOfInstall? ioi = await ufg.DownloadReleaseAsync(iodf);
 									if (ioi != null) {
-										if (MessageBox.Show("最新版本下载完毕，是否执行安装？", Text, MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes) {
+										if (MessageBox.Show(GetLangStr("messagebox.downloadDone"), Text, MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes) {
 											ufg.InstallFile(ioi, waitTime: 900);
 											Invoke(new Action(() => NotifyIcon_main_ContextMenu_ExitButton_Click(null!, null!)));
 										}
@@ -469,11 +494,13 @@ namespace TimedPower
 						}
 					}
 					else if (!isAuto)
-						_ = MessageBox.Show("当前已是最新版本", Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
+						MessageBox.Show(GetLangStr("messagebox.isNewVersion"),
+							Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
 #pragma warning restore IDE0079 // 请删除不必要的忽略
 				} catch {
 					if (!isAuto)
-						_ = MessageBox.Show("更新检查失败！", Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+						MessageBox.Show(GetLangStr("messagebox.checkUpdateFailed")
+							, Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
 				}
 				IsCheckingUpdate = false;
 			}
@@ -578,15 +605,16 @@ namespace TimedPower
 		static bool littleTimeWarningDis = false;//是否禁用时间小于等于5秒的警告，该警告目前只能临时禁用
 		private void StartButton_Click(object sender, EventArgs e) {
 			statsData.DoActionNum++;
-			switch (TimeTypeSelect.SelectedItem!.ToString()) {
-				case "此后":
+
+			switch ((TimeTypeSelectItems)TimeTypeSelect.SelectedIndex) {
+				case TimeTypeSelectItems.after:
 					if (FormatdInputBool(TimeInput.Text)) TimeInput.Text = atv.GetFormatdTime();
 					else return;
 					break;
-				case "此时":
+				case TimeTypeSelectItems.ontime:
 					if (((long)GetTimeStamp(TimePicker.Value) - (long)GetTimeStamp(DateTime.Now)) > 0) { }
 					else {
-						_ = MessageBox.Show("只能选择未来的时间！", Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+						MessageBox.Show(GetLangStr("messagebox.onlyUseFuture"), Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
 						return;
 					}
 					break;
@@ -596,11 +624,11 @@ namespace TimedPower
 			if (countdownThread != null) { while (countdownThread.IsAlive) { Thread.Sleep(1); Application.DoEvents(); } }
 			ControlModeSet("start");
 			fuse = true;
-			switch (TimeTypeSelect.SelectedItem!.ToString()) {
-				case "此后":
+			switch ((TimeTypeSelectItems)TimeTypeSelect.SelectedIndex) {
+				case TimeTypeSelectItems.after:
 					countdown = atv;
 					break;
-				case "此时":
+				case TimeTypeSelectItems.ontime:
 					//TimePicker.Value
 					countdown = new();
 					countdown.SetTimeValue(seconds: ((long)GetTimeStamp(TimePicker.Value) - (long)GetTimeStamp(DateTime.Now)));
@@ -609,7 +637,7 @@ namespace TimedPower
 			countdownLabel.Text = countdown!.GetFormatdTime();
 			if (!littleTimeWarningDis) {
 				if (countdown!.AllSeconds <= 5) {
-					if (MessageBox.Show("计时时间小于等于5秒，确定继续吗？", Text, MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+					if (MessageBox.Show(GetLangStr("messagebox.littleTimeWarning"), Text, MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
 						!= DialogResult.Yes) {
 						StopButton_Click(null!, null!);
 						return;
@@ -631,7 +659,8 @@ namespace TimedPower
 			ControlModeSet("stop");
 		}
 		void CountdownThread() {
-			void LastWarning(string type, string time) {
+			void LastWarning(ActionSelectItems action, string time) {
+				string actionStr = GetLangStr(action.ToString(), "global");
 				//侦听Windows通知点击事件
 				ToastNotificationManagerCompat.OnActivated += toastArgs => {
 					//通知参数
@@ -651,44 +680,56 @@ namespace TimedPower
 				};
 				new ToastContentBuilder()
 					.AddArgument("TimeWarning")
-					.AddText("警告，将在" + time + "后" + type)
+					.AddText(string.Format(GetLangStr("winToast.timeWarning.text"),time,actionStr))
 					.AddButton(new ToastButton()
-					.SetContent("终止定时")
+					.SetContent(GetLangStr("winToast.timeWarning.button"))
 					.AddArgument("StopCountdown"))
 					.Show();
 			}
 
-			string actionSelect = "";
+			ActionSelectItems actionSelect=ActionSelectItems.userlock;
 			{
-				bool threadLock = false;
-				Invoke(new Action(() => { actionSelect = ActionSelect.SelectedItem!.ToString()!; threadLock = true; }));
-				while (!threadLock) { }
+				AutoResetEvent are = new(false);
+				Invoke(new Action(() => { 
+					actionSelect = (ActionSelectItems)ActionSelect.SelectedIndex;
+					are.Set();
+				}));
+				are.WaitOne();
 			}
-			string typeSelect = "";
+			TimeTypeSelectItems typeSelect=TimeTypeSelectItems.after;
 			{
-				bool threadLock = false;
-				Invoke(new Action(() => { typeSelect = TimeTypeSelect.SelectedItem!.ToString()!; threadLock = true; }));
-				while (!threadLock) { }
+				AutoResetEvent are = new(false);
+				Invoke(new Action(() => { 
+					typeSelect = (TimeTypeSelectItems)TimeTypeSelect.SelectedIndex; 
+					are.Set();
+				}));
+				are.WaitOne();
+			}
+			void LastWarningCheck() {
+				switch (countdown!.AllSeconds) {
+					case 3 * 60:
+					case 1 * 60:
+					case 30:
+					case 15:
+					case 5:
+						LastWarning(actionSelect, 
+							countdown.GetVisualTime(
+							CultureInfo.CurrentUICulture.ToString().Equals("zh-cn", StringComparison.CurrentCultureIgnoreCase) ? "cn" : "en"
+							));//判断当前语言来进行格式选择
+						break;
+				}
 			}
 			switch (typeSelect) {
-				case "此后":
+				case TimeTypeSelectItems.after:
 					while (countdown!.AllSeconds > 0 && fuse) {
 						CountdownProgressControl.Flush(countdown.AllSeconds);
-						switch (countdown!.AllSeconds) {
-							case 3 * 60:
-							case 1 * 60:
-							case 30:
-							case 15:
-							case 5:
-								LastWarning(actionSelect, countdown.GetVisualTime());
-								break;
-						}
+						LastWarningCheck();
 						Sleep(1000);
 						countdown.OnlySeconds--;
 						try { Invoke(new Action(() => countdownLabel.Text = countdown.GetFormatdTime())); } catch { }
 					}
 					break;
-				case "此时": {
+				case TimeTypeSelectItems.ontime: {
 						long endTimeStamp = 0;
 						void TimeReload()//将时间差刷新至countdown内，且将格式化的数据刷新至UI
 						{
@@ -704,15 +745,7 @@ namespace TimedPower
 						TimeReload();
 						while (countdown!.AllSeconds > 0 && fuse) {
 							CountdownProgressControl.Flush(countdown.AllSeconds);
-							switch (countdown!.AllSeconds) {
-								case 3 * 60:
-								case 1 * 60:
-								case 30:
-								case 15:
-								case 5:
-									LastWarning(actionSelect, countdown.GetVisualTime());
-									break;
-							}
+							LastWarningCheck();
 							Sleep(950);
 							TimeReload();
 						}
@@ -725,22 +758,22 @@ namespace TimedPower
 				MessageBox.Show("调试模式：已假装执行" + actionSelect + "操作", Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
 #else
 				switch (actionSelect) {
-					case "关机":
+					case ActionSelectItems.shutdown:
 						if (fuse) PowerInvoke.Shutdown();
 						break;
-					case "重启":
+					case ActionSelectItems.reboot:
 						if (fuse) PowerInvoke.Reboot();
 						break;
-					case "睡眠":
+					case ActionSelectItems.sleep:
 						if (fuse) PowerInvoke.Sleep();
 						break;
-					case "休眠":
+					case ActionSelectItems.hibernate:
 						if (fuse) PowerInvoke.Hibernate();
 						break;
-					case "锁定":
+					case ActionSelectItems.userlock:
 						if (fuse) PowerInvoke.UserLock();
 						break;
-					case "注销":
+					case ActionSelectItems.useroff:
 						if (fuse) PowerInvoke.UserOff();
 						break;
 				}
@@ -761,16 +794,8 @@ namespace TimedPower
 		void AutoTaskCountdownThread() {
 			countdown_autoTask = new();
 
-			void LastWarning(AutoTaskData.ATDataHead_action type, string time, string taskName) {
-				string typeStr = type switch {
-					AutoTaskData.ATDataHead_action.shutdown => "关机",
-					ATDataHead_action.reboot => "重启",
-					ATDataHead_action.sleep => "睡眠",
-					ATDataHead_action.hibernate => "休眠",
-					ATDataHead_action.userlock => "锁定",
-					ATDataHead_action.useroff => "注销",
-					_ => "错误",
-				};
+			void LastWarning(AutoTaskData.ATDataHead_action action, string time, string taskName) {
+				string actionStr = GetLangStr(action.ToString(), "global");
 				//侦听Windows通知点击事件
 				ToastNotificationManagerCompat.OnActivated += toastArgs => {
 					//通知参数
@@ -790,9 +815,9 @@ namespace TimedPower
 				};
 				new ToastContentBuilder()
 					.AddArgument("TimeWarning_autoTask")
-					.AddText("警告，名为\"" + taskName + "\"的自动定时任务将在" + time + "后执行" + typeStr + "操作")
+					.AddText(string.Format(GetLangStr("winToast.timeWarning_autoTask.text"), taskName, time, actionStr))
 					.AddButton(new ToastButton()
-					.SetContent("禁用当前任务")
+					.SetContent(GetLangStr("winToast.timeWarning_autoTask.button"))
 					.AddArgument("StopCountdown"))
 					.Show();
 			}
@@ -821,7 +846,10 @@ namespace TimedPower
 							case 30:
 							case 15:
 							case 5:
-								LastWarning(actionSelect, countdown_autoTask.GetVisualTime(), AutoTaskData.CountdownStateControl.GetTaskName());
+								LastWarning(actionSelect,
+							countdown_autoTask.GetVisualTime(//判断当前语言来进行时间格式的选择
+							CultureInfo.CurrentUICulture.ToString().Equals("zh-cn", StringComparison.CurrentCultureIgnoreCase) ? "cn" : "en"),
+							AutoTaskData.CountdownStateControl.GetTaskName());
 								break;
 						}
 					}
@@ -889,11 +917,11 @@ namespace TimedPower
 				return true;
 			}
 			else if (output == "ToBig") {
-				_ = MessageBox.Show("时间数值过大！", Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+				MessageBox.Show(GetLangStr("messagebox.timeValueTooBig"), Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
 				return false;
 			}
 			else {
-				_ = MessageBox.Show("时间格式错误！", Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+				MessageBox.Show(GetLangStr("messagebox.timeValueError"), Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
 				return false;
 			}
 		}
@@ -1040,9 +1068,9 @@ namespace TimedPower
 		}
 		private void FormMenuStrip_NewTaskFile_Click(object sender, EventArgs e) {
 			SaveFileDialog saveFileDialog = new() {
-				Title = "新建任务模板文件",
-				DefaultExt = "txt",
-				Filter = "定时电源任务文件(*.tpt)|*.tpt",
+				Title = GetLangStr("fileWindow.newTaskFile.title"),
+				DefaultExt = "tpt",
+				Filter = string.Format(GetLangStr("fileWindow.newTaskFile.filter"), "(*.tpt)|*.tpt"),
 				//InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)
 			};
 			if (saveFileDialog.ShowDialog() == DialogResult.OK) {

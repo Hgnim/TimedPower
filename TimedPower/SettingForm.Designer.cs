@@ -1,4 +1,6 @@
-﻿namespace TimedPower {
+﻿using YamlDotNet.Core.Tokens;
+
+namespace TimedPower {
 	partial class SettingForm {
 		/// <summary>
 		/// Required designer variable.
@@ -27,6 +29,8 @@
 			ContextMenuSetting = new CheckBox();
 			SelfStartingSetting = new CheckBox();
 			CloseToTaskBarSetting = new CheckBox();
+			labelFor_languageSetting = new();
+			languageSetting = new();
 			okButton = new Button();
 			cancelButton = new Button();
 			applyButton = new Button();
@@ -64,11 +68,29 @@
 			CloseToTaskBarSetting.Text = "关闭时最小化至托盘";
 			CloseToTaskBarSetting.UseVisualStyleBackColor = true;
 			CloseToTaskBarSetting.CheckedChanged += ChangeSettingEH;
+			//
+			//labelFor_languageSetting
+			//
+			labelFor_languageSetting.Name = "labelFor_languageSetting";
+			labelFor_languageSetting.Anchor = AnchorStyles.Left;
+			labelFor_languageSetting.Width = 45;
+			labelFor_languageSetting.Location = new Point(5, 90);
+			labelFor_languageSetting.TextAlign = ContentAlignment.MiddleRight;
+			labelFor_languageSetting.SendToBack();
+			//
+			//languageSetting
+			//
+			languageSetting.Name = "languageSetting";
+			languageSetting.Items.AddRange(new string[] {"zh","en"});
+			languageSetting.Location = new Point(45, 89);
+			languageSetting.Size = new Size(135, 21);
+			languageSetting.DropDownStyle=ComboBoxStyle.DropDownList;
+			languageSetting.SelectedIndexChanged += ChangeSettingEH;
 			// 
 			// okButton
 			// 
 			okButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-			okButton.Location = new Point(122, 93);
+			okButton.Location = new Point(122, 120);
 			okButton.Name = "okButton";
 			okButton.Size = new Size(57, 26);
 			okButton.TabIndex = 0;
@@ -79,7 +101,7 @@
 			// cancelButton
 			// 
 			cancelButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-			cancelButton.Location = new Point(179, 93);
+			cancelButton.Location = new Point(179, 120);
 			cancelButton.Name = "cancelButton";
 			cancelButton.Size = new Size(57, 26);
 			cancelButton.TabIndex = 3;
@@ -91,7 +113,7 @@
 			// 
 			applyButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
 			applyButton.Enabled = false;
-			applyButton.Location = new Point(236, 93);
+			applyButton.Location = new Point(236, 120);
 			applyButton.Name = "applyButton";
 			applyButton.Size = new Size(57, 26);
 			applyButton.TabIndex = 4;
@@ -103,10 +125,12 @@
 			// 
 			AutoScaleDimensions = new SizeF(7F, 17F);
 			AutoScaleMode = AutoScaleMode.Font;
-			ClientSize = new Size(295, 124);
+			ClientSize = new Size(295, 151);
 			Controls.Add(applyButton);
 			Controls.Add(cancelButton);
 			Controls.Add(okButton);
+			Controls.Add(languageSetting);
+			Controls.Add(labelFor_languageSetting);
 			Controls.Add(CloseToTaskBarSetting);
 			Controls.Add(SelfStartingSetting);
 			Controls.Add(ContextMenuSetting);
@@ -130,5 +154,7 @@
 		private Button okButton;
 		private Button cancelButton;
 		private Button applyButton;
+		private Label labelFor_languageSetting;
+		private ComboBox languageSetting;
 	}
 }

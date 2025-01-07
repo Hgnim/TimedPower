@@ -1,4 +1,5 @@
 ﻿using static TimedPower.DataCore.DataFiles;
+using static TimedPower.DataCore;
 namespace TimedPower {
 	public partial class AboutForm : Form {
 		public AboutForm() => InitializeComponent();

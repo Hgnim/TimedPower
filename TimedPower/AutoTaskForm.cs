@@ -1,17 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Diagnostics;
-using System.Drawing;
-using System.Linq;
-using System.Reflection;
-using System.Reflection.Metadata;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.Globalization;
+using System.Resources;
 using System.Xml;
+using YamlDotNet.Core.Tokens;
 using static TimedPower.AutoTaskData;
+using static TimedPower.DataCore;
 
 namespace TimedPower
 {
@@ -19,7 +11,18 @@ namespace TimedPower
 	{
 		public bool IsStart => isStart;
 		bool isStart = false;
-		public AutoTaskForm() => InitializeComponent();
+		public AutoTaskForm() {
+			InitializeComponent();
+
+			Main.ProgramLanguage.UpdateLanguage += UpdateLanguage;
+			UpdateLanguage();
+		}
+		static ResourceManager langRes=null!;
+		static string GetLangStr(string key, string head = "autoTaskForm") => langRes.GetString($"{head}.{key}", CultureInfo.CurrentUICulture)!;
+		void UpdateLanguage() {
+			LanguageData.UpdateLanguageResource(out langRes, FilePath.MainLanguageFile);
+			LanguageData.UpdateFormLanguage(this);
+		}
 
 		private void AutoTaskForm_Load(object sender, EventArgs e)
 		{
@@ -41,22 +44,19 @@ namespace TimedPower
 
 		private void TimeTypeSelect_SelectedIndexChanged(object sender, EventArgs e)
 		{
-			switch (timeTypeSelect.SelectedIndex)
+			switch ((TimeTypeSelectItems)timeTypeSelect.SelectedIndex)
 			{
-				case 0:
-					//每天
+				case TimeTypeSelectItems.everyday:
 					TimePicker.CustomFormat = "HH:mm:ss";
 					TimePicker.Visible = true;
 					TimeInput.Visible = false;
 					break;
-				case 1:
-					//指定时间					
+				case TimeTypeSelectItems.singleTimed:				
 					TimePicker.CustomFormat = "yyyy/MM/dd HH:mm:ss";
 					TimePicker.Visible = true;
 					TimeInput.Visible = false;
 					break;
-				case 2:
-					//程序启动后
+				case TimeTypeSelectItems.appStart:
 					TimePicker.Visible = false;
 					TimeInput.Visible = true;
 					break;
@@ -195,7 +195,7 @@ end:;
 			{
 				AutoTaskData.RemoveATData(taskList.SelectedIndex);
 			}
-			catch { _ = MessageBox.Show("删除失败!", Main.ThisFormText, MessageBoxButtons.OK, MessageBoxIcon.Error); }
+			catch {MessageBox.Show(GetLangStr("messagebox.deleteFailed"), Main.ThisFormText, MessageBoxButtons.OK, MessageBoxIcon.Error); }
 			TaskListUpdate();
 
 			DefendAutoTask.SetDefendTime(10);//设置配置项后进行保护
@@ -204,17 +204,17 @@ end:;
 		private void SaveButton_Click(object sender, EventArgs e)
 		{
 			//检查内容合法性
-			switch (timeTypeSelect.Text)
+			switch ((TimeTypeSelectItems)timeTypeSelect.SelectedIndex)
 			{
-				case "指定时间":
+				case TimeTypeSelectItems.singleTimed:
 					if (((long)Main.GetTimeStamp(TimePicker.Value) - (long)Main.GetTimeStamp(DateTime.Now)) > 0) { }
 					else
 					{
-						_ = MessageBox.Show("只能选择未来的时间！", Main.ThisFormText, MessageBoxButtons.OK, MessageBoxIcon.Error);
+						MessageBox.Show(GetLangStr("messagebox.onlyUseFuture","main"), Main.ThisFormText, MessageBoxButtons.OK, MessageBoxIcon.Error);
 						return;
 					}
 					break;
-				case "软件启动后":
+				case TimeTypeSelectItems.appStart:
 					if (FormatdInputBool(TimeInput.Text)) TimeInput.Text = atv.GetFormatdTime();//再次检查一遍合法性
 					else return;
 					break;
@@ -227,29 +227,30 @@ end:;
 				ATDataHead_enable aTDataHead_Enable = enableCheck.Checked ? AutoTaskData.ATDataHead_enable.t : AutoTaskData.ATDataHead_enable.f;
 				ATDataHead_timeType aTDataHead_TimeType;
 				string timeData;
-				switch (timeTypeSelect.Text)
+				switch ((TimeTypeSelectItems)timeTypeSelect.SelectedIndex)
 				{
-					case "每天":
+					case TimeTypeSelectItems.everyday:
 					default:
 						aTDataHead_TimeType = AutoTaskData.ATDataHead_timeType.everyday;
 						timeData = TimePicker.Value.ToString("0,0,0,HH,mm,ss");
 						break;
-					case "指定时间":
+					case TimeTypeSelectItems.singleTimed:
 						aTDataHead_TimeType = AutoTaskData.ATDataHead_timeType.singleTimed;
 						timeData = TimePicker.Value.ToString("yyyy,MM,dd,HH,mm,ss");
 						break;
-					case "软件启动后":
+					case TimeTypeSelectItems.appStart:
 						aTDataHead_TimeType = ATDataHead_timeType.appStart;
 						timeData = $"-1,-1,-1,{TimeInput.Text.Split(':')[0]},{TimeInput.Text.Split(':')[1]},{TimeInput.Text.Split(':')[2]}";
 						break;
 				}
-				ATDataHead_action aTDataHead_Action = ActionSelect.Text switch {
-					"重启" => ATDataHead_action.reboot,
-					"睡眠" => ATDataHead_action.sleep,
-					"休眠" => ATDataHead_action.hibernate,
-					"锁定" => ATDataHead_action.userlock,
-					"注销" => ATDataHead_action.useroff,
-					_ => ATDataHead_action.shutdown,
+				ATDataHead_action aTDataHead_Action = (ActionSelectItems)ActionSelect.SelectedIndex switch {
+					ActionSelectItems.shutdown => ATDataHead_action.shutdown,
+					ActionSelectItems.reboot => ATDataHead_action.reboot,
+					ActionSelectItems.sleep => ATDataHead_action.sleep,
+					ActionSelectItems.hibernate => ATDataHead_action.hibernate,
+					ActionSelectItems.userlock => ATDataHead_action.userlock,
+					ActionSelectItems.useroff => ATDataHead_action.useroff,
+					_ => throw new NotImplementedException()
 				};
 				AutoTaskData.SetATData(taskList.SelectedIndex, [
 					ATDataHead.name.ToString(),taskName_TextBox.Text,
@@ -316,7 +317,7 @@ end:;
 		/// <returns>根据用户的选择进行返回</returns>
 		static bool UnsaveNotify()
 		{
-			DialogResult dr = MessageBox.Show("当前有未保存的内容，是否继续？", Main.ThisFormText,
+			DialogResult dr = MessageBox.Show(GetLangStr("messagebox.haveNoSave"), Main.ThisFormText,
 				MessageBoxButtons.OKCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
 			return dr == DialogResult.OK;
 		}
@@ -337,12 +338,12 @@ end:;
 			}
 			else if (output == "ToBig")
 			{
-				_ = MessageBox.Show("时间数值过大！", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+				_ = MessageBox.Show(GetLangStr("messagebox.timeValueTooBig","main"), this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
 				return false;
 			}
 			else
 			{
-				_ = MessageBox.Show("时间格式错误！", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+				_ = MessageBox.Show(GetLangStr("messagebox.timeValueError","main"), this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
 				return false;
 			}
 		}
@@ -423,7 +424,7 @@ end:;
 		/// 新建一个自动任务数据组
 		/// </summary>
 		internal static void CreateATData() => atData.Add([
-				ATDataHead.name.ToString(),"新的自动任务",
+				ATDataHead.name.ToString(),LanguageData.GetLanguageResource(FilePath.MainLanguageFile).GetString("autoTaskForm.text.newTaskName", CultureInfo.CurrentUICulture)!,
 				ATDataHead.enable.ToString(),ATDataHead_enable.f.ToString(),
 				ATDataHead.timeType.ToString(),ATDataHead_timeType.everyday.ToString(),
 				ATDataHead.timeData.ToString(),"0,0,0,"+DateTime.Now.ToString("HH,mm,ss"),
@@ -447,8 +448,8 @@ end:;
         internal enum ATDataHead_timeType
         {
             everyday//每天
-                , singleTimed//单次计时
-                , appStart//软件启动后
+          , singleTimed//单次计时
+          , appStart//软件启动后
         }
         internal enum ATDataHead_action
         {
@@ -675,9 +676,9 @@ exitThread:;
 		/// <summary>
 		/// 弹出自动定时保护程序阻止操作后的信息
 		/// </summary>
-		internal static void DefendMessage_Msgbox() => _ = MessageBox.Show("警告，自动定时任务保护程序已阻止了一个可能的异常任务操作。\r\n" +
-				"自动定时任务保护程序将在程序启动的30秒内和更改完自动定时任务设置的10秒内阻止任何电源操作。以避免可能的误操作。\r\n" +
-				"点击确认以退出程序。", Main.ThisFormText, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+		internal static void DefendMessage_Msgbox() =>MessageBox.Show(
+			LanguageData.GetLanguageResource(FilePath.MainLanguageFile).GetString("autoTaskForm.messagebox.defendMessage", CultureInfo.CurrentUICulture)!
+			, Main.ThisFormText, MessageBoxButtons.OK, MessageBoxIcon.Warning);
 		/// <summary>
 		/// 关闭保护程序，一般在软件关闭时调用
 		/// </summary>

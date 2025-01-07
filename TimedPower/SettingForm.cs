@@ -1,17 +1,23 @@
 ﻿using Microsoft.Win32;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+using System.Globalization;
+using System.Resources;
+using static TimedPower.DataCore;
 
 namespace TimedPower {
 	public partial class SettingForm : Form {
-		public SettingForm() => InitializeComponent();
+		public SettingForm() 
+		{ 
+			InitializeComponent();
+
+			Main.ProgramLanguage.UpdateLanguage += UpdateLanguage;
+			UpdateLanguage();
+		}
+		static ResourceManager langRes = null!;
+		static string GetLangStr(string key, string head = "setting") => langRes.GetString($"{head}.{key}", CultureInfo.CurrentUICulture)!;
+		void UpdateLanguage() {
+			LanguageData.UpdateLanguageResource(out langRes, FilePath.MainLanguageFile);
+			LanguageData.UpdateFormLanguage(this);
+		}
 
 		private void OkButton_Click(object sender, EventArgs e) => Ok();
 		private void CancelButton_Click(object sender, EventArgs e) => Cancel();
@@ -35,15 +41,18 @@ namespace TimedPower {
 				Main.CloseToTaskBar=CloseToTaskBarSetting.Checked;
 				CloseToTaskBarSetting.Tag = null;
 			}
+			if(languageSetting.Tag as string == "change") {
+				Main.ProgramLanguage.SettingValue=(LanguageData.Language.Langs)languageSetting.SelectedIndex;//该下拉框内的选项顺序必须和枚举的顺序一致
+			}
 			applyButton.Enabled = false;
 		}
 
 		void ChangeSettingEH(object sender, EventArgs e) {
 			if (!loadLock) {
-				CheckBox? cb = sender as CheckBox;
-				if (cb != null) {
-					if (cb.Tag as string != "change")
-						cb.Tag = "change";
+				dynamic? obj = sender ;
+				if (obj != null) {
+					if (obj.Tag as string != "change")
+						obj.Tag = "change";
 				}
 				if (!applyButton.Enabled) applyButton.Enabled = true;
 			}
@@ -57,6 +66,7 @@ namespace TimedPower {
 			ContextMenuSetting.Checked = SettingControl.ContextMenu;
 			SelfStartingSetting.Checked = SettingControl.SelfStarting;
 			CloseToTaskBarSetting.Checked = Main.CloseToTaskBar;
+			languageSetting.SelectedIndex=(int)Main.ProgramLanguage.SettingValue;
 			loadLock = false;
 		}
 	}
@@ -77,11 +87,17 @@ namespace TimedPower {
 				}
 				switch (value) {
 					case true: {
+							//获取语言资源
+							ResourceManager langRes = LanguageData.GetLanguageResource(FilePath.MainLanguageFile);
+							string GetLangStr(string key, string head = "setting.contextMenu") => 
+								langRes.GetString($"{head}.{key}", CultureInfo.CurrentUICulture)!;
+
+
 							DeleteReg();
 
 							RegPath.CU.root.CreateSubKey(RegPath.CU.ContextMenuPath).Close();
 							using (RegistryKey key = RegPath.CU.root.OpenSubKey(RegPath.CU.ContextMenuPath, true)!) {
-								key.SetValue("MUIVerb", "定时电源", RegistryValueKind.String);
+								key.SetValue("MUIVerb", GetLangStr("title"), RegistryValueKind.String);
 								key.SetValue("icon", FilePath.thisExeFilePath, RegistryValueKind.String);
 								key.SetValue("SubCommands", "", RegistryValueKind.String);
 							}
@@ -90,10 +106,14 @@ namespace TimedPower {
 							RegPath.CU.root.CreateSubKey(ContextMenuPath2).Close();
 
 							string[,] str1 = new string[,]
-									{{ "15s","15秒后"},{"1min","1分钟后"} };
+									{{ "15s",GetLangStr("af15s")},{"1min",GetLangStr("af1min")} };
 							string[,] str2 = new string[,]
-							{ { "Shutdown","关机"} ,{"Reboot","重启"},{"Sleep","睡眠"} ,
-								{"Hibernate","休眠"},{ "UserLock","锁定"},{ "UserOff","注销"} };
+							{ { "Shutdown",GetLangStr("shutdown","global")} ,
+							{"Reboot",GetLangStr("reboot","global")},
+							{"Sleep",GetLangStr("sleep","global")} ,
+								{"Hibernate",GetLangStr("hibernate","global")},
+								{ "UserLock",GetLangStr("userlock","global")},
+								{ "UserOff",GetLangStr("useroff","global")} };
 
 							for (int i = 0; i < str1.Length / 2; i++) {
 								RegPath.CU.root.CreateSubKey($"{ContextMenuPath2}\\{str1[i,0]}").Close();
