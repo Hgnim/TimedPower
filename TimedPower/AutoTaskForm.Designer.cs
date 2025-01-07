@@ -26,8 +26,7 @@
 		/// Required method for Designer support - do not modify
 		/// the contents of this method with the code editor.
 		/// </summary>
-		private void InitializeComponent()
-		{
+		private void InitializeComponent() {
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AutoTaskForm));
 			taskList = new ListBox();
 			createButton = new Button();
@@ -277,6 +276,7 @@
 			Icon = (Icon)resources.GetObject("$this.Icon");
 			MinimumSize = new Size(333, 269);
 			Name = "AutoTaskForm";
+			StartPosition = FormStartPosition.CenterParent;
 			Text = "自动定时任务";
 			FormClosing += AutoTaskForm_FormClosing;
 			FormClosed += AutoTaskForm_FormClosed;

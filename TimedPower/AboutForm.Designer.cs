@@ -31,7 +31,6 @@ namespace TimedPower {
 			info_version = new Label();
 			info_name = new Label();
 			statsBox = new GroupBox();
-			statsBox_text = new Label();
 			statsBox_stats = new TextBox();
 			statsBox.SuspendLayout();
 			SuspendLayout();
@@ -78,7 +77,6 @@ namespace TimedPower {
 			// statsBox
 			// 
 			statsBox.Controls.Add(statsBox_stats);
-			statsBox.Controls.Add(statsBox_text);
 			statsBox.Location = new Point(3, 54);
 			statsBox.Name = "statsBox";
 			statsBox.Size = new Size(332, 124);
@@ -86,24 +84,17 @@ namespace TimedPower {
 			statsBox.TabStop = false;
 			statsBox.Text = "统计";
 			// 
-			// statsBox_text
-			// 
-			statsBox_text.AutoSize = true;
-			statsBox_text.Font = new Font("Microsoft YaHei UI", 7F);
-			statsBox_text.Location = new Point(110, 10);
-			statsBox_text.Name = "statsBox_text";
-			statsBox_text.Size = new Size(107, 16);
-			statsBox_text.TabIndex = 0;
-			statsBox_text.Text = "统计信息仅存储在本地";
-			// 
 			// statsBox_stats
 			// 
-			statsBox_stats.Location = new Point(9, 29);
+			statsBox_stats.Dock = DockStyle.Fill;
+			statsBox_stats.Location = new Point(3, 19);
 			statsBox_stats.Multiline = true;
 			statsBox_stats.Name = "statsBox_stats";
 			statsBox_stats.ReadOnly = true;
-			statsBox_stats.Size = new Size(317, 89);
+			statsBox_stats.ScrollBars = ScrollBars.Vertical;
+			statsBox_stats.Size = new Size(326, 102);
 			statsBox_stats.TabIndex = 1;
+			statsBox_stats.TabStop = false;
 			// 
 			// AboutForm
 			// 
@@ -136,7 +127,6 @@ namespace TimedPower {
 		private Label info_github;
 		private LinkLabel info_githubUrl;
 		private GroupBox statsBox;
-		private Label statsBox_text;
 		private TextBox statsBox_stats;
 	}
 }

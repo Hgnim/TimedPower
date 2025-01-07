@@ -158,34 +158,13 @@
   <data name="notifyIcon_main_ContextMenu.TrayLocation" type="System.Drawing.Point, System.Drawing">
     <value>502, 17</value>
   </data>
-  <data name="notifyIcon_main.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAA
-        AACdRwAAnUcAAJ1HAACdRwAAnUcAAJ1HAE+dRwCinUcAzZ1HAMydRwCinUcAT51HAACgTAAAlzwIAIUa
-        IQCHHh8AnUcAAJ1HAACdRwAAnUcAM51HAOidRwD/nUcA/51HAP+dRwD/nUcA/51HAP+dRwDooE0ANJk/
-        CACFGiEAhx0fAJ1HAACdRwAAnUcATJ1HAP+dRwD/nUcAwp1HAD6dRwAXnkkAF59LAD6gTQDCoU4A/6JR
-        AP+WOQpNhBgjAIUZIgCdRwAAnUcAGp1HAP+dRwD/nUcAaZ1GAACfSgAAok8AAJ1IAACZQAUAlzwJAJg+
-        B3mQLxP/hBgk/4kiHDaNKRYAnUcAAJ1HAJ+dRwD/nUcAg5xGAACgTQAAnkgBAJExEQCKJBsAhh0fAIUb
-        IT+FGyHgghYl/4ghHf+dRwGgoU4ABp1HAEqdRwD/nUcA/51HAAWgTAAAnEQEAIggHQCDFyQAhhwgAIcf
-        Hp+IIB3/hx0f/4ggHZOeSgDpoEwA/55HAFmdRwCHnUcA/51HALWdSAAAn0sAAIokGgCEGCMAiCEcNYgg
-        HfGIIB3/iCEc84MXJD2UNQ8AolEAs51GAP+dRwCNnUcAnp1HAP+dRwCXn0sAAJlABgCFGiIAiCAdAIgg
-        HdqIIB3/iCAdtoYcIAeJIRwAn0sAAJ5IAJSdRwD/nUcAn51HAIadRwD/nUcAt59KAACaQQQAhhwgAIgg
-        HQCIIB3uiCAd/4ggHQCFGiEAmD0JAKFOAACdRgC1nUcA/51HAIydRwBLnUcA/51HAP6eSAADnkgAAIgg
-        HQCHHh8AiCAd74ggHf+HHh4AiCAeAJ9LAACdSAAEnUcA/51HAP+dRwBanUcAAJ1HAJ2dRwD/nUcAh6FO
-        AACRMREAgxcjAIghHO+IIRz/gxckAJAvEwChTgAAnUcAhp1HAP+dRwCenUcABZ1HAACdRwAbnUcA/51H
-        AP+eSQBln0sAAIkjGwCGHR/vhh0f/4khHACfSgAAnkkAZZ1HAP+dRwD/nUcAG51HAACdRwAAnUcAAJ1H
-        AEydRwD/nUYA/6FOAMKZPwgdhRoh24QZIe+XPQohoU8Av51GAP+dRwD/nUcAS51HAACdRwAAnUcAAJ1H
-        AACdRwAAnUcAMJ1HAO2eSgD/m0QFjIYcIL+GHCHWmkIGgJ9LAP+dRwDtnUcAMJ1HAACdRwAAnUcAAJ1H
-        AACdRwAAnUcAAJ1HAACdRwAAn0sAcJlABleFGyDVhRsh6pg+B1OgTABunUcAAJ1HAACdRwAAnUcAAJ1H
-        AACdRwAAnUcAAJ1HAACdRwAAnUcAAKFOAACTNA4AhBkimoQZIqeRMREAoU4AAJ1HAACdRwAAnUcAAJ1H
-        AACdRwAA+B8AAOAHAADAAwAAh+EAAI/AAAAPgAAAHggAAB4YAAAeeAAADnAAAI5wAACGYQAAwAMAAOAH
-        AAD4HwAA/n8AAA==
-</value>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="notifyIcon_main.Icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\TimedPower_logo_window-icon.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="$this.Locked" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="$this.Icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\TimedPower_logo_window-icon.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>

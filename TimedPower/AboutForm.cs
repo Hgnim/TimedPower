@@ -10,7 +10,8 @@ namespace TimedPower {
 			info_githubUrl.Text = PInfo.githubUrl;
 
 			statsBox_stats.Text =
-@$"启动次数: {statsData.StartNum}
+@$"所有统计信息仅会存储在本地
+启动次数: {statsData.StartNum}
 执行操作次数: {statsData.DoActionNum}
 
 更多统计信息敬请期待...

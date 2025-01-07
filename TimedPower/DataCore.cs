@@ -28,20 +28,8 @@ namespace TimedPower {
 	}
 	internal struct DataCore {
 		internal struct DataFiles {
-			public static DataFile.MainData mainData = new() {
-				First = true,
-				Window = new() { X = 0, Y = 0 },
-				Action = 0,
-				TimeType = 0,
-				TimeInput = "",
-				CloseToTaskBar = true,
-				AutoCheckUpdate = true,
-				Version = 0
-			};
-			public static DataFile.StatsData statsData = new() {
-				StartNum = 0,
-				DoActionNum = 0,
-			};
+			public static DataFile.MainData mainData;
+			public static DataFile.StatsData statsData;
 		}
 	}
 	internal readonly struct FilePath {

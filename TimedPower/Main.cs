@@ -47,9 +47,9 @@ namespace TimedPower
 
 					TimeInput.Text = mainData.TimeInput;
 
-					CloseToTaskBar = mainData.CloseToTaskBar;
+					CloseToTaskBar = mainData.Setting.CloseToTaskBar;
 
-					IsAutoCheckUpdate = mainData.AutoCheckUpdate;
+					IsAutoCheckUpdate = mainData.Setting.AutoCheckUpdate;
 
 					//根据不同版本的变化进行更新操作
 					if (mainData.Version < PInfo.ShortVersionNum) {
@@ -393,8 +393,10 @@ namespace TimedPower
 				mainData.Action = ActionSelect.SelectedIndex;
 				mainData.TimeType = TimeTypeSelect.SelectedIndex;
 				mainData.TimeInput = TimeInput.Text;
-				mainData.CloseToTaskBar = CloseToTaskBar;
-				mainData.AutoCheckUpdate = IsAutoCheckUpdate;
+				mainData.Setting = new() {
+					CloseToTaskBar = CloseToTaskBar,
+					AutoCheckUpdate = IsAutoCheckUpdate,
+				};
 				if (mainData.Version < PInfo.ShortVersionNum) mainData.Version = PInfo.ShortVersionNum;
 				DataFile.SaveData();
 

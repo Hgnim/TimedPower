@@ -32,8 +32,9 @@ namespace TimedPower {
 		/// </summary>
 		internal static void ReadData() {
 			IDeserializer yamlD = new DeserializerBuilder()
+				.IgnoreUnmatchedProperties()//忽略不匹配错误
 				.WithNamingConvention(CamelCaseNamingConvention.Instance)
-					.Build();
+				.Build();
 
 			if (File.Exists(MainDataFile))
 				mainData = yamlD.Deserialize<MainData>(File.ReadAllText(MainDataFile));
@@ -41,22 +42,42 @@ namespace TimedPower {
 				statsData= yamlD.Deserialize<StatsData>(File.ReadAllText(StatsDataFile));
 		}
 		public struct MainData {
+			public required bool First { get; set; }
 			public struct SmallPoint {
 				public required int X { get; set; }
 				public required int Y { get; set; }
 			}
-			public required bool First { get; set; }
 			public required SmallPoint Window { get; set; }
 			public required int Action { get; set; }
 			public required int TimeType { get; set; }
 			public required string TimeInput { get; set; }
-			public required bool CloseToTaskBar {  get; set; }
-			public required bool AutoCheckUpdate { get; set; }
+			public struct SettingS {
+				public required bool CloseToTaskBar { get; set; }
+				public required bool AutoCheckUpdate { get; set; }
+			}
+			public required SettingS Setting {  get; set; }
 			public required uint Version { get; set; }
+
+			public MainData() {
+				First = true;
+				Window = new() { X = 0, Y = 0 };
+				Action = 0;
+				TimeType = 0;
+				TimeInput = "";
+				Setting = new() {
+					CloseToTaskBar = true,
+					AutoCheckUpdate = true,
+				};
+				Version = 0;
+			}
 		}
 		public struct StatsData {
 			public required int StartNum { get; set; }
 			public required int DoActionNum { get; set; }
+			public StatsData() {
+				StartNum = 0;
+				DoActionNum = 0;
+			}
 		}
 	}
 	public struct TimedPowerTask {
