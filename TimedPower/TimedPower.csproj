@@ -17,9 +17,9 @@
 	  <AssemblyName>定时电源</AssemblyName>
 	  
 	  <AssemblyVersion>2.7.7</AssemblyVersion>
-	  <FileVersion>2.7.7.0106</FileVersion>
-	  <VersionPrefix>2.7.7.20250106</VersionPrefix>
-	  <VersionSuffix>pre2</VersionSuffix>
+	  <FileVersion>2.7.7.0108</FileVersion>
+	  <VersionPrefix>2.7.7.20250108</VersionPrefix>
+	  <VersionSuffix>pre3</VersionSuffix>
   </PropertyGroup>
 
   <ItemGroup>

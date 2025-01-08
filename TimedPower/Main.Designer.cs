@@ -2,7 +2,6 @@
 {
     partial class Main
     {
-        public const string ThisFormText = "定时电源";
 		/// <summary>
 		/// 对应控件的选项枚举，注意，此处枚举排序必须和控件中的项目排序一致
 		/// </summary>

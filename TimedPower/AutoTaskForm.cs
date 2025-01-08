@@ -195,7 +195,7 @@ end:;
 			{
 				AutoTaskData.RemoveATData(taskList.SelectedIndex);
 			}
-			catch {MessageBox.Show(GetLangStr("messagebox.deleteFailed"), Main.ThisFormText, MessageBoxButtons.OK, MessageBoxIcon.Error); }
+			catch {MessageBox.Show(GetLangStr("messagebox.deleteFailed"), this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error); }
 			TaskListUpdate();
 
 			DefendAutoTask.SetDefendTime(10);//设置配置项后进行保护
@@ -210,7 +210,7 @@ end:;
 					if (((long)Main.GetTimeStamp(TimePicker.Value) - (long)Main.GetTimeStamp(DateTime.Now)) > 0) { }
 					else
 					{
-						MessageBox.Show(GetLangStr("messagebox.onlyUseFuture","main"), Main.ThisFormText, MessageBoxButtons.OK, MessageBoxIcon.Error);
+						MessageBox.Show(GetLangStr("messagebox.onlyUseFuture","main"), this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
 						return;
 					}
 					break;
@@ -317,7 +317,7 @@ end:;
 		/// <returns>根据用户的选择进行返回</returns>
 		static bool UnsaveNotify()
 		{
-			DialogResult dr = MessageBox.Show(GetLangStr("messagebox.haveNoSave"), Main.ThisFormText,
+			DialogResult dr = MessageBox.Show(GetLangStr("messagebox.haveNoSave"),PInfo.Alias ,
 				MessageBoxButtons.OKCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
 			return dr == DialogResult.OK;
 		}
@@ -678,7 +678,7 @@ exitThread:;
 		/// </summary>
 		internal static void DefendMessage_Msgbox() =>MessageBox.Show(
 			LanguageData.GetLanguageResource(FilePath.MainLanguageFile).GetString("autoTaskForm.messagebox.defendMessage", CultureInfo.CurrentUICulture)!
-			, Main.ThisFormText, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+			,PInfo.Alias, MessageBoxButtons.OK, MessageBoxIcon.Warning);
 		/// <summary>
 		/// 关闭保护程序，一般在软件关闭时调用
 		/// </summary>

@@ -221,4 +221,16 @@ Click confirm to exit the program.</value>
   <data name="setting.contextMenu.af1min" xml:space="preserve">
     <value>after 1min</value>
   </data>
+
+  <data name="aboutForm.stats" xml:space="preserve">
+    <value>All statistical information will only be stored locally
+Startup times: {0}
+Number of operations performed: {1}
+
+More stats coming soon...</value>
+  </data>
+
+  <data name="global.alias" xml:space="preserve">
+    <value>Timed Power</value>
+  </data>
 </root>

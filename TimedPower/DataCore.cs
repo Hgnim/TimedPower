@@ -4,14 +4,29 @@ using System.Globalization;
 using System.Reflection;
 using System.Resources;
 using System.Xml.Linq;
+using YamlDotNet.Core.Tokens;
 using static TimedPower.DataCore.LanguageData.Language;
+using static TimedPower.Main;
 
 namespace TimedPower {
 	public struct DataCore {
 		internal readonly struct PInfo {
-			internal const string alias = "定时电源";
+			static void UpdateAlias() => 
+				alias = 
+				LanguageData.GetLanguageResource(FilePath.MainLanguageFile).GetString("global.alias", CultureInfo.CurrentUICulture)!;
+			private static string? alias=null;
+			internal static string Alias {
+				get {
+					if(alias == null) {
+						ProgramLanguage.UpdateLanguage += UpdateAlias;
+						UpdateAlias();
+					}
+					return alias ?? throw new NullReferenceException();
+				}
+			}
+
 			internal const string name = "TimedPower";
-			public const string version = "2.7.7.20250106-pre2";
+			public const string version = "2.7.7.20250108-pre3";
 			public static string ShortVersion {
 				get {
 					string[] v = version.Split('.');

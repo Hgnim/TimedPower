@@ -221,4 +221,16 @@
   <data name="setting.contextMenu.af1min" xml:space="preserve">
     <value>1分钟后</value>
   </data>
+
+  <data name="aboutForm.stats" xml:space="preserve">
+    <value>所有统计信息仅会存储在本地
+启动次数: {0}
+执行操作次数: {1}
+
+更多统计信息敬请期待...</value>
+  </data>
+
+  <data name="global.alias" xml:space="preserve">
+    <value>定时电源</value>
+  </data>
 </root>
