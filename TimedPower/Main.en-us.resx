@@ -240,4 +240,7 @@
   <data name="$this.Text" xml:space="preserve">
     <value>Timed power</value>
   </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>296, 102</value>
+  </data>
 </root>

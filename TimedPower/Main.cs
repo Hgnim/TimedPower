@@ -33,9 +33,11 @@ namespace TimedPower
 		static string GetLangStr(string key, string head = "main") => langRes?.GetString($"{head}.{key}", CultureInfo.CurrentUICulture)!;
 		void UpdateLanguage() {
 			LanguageData.UpdateLanguageResource(out langRes, FilePath.MainLanguageFile);
-			if (countdownThread==null || !countdownThread.IsAlive) {//必须在主要计时器停止工作的情况下刷新主页，否则会导致UI异常
+			if (countdownThread==null || !countdownThread.IsAlive) {//必须在主要计时器停止工作的情况下刷新主窗口，否则会导致UI异常
 				LanguageData.UpdateFormLanguage(this,
 					moreObj: [new LanguageData.CustomObjName() { Name = nameof(notifyIcon_main), Obj = notifyIcon_main }]);
+
+				TimeTypeSelect_SelectedIndexChanged(null!,null!);//刷新时间类型，解决在刷新主窗口后时间输入框消失的问题
 			}
 		}
 
@@ -507,12 +509,12 @@ namespace TimedPower
 		}
 		#endregion
 		private void TimeTypeSelect_SelectedIndexChanged(object sender, EventArgs e) {
-			switch (TimeTypeSelect.SelectedIndex) {
-				case 0:
+			switch ((TimeTypeSelectItems)TimeTypeSelect.SelectedIndex) {
+				case TimeTypeSelectItems.after:
 					TimePicker.Visible = false;
 					TimeInput.Visible = true;
 					break;
-				case 1:
+				case TimeTypeSelectItems.ontime:
 					TimeInput.Visible = false;
 					TimePicker.Visible = true;
 					break;

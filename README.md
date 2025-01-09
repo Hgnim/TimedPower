@@ -1,6 +1,7 @@
 # 定时电源(TimedPower)
 
-基于Windows平台下的多功能定时电源操作软件。
+基于Windows平台下的多功能定时电源操作软件。\
+The software user interface supports both Chinese and English.
 
 ## 获取软件
 
