@@ -36,11 +36,6 @@ The software user interface supports both Chinese and English.
 - 在使用软件前，请务必提前了解软件的运作方式，任何因用户使用不当而导致出现致命问题开发者概不负责。
 - 本软件的开发者对使用者因任何原因在使用本软件时对自己或他人造成的任何形式的损失和伤害不承担责任。
 
-## 更新日志
-
-[最新版本更新内容](update_log/latest_version.md)\
-[历史版本更新内容](update_log/old_version.md)
-
 ## 相关视频
 
 相关介绍视频参考(点击将跳转至bilibili)：\
