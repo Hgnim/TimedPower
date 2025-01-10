@@ -52,22 +52,29 @@ namespace TimedPower
         /// </summary>
         public static void Sleep()
         {
-            SetSuspendState(false, true, true);
+            SetSuspendState(false, true, false);
         }
         /// <summary>
         /// 休眠
         /// </summary>
         public static void Hibernate()
         {
-            /*SetSuspendState(true, true, true);*/
+            /*if(*/
             ProcExec("shutdown", " " +
-                                 "/h");
-            // MessageBox.Show("此系统上没有启用休眠。", TimedPower.Main.ThisFormText, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                         "/h");
+                /*==0
+                ) {
+				MessageBox.Show("执行操作失败，可能是因为此系统没有启用休眠。",
+					DataCore.LanguageData.GetLangStr(
+						DataCore.LanguageData.GetLanguageResource(DataCore.FilePath.MainLanguageFile), "global.alias"
+						),
+					MessageBoxButtons.OK, MessageBoxIcon.Error);
+			}*/
         }
 
-        static void ProcExec(string fileName, string arguments)
+        static int ProcExec(string fileName, string arguments)
         {
-            Process process = new()
+            using Process process = new()
             {
                 StartInfo = new ProcessStartInfo
                 {
@@ -82,7 +89,7 @@ namespace TimedPower
             };
             process.Start();
             process.WaitForExit();
-            process.Close();
+            return process.ExitCode;
         }
     }
 }

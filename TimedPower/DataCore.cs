@@ -120,6 +120,13 @@ namespace TimedPower {
 			/// <returns></returns>
 			internal static ResourceManager GetLanguageResource(string resourcePath)=> new(resourcePath, Assembly.GetExecutingAssembly());
 			/// <summary>
+			/// 从语言资源文件中获取字符串
+			/// </summary>
+			/// <param name="langRes">语言资源实例</param>
+			/// <param name="key">语言数据的唯一标识</param>
+			/// <returns></returns>
+			internal static string GetLangStr(ResourceManager langRes, string key) => langRes?.GetString(key, CultureInfo.CurrentUICulture)!;
+			/// <summary>
 			/// 更新语言资源
 			/// </summary>
 			/// <param name="form">窗体实例</param>			
