@@ -35,5 +35,20 @@
     <PackageReference Include="Microsoft.Toolkit.Uwp.Notifications" Version="7.1.3" />
     <PackageReference Include="YamlDotNet" Version="16.2.1" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Resources\langs\language.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>language.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Resources\langs\language.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>language.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
 	
 </Project>

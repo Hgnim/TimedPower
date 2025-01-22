@@ -29,8 +29,8 @@ namespace TimedPower {
 			ContextMenuSetting = new CheckBox();
 			SelfStartingSetting = new CheckBox();
 			CloseToTaskBarSetting = new CheckBox();
-			labelFor_languageSetting = new();
-			languageSetting = new();
+			labelFor_languageSetting = new Label();
+			languageSetting = new ComboBox();
 			okButton = new Button();
 			cancelButton = new Button();
 			applyButton = new Button();

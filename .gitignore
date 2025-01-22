@@ -1,7 +1,10 @@
 .vs
+.vscode
 */bin
 */obj
 */Properties
 */appsettings*.json
 *.csproj.user
 */.config
+
+TimedPower/Resources/langs/*.Designer.cs

@@ -680,7 +680,7 @@
     <value>Resources\TimedPower_logo_window-icon.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
-    <value>276, 102</value><!--<value>312, 141</value>-->
+    <value>276, 102</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>TP</value>
