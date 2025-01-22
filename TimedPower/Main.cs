@@ -19,20 +19,20 @@ namespace TimedPower
 
 		public Main(string[] args) {
 			Main.args = args;
-
-			InitializeComponent();
-
-			ProgramLanguage.UpdateLanguage += UpdateLanguage;
-
+	
 			if (File.Exists(FilePath.MainDataFile)) {
 				DataFile.ReadData();
 				ProgramLanguage.SettingValue = mainData.Setting.Language;
 			}
+
+			UpdateLanguageResource();
+			InitializeComponent();
+			ProgramLanguage.UpdateLanguage += UpdateLanguage;
 		}
 		static ResourceManager? langRes;
 		static string GetLangStr(string key, string head = "main") => langRes?.GetString($"{head}.{key}", CultureInfo.CurrentUICulture)!;
 		void UpdateLanguage() {
-			LanguageData.UpdateLanguageResource(out langRes, FilePath.MainLanguageFile);
+			UpdateLanguageResource();
 			if (countdownThread==null || !countdownThread.IsAlive) {//必须在主要计时器停止工作的情况下刷新主窗口，否则会导致UI异常
 				LanguageData.UpdateFormLanguage(this,
 					moreObj: [new LanguageData.CustomObjName() { Name = nameof(notifyIcon_main), Obj = notifyIcon_main }]);
@@ -40,6 +40,7 @@ namespace TimedPower
 				TimeTypeSelect_SelectedIndexChanged(null!,null!);//刷新时间类型，解决在刷新主窗口后时间输入框消失的问题
 			}
 		}
+		void UpdateLanguageResource() => LanguageData.UpdateLanguageResource(out langRes, FilePath.MainLanguageFile);
 
 
 		readonly AfterTimeValue atv = new();

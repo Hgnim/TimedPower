@@ -25,6 +25,7 @@ namespace TimedPower {
 		/// the contents of this method with the code editor.
 		/// </summary>
 		private void InitializeComponent() {
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AboutForm));
 			info_githubUrl = new LinkLabel();
 			info_github = new Label();
 			info_copyright = new Label();
@@ -37,70 +38,48 @@ namespace TimedPower {
 			// 
 			// info_githubUrl
 			// 
-			info_githubUrl.Location = new Point(49, 34);
+			resources.ApplyResources(info_githubUrl, "info_githubUrl");
 			info_githubUrl.Name = "info_githubUrl";
-			info_githubUrl.Size = new Size(286, 17);
-			info_githubUrl.TabIndex = 4;
 			info_githubUrl.LinkClicked += LinkClicked;
 			// 
 			// info_github
 			// 
-			info_github.Location = new Point(3, 34);
+			resources.ApplyResources(info_github, "info_github");
 			info_github.Name = "info_github";
-			info_github.Size = new Size(49, 17);
-			info_github.TabIndex = 3;
-			info_github.Text = "Github:";
 			// 
 			// info_copyright
 			// 
-			info_copyright.Anchor = AnchorStyles.Bottom;
-			info_copyright.Location = new Point(3, 181);
+			resources.ApplyResources(info_copyright, "info_copyright");
 			info_copyright.Name = "info_copyright";
-			info_copyright.Size = new Size(332, 17);
-			info_copyright.TabIndex = 2;
-			info_copyright.TextAlign = ContentAlignment.MiddleCenter;
 			// 
 			// info_version
 			// 
-			info_version.Location = new Point(3, 17);
+			resources.ApplyResources(info_version, "info_version");
 			info_version.Name = "info_version";
-			info_version.Size = new Size(332, 17);
-			info_version.TabIndex = 1;
 			// 
 			// info_name
 			// 
-			info_name.Location = new Point(3, 0);
+			resources.ApplyResources(info_name, "info_name");
 			info_name.Name = "info_name";
-			info_name.Size = new Size(332, 17);
-			info_name.TabIndex = 0;
 			// 
 			// statsBox
 			// 
+			resources.ApplyResources(statsBox, "statsBox");
 			statsBox.Controls.Add(statsBox_stats);
-			statsBox.Location = new Point(3, 54);
 			statsBox.Name = "statsBox";
-			statsBox.Size = new Size(332, 124);
-			statsBox.TabIndex = 5;
 			statsBox.TabStop = false;
-			statsBox.Text = "统计";
 			// 
 			// statsBox_stats
 			// 
-			statsBox_stats.Dock = DockStyle.Fill;
-			statsBox_stats.Location = new Point(3, 19);
-			statsBox_stats.Multiline = true;
+			resources.ApplyResources(statsBox_stats, "statsBox_stats");
 			statsBox_stats.Name = "statsBox_stats";
 			statsBox_stats.ReadOnly = true;
-			statsBox_stats.ScrollBars = ScrollBars.Vertical;
-			statsBox_stats.Size = new Size(326, 102);
-			statsBox_stats.TabIndex = 1;
 			statsBox_stats.TabStop = false;
 			// 
 			// AboutForm
 			// 
-			AutoScaleDimensions = new SizeF(7F, 17F);
+			resources.ApplyResources(this, "$this");
 			AutoScaleMode = AutoScaleMode.Font;
-			ClientSize = new Size(337, 198);
 			Controls.Add(statsBox);
 			Controls.Add(info_githubUrl);
 			Controls.Add(info_github);
@@ -111,8 +90,6 @@ namespace TimedPower {
 			MaximizeBox = false;
 			MinimizeBox = false;
 			Name = "AboutForm";
-			StartPosition = FormStartPosition.CenterParent;
-			Text = "关于";
 			Load += AboutForm_Load;
 			statsBox.ResumeLayout(false);
 			statsBox.PerformLayout();

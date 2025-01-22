@@ -1,17 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
-  <!-- 
-    Microsoft ResX Schema 
-    
+  <!--
+    Microsoft ResX Schema
+
     Version 2.0
-    
-    The primary goals of this format is to allow a simple XML format 
-    that is mostly human readable. The generation and parsing of the 
-    various data types are done through the TypeConverter classes 
+
+    The primary goals of this format is to allow a simple XML format
+    that is mostly human readable. The generation and parsing of the
+    various data types are done through the TypeConverter classes
     associated with the data types.
-    
+
     Example:
-    
+
     ... ado.net/XML headers & schema ...
     <resheader name="resmimetype">text/microsoft-resx</resheader>
     <resheader name="version">2.0</resheader>
@@ -26,36 +26,36 @@
         <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
         <comment>This is a comment</comment>
     </data>
-                
-    There are any number of "resheader" rows that contain simple 
+
+    There are any number of "resheader" rows that contain simple
     name/value pairs.
-    
-    Each data row contains a name, and value. The row also contains a 
-    type or mimetype. Type corresponds to a .NET class that support 
-    text/value conversion through the TypeConverter architecture. 
-    Classes that don't support this are serialized and stored with the 
+
+    Each data row contains a name, and value. The row also contains a
+    type or mimetype. Type corresponds to a .NET class that support
+    text/value conversion through the TypeConverter architecture.
+    Classes that don't support this are serialized and stored with the
     mimetype set.
-    
-    The mimetype is used for serialized objects, and tells the 
-    ResXResourceReader how to depersist the object. This is currently not 
+
+    The mimetype is used for serialized objects, and tells the
+    ResXResourceReader how to depersist the object. This is currently not
     extensible. For a given mimetype the value must be set accordingly:
-    
-    Note - application/x-microsoft.net.object.binary.base64 is the format 
-    that the ResXResourceWriter will generate, however the reader can 
+
+    Note - application/x-microsoft.net.object.binary.base64 is the format
+    that the ResXResourceWriter will generate, however the reader can
     read any of the formats listed below.
-    
+
     mimetype: application/x-microsoft.net.object.binary.base64
-    value   : The object must be serialized with 
+    value   : The object must be serialized with
             : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
             : and then encoded with base64 encoding.
-    
+
     mimetype: application/x-microsoft.net.object.soap.base64
-    value   : The object must be serialized with 
+    value   : The object must be serialized with
             : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
             : and then encoded with base64 encoding.
 
     mimetype: application/x-microsoft.net.object.bytearray.base64
-    value   : The object must be serialized into a byte array 
+    value   : The object must be serialized into a byte array
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
@@ -135,29 +135,66 @@
   <data name="ActionSelect.Items5" xml:space="preserve">
     <value>UserOff</value>
   </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="ActionSelect.Size" type="System.Drawing.Size, System.Drawing">
+    <value>228, 25</value>
+  </data>
+  <data name="TimePicker.Size" type="System.Drawing.Size, System.Drawing">
+    <value>177, 24</value>
+  </data>
+  <data name="TimeInput_ContextMenu.Size" type="System.Drawing.Size, System.Drawing">
+    <value>143, 202</value>
+  </data>
+  <data name="s10.Size" type="System.Drawing.Size, System.Drawing">
+    <value>142, 22</value>
+  </data>
   <data name="s10.Text" xml:space="preserve">
     <value>10 seconds</value>
+  </data>
+  <data name="s30.Size" type="System.Drawing.Size, System.Drawing">
+    <value>142, 22</value>
   </data>
   <data name="s30.Text" xml:space="preserve">
     <value>30 seconds</value>
   </data>
+  <data name="min1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>142, 22</value>
+  </data>
   <data name="min1.Text" xml:space="preserve">
     <value>1 minute</value>
+  </data>
+  <data name="min5.Size" type="System.Drawing.Size, System.Drawing">
+    <value>142, 22</value>
   </data>
   <data name="min5.Text" xml:space="preserve">
     <value>5 minutes</value>
   </data>
+  <data name="min10.Size" type="System.Drawing.Size, System.Drawing">
+    <value>142, 22</value>
+  </data>
   <data name="min10.Text" xml:space="preserve">
     <value>10 minutes</value>
+  </data>
+  <data name="min20.Size" type="System.Drawing.Size, System.Drawing">
+    <value>142, 22</value>
   </data>
   <data name="min20.Text" xml:space="preserve">
     <value>20 minutes</value>
   </data>
+  <data name="min40.Size" type="System.Drawing.Size, System.Drawing">
+    <value>142, 22</value>
+  </data>
   <data name="min40.Text" xml:space="preserve">
     <value>40 minutes</value>
   </data>
+  <data name="h1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>142, 22</value>
+  </data>
   <data name="h1.Text" xml:space="preserve">
     <value>1 hour</value>
+  </data>
+  <data name="h2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>142, 22</value>
   </data>
   <data name="h2.Text" xml:space="preserve">
     <value>2 hours</value>
@@ -174,73 +211,293 @@
   <data name="TimeTypeSelect.Items1" xml:space="preserve">
     <value>OnTime</value>
   </data>
+  <data name="TimeTypeSelect.Location" type="System.Drawing.Point, System.Drawing">
+    <value>241, 38</value>
+  </data>
   <data name="TimeInput.PlaceholderText" xml:space="preserve">
     <value>0:1:0 or 1min or 1分</value>
+  </data>
+  <data name="TimeInput.Size" type="System.Drawing.Size, System.Drawing">
+    <value>177, 23</value>
+  </data>
+  <data name="countdownLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 64</value>
+  </data>
+  <data name="countdownLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>241, 35</value>
+  </data>
+  <data name="StartButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>114, 67</value>
   </data>
   <data name="StartButton.Text" xml:space="preserve">
     <value>Start</value>
   </data>
+  <data name="StopButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>240, 67</value>
+  </data>
   <data name="StopButton.Text" xml:space="preserve">
     <value>Stop</value>
+  </data>
+  <data name="FormMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
+    <value>171, 104</value>
+  </data>
+  <data name="FormMenuStrip_NewTaskFile.Size" type="System.Drawing.Size, System.Drawing">
+    <value>170, 22</value>
   </data>
   <data name="FormMenuStrip_NewTaskFile.Text" xml:space="preserve">
     <value>New task file</value>
   </data>
+  <data name="toolStripMenuItem5.Size" type="System.Drawing.Size, System.Drawing">
+    <value>167, 6</value>
+  </data>
+  <data name="FormMenuStrip_Setting.Size" type="System.Drawing.Size, System.Drawing">
+    <value>170, 22</value>
+  </data>
   <data name="FormMenuStrip_Setting.Text" xml:space="preserve">
     <value>Setting</value>
+  </data>
+  <data name="autoTask_ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>170, 22</value>
   </data>
   <data name="autoTask_ToolStripMenuItem.Text" xml:space="preserve">
     <value>Scheduled tasks</value>
   </data>
-  <data name="FormMenuStrip_Help_CheckUpdate.Text" xml:space="preserve">
-    <value>Check update</value>
+  <data name="toolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>167, 6</value>
   </data>
-  <data name="FormMenuStrip_Help_AutoCheckUpdate.Text" xml:space="preserve">
-    <value>Auto check update</value>
-  </data>
-  <data name="FormMenuStrip_Help_HelpDoc.Text" xml:space="preserve">
-    <value>Help</value>
-  </data>
-  <data name="GyToolStripMenuItem.Text" xml:space="preserve">
-    <value>About</value>
+  <data name="FormMenuStrip_Help.Size" type="System.Drawing.Size, System.Drawing">
+    <value>170, 22</value>
   </data>
   <data name="FormMenuStrip_Help.Text" xml:space="preserve">
     <value>More</value>
   </data>
-  <data name="notifyIcon_main_ContextMenu_ShowButton.Text" xml:space="preserve">
-    <value>Show</value>
+  <data name="FormMenuStrip_Help_CheckUpdate.Size" type="System.Drawing.Size, System.Drawing">
+    <value>185, 22</value>
   </data>
-  <data name="notifyIcon_main_ContextMenu_HiddenButton.Text" xml:space="preserve">
-    <value>Hide</value>
-  </data>
-  <data name="自动定时任务ToolStripMenuItem.Text" xml:space="preserve">
-    <value>Scheduled tasks</value>
-  </data>
-  <data name="nmc_CheckUpdate.Text" xml:space="preserve">
+  <data name="FormMenuStrip_Help_CheckUpdate.Text" xml:space="preserve">
     <value>Check update</value>
   </data>
-  <data name="nmc__AutoCheckUpdate.Text" xml:space="preserve">
+  <data name="FormMenuStrip_Help_AutoCheckUpdate.Size" type="System.Drawing.Size, System.Drawing">
+    <value>185, 22</value>
+  </data>
+  <data name="FormMenuStrip_Help_AutoCheckUpdate.Text" xml:space="preserve">
     <value>Auto check update</value>
   </data>
-  <data name="帮助文档ToolStripMenuItem.Text" xml:space="preserve">
+  <data name="toolStripMenuItem3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>182, 6</value>
+  </data>
+  <data name="FormMenuStrip_Help_HelpDoc.Size" type="System.Drawing.Size, System.Drawing">
+    <value>185, 22</value>
+  </data>
+  <data name="FormMenuStrip_Help_HelpDoc.Text" xml:space="preserve">
     <value>Help</value>
   </data>
-  <data name="关于ToolStripMenuItem.Text" xml:space="preserve">
+  <data name="GyToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>185, 22</value>
+  </data>
+  <data name="GyToolStripMenuItem.Text" xml:space="preserve">
     <value>About</value>
   </data>
-  <data name="帮助ToolStripMenuItem.Text" xml:space="preserve">
-    <value>More</value>
+  <data name="notifyIcon_main_ContextMenu.Size" type="System.Drawing.Size, System.Drawing">
+    <value>171, 120</value>
   </data>
-  <data name="notifyIcon_main_ContextMenu_ExitButton.Text" xml:space="preserve">
-    <value>Quit</value>
+  <data name="notifyIcon_main.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        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
+        /wD/w/8A
+</value>
   </data>
   <data name="notifyIcon_main.Text" xml:space="preserve">
     <value>Timed power</value>
   </data>
-  <data name="$this.Text" xml:space="preserve">
-    <value>Timed power</value>
+  <data name="notifyIcon_main_ContextMenu_ShowButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>170, 22</value>
+  </data>
+  <data name="notifyIcon_main_ContextMenu_ShowButton.Text" xml:space="preserve">
+    <value>Show</value>
+  </data>
+  <data name="notifyIcon_main_ContextMenu_HiddenButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>170, 22</value>
+  </data>
+  <data name="notifyIcon_main_ContextMenu_HiddenButton.Text" xml:space="preserve">
+    <value>Hide</value>
+  </data>
+  <data name="自动定时任务ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>170, 22</value>
+  </data>
+  <data name="自动定时任务ToolStripMenuItem.Text" xml:space="preserve">
+    <value>Scheduled tasks</value>
+  </data>
+  <data name="toolStripMenuItem2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>167, 6</value>
+  </data>
+  <data name="帮助ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>170, 22</value>
+  </data>
+  <data name="帮助ToolStripMenuItem.Text" xml:space="preserve">
+    <value>More</value>
+  </data>
+  <data name="nmc_CheckUpdate.Size" type="System.Drawing.Size, System.Drawing">
+    <value>185, 22</value>
+  </data>
+  <data name="nmc_CheckUpdate.Text" xml:space="preserve">
+    <value>Check update</value>
+  </data>
+  <data name="nmc__AutoCheckUpdate.Size" type="System.Drawing.Size, System.Drawing">
+    <value>185, 22</value>
+  </data>
+  <data name="nmc__AutoCheckUpdate.Text" xml:space="preserve">
+    <value>Auto check update</value>
+  </data>
+  <data name="toolStripMenuItem4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>182, 6</value>
+  </data>
+  <data name="帮助文档ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>185, 22</value>
+  </data>
+  <data name="帮助文档ToolStripMenuItem.Text" xml:space="preserve">
+    <value>Help</value>
+  </data>
+  <data name="关于ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>185, 22</value>
+  </data>
+  <data name="关于ToolStripMenuItem.Text" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="notifyIcon_main_ContextMenu_ExitButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>170, 22</value>
+  </data>
+  <data name="notifyIcon_main_ContextMenu_ExitButton.Text" xml:space="preserve">
+    <value>Quit</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>296, 102</value>
+    <value>302, 102</value>
+  </data>
+  <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        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
+        /wD/w/8A
+</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Timed power</value>
   </data>
 </root>

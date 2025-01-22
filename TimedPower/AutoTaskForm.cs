@@ -12,17 +12,17 @@ namespace TimedPower
 		public bool IsStart => isStart;
 		bool isStart = false;
 		public AutoTaskForm() {
+			UpdateLanguageResource();
 			InitializeComponent();
-
 			Main.ProgramLanguage.UpdateLanguage += UpdateLanguage;
-			UpdateLanguage();
 		}
 		static ResourceManager langRes=null!;
 		static string GetLangStr(string key, string head = "autoTaskForm") => langRes.GetString($"{head}.{key}", CultureInfo.CurrentUICulture)!;
 		void UpdateLanguage() {
-			LanguageData.UpdateLanguageResource(out langRes, FilePath.MainLanguageFile);
+			UpdateLanguageResource();
 			LanguageData.UpdateFormLanguage(this);
 		}
+		void UpdateLanguageResource() => LanguageData.UpdateLanguageResource(out langRes, FilePath.MainLanguageFile);
 
 		private void AutoTaskForm_Load(object sender, EventArgs e)
 		{

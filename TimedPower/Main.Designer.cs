@@ -117,62 +117,62 @@
 			// 
 			// TimeInput_ContextMenu
 			// 
+			resources.ApplyResources(TimeInput_ContextMenu, "TimeInput_ContextMenu");
 			TimeInput_ContextMenu.Items.AddRange(new ToolStripItem[] { s10, s30, min1, min5, min10, min20, min40, h1, h2 });
 			TimeInput_ContextMenu.Name = "TimePicker_ContextMenu";
-			resources.ApplyResources(TimeInput_ContextMenu, "TimeInput_ContextMenu");
 			// 
 			// s10
 			// 
-			s10.Name = "s10";
 			resources.ApplyResources(s10, "s10");
+			s10.Name = "s10";
 			s10.Click += TPCM_s10_Click;
 			// 
 			// s30
 			// 
-			s30.Name = "s30";
 			resources.ApplyResources(s30, "s30");
+			s30.Name = "s30";
 			s30.Click += TPCM_s30_Click;
 			// 
 			// min1
 			// 
-			min1.Name = "min1";
 			resources.ApplyResources(min1, "min1");
+			min1.Name = "min1";
 			min1.Click += TPCM_min1_Click;
 			// 
 			// min5
 			// 
-			min5.Name = "min5";
 			resources.ApplyResources(min5, "min5");
+			min5.Name = "min5";
 			min5.Click += TPCM_min5_Click;
 			// 
 			// min10
 			// 
-			min10.Name = "min10";
 			resources.ApplyResources(min10, "min10");
+			min10.Name = "min10";
 			min10.Click += TPCM_min10_Click;
 			// 
 			// min20
 			// 
-			min20.Name = "min20";
 			resources.ApplyResources(min20, "min20");
+			min20.Name = "min20";
 			min20.Click += TPCM_min20_Click;
 			// 
 			// min40
 			// 
-			min40.Name = "min40";
 			resources.ApplyResources(min40, "min40");
+			min40.Name = "min40";
 			min40.Click += TPCM_min40_Click;
 			// 
 			// h1
 			// 
-			h1.Name = "h1";
 			resources.ApplyResources(h1, "h1");
+			h1.Name = "h1";
 			h1.Click += TPCM_h1_Click;
 			// 
 			// h2
 			// 
-			h2.Name = "h2";
 			resources.ApplyResources(h2, "h2");
+			h2.Name = "h2";
 			h2.Click += TPCM_h2_Click;
 			// 
 			// label1
@@ -227,153 +227,153 @@
 			// 
 			// FormMenuStrip
 			// 
+			resources.ApplyResources(FormMenuStrip, "FormMenuStrip");
 			FormMenuStrip.Items.AddRange(new ToolStripItem[] { FormMenuStrip_NewTaskFile, toolStripMenuItem5, FormMenuStrip_Setting, autoTask_ToolStripMenuItem, toolStripMenuItem1, FormMenuStrip_Help });
 			FormMenuStrip.Name = "GyMenuStrip";
-			resources.ApplyResources(FormMenuStrip, "FormMenuStrip");
 			FormMenuStrip.Opening += FormMenuStrip_Opening;
 			// 
 			// FormMenuStrip_NewTaskFile
 			// 
-			FormMenuStrip_NewTaskFile.Name = "FormMenuStrip_NewTaskFile";
 			resources.ApplyResources(FormMenuStrip_NewTaskFile, "FormMenuStrip_NewTaskFile");
+			FormMenuStrip_NewTaskFile.Name = "FormMenuStrip_NewTaskFile";
 			FormMenuStrip_NewTaskFile.Click += FormMenuStrip_NewTaskFile_Click;
 			// 
 			// toolStripMenuItem5
 			// 
-			toolStripMenuItem5.Name = "toolStripMenuItem5";
 			resources.ApplyResources(toolStripMenuItem5, "toolStripMenuItem5");
+			toolStripMenuItem5.Name = "toolStripMenuItem5";
 			// 
 			// FormMenuStrip_Setting
 			// 
-			FormMenuStrip_Setting.Name = "FormMenuStrip_Setting";
 			resources.ApplyResources(FormMenuStrip_Setting, "FormMenuStrip_Setting");
+			FormMenuStrip_Setting.Name = "FormMenuStrip_Setting";
 			FormMenuStrip_Setting.Click += FormMenuStrip_Setting_Click;
 			// 
 			// autoTask_ToolStripMenuItem
 			// 
-			autoTask_ToolStripMenuItem.Name = "autoTask_ToolStripMenuItem";
 			resources.ApplyResources(autoTask_ToolStripMenuItem, "autoTask_ToolStripMenuItem");
+			autoTask_ToolStripMenuItem.Name = "autoTask_ToolStripMenuItem";
 			autoTask_ToolStripMenuItem.Click += AutoTask_ToolStripMenuItem_Click;
 			// 
 			// toolStripMenuItem1
 			// 
-			toolStripMenuItem1.Name = "toolStripMenuItem1";
 			resources.ApplyResources(toolStripMenuItem1, "toolStripMenuItem1");
+			toolStripMenuItem1.Name = "toolStripMenuItem1";
 			// 
 			// FormMenuStrip_Help
 			// 
+			resources.ApplyResources(FormMenuStrip_Help, "FormMenuStrip_Help");
 			FormMenuStrip_Help.DropDownItems.AddRange(new ToolStripItem[] { FormMenuStrip_Help_CheckUpdate, FormMenuStrip_Help_AutoCheckUpdate, toolStripMenuItem3, FormMenuStrip_Help_HelpDoc, GyToolStripMenuItem });
 			FormMenuStrip_Help.Name = "FormMenuStrip_Help";
-			resources.ApplyResources(FormMenuStrip_Help, "FormMenuStrip_Help");
 			// 
 			// FormMenuStrip_Help_CheckUpdate
 			// 
-			FormMenuStrip_Help_CheckUpdate.Name = "FormMenuStrip_Help_CheckUpdate";
 			resources.ApplyResources(FormMenuStrip_Help_CheckUpdate, "FormMenuStrip_Help_CheckUpdate");
+			FormMenuStrip_Help_CheckUpdate.Name = "FormMenuStrip_Help_CheckUpdate";
 			FormMenuStrip_Help_CheckUpdate.Click += FormMenuStrip_Help_CheckUpdate_Click;
 			// 
 			// FormMenuStrip_Help_AutoCheckUpdate
 			// 
+			resources.ApplyResources(FormMenuStrip_Help_AutoCheckUpdate, "FormMenuStrip_Help_AutoCheckUpdate");
 			FormMenuStrip_Help_AutoCheckUpdate.Checked = true;
 			FormMenuStrip_Help_AutoCheckUpdate.CheckState = CheckState.Checked;
 			FormMenuStrip_Help_AutoCheckUpdate.Name = "FormMenuStrip_Help_AutoCheckUpdate";
-			resources.ApplyResources(FormMenuStrip_Help_AutoCheckUpdate, "FormMenuStrip_Help_AutoCheckUpdate");
 			FormMenuStrip_Help_AutoCheckUpdate.Click += FormMenuStrip_Help_AutoCheckUpdate_Click;
 			// 
 			// toolStripMenuItem3
 			// 
-			toolStripMenuItem3.Name = "toolStripMenuItem3";
 			resources.ApplyResources(toolStripMenuItem3, "toolStripMenuItem3");
+			toolStripMenuItem3.Name = "toolStripMenuItem3";
 			// 
 			// FormMenuStrip_Help_HelpDoc
 			// 
-			FormMenuStrip_Help_HelpDoc.Name = "FormMenuStrip_Help_HelpDoc";
 			resources.ApplyResources(FormMenuStrip_Help_HelpDoc, "FormMenuStrip_Help_HelpDoc");
+			FormMenuStrip_Help_HelpDoc.Name = "FormMenuStrip_Help_HelpDoc";
 			FormMenuStrip_Help_HelpDoc.Click += FormMenuStrip_Help_HelpDoc_Click;
 			// 
 			// GyToolStripMenuItem
 			// 
-			GyToolStripMenuItem.Name = "GyToolStripMenuItem";
 			resources.ApplyResources(GyToolStripMenuItem, "GyToolStripMenuItem");
+			GyToolStripMenuItem.Name = "GyToolStripMenuItem";
 			GyToolStripMenuItem.Click += GyToolStripMenuItem_Click;
 			// 
 			// notifyIcon_main
 			// 
-			notifyIcon_main.ContextMenuStrip = notifyIcon_main_ContextMenu;
 			resources.ApplyResources(notifyIcon_main, "notifyIcon_main");
+			notifyIcon_main.ContextMenuStrip = notifyIcon_main_ContextMenu;
 			notifyIcon_main.MouseClick += NotifyIcon_main_MouseClick;
 			// 
 			// notifyIcon_main_ContextMenu
 			// 
+			resources.ApplyResources(notifyIcon_main_ContextMenu, "notifyIcon_main_ContextMenu");
 			notifyIcon_main_ContextMenu.Items.AddRange(new ToolStripItem[] { notifyIcon_main_ContextMenu_ShowButton, notifyIcon_main_ContextMenu_HiddenButton, 自动定时任务ToolStripMenuItem, toolStripMenuItem2, 帮助ToolStripMenuItem, notifyIcon_main_ContextMenu_ExitButton });
 			notifyIcon_main_ContextMenu.Name = "notifyIcon_main_ContextMenu";
-			resources.ApplyResources(notifyIcon_main_ContextMenu, "notifyIcon_main_ContextMenu");
 			notifyIcon_main_ContextMenu.Opening += NotifyIcon_main_ContextMenu_Opening;
 			// 
 			// notifyIcon_main_ContextMenu_ShowButton
 			// 
-			notifyIcon_main_ContextMenu_ShowButton.Name = "notifyIcon_main_ContextMenu_ShowButton";
 			resources.ApplyResources(notifyIcon_main_ContextMenu_ShowButton, "notifyIcon_main_ContextMenu_ShowButton");
+			notifyIcon_main_ContextMenu_ShowButton.Name = "notifyIcon_main_ContextMenu_ShowButton";
 			notifyIcon_main_ContextMenu_ShowButton.Click += NotifyIcon_main_ContextMenu_ShowButton_Click;
 			// 
 			// notifyIcon_main_ContextMenu_HiddenButton
 			// 
-			notifyIcon_main_ContextMenu_HiddenButton.Name = "notifyIcon_main_ContextMenu_HiddenButton";
 			resources.ApplyResources(notifyIcon_main_ContextMenu_HiddenButton, "notifyIcon_main_ContextMenu_HiddenButton");
+			notifyIcon_main_ContextMenu_HiddenButton.Name = "notifyIcon_main_ContextMenu_HiddenButton";
 			notifyIcon_main_ContextMenu_HiddenButton.Click += NotifyIcon_main_ContextMenu_HiddenButton_Click;
 			// 
 			// 自动定时任务ToolStripMenuItem
 			// 
-			自动定时任务ToolStripMenuItem.Name = "自动定时任务ToolStripMenuItem";
 			resources.ApplyResources(自动定时任务ToolStripMenuItem, "自动定时任务ToolStripMenuItem");
+			自动定时任务ToolStripMenuItem.Name = "自动定时任务ToolStripMenuItem";
 			自动定时任务ToolStripMenuItem.Click += AutoTask_ToolStripMenuItem_Click;
 			// 
 			// toolStripMenuItem2
 			// 
-			toolStripMenuItem2.Name = "toolStripMenuItem2";
 			resources.ApplyResources(toolStripMenuItem2, "toolStripMenuItem2");
+			toolStripMenuItem2.Name = "toolStripMenuItem2";
 			// 
 			// 帮助ToolStripMenuItem
 			// 
+			resources.ApplyResources(帮助ToolStripMenuItem, "帮助ToolStripMenuItem");
 			帮助ToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { nmc_CheckUpdate, nmc__AutoCheckUpdate, toolStripMenuItem4, 帮助文档ToolStripMenuItem, 关于ToolStripMenuItem });
 			帮助ToolStripMenuItem.Name = "帮助ToolStripMenuItem";
-			resources.ApplyResources(帮助ToolStripMenuItem, "帮助ToolStripMenuItem");
 			// 
 			// nmc_CheckUpdate
 			// 
-			nmc_CheckUpdate.Name = "nmc_CheckUpdate";
 			resources.ApplyResources(nmc_CheckUpdate, "nmc_CheckUpdate");
+			nmc_CheckUpdate.Name = "nmc_CheckUpdate";
 			nmc_CheckUpdate.Click += FormMenuStrip_Help_CheckUpdate_Click;
 			// 
 			// nmc__AutoCheckUpdate
 			// 
+			resources.ApplyResources(nmc__AutoCheckUpdate, "nmc__AutoCheckUpdate");
 			nmc__AutoCheckUpdate.Checked = true;
 			nmc__AutoCheckUpdate.CheckState = CheckState.Checked;
 			nmc__AutoCheckUpdate.Name = "nmc__AutoCheckUpdate";
-			resources.ApplyResources(nmc__AutoCheckUpdate, "nmc__AutoCheckUpdate");
 			nmc__AutoCheckUpdate.Click += FormMenuStrip_Help_AutoCheckUpdate_Click;
 			// 
 			// toolStripMenuItem4
 			// 
-			toolStripMenuItem4.Name = "toolStripMenuItem4";
 			resources.ApplyResources(toolStripMenuItem4, "toolStripMenuItem4");
+			toolStripMenuItem4.Name = "toolStripMenuItem4";
 			// 
 			// 帮助文档ToolStripMenuItem
 			// 
-			帮助文档ToolStripMenuItem.Name = "帮助文档ToolStripMenuItem";
 			resources.ApplyResources(帮助文档ToolStripMenuItem, "帮助文档ToolStripMenuItem");
+			帮助文档ToolStripMenuItem.Name = "帮助文档ToolStripMenuItem";
 			帮助文档ToolStripMenuItem.Click += FormMenuStrip_Help_HelpDoc_Click;
 			// 
 			// 关于ToolStripMenuItem
 			// 
-			关于ToolStripMenuItem.Name = "关于ToolStripMenuItem";
 			resources.ApplyResources(关于ToolStripMenuItem, "关于ToolStripMenuItem");
+			关于ToolStripMenuItem.Name = "关于ToolStripMenuItem";
 			关于ToolStripMenuItem.Click += GyToolStripMenuItem_Click;
 			// 
 			// notifyIcon_main_ContextMenu_ExitButton
 			// 
-			notifyIcon_main_ContextMenu_ExitButton.Name = "notifyIcon_main_ContextMenu_ExitButton";
 			resources.ApplyResources(notifyIcon_main_ContextMenu_ExitButton, "notifyIcon_main_ContextMenu_ExitButton");
+			notifyIcon_main_ContextMenu_ExitButton.Name = "notifyIcon_main_ContextMenu_ExitButton";
 			notifyIcon_main_ContextMenu_ExitButton.Click += NotifyIcon_main_ContextMenu_ExitButton_Click;
 			// 
 			// Main

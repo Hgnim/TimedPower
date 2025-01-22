@@ -6,18 +6,18 @@ using static TimedPower.DataCore;
 namespace TimedPower {
 	public partial class SettingForm : Form {
 		public SettingForm() 
-		{ 
+		{
+			UpdateLanguageResource();
 			InitializeComponent();
-
 			Main.ProgramLanguage.UpdateLanguage += UpdateLanguage;
-			UpdateLanguage();
 		}
 		static ResourceManager langRes = null!;
 		static string GetLangStr(string key, string head = "setting") => langRes.GetString($"{head}.{key}", CultureInfo.CurrentUICulture)!;
 		void UpdateLanguage() {
-			LanguageData.UpdateLanguageResource(out langRes, FilePath.MainLanguageFile);
+			UpdateLanguageResource();
 			LanguageData.UpdateFormLanguage(this);
 		}
+		static void UpdateLanguageResource() => LanguageData.UpdateLanguageResource(out langRes, FilePath.MainLanguageFile);
 
 		private void OkButton_Click(object sender, EventArgs e) => Ok();
 		private void CancelButton_Click(object sender, EventArgs e) => Cancel();

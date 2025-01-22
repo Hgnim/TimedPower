@@ -26,7 +26,7 @@ namespace TimedPower {
 			}
 
 			internal const string name = "TimedPower";
-			public const string version = "2.7.7.20250109";
+			public const string version = "2.8.7.20250122-pre1";
 			public static string ShortVersion {
 				get {
 					string[] v = version.Split('.');
