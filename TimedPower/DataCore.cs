@@ -26,7 +26,7 @@ namespace TimedPower {
 			}
 
 			internal const string name = "TimedPower";
-			public const string version = "2.8.7.20250122-pre1";
+			public const string version = "0.0.0-debug";
 			public static string ShortVersion {
 				get {
 					string[] v = version.Split('.');
@@ -35,7 +35,7 @@ namespace TimedPower {
 			}
 			public static uint ShortVersionNum {
 				get {
-					string[] v = version.Split('.');
+					string[] v = version.Split('-')[0].Split('.');
 					return uint.Parse($"{v[0]}{v[1]}{v[2]}");
 				}
 			}
@@ -62,6 +62,7 @@ namespace TimedPower {
 			internal static readonly string TempDir = System.IO.Path.GetTempPath() + @$"{PInfo.name}\";
 			internal static readonly string CommandDir = @$"{TempDir}Command\";
 			internal static readonly string commandFile = CommandDir + "Command.dat";
+			internal static readonly string htmlMessageBoxDir = $@"{TempDir}hmb\";
 
 			internal const string ResourceDir = "TimedPower.Resources";
 			internal const string MainLanguageFile = ResourceDir + ".langs.language";

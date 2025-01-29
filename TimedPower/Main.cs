@@ -11,6 +11,7 @@ using static TimedPower.DataCore.DataFiles;
 using static TimedPower.TimedPowerTask;
 using System.Resources;
 using System.Globalization;
+using Markdig;
 
 namespace TimedPower
 {
@@ -472,10 +473,25 @@ namespace TimedPower
 #pragma warning restore SYSLIB1045
 #pragma warning restore IDE0079
 					if (cuv.HaveUpdate) {
-						switch (MessageBox.Show(
-							string.Format(GetLangStr("messagebox.haveUpdate"),
-							PInfo.version, cuv.LatestVersionStr, cuv.PublishedTime_Local, iodf.Size, cuv.ReleaseName, cuv.ReleaseBody)
-										, Text, MessageBoxButtons.YesNo, MessageBoxIcon.Information)) {
+						DialogResult? userSelectUpgrade=null;
+						{
+							AutoResetEvent are = new(false);
+							this.Invoke(new Action(() => {
+								userSelectUpgrade = new HtmlMessageBox(
+									Markdown.ToHtml(string.Format(GetLangStr("messagebox.haveUpdate"),
+																PInfo.version, cuv.LatestVersionStr, cuv.PublishedTime_Local, iodf.Size, cuv.ReleaseName, cuv.ReleaseBody)),
+											[
+												new(){Text=GetLangStr("cancel","main.messagebox.button"),Result=DialogResult.Cancel},
+											new(){Text=GetLangStr("upgrade","main.messagebox.button"),Result=DialogResult.Yes}
+											],
+											Text,HtmlMessageBox.Sounds.information, 1,new Size(433,471), true
+									).ShowDialog();
+								are.Set();
+							}));
+							are.WaitOne();
+						}
+						if(userSelectUpgrade!=null)
+						switch (userSelectUpgrade) {
 							case DialogResult.Yes:
 								void errorMsg() => _ = MessageBox.Show(GetLangStr("messagebox.downloadUpdateFailed")
 									, Text, MessageBoxButtons.OK, MessageBoxIcon.Error);

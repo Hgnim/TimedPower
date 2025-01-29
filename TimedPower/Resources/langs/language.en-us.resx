@@ -151,14 +151,17 @@
     <value>Download update failed!</value>
   </data>
   <data name="main.messagebox.haveUpdate" xml:space="preserve">
-    <value>Checked for available updates, do you want to update?
-Current version: V{0}
-Latest version: {1}
-Release time: {2}
-Size: {3}
-Release notes:
-{4}
-{5}</value>
+<value>
+## Checked for available updates, do you want to update?
+- Current version: V{0}
+- Latest version: {1}
+- Release time: {2}
+- Size: {3}
+### Release notes:
+#### {4}
+
+{5}
+</value>
   </data>
   <data name="main.messagebox.isNewVersion" xml:space="preserve">
     <value>The current version is already the latest version.</value>
@@ -232,5 +235,12 @@ More stats coming soon...</value>
 
   <data name="global.alias" xml:space="preserve">
     <value>Timed Power</value>
+  </data>
+
+  <data name="main.messagebox.button.upgrade" xml:space="preserve">
+    <value>Upgrade</value>
+  </data>
+  <data name="main.messagebox.button.cancel" xml:space="preserve">
+    <value>Cancel</value>
   </data>
 </root>
