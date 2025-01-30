@@ -29,6 +29,9 @@ namespace TimedPower
 			UpdateLanguageResource();
 			InitializeComponent();
 			ProgramLanguage.UpdateLanguage += UpdateLanguage;
+
+			//DataCore.ThemeManager.CurrentTheme = Theme.Themes.dark;
+			//DataCore.ThemeManager.UpdateFormTheme(this);
 		}
 		static ResourceManager? langRes;
 		static string GetLangStr(string key, string head = "main") => langRes?.GetString($"{head}.{key}", CultureInfo.CurrentUICulture)!;

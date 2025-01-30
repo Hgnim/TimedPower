@@ -209,5 +209,7 @@ namespace TimedPower {
 				public required dynamic Obj { get; set; }
 			}
 		}
+
+		internal static Theme ThemeManager { get; set; }=new();
 	}
 }
