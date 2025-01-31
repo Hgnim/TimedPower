@@ -136,71 +136,59 @@
     <value>UserOff</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="ActionSelect.Location" type="System.Drawing.Point, System.Drawing">
+    <value>61, 27</value>
+  </data>
   <data name="ActionSelect.Size" type="System.Drawing.Size, System.Drawing">
-    <value>228, 25</value>
+    <value>137, 29</value>
+  </data>
+  <data name="TimePicker.Location" type="System.Drawing.Point, System.Drawing">
+    <value>61, 59</value>
+  </data>
+  <data name="TimePicker.MinimumSize" type="System.Drawing.Size, System.Drawing">
+    <value>0, 35</value>
   </data>
   <data name="TimePicker.Size" type="System.Drawing.Size, System.Drawing">
-    <value>177, 24</value>
-  </data>
-  <data name="TimeInput_ContextMenu.Size" type="System.Drawing.Size, System.Drawing">
-    <value>143, 202</value>
-  </data>
-  <data name="s10.Size" type="System.Drawing.Size, System.Drawing">
-    <value>142, 22</value>
+    <value>241, 35</value>
   </data>
   <data name="s10.Text" xml:space="preserve">
     <value>10 seconds</value>
   </data>
-  <data name="s30.Size" type="System.Drawing.Size, System.Drawing">
-    <value>142, 22</value>
-  </data>
   <data name="s30.Text" xml:space="preserve">
     <value>30 seconds</value>
-  </data>
-  <data name="min1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>142, 22</value>
   </data>
   <data name="min1.Text" xml:space="preserve">
     <value>1 minute</value>
   </data>
-  <data name="min5.Size" type="System.Drawing.Size, System.Drawing">
-    <value>142, 22</value>
-  </data>
   <data name="min5.Text" xml:space="preserve">
     <value>5 minutes</value>
-  </data>
-  <data name="min10.Size" type="System.Drawing.Size, System.Drawing">
-    <value>142, 22</value>
   </data>
   <data name="min10.Text" xml:space="preserve">
     <value>10 minutes</value>
   </data>
-  <data name="min20.Size" type="System.Drawing.Size, System.Drawing">
-    <value>142, 22</value>
-  </data>
   <data name="min20.Text" xml:space="preserve">
     <value>20 minutes</value>
-  </data>
-  <data name="min40.Size" type="System.Drawing.Size, System.Drawing">
-    <value>142, 22</value>
   </data>
   <data name="min40.Text" xml:space="preserve">
     <value>40 minutes</value>
   </data>
-  <data name="h1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>142, 22</value>
-  </data>
   <data name="h1.Text" xml:space="preserve">
     <value>1 hour</value>
-  </data>
-  <data name="h2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>142, 22</value>
   </data>
   <data name="h2.Text" xml:space="preserve">
     <value>2 hours</value>
   </data>
+  <data name="TimeInput_ContextMenu.Size" type="System.Drawing.Size, System.Drawing">
+    <value>143, 202</value>
+  </data>
+  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>60, 20</value>
+  </data>
   <data name="label1.Text" xml:space="preserve">
     <value>Action:</value>
+  </data>
+  <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>60, 20</value>
   </data>
   <data name="label2.Text" xml:space="preserve">
     <value>Time:</value>
@@ -212,37 +200,25 @@
     <value>OnTime</value>
   </data>
   <data name="TimeTypeSelect.Location" type="System.Drawing.Point, System.Drawing">
-    <value>241, 38</value>
+    <value>204, 27</value>
   </data>
-  <data name="TimeInput.PlaceholderText" xml:space="preserve">
-    <value>0:1:0 or 1min or 1分</value>
+  <data name="TimeTypeSelect.Size" type="System.Drawing.Size, System.Drawing">
+    <value>97, 29</value>
+  </data>
+  <data name="resource.Location" type="System.Drawing.Point, System.Drawing">
+    <value>207, 1</value>
+  </data>
+  <data name="TimeInput.Location" type="System.Drawing.Point, System.Drawing">
+    <value>61, 59</value>
   </data>
   <data name="TimeInput.Size" type="System.Drawing.Size, System.Drawing">
-    <value>177, 23</value>
-  </data>
-  <data name="countdownLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 64</value>
-  </data>
-  <data name="countdownLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>241, 35</value>
-  </data>
-  <data name="StartButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>114, 67</value>
   </data>
   <data name="StartButton.Text" xml:space="preserve">
     <value>Start</value>
   </data>
-  <data name="StopButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>240, 67</value>
-  </data>
   <data name="StopButton.Text" xml:space="preserve">
     <value>Stop</value>
-  </data>
-  <data name="FormMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>171, 104</value>
-  </data>
-  <data name="FormMenuStrip_NewTaskFile.Size" type="System.Drawing.Size, System.Drawing">
-    <value>170, 22</value>
   </data>
   <data name="FormMenuStrip_NewTaskFile.Text" xml:space="preserve">
     <value>New task file</value>
@@ -250,14 +226,8 @@
   <data name="toolStripMenuItem5.Size" type="System.Drawing.Size, System.Drawing">
     <value>167, 6</value>
   </data>
-  <data name="FormMenuStrip_Setting.Size" type="System.Drawing.Size, System.Drawing">
-    <value>170, 22</value>
-  </data>
   <data name="FormMenuStrip_Setting.Text" xml:space="preserve">
     <value>Setting</value>
-  </data>
-  <data name="autoTask_ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>170, 22</value>
   </data>
   <data name="autoTask_ToolStripMenuItem.Text" xml:space="preserve">
     <value>Scheduled tasks</value>
@@ -265,20 +235,8 @@
   <data name="toolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
     <value>167, 6</value>
   </data>
-  <data name="FormMenuStrip_Help.Size" type="System.Drawing.Size, System.Drawing">
-    <value>170, 22</value>
-  </data>
-  <data name="FormMenuStrip_Help.Text" xml:space="preserve">
-    <value>More</value>
-  </data>
-  <data name="FormMenuStrip_Help_CheckUpdate.Size" type="System.Drawing.Size, System.Drawing">
-    <value>185, 22</value>
-  </data>
   <data name="FormMenuStrip_Help_CheckUpdate.Text" xml:space="preserve">
     <value>Check update</value>
-  </data>
-  <data name="FormMenuStrip_Help_AutoCheckUpdate.Size" type="System.Drawing.Size, System.Drawing">
-    <value>185, 22</value>
   </data>
   <data name="FormMenuStrip_Help_AutoCheckUpdate.Text" xml:space="preserve">
     <value>Auto check update</value>
@@ -286,17 +244,50 @@
   <data name="toolStripMenuItem3.Size" type="System.Drawing.Size, System.Drawing">
     <value>182, 6</value>
   </data>
-  <data name="FormMenuStrip_Help_HelpDoc.Size" type="System.Drawing.Size, System.Drawing">
-    <value>185, 22</value>
-  </data>
   <data name="FormMenuStrip_Help_HelpDoc.Text" xml:space="preserve">
     <value>Help</value>
   </data>
-  <data name="GyToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>185, 22</value>
-  </data>
   <data name="GyToolStripMenuItem.Text" xml:space="preserve">
     <value>About</value>
+  </data>
+  <data name="FormMenuStrip_Help.Text" xml:space="preserve">
+    <value>More</value>
+  </data>
+  <data name="FormMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
+    <value>171, 104</value>
+  </data>
+  <data name="notifyIcon_main_ContextMenu_ShowButton.Text" xml:space="preserve">
+    <value>Show</value>
+  </data>
+  <data name="notifyIcon_main_ContextMenu_HiddenButton.Text" xml:space="preserve">
+    <value>Hide</value>
+  </data>
+  <data name="自动定时任务ToolStripMenuItem.Text" xml:space="preserve">
+    <value>Scheduled tasks</value>
+  </data>
+  <data name="toolStripMenuItem2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>167, 6</value>
+  </data>
+  <data name="nmc_CheckUpdate.Text" xml:space="preserve">
+    <value>Check update</value>
+  </data>
+  <data name="nmc__AutoCheckUpdate.Text" xml:space="preserve">
+    <value>Auto check update</value>
+  </data>
+  <data name="toolStripMenuItem4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>182, 6</value>
+  </data>
+  <data name="帮助文档ToolStripMenuItem.Text" xml:space="preserve">
+    <value>Help</value>
+  </data>
+  <data name="关于ToolStripMenuItem.Text" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="帮助ToolStripMenuItem.Text" xml:space="preserve">
+    <value>More</value>
+  </data>
+  <data name="notifyIcon_main_ContextMenu_ExitButton.Text" xml:space="preserve">
+    <value>Quit</value>
   </data>
   <data name="notifyIcon_main_ContextMenu.Size" type="System.Drawing.Size, System.Drawing">
     <value>171, 120</value>
@@ -368,69 +359,6 @@
   </data>
   <data name="notifyIcon_main.Text" xml:space="preserve">
     <value>Timed power</value>
-  </data>
-  <data name="notifyIcon_main_ContextMenu_ShowButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>170, 22</value>
-  </data>
-  <data name="notifyIcon_main_ContextMenu_ShowButton.Text" xml:space="preserve">
-    <value>Show</value>
-  </data>
-  <data name="notifyIcon_main_ContextMenu_HiddenButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>170, 22</value>
-  </data>
-  <data name="notifyIcon_main_ContextMenu_HiddenButton.Text" xml:space="preserve">
-    <value>Hide</value>
-  </data>
-  <data name="自动定时任务ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>170, 22</value>
-  </data>
-  <data name="自动定时任务ToolStripMenuItem.Text" xml:space="preserve">
-    <value>Scheduled tasks</value>
-  </data>
-  <data name="toolStripMenuItem2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>167, 6</value>
-  </data>
-  <data name="帮助ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>170, 22</value>
-  </data>
-  <data name="帮助ToolStripMenuItem.Text" xml:space="preserve">
-    <value>More</value>
-  </data>
-  <data name="nmc_CheckUpdate.Size" type="System.Drawing.Size, System.Drawing">
-    <value>185, 22</value>
-  </data>
-  <data name="nmc_CheckUpdate.Text" xml:space="preserve">
-    <value>Check update</value>
-  </data>
-  <data name="nmc__AutoCheckUpdate.Size" type="System.Drawing.Size, System.Drawing">
-    <value>185, 22</value>
-  </data>
-  <data name="nmc__AutoCheckUpdate.Text" xml:space="preserve">
-    <value>Auto check update</value>
-  </data>
-  <data name="toolStripMenuItem4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>182, 6</value>
-  </data>
-  <data name="帮助文档ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>185, 22</value>
-  </data>
-  <data name="帮助文档ToolStripMenuItem.Text" xml:space="preserve">
-    <value>Help</value>
-  </data>
-  <data name="关于ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>185, 22</value>
-  </data>
-  <data name="关于ToolStripMenuItem.Text" xml:space="preserve">
-    <value>About</value>
-  </data>
-  <data name="notifyIcon_main_ContextMenu_ExitButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>170, 22</value>
-  </data>
-  <data name="notifyIcon_main_ContextMenu_ExitButton.Text" xml:space="preserve">
-    <value>Quit</value>
-  </data>
-  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>302, 102</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>

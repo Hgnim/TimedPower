@@ -1,6 +1,8 @@
 ﻿using System.Text;
 using System.Media;
 using System.Diagnostics;
+using System;
+using Microsoft.Web.WebView2.Core;
 
 namespace TimedPower {
 	public partial class HtmlMessageBox : Form {
@@ -12,8 +14,30 @@ namespace TimedPower {
 		public Sounds PlaySound { get; set; } = Sounds.none;
 
 		string tmpFilePath;
-		public HtmlMessageBox(string htmlMessage, HMsgBoxButton[] buttons, string title = "", Sounds playSound = Sounds.none, int defaultButtonIndex = 0, Size? formSize = null, bool userCanChangeFormSize = false) {
+		/// <summary>
+		/// 显示Html的消息框
+		/// </summary>
+		/// <param name="htmlMessage">html文本</param>
+		/// <param name="buttons">窗口下的多个按钮</param>
+		/// <param name="title">窗口标题</param>
+		/// <param name="playSound">弹出窗口时播放的系统提示音</param>
+		/// <param name="defaultButtonIndex">默认选择的按钮的序号</param>
+		/// <param name="formSize">窗口打开时的大小</param>
+		/// <param name="userCanChangeFormSize">窗口大小是否能被用户更改</param>
+		/// <param name="webCacheAndUserDataFolder">WebView2引擎使用时生成的缓存文件与用户文件的存储位置，如果为null则存在与程序同级的目录中</param>
+		public HtmlMessageBox(
+				string htmlMessage, 
+				HMsgBoxButton[] buttons, string title = "", 
+				Sounds playSound = Sounds.none, 
+				int defaultButtonIndex = 0, 
+				Size? formSize = null, 
+				bool userCanChangeFormSize = false,
+				string? webCacheAndUserDataFolder = "normal"
+			) {
 			InitializeComponent();
+			if(webCacheAndUserDataFolder=="normal") webCacheAndUserDataFolder = DataCore.FilePath.webViewCacheDir;
+			htmlView.EnsureCoreWebView2Async(CoreWebView2Environment.CreateAsync(null, webCacheAndUserDataFolder).Result);//更改WebView2的数据存储目录
+
 			this.Text = title;
 			this.FormBorderStyle = userCanChangeFormSize ? FormBorderStyle.Sizable : FormBorderStyle.FixedDialog;
 			PlaySound = playSound;

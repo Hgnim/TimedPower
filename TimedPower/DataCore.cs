@@ -26,7 +26,7 @@ namespace TimedPower {
 			}
 
 			internal const string name = "TimedPower";
-			public const string version = "0.0.0-debug";
+			public const string version = "2.8.7.20250131-pre2";
 			public static string ShortVersion {
 				get {
 					string[] v = version.Split('.');
@@ -63,6 +63,7 @@ namespace TimedPower {
 			internal static readonly string CommandDir = @$"{TempDir}Command\";
 			internal static readonly string commandFile = CommandDir + "Command.dat";
 			internal static readonly string htmlMessageBoxDir = $@"{TempDir}hmb\";
+			internal static readonly string webViewCacheDir = $@"{htmlMessageBoxDir}WebView2\";
 
 			internal const string ResourceDir = "TimedPower.Resources";
 			internal const string MainLanguageFile = ResourceDir + ".langs.language";
@@ -210,6 +211,6 @@ namespace TimedPower {
 			}
 		}
 
-		internal static Theme ThemeManager { get; set; }=new();
+		internal readonly static Theme themeManager =new();
 	}
 }

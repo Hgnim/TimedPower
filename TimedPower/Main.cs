@@ -12,10 +12,12 @@ using static TimedPower.TimedPowerTask;
 using System.Resources;
 using System.Globalization;
 using Markdig;
+using ReaLTaiizor.Enum.Poison;
+using ReaLTaiizor.Forms;
 
 namespace TimedPower
 {
-	public partial class Main : Form {		
+	public partial class Main : PoisonForm {
 		static string[] args = [];
 
 		public Main(string[] args) {
@@ -24,14 +26,16 @@ namespace TimedPower
 			if (File.Exists(FilePath.MainDataFile)) {
 				DataFile.ReadData();
 				ProgramLanguage.SettingValue = mainData.Setting.Language;
+				themeManager.CurrentTheme = mainData.Setting.Theme;
 			}
 
 			UpdateLanguageResource();
 			InitializeComponent();
 			ProgramLanguage.UpdateLanguage += UpdateLanguage;
 
-			//DataCore.ThemeManager.CurrentTheme = Theme.Themes.dark;
-			//DataCore.ThemeManager.UpdateFormTheme(this);
+			void UpdateTheme() => themeManager.UpdateFormTheme(ref poisonStyleManager);
+			themeManager.UpdateTheme += UpdateTheme;
+			UpdateTheme();
 		}
 		static ResourceManager? langRes;
 		static string GetLangStr(string key, string head = "main") => langRes?.GetString($"{head}.{key}", CultureInfo.CurrentUICulture)!;
@@ -433,6 +437,7 @@ namespace TimedPower
 					CloseToTaskBar = CloseToTaskBar,
 					AutoCheckUpdate = IsAutoCheckUpdate,
 					Language=ProgramLanguage.SettingValue,
+					Theme = themeManager.CurrentTheme,
 				};
 				if (mainData.Version < PInfo.ShortVersionNum) mainData.Version = PInfo.ShortVersionNum;
 				DataFile.SaveData();
@@ -1121,10 +1126,7 @@ namespace TimedPower
 		private void FormMenuStrip_Help_CheckUpdate_Click(object sender, EventArgs e) => _ = Task.Run(() => ProgramUpdate());
 		private void FormMenuStrip_Help_AutoCheckUpdate_Click(object sender, EventArgs e) => IsAutoCheckUpdate = !IsAutoCheckUpdate;
 		private void FormMenuStrip_Help_HelpDoc_Click(object sender, EventArgs e) => _ = System.Diagnostics.Process.Start("explorer.exe", PInfo.githubWiki);
-		private void GyToolStripMenuItem_Click(object sender, EventArgs e) {
-			AboutForm af = new();
-			af.ShowDialog();
-		}
+		private void GyToolStripMenuItem_Click(object sender, EventArgs e) => new About().Show();
 		#endregion
 	}
 }

@@ -117,54 +117,647 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="$this.Text" xml:space="preserve">
-    <value>TP</value>
+  <metadata name="ActionSelect.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="ActionSelect.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="FormMenuStrip_Help.Size" type="System.Drawing.Size, System.Drawing">
-    <value>148, 22</value>
+  <data name="ActionSelect.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 10pt</value>
   </data>
-  <data name="&gt;&gt;FormMenuStrip_Help_HelpDoc.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="ActionSelect.IntegralHeight" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="ActionSelect.ItemHeight" type="System.Int32, mscorlib">
+    <value>23</value>
+  </data>
+  <data name="ActionSelect.Items" xml:space="preserve">
+    <value>关机</value>
+  </data>
+  <data name="ActionSelect.Items1" xml:space="preserve">
+    <value>重启</value>
+  </data>
+  <data name="ActionSelect.Items2" xml:space="preserve">
+    <value>睡眠</value>
+  </data>
+  <data name="ActionSelect.Items3" xml:space="preserve">
+    <value>休眠</value>
+  </data>
+  <data name="ActionSelect.Items4" xml:space="preserve">
+    <value>锁定</value>
+  </data>
+  <data name="ActionSelect.Items5" xml:space="preserve">
+    <value>注销</value>
+  </data>
+  <data name="ActionSelect.Location" type="System.Drawing.Point, System.Drawing">
+    <value>45, 27</value>
+  </data>
+  <data name="ActionSelect.Size" type="System.Drawing.Size, System.Drawing">
+    <value>167, 29</value>
+  </data>
+  <data name="ActionSelect.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;ActionSelect.Name" xml:space="preserve">
+    <value>ActionSelect</value>
+  </data>
+  <data name="&gt;&gt;ActionSelect.Type" xml:space="preserve">
+    <value>ReaLTaiizor.Controls.PoisonComboBox, ReaLTaiizor, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;ActionSelect.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="StopButton.Font" type="System.Drawing.Font, System.Drawing">
+  <data name="&gt;&gt;ActionSelect.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <metadata name="TimePicker.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="TimePicker.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
+  <data name="TimePicker.CustomFormat" xml:space="preserve">
+    <value>yyyy/MM/dd HH:mm:ss</value>
+  </data>
+  <data name="TimePicker.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft YaHei UI, 10pt</value>
   </data>
-  <data name="&gt;&gt;TimeInput.ZOrder" xml:space="preserve">
-    <value>5</value>
+  <data name="TimePicker.Location" type="System.Drawing.Point, System.Drawing">
+    <value>45, 59</value>
   </data>
-  <data name="&gt;&gt;label1.Parent" xml:space="preserve">
+  <data name="TimePicker.MinimumSize" type="System.Drawing.Size, System.Drawing">
+    <value>0, 29</value>
+  </data>
+  <data name="TimePicker.Size" type="System.Drawing.Size, System.Drawing">
+    <value>257, 29</value>
+  </data>
+  <data name="TimePicker.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="TimePicker.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;TimePicker.Name" xml:space="preserve">
+    <value>TimePicker</value>
+  </data>
+  <data name="&gt;&gt;TimePicker.Type" xml:space="preserve">
+    <value>ReaLTaiizor.Controls.PoisonDateTime, ReaLTaiizor, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;TimePicker.Parent" xml:space="preserve">
     <value>$this</value>
+  </data>
+  <data name="&gt;&gt;TimePicker.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <metadata name="TimeInput_ContextMenu.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <data name="s10.AutoSize" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="s10.Size" type="System.Drawing.Size, System.Drawing">
+    <value>114, 22</value>
   </data>
   <data name="s10.Text" xml:space="preserve">
     <value>10秒</value>
   </data>
+  <data name="s30.AutoSize" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="s30.Size" type="System.Drawing.Size, System.Drawing">
+    <value>114, 22</value>
+  </data>
+  <data name="s30.Text" xml:space="preserve">
+    <value>30秒</value>
+  </data>
+  <data name="min1.AutoSize" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="min1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>114, 22</value>
+  </data>
+  <data name="min1.Text" xml:space="preserve">
+    <value>1分钟</value>
+  </data>
+  <data name="min5.AutoSize" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="min5.Size" type="System.Drawing.Size, System.Drawing">
+    <value>114, 22</value>
+  </data>
+  <data name="min5.Text" xml:space="preserve">
+    <value>5分钟</value>
+  </data>
+  <data name="min10.AutoSize" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="min10.Size" type="System.Drawing.Size, System.Drawing">
+    <value>114, 22</value>
+  </data>
+  <data name="min10.Text" xml:space="preserve">
+    <value>10分钟</value>
+  </data>
+  <data name="min20.AutoSize" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="min20.Size" type="System.Drawing.Size, System.Drawing">
+    <value>114, 22</value>
+  </data>
+  <data name="min20.Text" xml:space="preserve">
+    <value>20分钟</value>
+  </data>
+  <data name="min40.AutoSize" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="min40.Size" type="System.Drawing.Size, System.Drawing">
+    <value>114, 22</value>
+  </data>
+  <data name="min40.Text" xml:space="preserve">
+    <value>40分钟</value>
+  </data>
+  <data name="h1.AutoSize" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="h1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>114, 22</value>
+  </data>
+  <data name="h1.Text" xml:space="preserve">
+    <value>1小时</value>
+  </data>
+  <data name="h2.AutoSize" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="h2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>114, 22</value>
+  </data>
+  <data name="h2.Text" xml:space="preserve">
+    <value>2小时</value>
+  </data>
+  <data name="TimeInput_ContextMenu.Size" type="System.Drawing.Size, System.Drawing">
+    <value>115, 202</value>
+  </data>
+  <data name="&gt;&gt;TimeInput_ContextMenu.Name" xml:space="preserve">
+    <value>TimeInput_ContextMenu</value>
+  </data>
+  <data name="&gt;&gt;TimeInput_ContextMenu.Type" xml:space="preserve">
+    <value>ReaLTaiizor.Controls.PoisonContextMenuStrip, ReaLTaiizor, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <metadata name="label1.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="label1.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft YaHei UI, 10pt</value>
+  </data>
+  <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 31</value>
+  </data>
+  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>43, 20</value>
+  </data>
+  <data name="label1.TabIndex" type="System.Int32, mscorlib">
+    <value>21</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>操作:</value>
+  </data>
+  <data name="label1.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="&gt;&gt;label1.Name" xml:space="preserve">
+    <value>label1</value>
+  </data>
+  <data name="&gt;&gt;label1.Type" xml:space="preserve">
+    <value>ReaLTaiizor.Controls.SmallLabel, ReaLTaiizor, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;label1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
+    <value>11</value>
+  </data>
+  <metadata name="label2.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="label2.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft YaHei UI, 10pt</value>
+  </data>
+  <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 65</value>
+  </data>
+  <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>43, 20</value>
+  </data>
+  <data name="label2.TabIndex" type="System.Int32, mscorlib">
+    <value>22</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>时间:</value>
+  </data>
+  <data name="label2.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="&gt;&gt;label2.Name" xml:space="preserve">
+    <value>label2</value>
+  </data>
+  <data name="&gt;&gt;label2.Type" xml:space="preserve">
+    <value>ReaLTaiizor.Controls.SmallLabel, ReaLTaiizor, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;label2.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
   <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
     <value>10</value>
   </data>
-  <data name="&gt;&gt;FormMenuStrip_Help.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <metadata name="TimeTypeSelect.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="TimeTypeSelect.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
   </data>
-  <data name="&gt;&gt;toolStripMenuItem5.Name" xml:space="preserve">
-    <value>toolStripMenuItem5</value>
+  <data name="TimeTypeSelect.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 10pt</value>
   </data>
-  <data name="StopButton.Text" xml:space="preserve">
-    <value>停止</value>
+  <data name="TimeTypeSelect.IntegralHeight" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
-  <data name="nmc__AutoCheckUpdate.Text" xml:space="preserve">
-    <value>自动检查更新</value>
+  <data name="TimeTypeSelect.ItemHeight" type="System.Int32, mscorlib">
+    <value>23</value>
+  </data>
+  <data name="TimeTypeSelect.Items" xml:space="preserve">
+    <value>此后</value>
+  </data>
+  <data name="TimeTypeSelect.Items1" xml:space="preserve">
+    <value>此时</value>
+  </data>
+  <data name="TimeTypeSelect.Location" type="System.Drawing.Point, System.Drawing">
+    <value>218, 27</value>
+  </data>
+  <data name="TimeTypeSelect.Size" type="System.Drawing.Size, System.Drawing">
+    <value>83, 29</value>
+  </data>
+  <data name="TimeTypeSelect.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;TimeTypeSelect.Name" xml:space="preserve">
+    <value>TimeTypeSelect</value>
+  </data>
+  <data name="&gt;&gt;TimeTypeSelect.Type" xml:space="preserve">
+    <value>ReaLTaiizor.Controls.PoisonComboBox, ReaLTaiizor, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;TimeTypeSelect.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;TimeTypeSelect.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <metadata name="TimeInput.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="TimeInput.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
+  <data name="resource.Image" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="resource.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="resource.Location" type="System.Drawing.Point, System.Drawing">
+    <value>223, 1</value>
+  </data>
+  <data name="resource.Size" type="System.Drawing.Size, System.Drawing">
+    <value>33, 33</value>
+  </data>
+  <data name="resource.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="resource.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="TimeInput.Location" type="System.Drawing.Point, System.Drawing">
+    <value>45, 59</value>
+  </data>
+  <data name="TimeInput.Size" type="System.Drawing.Size, System.Drawing">
+    <value>257, 35</value>
+  </data>
+  <data name="TimeInput.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;TimeInput.Name" xml:space="preserve">
+    <value>TimeInput</value>
+  </data>
+  <data name="&gt;&gt;TimeInput.Type" xml:space="preserve">
+    <value>TimedPower.ControlOverride+PoisonTextBox_OR, 定时电源, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;TimeInput.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;TimeInput.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <metadata name="countdownLabel.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="countdownLabel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom</value>
+  </data>
+  <data name="countdownLabel.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft YaHei UI, 20pt</value>
+  </data>
+  <data name="countdownLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 96</value>
+  </data>
+  <data name="countdownLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>241, 35</value>
+  </data>
+  <data name="countdownLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>20</value>
+  </data>
+  <data name="countdownLabel.Text" xml:space="preserve">
+    <value>00:00:00</value>
   </data>
   <data name="countdownLabel.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleCenter</value>
   </data>
-  <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>-1, 9</value>
+  <data name="countdownLabel.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
-  <data name="min40.Size" type="System.Drawing.Size, System.Drawing">
-    <value>114, 22</value>
+  <data name="&gt;&gt;countdownLabel.Name" xml:space="preserve">
+    <value>countdownLabel</value>
+  </data>
+  <data name="&gt;&gt;countdownLabel.Type" xml:space="preserve">
+    <value>ReaLTaiizor.Controls.BigLabel, ReaLTaiizor, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;countdownLabel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;countdownLabel.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <metadata name="StartButton.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="StartButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
+  </data>
+  <data name="StartButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>116, 101</value>
+  </data>
+  <data name="StartButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 28</value>
+  </data>
+  <data name="StartButton.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="StartButton.Text" xml:space="preserve">
+    <value>开始</value>
+  </data>
+  <data name="&gt;&gt;StartButton.Name" xml:space="preserve">
+    <value>StartButton</value>
+  </data>
+  <data name="&gt;&gt;StartButton.Type" xml:space="preserve">
+    <value>ReaLTaiizor.Controls.PoisonButton, ReaLTaiizor, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;StartButton.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;StartButton.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <metadata name="StopButton.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="StopButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
+  </data>
+  <data name="StopButton.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="StopButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>253, 101</value>
+  </data>
+  <data name="StopButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>49, 28</value>
+  </data>
+  <data name="StopButton.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="StopButton.Text" xml:space="preserve">
+    <value>停止</value>
+  </data>
+  <data name="StopButton.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;StopButton.Name" xml:space="preserve">
+    <value>StopButton</value>
+  </data>
+  <data name="&gt;&gt;StopButton.Type" xml:space="preserve">
+    <value>ReaLTaiizor.Controls.PoisonButton, ReaLTaiizor, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;StopButton.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;StopButton.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <metadata name="FormMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>212, 17</value>
+  </metadata>
+  <data name="FormMenuStrip_NewTaskFile.AutoSize" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="FormMenuStrip_NewTaskFile.Size" type="System.Drawing.Size, System.Drawing">
+    <value>148, 22</value>
+  </data>
+  <data name="FormMenuStrip_NewTaskFile.Text" xml:space="preserve">
+    <value>新建任务文件</value>
+  </data>
+  <data name="toolStripMenuItem5.Size" type="System.Drawing.Size, System.Drawing">
+    <value>145, 6</value>
+  </data>
+  <data name="FormMenuStrip_Setting.AutoSize" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="FormMenuStrip_Setting.Size" type="System.Drawing.Size, System.Drawing">
+    <value>148, 22</value>
+  </data>
+  <data name="FormMenuStrip_Setting.Text" xml:space="preserve">
+    <value>设置</value>
+  </data>
+  <data name="autoTask_ToolStripMenuItem.AutoSize" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="autoTask_ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>148, 22</value>
+  </data>
+  <data name="autoTask_ToolStripMenuItem.Text" xml:space="preserve">
+    <value>自动定时任务</value>
+  </data>
+  <data name="toolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>145, 6</value>
+  </data>
+  <data name="FormMenuStrip_Help.AutoSize" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="FormMenuStrip_Help_CheckUpdate.AutoSize" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="FormMenuStrip_Help_CheckUpdate.Size" type="System.Drawing.Size, System.Drawing">
+    <value>148, 22</value>
+  </data>
+  <data name="FormMenuStrip_Help_CheckUpdate.Text" xml:space="preserve">
+    <value>检查更新</value>
+  </data>
+  <data name="FormMenuStrip_Help_AutoCheckUpdate.AutoSize" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="FormMenuStrip_Help_AutoCheckUpdate.Size" type="System.Drawing.Size, System.Drawing">
+    <value>148, 22</value>
+  </data>
+  <data name="FormMenuStrip_Help_AutoCheckUpdate.Text" xml:space="preserve">
+    <value>自动检测更新</value>
+  </data>
+  <data name="toolStripMenuItem3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>145, 6</value>
+  </data>
+  <data name="FormMenuStrip_Help_HelpDoc.AutoSize" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="FormMenuStrip_Help_HelpDoc.Size" type="System.Drawing.Size, System.Drawing">
+    <value>148, 22</value>
+  </data>
+  <data name="FormMenuStrip_Help_HelpDoc.Text" xml:space="preserve">
+    <value>帮助文档</value>
+  </data>
+  <data name="GyToolStripMenuItem.AutoSize" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="GyToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>148, 22</value>
+  </data>
+  <data name="GyToolStripMenuItem.Text" xml:space="preserve">
+    <value>关于</value>
+  </data>
+  <data name="FormMenuStrip_Help.Size" type="System.Drawing.Size, System.Drawing">
+    <value>148, 22</value>
+  </data>
+  <data name="FormMenuStrip_Help.Text" xml:space="preserve">
+    <value>帮助</value>
+  </data>
+  <data name="FormMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
+    <value>149, 104</value>
+  </data>
+  <data name="&gt;&gt;FormMenuStrip.Name" xml:space="preserve">
+    <value>FormMenuStrip</value>
+  </data>
+  <data name="&gt;&gt;FormMenuStrip.Type" xml:space="preserve">
+    <value>ReaLTaiizor.Controls.PoisonContextMenuStrip, ReaLTaiizor, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <metadata name="notifyIcon_main.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>357, 17</value>
+  </metadata>
+  <metadata name="notifyIcon_main_ContextMenu.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>502, 17</value>
+  </metadata>
+  <data name="notifyIcon_main_ContextMenu_ShowButton.AutoSize" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="notifyIcon_main_ContextMenu_ShowButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>148, 22</value>
+  </data>
+  <data name="notifyIcon_main_ContextMenu_ShowButton.Text" xml:space="preserve">
+    <value>显示主窗口</value>
+  </data>
+  <data name="notifyIcon_main_ContextMenu_HiddenButton.AutoSize" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="notifyIcon_main_ContextMenu_HiddenButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>148, 22</value>
+  </data>
+  <data name="notifyIcon_main_ContextMenu_HiddenButton.Text" xml:space="preserve">
+    <value>隐藏主窗口</value>
+  </data>
+  <data name="自动定时任务ToolStripMenuItem.AutoSize" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="自动定时任务ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>148, 22</value>
+  </data>
+  <data name="自动定时任务ToolStripMenuItem.Text" xml:space="preserve">
+    <value>自动定时任务</value>
+  </data>
+  <data name="toolStripMenuItem2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>145, 6</value>
+  </data>
+  <data name="帮助ToolStripMenuItem.AutoSize" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="nmc_CheckUpdate.AutoSize" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="nmc_CheckUpdate.Size" type="System.Drawing.Size, System.Drawing">
+    <value>148, 22</value>
+  </data>
+  <data name="nmc_CheckUpdate.Text" xml:space="preserve">
+    <value>检查更新</value>
+  </data>
+  <data name="nmc__AutoCheckUpdate.AutoSize" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="nmc__AutoCheckUpdate.Size" type="System.Drawing.Size, System.Drawing">
+    <value>148, 22</value>
+  </data>
+  <data name="nmc__AutoCheckUpdate.Text" xml:space="preserve">
+    <value>自动检查更新</value>
+  </data>
+  <data name="toolStripMenuItem4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>145, 6</value>
+  </data>
+  <data name="帮助文档ToolStripMenuItem.AutoSize" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="帮助文档ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>148, 22</value>
+  </data>
+  <data name="帮助文档ToolStripMenuItem.Text" xml:space="preserve">
+    <value>帮助文档</value>
+  </data>
+  <data name="关于ToolStripMenuItem.AutoSize" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="关于ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>148, 22</value>
+  </data>
+  <data name="关于ToolStripMenuItem.Text" xml:space="preserve">
+    <value>关于</value>
+  </data>
+  <data name="帮助ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>148, 22</value>
+  </data>
+  <data name="帮助ToolStripMenuItem.Text" xml:space="preserve">
+    <value>帮助</value>
+  </data>
+  <data name="notifyIcon_main_ContextMenu_ExitButton.AutoSize" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="notifyIcon_main_ContextMenu_ExitButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>148, 22</value>
+  </data>
+  <data name="notifyIcon_main_ContextMenu_ExitButton.Text" xml:space="preserve">
+    <value>退出</value>
+  </data>
+  <data name="notifyIcon_main_ContextMenu.Size" type="System.Drawing.Size, System.Drawing">
+    <value>149, 120</value>
+  </data>
+  <data name="&gt;&gt;notifyIcon_main_ContextMenu.Name" xml:space="preserve">
+    <value>notifyIcon_main_ContextMenu</value>
+  </data>
+  <data name="&gt;&gt;notifyIcon_main_ContextMenu.Type" xml:space="preserve">
+    <value>ReaLTaiizor.Controls.PoisonContextMenuStrip, ReaLTaiizor, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="notifyIcon_main.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -231,463 +824,26 @@
         /wD/w/8A
 </value>
   </data>
-  <data name="&gt;&gt;FormMenuStrip_Help_CheckUpdate.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;notifyIcon_main_ContextMenu_ShowButton.Name" xml:space="preserve">
-    <value>notifyIcon_main_ContextMenu_ShowButton</value>
-  </data>
-  <data name="countdownLabel.Text" xml:space="preserve">
-    <value>00:00:00</value>
-  </data>
-  <data name="notifyIcon_main_ContextMenu_ShowButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>148, 22</value>
-  </data>
-  <data name="&gt;&gt;label2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;ActionSelect.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="countdownLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>225, 35</value>
-  </data>
-  <data name="StartButton.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft YaHei UI, 10pt</value>
-  </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="TimeInput.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Left, Right</value>
-  </data>
-  <data name="label2.Text" xml:space="preserve">
-    <value>时间:</value>
-  </data>
-  <data name="&gt;&gt;TimeTypeSelect.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;toolStripMenuItem1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="FormMenuStrip_Setting.Text" xml:space="preserve">
-    <value>设置</value>
-  </data>
-  <data name="StartButton.Text" xml:space="preserve">
-    <value>开始</value>
-  </data>
-  <data name="FormMenuStrip_Help_CheckUpdate.Text" xml:space="preserve">
-    <value>检查更新</value>
-  </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="StartButton.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;StopButton.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;min40.Name" xml:space="preserve">
-    <value>min40</value>
-  </data>
-  <data name="&gt;&gt;toolStripMenuItem3.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;notifyIcon_main.Name" xml:space="preserve">
-    <value>notifyIcon_main</value>
-  </data>
-  <data name="notifyIcon_main_ContextMenu_ShowButton.Text" xml:space="preserve">
-    <value>显示主窗口</value>
-  </data>
-  <data name="帮助文档ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>148, 22</value>
-  </data>
-  <data name="&gt;&gt;label2.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="ActionSelect.Items1" xml:space="preserve">
-    <value>重启</value>
-  </data>
-  <data name="&gt;&gt;TimeTypeSelect.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="TimeTypeSelect.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Right</value>
-  </data>
-  <data name="&gt;&gt;notifyIcon_main.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NotifyIcon, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;s30.Name" xml:space="preserve">
-    <value>s30</value>
-  </data>
-  <data name="FormMenuStrip_Setting.Size" type="System.Drawing.Size, System.Drawing">
-    <value>148, 22</value>
-  </data>
-  <data name="FormMenuStrip_Help.Text" xml:space="preserve">
-    <value>帮助</value>
-  </data>
-  <data name="关于ToolStripMenuItem.Text" xml:space="preserve">
-    <value>关于</value>
-  </data>
-  <data name="&gt;&gt;countdownLabel.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="nmc_CheckUpdate.Text" xml:space="preserve">
-    <value>检查更新</value>
-  </data>
-  <data name="TimePicker.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;min20.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="关于ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>148, 22</value>
-  </data>
-  <data name="&gt;&gt;帮助ToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;notifyIcon_main_ContextMenu.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;h1.Name" xml:space="preserve">
-    <value>h1</value>
-  </data>
-  <data name="&gt;&gt;notifyIcon_main_ContextMenu_ExitButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="FormMenuStrip_NewTaskFile.Size" type="System.Drawing.Size, System.Drawing">
-    <value>148, 22</value>
-  </data>
-  <data name="countdownLabel.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft YaHei UI, 20pt</value>
-  </data>
-  <data name="&gt;&gt;label1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="自动定时任务ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>148, 22</value>
-  </data>
-  <data name="FormMenuStrip_Help_HelpDoc.Text" xml:space="preserve">
-    <value>帮助文档</value>
-  </data>
-  <data name="帮助ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>148, 22</value>
-  </data>
-  <data name="ActionSelect.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;notifyIcon_main_ContextMenu_HiddenButton.Name" xml:space="preserve">
-    <value>notifyIcon_main_ContextMenu_HiddenButton</value>
-  </data>
-  <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>-1, 38</value>
-  </data>
-  <data name="&gt;&gt;StopButton.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;countdownLabel.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="&gt;&gt;countdownLabel.Name" xml:space="preserve">
-    <value>countdownLabel</value>
-  </data>
-  <data name="&gt;&gt;notifyIcon_main_ContextMenu_HiddenButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="TimeTypeSelect.Items" xml:space="preserve">
-    <value>此后</value>
-  </data>
-  <data name="&gt;&gt;FormMenuStrip_Help_AutoCheckUpdate.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;min5.Name" xml:space="preserve">
-    <value>min5</value>
-  </data>
-  <data name="TimeInput.Location" type="System.Drawing.Point, System.Drawing">
-    <value>61, 38</value>
-  </data>
-  <data name="notifyIcon_main_ContextMenu.Size" type="System.Drawing.Size, System.Drawing">
-    <value>149, 120</value>
-  </data>
-  <data name="TimePicker.Location" type="System.Drawing.Point, System.Drawing">
-    <value>61, 38</value>
-  </data>
-  <data name="nmc__AutoCheckUpdate.Size" type="System.Drawing.Size, System.Drawing">
-    <value>148, 22</value>
-  </data>
-  <data name="StartButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top</value>
-  </data>
-  <data name="&gt;&gt;TimePicker.Type" xml:space="preserve">
-    <value>System.Windows.Forms.DateTimePicker, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="s30.Text" xml:space="preserve">
-    <value>30秒</value>
-  </data>
-  <data name="&gt;&gt;autoTask_ToolStripMenuItem.Name" xml:space="preserve">
-    <value>autoTask_ToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;帮助文档ToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;关于ToolStripMenuItem.Name" xml:space="preserve">
-    <value>关于ToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;toolStripMenuItem2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="min40.Text" xml:space="preserve">
-    <value>40分钟</value>
-  </data>
-  <data name="&gt;&gt;FormMenuStrip.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="TimePicker.CustomFormat" xml:space="preserve">
-    <value>yyyy/MM/dd HH:mm:ss</value>
-  </data>
-  <data name="&gt;&gt;ActionSelect.ZOrder" xml:space="preserve">
-    <value>8</value>
-  </data>
-  <data name="toolStripMenuItem2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>145, 6</value>
-  </data>
-  <data name="min10.Text" xml:space="preserve">
-    <value>10分钟</value>
-  </data>
-  <data name="&gt;&gt;nmc__AutoCheckUpdate.Name" xml:space="preserve">
-    <value>nmc__AutoCheckUpdate</value>
-  </data>
-  <data name="ActionSelect.Items5" xml:space="preserve">
-    <value>注销</value>
-  </data>
-  <data name="&gt;&gt;toolStripMenuItem2.Name" xml:space="preserve">
-    <value>toolStripMenuItem2</value>
-  </data>
-  <data name="&gt;&gt;notifyIcon_main_ContextMenu_ShowButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="TimeInput.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Center</value>
-  </data>
-  <data name="autoTask_ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>148, 22</value>
-  </data>
-  <data name="&gt;&gt;toolStripMenuItem5.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="s10.Size" type="System.Drawing.Size, System.Drawing">
-    <value>114, 22</value>
-  </data>
-  <data name="&gt;&gt;FormMenuStrip_Help.Name" xml:space="preserve">
-    <value>FormMenuStrip_Help</value>
-  </data>
-  <data name="&gt;&gt;帮助文档ToolStripMenuItem.Name" xml:space="preserve">
-    <value>帮助文档ToolStripMenuItem</value>
-  </data>
-  <data name="FormMenuStrip_Help_AutoCheckUpdate.Text" xml:space="preserve">
-    <value>自动检测更新</value>
-  </data>
-  <data name="label2.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleCenter</value>
-  </data>
-  <data name="&gt;&gt;$this.Name" xml:space="preserve">
-    <value>Main</value>
-  </data>
-  <data name="&gt;&gt;TimePicker.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;StopButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;min1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="ActionSelect.Size" type="System.Drawing.Size, System.Drawing">
-    <value>222, 25</value>
-  </data>
-  <data name="countdownLabel.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="&gt;&gt;自动定时任务ToolStripMenuItem.Name" xml:space="preserve">
-    <value>自动定时任务ToolStripMenuItem</value>
-  </data>
-  <data name="StopButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>49, 28</value>
-  </data>
-  <data name="&gt;&gt;notifyIcon_main_ContextMenu_ExitButton.Name" xml:space="preserve">
-    <value>notifyIcon_main_ContextMenu_ExitButton</value>
-  </data>
-  <data name="label1.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleCenter</value>
-  </data>
-  <data name="&gt;&gt;GyToolStripMenuItem.Name" xml:space="preserve">
-    <value>GyToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;nmc__AutoCheckUpdate.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="min5.Text" xml:space="preserve">
-    <value>5分钟</value>
-  </data>
-  <data name="&gt;&gt;自动定时任务ToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="min20.Text" xml:space="preserve">
-    <value>20分钟</value>
-  </data>
-  <data name="min1.Text" xml:space="preserve">
-    <value>1分钟</value>
-  </data>
-  <data name="countdownLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>20</value>
-  </data>
-  <data name="&gt;&gt;min10.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="label2.TabIndex" type="System.Int32, mscorlib">
-    <value>22</value>
-  </data>
-  <data name="&gt;&gt;TimeTypeSelect.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="ActionSelect.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Left, Right</value>
-  </data>
-  <data name="notifyIcon_main_ContextMenu_ExitButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>148, 22</value>
-  </data>
-  <data name="&gt;&gt;TimePicker.Name" xml:space="preserve">
-    <value>TimePicker</value>
-  </data>
   <data name="notifyIcon_main.Text" xml:space="preserve">
     <value>定时电源</value>
   </data>
-  <data name="&gt;&gt;StopButton.Name" xml:space="preserve">
-    <value>StopButton</value>
-  </data>
-  <data name="&gt;&gt;min5.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;FormMenuStrip_Help_AutoCheckUpdate.Name" xml:space="preserve">
-    <value>FormMenuStrip_Help_AutoCheckUpdate</value>
-  </data>
-  <data name="&gt;&gt;nmc_CheckUpdate.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Form, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="自动定时任务ToolStripMenuItem.Text" xml:space="preserve">
-    <value>自动定时任务</value>
-  </data>
-  <data name="&gt;&gt;StartButton.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;FormMenuStrip_Help_HelpDoc.Name" xml:space="preserve">
-    <value>FormMenuStrip_Help_HelpDoc</value>
-  </data>
-  <data name="toolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>145, 6</value>
-  </data>
-  <data name="h2.Text" xml:space="preserve">
-    <value>2小时</value>
-  </data>
-  <data name="GyToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>148, 22</value>
-  </data>
-  <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
-    <value>276, 102</value>
-  </data>
-  <data name="&gt;&gt;autoTask_ToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="label2.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft YaHei UI, 10pt</value>
-  </data>
-  <data name="StopButton.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="&gt;&gt;label1.Name" xml:space="preserve">
-    <value>label1</value>
-  </data>
-  <data name="&gt;&gt;notifyIcon_main_ContextMenu.Name" xml:space="preserve">
-    <value>notifyIcon_main_ContextMenu</value>
-  </data>
-  <data name="TimePicker.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="TimeTypeSelect.Size" type="System.Drawing.Size, System.Drawing">
-    <value>48, 25</value>
-  </data>
-  <data name="&gt;&gt;StartButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="min20.Size" type="System.Drawing.Size, System.Drawing">
-    <value>114, 22</value>
-  </data>
-  <data name="ActionSelect.Location" type="System.Drawing.Point, System.Drawing">
-    <value>61, 8</value>
-  </data>
-  <data name="label1.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft YaHei UI, 10pt</value>
-  </data>
-  <data name="&gt;&gt;TimeTypeSelect.Name" xml:space="preserve">
-    <value>TimeTypeSelect</value>
-  </data>
-  <data name="label1.TabIndex" type="System.Int32, mscorlib">
-    <value>21</value>
-  </data>
-  <data name="TimePicker.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Left, Right</value>
-  </data>
-  <data name="TimePicker.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft YaHei UI, 10pt</value>
-  </data>
-  <data name="FormMenuStrip_NewTaskFile.Text" xml:space="preserve">
-    <value>新建任务文件</value>
-  </data>
-  <data name="TimeInput.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="notifyIcon_main_ContextMenu_ExitButton.Text" xml:space="preserve">
-    <value>退出</value>
-  </data>
-  <data name="&gt;&gt;toolStripMenuItem1.Name" xml:space="preserve">
-    <value>toolStripMenuItem1</value>
-  </data>
-  <data name="StopButton.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="&gt;&gt;关于ToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="h1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>114, 22</value>
-  </data>
-  <data name="TimeInput_ContextMenu.Size" type="System.Drawing.Size, System.Drawing">
-    <value>115, 202</value>
-  </data>
-  <data name="label1.Text" xml:space="preserve">
-    <value>操作:</value>
-  </data>
-  <data name="&gt;&gt;min1.Name" xml:space="preserve">
-    <value>min1</value>
-  </data>
-  <data name="&gt;&gt;TimeInput_ContextMenu.Name" xml:space="preserve">
-    <value>TimeInput_ContextMenu</value>
-  </data>
-  <data name="帮助ToolStripMenuItem.Text" xml:space="preserve">
-    <value>帮助</value>
-  </data>
-  <data name="&gt;&gt;TimePicker.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="ActionSelect.Items" xml:space="preserve">
-    <value>关机</value>
-  </data>
-  <data name="toolStripMenuItem4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>145, 6</value>
-  </data>
   <data name="notifyIcon_main.Visible" type="System.Boolean, mscorlib">
     <value>True</value>
+  </data>
+  <metadata name="poisonStyleManager.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>729, 17</value>
+  </metadata>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="$this.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>7, 17</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>307, 134</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -754,259 +910,218 @@
         /wD/w/8A
 </value>
   </data>
-  <data name="&gt;&gt;TimeInput.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="min1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>114, 22</value>
-  </data>
-  <data name="min5.Size" type="System.Drawing.Size, System.Drawing">
-    <value>114, 22</value>
-  </data>
-  <data name="countdownLabel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom</value>
-  </data>
-  <data name="StopButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top</value>
-  </data>
-  <data name="&gt;&gt;h2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="TimeInput.Size" type="System.Drawing.Size, System.Drawing">
-    <value>171, 23</value>
-  </data>
-  <data name="&gt;&gt;FormMenuStrip_NewTaskFile.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="StartButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>111, 67</value>
-  </data>
-  <data name="TimeTypeSelect.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;min40.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="ActionSelect.Items3" xml:space="preserve">
-    <value>休眠</value>
-  </data>
-  <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
-    <value>11</value>
-  </data>
-  <data name="&gt;&gt;FormMenuStrip_Help_CheckUpdate.Name" xml:space="preserve">
-    <value>FormMenuStrip_Help_CheckUpdate</value>
-  </data>
-  <data name="FormMenuStrip_Help_AutoCheckUpdate.Size" type="System.Drawing.Size, System.Drawing">
-    <value>148, 22</value>
-  </data>
-  <data name="StartButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 28</value>
-  </data>
-  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+  <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
     <value>276, 102</value>
   </data>
-  <data name="&gt;&gt;帮助ToolStripMenuItem.Name" xml:space="preserve">
-    <value>帮助ToolStripMenuItem</value>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="$this.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 30, 3, 3</value>
   </data>
-  <data name="&gt;&gt;StartButton.ZOrder" xml:space="preserve">
-    <value>9</value>
-  </data>
-  <data name="&gt;&gt;FormMenuStrip_Setting.Name" xml:space="preserve">
-    <value>FormMenuStrip_Setting</value>
-  </data>
-  <data name="&gt;&gt;StartButton.Name" xml:space="preserve">
-    <value>StartButton</value>
-  </data>
-  <data name="&gt;&gt;FormMenuStrip_NewTaskFile.Name" xml:space="preserve">
-    <value>FormMenuStrip_NewTaskFile</value>
-  </data>
-  <data name="&gt;&gt;toolStripMenuItem3.Name" xml:space="preserve">
-    <value>toolStripMenuItem3</value>
-  </data>
-  <data name="countdownLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>14, 64</value>
-  </data>
-  <data name="notifyIcon_main_ContextMenu_HiddenButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>148, 22</value>
-  </data>
-  <data name="ActionSelect.Items2" xml:space="preserve">
-    <value>睡眠</value>
-  </data>
-  <data name="&gt;&gt;min10.Name" xml:space="preserve">
-    <value>min10</value>
-  </data>
-  <data name="toolStripMenuItem5.Size" type="System.Drawing.Size, System.Drawing">
-    <value>145, 6</value>
-  </data>
-  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>61, 20</value>
-  </data>
-  <data name="&gt;&gt;FormMenuStrip_Setting.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;h1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="StopButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>236, 67</value>
-  </data>
-  <data name="StopButton.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
-  </data>
-  <data name="min10.Size" type="System.Drawing.Size, System.Drawing">
-    <value>114, 22</value>
-  </data>
-  <data name="&gt;&gt;min20.Name" xml:space="preserve">
-    <value>min20</value>
-  </data>
-  <data name="notifyIcon_main_ContextMenu_HiddenButton.Text" xml:space="preserve">
-    <value>隐藏主窗口</value>
-  </data>
-  <data name="&gt;&gt;toolStripMenuItem4.Name" xml:space="preserve">
-    <value>toolStripMenuItem4</value>
-  </data>
-  <data name="&gt;&gt;h2.Name" xml:space="preserve">
-    <value>h2</value>
-  </data>
-  <data name="h2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>114, 22</value>
-  </data>
-  <data name="&gt;&gt;TimeInput.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="GyToolStripMenuItem.Text" xml:space="preserve">
-    <value>关于</value>
-  </data>
-  <data name="TimeTypeSelect.Items1" xml:space="preserve">
-    <value>此时</value>
-  </data>
-  <data name="&gt;&gt;toolStripMenuItem4.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="h1.Text" xml:space="preserve">
-    <value>1小时</value>
-  </data>
-  <data name="&gt;&gt;GyToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;TimeInput.Name" xml:space="preserve">
-    <value>TimeInput</value>
-  </data>
-  <data name="&gt;&gt;s10.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="TimeInput.PlaceholderText" xml:space="preserve">
-    <value>0:1:0或1min或1分</value>
+  <data name="$this.Text" xml:space="preserve">
+    <value>TP</value>
   </data>
   <data name="&gt;&gt;s10.Name" xml:space="preserve">
     <value>s10</value>
   </data>
-  <data name="nmc_CheckUpdate.Size" type="System.Drawing.Size, System.Drawing">
-    <value>148, 22</value>
+  <data name="&gt;&gt;s10.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;label2.Name" xml:space="preserve">
-    <value>label2</value>
+  <data name="&gt;&gt;s30.Name" xml:space="preserve">
+    <value>s30</value>
   </data>
   <data name="&gt;&gt;s30.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;ActionSelect.Name" xml:space="preserve">
-    <value>ActionSelect</value>
+  <data name="&gt;&gt;min1.Name" xml:space="preserve">
+    <value>min1</value>
   </data>
-  <data name="s30.Size" type="System.Drawing.Size, System.Drawing">
-    <value>114, 22</value>
+  <data name="&gt;&gt;min1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;min5.Name" xml:space="preserve">
+    <value>min5</value>
+  </data>
+  <data name="&gt;&gt;min5.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;min10.Name" xml:space="preserve">
+    <value>min10</value>
+  </data>
+  <data name="&gt;&gt;min10.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;min20.Name" xml:space="preserve">
+    <value>min20</value>
+  </data>
+  <data name="&gt;&gt;min20.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;min40.Name" xml:space="preserve">
+    <value>min40</value>
+  </data>
+  <data name="&gt;&gt;min40.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;h1.Name" xml:space="preserve">
+    <value>h1</value>
+  </data>
+  <data name="&gt;&gt;h1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;h2.Name" xml:space="preserve">
+    <value>h2</value>
+  </data>
+  <data name="&gt;&gt;h2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;FormMenuStrip_NewTaskFile.Name" xml:space="preserve">
+    <value>FormMenuStrip_NewTaskFile</value>
+  </data>
+  <data name="&gt;&gt;FormMenuStrip_NewTaskFile.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStripMenuItem5.Name" xml:space="preserve">
+    <value>toolStripMenuItem5</value>
+  </data>
+  <data name="&gt;&gt;toolStripMenuItem5.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;FormMenuStrip_Setting.Name" xml:space="preserve">
+    <value>FormMenuStrip_Setting</value>
+  </data>
+  <data name="&gt;&gt;FormMenuStrip_Setting.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;autoTask_ToolStripMenuItem.Name" xml:space="preserve">
+    <value>autoTask_ToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;autoTask_ToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStripMenuItem1.Name" xml:space="preserve">
+    <value>toolStripMenuItem1</value>
+  </data>
+  <data name="&gt;&gt;toolStripMenuItem1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;FormMenuStrip_Help.Name" xml:space="preserve">
+    <value>FormMenuStrip_Help</value>
+  </data>
+  <data name="&gt;&gt;FormMenuStrip_Help.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;FormMenuStrip_Help_CheckUpdate.Name" xml:space="preserve">
+    <value>FormMenuStrip_Help_CheckUpdate</value>
+  </data>
+  <data name="&gt;&gt;FormMenuStrip_Help_CheckUpdate.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;FormMenuStrip_Help_AutoCheckUpdate.Name" xml:space="preserve">
+    <value>FormMenuStrip_Help_AutoCheckUpdate</value>
+  </data>
+  <data name="&gt;&gt;FormMenuStrip_Help_AutoCheckUpdate.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStripMenuItem3.Name" xml:space="preserve">
+    <value>toolStripMenuItem3</value>
+  </data>
+  <data name="&gt;&gt;toolStripMenuItem3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;FormMenuStrip_Help_HelpDoc.Name" xml:space="preserve">
+    <value>FormMenuStrip_Help_HelpDoc</value>
+  </data>
+  <data name="&gt;&gt;FormMenuStrip_Help_HelpDoc.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;GyToolStripMenuItem.Name" xml:space="preserve">
+    <value>GyToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;GyToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;notifyIcon_main.Name" xml:space="preserve">
+    <value>notifyIcon_main</value>
+  </data>
+  <data name="&gt;&gt;notifyIcon_main.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NotifyIcon, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;notifyIcon_main_ContextMenu_ShowButton.Name" xml:space="preserve">
+    <value>notifyIcon_main_ContextMenu_ShowButton</value>
+  </data>
+  <data name="&gt;&gt;notifyIcon_main_ContextMenu_ShowButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;notifyIcon_main_ContextMenu_HiddenButton.Name" xml:space="preserve">
+    <value>notifyIcon_main_ContextMenu_HiddenButton</value>
+  </data>
+  <data name="&gt;&gt;notifyIcon_main_ContextMenu_HiddenButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;自动定时任务ToolStripMenuItem.Name" xml:space="preserve">
+    <value>自动定时任务ToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;自动定时任务ToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStripMenuItem2.Name" xml:space="preserve">
+    <value>toolStripMenuItem2</value>
+  </data>
+  <data name="&gt;&gt;toolStripMenuItem2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;帮助ToolStripMenuItem.Name" xml:space="preserve">
+    <value>帮助ToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;帮助ToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;nmc_CheckUpdate.Name" xml:space="preserve">
     <value>nmc_CheckUpdate</value>
   </data>
-  <data name="&gt;&gt;countdownLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;nmc_CheckUpdate.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="FormMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>149, 104</value>
+  <data name="&gt;&gt;nmc__AutoCheckUpdate.Name" xml:space="preserve">
+    <value>nmc__AutoCheckUpdate</value>
   </data>
-  <data name="TimePicker.Size" type="System.Drawing.Size, System.Drawing">
-    <value>171, 24</value>
+  <data name="&gt;&gt;nmc__AutoCheckUpdate.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>7, 17</value>
+  <data name="&gt;&gt;toolStripMenuItem4.Name" xml:space="preserve">
+    <value>toolStripMenuItem4</value>
   </data>
-  <data name="帮助文档ToolStripMenuItem.Text" xml:space="preserve">
-    <value>帮助文档</value>
+  <data name="&gt;&gt;toolStripMenuItem4.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="ActionSelect.Items4" xml:space="preserve">
-    <value>锁定</value>
+  <data name="&gt;&gt;帮助文档ToolStripMenuItem.Name" xml:space="preserve">
+    <value>帮助文档ToolStripMenuItem</value>
   </data>
-  <data name="autoTask_ToolStripMenuItem.Text" xml:space="preserve">
-    <value>自动定时任务</value>
+  <data name="&gt;&gt;帮助文档ToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="FormMenuStrip_Help_HelpDoc.Size" type="System.Drawing.Size, System.Drawing">
-    <value>148, 22</value>
+  <data name="&gt;&gt;关于ToolStripMenuItem.Name" xml:space="preserve">
+    <value>关于ToolStripMenuItem</value>
   </data>
-  <data name="FormMenuStrip_Help_CheckUpdate.Size" type="System.Drawing.Size, System.Drawing">
-    <value>148, 22</value>
+  <data name="&gt;&gt;关于ToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>61, 20</value>
+  <data name="&gt;&gt;notifyIcon_main_ContextMenu_ExitButton.Name" xml:space="preserve">
+    <value>notifyIcon_main_ContextMenu_ExitButton</value>
   </data>
-  <data name="toolStripMenuItem3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>145, 6</value>
+  <data name="&gt;&gt;notifyIcon_main_ContextMenu_ExitButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;FormMenuStrip.Name" xml:space="preserve">
-    <value>FormMenuStrip</value>
+  <data name="&gt;&gt;poisonStyleManager.Name" xml:space="preserve">
+    <value>poisonStyleManager</value>
   </data>
-  <data name="TimeTypeSelect.Location" type="System.Drawing.Point, System.Drawing">
-    <value>235, 38</value>
+  <data name="&gt;&gt;poisonStyleManager.Type" xml:space="preserve">
+    <value>ReaLTaiizor.Manager.PoisonStyleManager, ReaLTaiizor, Culture=neutral, PublicKeyToken=null</value>
   </data>
-  <data name="&gt;&gt;TimeInput_ContextMenu.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>Main</value>
   </data>
-  <metadata name="notifyIcon_main_ContextMenu.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>502, 17</value>
-  </metadata>
-  <metadata name="countdownLabel.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="FormMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>212, 17</value>
-  </metadata>
-  <metadata name="TimePicker.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="ActionSelect.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="StartButton.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="label1.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="label2.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="StopButton.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="TimeInput_ContextMenu.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
-  <metadata name="TimeTypeSelect.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="$this.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="$this.Language" type="System.Globalization.CultureInfo, System.Private.CoreLib, Culture=neutral, PublicKeyToken=7cec85d7bea7798e">
-    <value>zh-CN</value>
-  </metadata>
-  <metadata name="TimeInput.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="notifyIcon_main.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>357, 17</value>
-  </metadata>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>ReaLTaiizor.Forms.PoisonForm, ReaLTaiizor, Culture=neutral, PublicKeyToken=null</value>
+  </data>
 </root>

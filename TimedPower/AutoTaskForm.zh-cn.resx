@@ -121,31 +121,6 @@
   <data name="taskList.ScrollAlwaysVisible" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="TimeInput.Location" type="System.Drawing.Point, System.Drawing">
-    <value>64, 59</value>
-  </data>
-  <data name="TimeInput.Size" type="System.Drawing.Size, System.Drawing">
-    <value>178, 23</value>
-  </data>
-  <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>216, 30</value>
-  </data>
-  <data name="TimePicker.Location" type="System.Drawing.Point, System.Drawing">
-    <value>64, 58</value>
-  </data>
-  <data name="TimePicker.Size" type="System.Drawing.Size, System.Drawing">
-    <value>178, 24</value>
-  </data>
-  <data name="taskName_TextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>49, 27</value>
-  </data>
-  <data name="taskName_TextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>167, 24</value>
-  </data>
-  <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>242, 60</value>
-  </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         AAABAAIAEBAAAAEAIABoBAAAJgAAABgYAAABACAAiAkAAI4EAAAoAAAAEAAAACAAAAABACAAAAAAAAAE

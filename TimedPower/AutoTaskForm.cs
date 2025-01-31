@@ -1,4 +1,5 @@
-﻿using System.Globalization;
+﻿using ReaLTaiizor.Forms;
+using System.Globalization;
 using System.Resources;
 using System.Xml;
 using YamlDotNet.Core.Tokens;
@@ -7,14 +8,32 @@ using static TimedPower.DataCore;
 
 namespace TimedPower
 {
-	public partial class AutoTaskForm : Form
-	{
+	public partial class AutoTaskForm : PoisonForm {
 		public bool IsStart => isStart;
 		bool isStart = false;
 		public AutoTaskForm() {
 			UpdateLanguageResource();
 			InitializeComponent();
 			Main.ProgramLanguage.UpdateLanguage += UpdateLanguage;
+
+			void UpdateTheme() => themeManager.UpdateFormTheme(ref poisonStyleManager);
+			themeManager.UpdateTheme += UpdateTheme;
+			UpdateTheme();
+			
+			void moreControlsThemeUpdate() {
+				switch (themeManager.CurrentThemeValue) {
+					case TimedPower.Theme.Themes.light:
+						taskList.BackColor = SystemColors.Control;
+						taskList.ForeColor = SystemColors.ControlText;
+						break;
+					case TimedPower.Theme.Themes.dark:
+						taskList.BackColor = SystemColors.ControlDarkDark;
+						taskList.ForeColor = SystemColors.ControlLightLight;
+						break;
+				}
+			}
+			themeManager.UpdateTheme += moreControlsThemeUpdate;
+			moreControlsThemeUpdate();
 		}
 		static ResourceManager langRes=null!;
 		static string GetLangStr(string key, string head = "autoTaskForm") => langRes.GetString($"{head}.{key}", CultureInfo.CurrentUICulture)!;

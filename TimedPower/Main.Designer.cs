@@ -49,9 +49,9 @@
 		private void InitializeComponent() {
 			components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
-			ActionSelect = new ComboBox();
-			TimePicker = new DateTimePicker();
-			TimeInput_ContextMenu = new ContextMenuStrip(components);
+			ActionSelect = new ReaLTaiizor.Controls.PoisonComboBox();
+			TimePicker = new ReaLTaiizor.Controls.PoisonDateTime();
+			TimeInput_ContextMenu = new ReaLTaiizor.Controls.PoisonContextMenuStrip(components);
 			s10 = new ToolStripMenuItem();
 			s30 = new ToolStripMenuItem();
 			min1 = new ToolStripMenuItem();
@@ -61,14 +61,14 @@
 			min40 = new ToolStripMenuItem();
 			h1 = new ToolStripMenuItem();
 			h2 = new ToolStripMenuItem();
-			label1 = new Label();
-			label2 = new Label();
-			TimeTypeSelect = new ComboBox();
-			TimeInput = new TextBox();
-			countdownLabel = new Label();
-			StartButton = new Button();
-			StopButton = new Button();
-			FormMenuStrip = new ContextMenuStrip(components);
+			label1 = new ReaLTaiizor.Controls.SmallLabel();
+			label2 = new ReaLTaiizor.Controls.SmallLabel();
+			TimeTypeSelect = new ReaLTaiizor.Controls.PoisonComboBox();
+			TimeInput = new ControlOverride.PoisonTextBox_OR();
+			countdownLabel = new ReaLTaiizor.Controls.BigLabel();
+			StartButton = new ReaLTaiizor.Controls.PoisonButton();
+			StopButton = new ReaLTaiizor.Controls.PoisonButton();
+			FormMenuStrip = new ReaLTaiizor.Controls.PoisonContextMenuStrip(components);
 			FormMenuStrip_NewTaskFile = new ToolStripMenuItem();
 			toolStripMenuItem5 = new ToolStripSeparator();
 			FormMenuStrip_Setting = new ToolStripMenuItem();
@@ -81,7 +81,7 @@
 			FormMenuStrip_Help_HelpDoc = new ToolStripMenuItem();
 			GyToolStripMenuItem = new ToolStripMenuItem();
 			notifyIcon_main = new NotifyIcon(components);
-			notifyIcon_main_ContextMenu = new ContextMenuStrip(components);
+			notifyIcon_main_ContextMenu = new ReaLTaiizor.Controls.PoisonContextMenuStrip(components);
 			notifyIcon_main_ContextMenu_ShowButton = new ToolStripMenuItem();
 			notifyIcon_main_ContextMenu_HiddenButton = new ToolStripMenuItem();
 			自动定时任务ToolStripMenuItem = new ToolStripMenuItem();
@@ -93,33 +93,35 @@
 			帮助文档ToolStripMenuItem = new ToolStripMenuItem();
 			关于ToolStripMenuItem = new ToolStripMenuItem();
 			notifyIcon_main_ContextMenu_ExitButton = new ToolStripMenuItem();
+			poisonStyleManager = new ReaLTaiizor.Manager.PoisonStyleManager(components);
 			TimeInput_ContextMenu.SuspendLayout();
 			FormMenuStrip.SuspendLayout();
 			notifyIcon_main_ContextMenu.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)poisonStyleManager).BeginInit();
 			SuspendLayout();
 			// 
 			// ActionSelect
 			// 
 			resources.ApplyResources(ActionSelect, "ActionSelect");
-			ActionSelect.DropDownStyle = ComboBoxStyle.DropDownList;
 			ActionSelect.FormattingEnabled = true;
 			ActionSelect.Items.AddRange(new object[] { resources.GetString("ActionSelect.Items"), resources.GetString("ActionSelect.Items1"), resources.GetString("ActionSelect.Items2"), resources.GetString("ActionSelect.Items3"), resources.GetString("ActionSelect.Items4"), resources.GetString("ActionSelect.Items5") });
 			ActionSelect.Name = "ActionSelect";
+			ActionSelect.UseSelectable = true;
 			// 
 			// TimePicker
 			// 
 			resources.ApplyResources(TimePicker, "TimePicker");
+			TimePicker.FontSize = ReaLTaiizor.Extension.Poison.PoisonDateTimeSize.Tall;
 			TimePicker.Format = DateTimePickerFormat.Custom;
 			TimePicker.Name = "TimePicker";
-			TimePicker.ShowUpDown = true;
 			TimePicker.KeyPress += TimePicker_KeyPress;
 			TimePicker.KeyUp += TimePicker_KeyUp;
 			// 
 			// TimeInput_ContextMenu
 			// 
-			resources.ApplyResources(TimeInput_ContextMenu, "TimeInput_ContextMenu");
 			TimeInput_ContextMenu.Items.AddRange(new ToolStripItem[] { s10, s30, min1, min5, min10, min20, min40, h1, h2 });
 			TimeInput_ContextMenu.Name = "TimePicker_ContextMenu";
+			resources.ApplyResources(TimeInput_ContextMenu, "TimeInput_ContextMenu");
 			// 
 			// s10
 			// 
@@ -177,21 +179,25 @@
 			// 
 			// label1
 			// 
+			label1.BackColor = Color.Transparent;
 			resources.ApplyResources(label1, "label1");
+			label1.ForeColor = Color.FromArgb(142, 142, 142);
 			label1.Name = "label1";
 			// 
 			// label2
 			// 
+			label2.BackColor = Color.Transparent;
 			resources.ApplyResources(label2, "label2");
+			label2.ForeColor = Color.FromArgb(142, 142, 142);
 			label2.Name = "label2";
 			// 
 			// TimeTypeSelect
 			// 
 			resources.ApplyResources(TimeTypeSelect, "TimeTypeSelect");
-			TimeTypeSelect.DropDownStyle = ComboBoxStyle.DropDownList;
 			TimeTypeSelect.FormattingEnabled = true;
 			TimeTypeSelect.Items.AddRange(new object[] { resources.GetString("TimeTypeSelect.Items"), resources.GetString("TimeTypeSelect.Items1") });
 			TimeTypeSelect.Name = "TimeTypeSelect";
+			TimeTypeSelect.UseSelectable = true;
 			TimeTypeSelect.SelectedIndexChanged += TimeTypeSelect_SelectedIndexChanged;
 			// 
 			// TimeInput
@@ -199,7 +205,32 @@
 			resources.ApplyResources(TimeInput, "TimeInput");
 			TimeInput.CharacterCasing = CharacterCasing.Lower;
 			TimeInput.ContextMenuStrip = TimeInput_ContextMenu;
+			// 
+			// 
+			// 
+			TimeInput.CustomButton.Image = (Image)resources.GetObject("resource.Image");
+			TimeInput.CustomButton.ImeMode = (ImeMode)resources.GetObject("resource.ImeMode");
+			TimeInput.CustomButton.Location = (Point)resources.GetObject("resource.Location");
+			TimeInput.CustomButton.Name = "";
+			TimeInput.CustomButton.Size = (Size)resources.GetObject("resource.Size");
+			TimeInput.CustomButton.Style = ReaLTaiizor.Enum.Poison.ColorStyle.Blue;
+			TimeInput.CustomButton.TabIndex = (int)resources.GetObject("resource.TabIndex");
+			TimeInput.CustomButton.Theme = ReaLTaiizor.Enum.Poison.ThemeStyle.Light;
+			TimeInput.CustomButton.UseSelectable = true;
+			TimeInput.CustomButton.Visible = (bool)resources.GetObject("resource.Visible");
+			TimeInput.FontSize = ReaLTaiizor.Extension.Poison.PoisonTextBoxSize.Tall;
+			TimeInput.MaxLength = 32767;
 			TimeInput.Name = "TimeInput";
+			TimeInput.PasswordChar = '\0';
+			TimeInput.ScrollBars = ScrollBars.None;
+			TimeInput.SelectedText = "";
+			TimeInput.SelectionLength = 0;
+			TimeInput.SelectionStart = 0;
+			TimeInput.ShortcutsEnabled = true;
+			TimeInput.ShowClearButton = true;
+			TimeInput.UseSelectable = true;
+			TimeInput.WaterMarkColor = Color.Gray;
+			TimeInput.WaterMarkFont = new Font("Microsoft YaHei UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 134);
 			TimeInput.KeyPress += TimeInput_KeyPress;
 			TimeInput.KeyUp += TimeInput_KeyUp;
 			TimeInput.Leave += TimeInput_Leave;
@@ -207,6 +238,8 @@
 			// countdownLabel
 			// 
 			resources.ApplyResources(countdownLabel, "countdownLabel");
+			countdownLabel.BackColor = Color.Transparent;
+			countdownLabel.ForeColor = Color.Black;
 			countdownLabel.Name = "countdownLabel";
 			countdownLabel.Tag = "";
 			countdownLabel.Resize += CountdownLabel_Resize;
@@ -214,22 +247,28 @@
 			// StartButton
 			// 
 			resources.ApplyResources(StartButton, "StartButton");
+			StartButton.FontSize = ReaLTaiizor.Extension.Poison.PoisonButtonSize.Medium;
+			StartButton.FontWeight = ReaLTaiizor.Extension.Poison.PoisonButtonWeight.Regular;
 			StartButton.Name = "StartButton";
+			StartButton.UseSelectable = true;
 			StartButton.UseVisualStyleBackColor = true;
 			StartButton.Click += StartButton_Click;
 			// 
 			// StopButton
 			// 
 			resources.ApplyResources(StopButton, "StopButton");
+			StopButton.FontSize = ReaLTaiizor.Extension.Poison.PoisonButtonSize.Medium;
+			StopButton.FontWeight = ReaLTaiizor.Extension.Poison.PoisonButtonWeight.Regular;
 			StopButton.Name = "StopButton";
+			StopButton.UseSelectable = true;
 			StopButton.UseVisualStyleBackColor = true;
 			StopButton.Click += StopButton_Click;
 			// 
 			// FormMenuStrip
 			// 
-			resources.ApplyResources(FormMenuStrip, "FormMenuStrip");
 			FormMenuStrip.Items.AddRange(new ToolStripItem[] { FormMenuStrip_NewTaskFile, toolStripMenuItem5, FormMenuStrip_Setting, autoTask_ToolStripMenuItem, toolStripMenuItem1, FormMenuStrip_Help });
 			FormMenuStrip.Name = "GyMenuStrip";
+			resources.ApplyResources(FormMenuStrip, "FormMenuStrip");
 			FormMenuStrip.Opening += FormMenuStrip_Opening;
 			// 
 			// FormMenuStrip_NewTaskFile
@@ -240,8 +279,8 @@
 			// 
 			// toolStripMenuItem5
 			// 
-			resources.ApplyResources(toolStripMenuItem5, "toolStripMenuItem5");
 			toolStripMenuItem5.Name = "toolStripMenuItem5";
+			resources.ApplyResources(toolStripMenuItem5, "toolStripMenuItem5");
 			// 
 			// FormMenuStrip_Setting
 			// 
@@ -257,8 +296,8 @@
 			// 
 			// toolStripMenuItem1
 			// 
-			resources.ApplyResources(toolStripMenuItem1, "toolStripMenuItem1");
 			toolStripMenuItem1.Name = "toolStripMenuItem1";
+			resources.ApplyResources(toolStripMenuItem1, "toolStripMenuItem1");
 			// 
 			// FormMenuStrip_Help
 			// 
@@ -282,8 +321,8 @@
 			// 
 			// toolStripMenuItem3
 			// 
-			resources.ApplyResources(toolStripMenuItem3, "toolStripMenuItem3");
 			toolStripMenuItem3.Name = "toolStripMenuItem3";
+			resources.ApplyResources(toolStripMenuItem3, "toolStripMenuItem3");
 			// 
 			// FormMenuStrip_Help_HelpDoc
 			// 
@@ -299,15 +338,15 @@
 			// 
 			// notifyIcon_main
 			// 
-			resources.ApplyResources(notifyIcon_main, "notifyIcon_main");
 			notifyIcon_main.ContextMenuStrip = notifyIcon_main_ContextMenu;
+			resources.ApplyResources(notifyIcon_main, "notifyIcon_main");
 			notifyIcon_main.MouseClick += NotifyIcon_main_MouseClick;
 			// 
 			// notifyIcon_main_ContextMenu
 			// 
-			resources.ApplyResources(notifyIcon_main_ContextMenu, "notifyIcon_main_ContextMenu");
 			notifyIcon_main_ContextMenu.Items.AddRange(new ToolStripItem[] { notifyIcon_main_ContextMenu_ShowButton, notifyIcon_main_ContextMenu_HiddenButton, 自动定时任务ToolStripMenuItem, toolStripMenuItem2, 帮助ToolStripMenuItem, notifyIcon_main_ContextMenu_ExitButton });
 			notifyIcon_main_ContextMenu.Name = "notifyIcon_main_ContextMenu";
+			resources.ApplyResources(notifyIcon_main_ContextMenu, "notifyIcon_main_ContextMenu");
 			notifyIcon_main_ContextMenu.Opening += NotifyIcon_main_ContextMenu_Opening;
 			// 
 			// notifyIcon_main_ContextMenu_ShowButton
@@ -330,8 +369,8 @@
 			// 
 			// toolStripMenuItem2
 			// 
-			resources.ApplyResources(toolStripMenuItem2, "toolStripMenuItem2");
 			toolStripMenuItem2.Name = "toolStripMenuItem2";
+			resources.ApplyResources(toolStripMenuItem2, "toolStripMenuItem2");
 			// 
 			// 帮助ToolStripMenuItem
 			// 
@@ -355,8 +394,8 @@
 			// 
 			// toolStripMenuItem4
 			// 
-			resources.ApplyResources(toolStripMenuItem4, "toolStripMenuItem4");
 			toolStripMenuItem4.Name = "toolStripMenuItem4";
+			resources.ApplyResources(toolStripMenuItem4, "toolStripMenuItem4");
 			// 
 			// 帮助文档ToolStripMenuItem
 			// 
@@ -376,24 +415,33 @@
 			notifyIcon_main_ContextMenu_ExitButton.Name = "notifyIcon_main_ContextMenu_ExitButton";
 			notifyIcon_main_ContextMenu_ExitButton.Click += NotifyIcon_main_ContextMenu_ExitButton_Click;
 			// 
+			// poisonStyleManager
+			// 
+			poisonStyleManager.Owner = this;
+			// 
 			// Main
 			// 
 			resources.ApplyResources(this, "$this");
 			AutoScaleMode = AutoScaleMode.Font;
+			BackImage = Resources.langs.language.image_logo_png_32x;
+			BackImagePadding = new Padding(3, 5, 0, 0);
+			BackMaxSize = 24;
 			ContextMenuStrip = FormMenuStrip;
+			Controls.Add(StartButton);
 			Controls.Add(StopButton);
 			Controls.Add(countdownLabel);
 			Controls.Add(TimeInput);
 			Controls.Add(TimeTypeSelect);
 			Controls.Add(TimePicker);
 			Controls.Add(ActionSelect);
-			Controls.Add(StartButton);
 			Controls.Add(label2);
 			Controls.Add(label1);
-			FormBorderStyle = FormBorderStyle.FixedSingle;
+			DisplayHeader = false;
 			MaximizeBox = false;
 			Name = "Main";
-			Opacity = 0D;
+			Resizable = false;
+			ShadowType = ReaLTaiizor.Enum.Poison.FormShadowType.SystemShadow;
+			StyleManager = poisonStyleManager;
 			FormClosing += Main_FormClosing;
 			FormClosed += Main_FormClosed;
 			Load += Main_Load;
@@ -401,18 +449,18 @@
 			TimeInput_ContextMenu.ResumeLayout(false);
 			FormMenuStrip.ResumeLayout(false);
 			notifyIcon_main_ContextMenu.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)poisonStyleManager).EndInit();
 			ResumeLayout(false);
-			PerformLayout();
 		}
 
 		#endregion
 
-		private ComboBox ActionSelect;
-        private DateTimePicker TimePicker;
-        private Label label1;
-        private Label label2;
-        private ComboBox TimeTypeSelect;
-        private ContextMenuStrip TimeInput_ContextMenu;
+		private ReaLTaiizor.Controls.PoisonComboBox ActionSelect;
+        private ReaLTaiizor.Controls.PoisonDateTime TimePicker;
+        private ReaLTaiizor.Controls.SmallLabel label1;
+        private ReaLTaiizor.Controls.SmallLabel label2;
+        private ReaLTaiizor.Controls.PoisonComboBox TimeTypeSelect;
+        private ReaLTaiizor.Controls.PoisonContextMenuStrip TimeInput_ContextMenu;
         private ToolStripMenuItem s10;
         private ToolStripMenuItem s30;
         private ToolStripMenuItem min1;
@@ -422,15 +470,14 @@
         private ToolStripMenuItem min40;
         private ToolStripMenuItem h1;
         private ToolStripMenuItem h2;
-        private TextBox TimeInput;
-        private Label countdownLabel;
-        private Button StartButton;
-        private Button StopButton;
-        private ContextMenuStrip FormMenuStrip;
-        private ToolStripSeparator toolStripMenuItem1;
+        private ControlOverride.PoisonTextBox_OR TimeInput;
+        private ReaLTaiizor.Controls.BigLabel countdownLabel;
+        private ReaLTaiizor.Controls.PoisonButton StartButton;
+        private ReaLTaiizor.Controls.PoisonButton StopButton;
+        private ReaLTaiizor.Controls.PoisonContextMenuStrip FormMenuStrip;
         private NotifyIcon notifyIcon_main;
         private ToolStripMenuItem autoTask_ToolStripMenuItem;
-        private ContextMenuStrip notifyIcon_main_ContextMenu;
+        private ReaLTaiizor.Controls.PoisonContextMenuStrip notifyIcon_main_ContextMenu;
         private ToolStripMenuItem notifyIcon_main_ContextMenu_ShowButton;
         private ToolStripMenuItem notifyIcon_main_ContextMenu_HiddenButton;
         private ToolStripSeparator toolStripMenuItem2;
@@ -451,5 +498,7 @@
 		private ToolStripSeparator toolStripMenuItem5;
 		private ToolStripMenuItem FormMenuStrip_NewTaskFile;
 		private ToolStripMenuItem FormMenuStrip_Setting;
+		private ToolStripSeparator toolStripMenuItem1;
+		private ReaLTaiizor.Manager.PoisonStyleManager poisonStyleManager;
 	}
 }

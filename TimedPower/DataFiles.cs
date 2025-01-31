@@ -49,6 +49,7 @@ namespace TimedPower {
 				public required bool CloseToTaskBar { get; set; }
 				public required bool AutoCheckUpdate { get; set; }
 				public required DataCore.LanguageData.Language.Langs Language { get; set; }
+				public required TimedPower.Theme.Themes Theme { get; set; }
 			}
 			public required SettingS Setting {  get; set; }
 			public required uint Version { get; set; }
@@ -63,6 +64,7 @@ namespace TimedPower {
 					CloseToTaskBar = true,
 					AutoCheckUpdate = true,
 					Language=DataCore.LanguageData.Language.Langs.zh_cn,
+					Theme = Theme.Themes.sysDef
 				};
 				Version = 0;
 			}

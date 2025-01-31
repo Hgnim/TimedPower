@@ -118,53 +118,89 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.3500.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="ContextMenuSetting.Size" type="System.Drawing.Size, System.Drawing">
-    <value>314, 21</value>
+  <data name="ContextMenuSetting.Location" type="System.Drawing.Point, System.Drawing">
+    <value>227, 37</value>
   </data>
-  <data name="ContextMenuSetting.Text" xml:space="preserve">
+  <data name="SelfStartingSetting.Location" type="System.Drawing.Point, System.Drawing">
+    <value>227, 68</value>
+  </data>
+  <data name="CloseToTaskBarSetting.Location" type="System.Drawing.Point, System.Drawing">
+    <value>227, 99</value>
+  </data>
+  <data name="labelFor_ContextMenuSetting.Size" type="System.Drawing.Size, System.Drawing">
+    <value>216, 25</value>
+  </data>
+  <data name="labelFor_ContextMenuSetting.Text" xml:space="preserve">
     <value>Add shortcut button to Windows right-click menu</value>
   </data>
-  <data name="SelfStartingSetting.Size" type="System.Drawing.Size, System.Drawing">
-    <value>213, 21</value>
+  <data name="labelFor_SelfStartingSetting.Size" type="System.Drawing.Size, System.Drawing">
+    <value>216, 25</value>
   </data>
-  <data name="SelfStartingSetting.Text" xml:space="preserve">
+  <data name="labelFor_SelfStartingSetting.Text" xml:space="preserve">
     <value>Automatically start upon startup</value>
   </data>
-  <data name="CloseToTaskBarSetting.Size" type="System.Drawing.Size, System.Drawing">
-    <value>197, 21</value>
+  <data name="labelFor_CloseToTaskBarSetting.Size" type="System.Drawing.Size, System.Drawing">
+    <value>216, 25</value>
   </data>
-  <data name="CloseToTaskBarSetting.Text" xml:space="preserve">
+  <data name="labelFor_CloseToTaskBarSetting.Text" xml:space="preserve">
     <value>Minimize to tray when closed</value>
   </data>
   <data name="labelFor_languageSetting.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 23</value>
+    <value>131, 25</value>
   </data>
   <data name="labelFor_languageSetting.Text" xml:space="preserve">
-    <value>Language: </value>
+    <value>Language</value>
   </data>
   <data name="languageSetting.Location" type="System.Drawing.Point, System.Drawing">
-    <value>77, 90</value>
+    <value>142, 161</value>
   </data>
   <data name="okButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>145, 122</value>
+    <value>99, 196</value>
   </data>
   <data name="okButton.Text" xml:space="preserve">
     <value>OK</value>
   </data>
   <data name="cancelButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>202, 122</value>
+    <value>162, 196</value>
   </data>
   <data name="cancelButton.Text" xml:space="preserve">
     <value>Cancel</value>
   </data>
   <data name="applyButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>259, 122</value>
+    <value>225, 196</value>
   </data>
   <data name="applyButton.Text" xml:space="preserve">
     <value>Apply</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>320, 151</value>
+    <value>284, 224</value>
+  </data>
+  <data name="themeSetting.Items" xml:space="preserve">
+    <value>System Default</value>
+  </data>
+  <data name="themeSetting.Items1" xml:space="preserve">
+    <value>Light</value>
+  </data>
+  <data name="themeSetting.Items2" xml:space="preserve">
+    <value>Dark</value>
+  </data>
+  <data name="themeSetting.Location" type="System.Drawing.Point, System.Drawing">
+    <value>149, 130</value>
+  </data>
+  <data name="themeSetting.Size" type="System.Drawing.Size, System.Drawing">
+    <value>128, 25</value>
+  </data>
+  <data name="labelFor_themeSetting.Size" type="System.Drawing.Size, System.Drawing">
+    <value>138, 25</value>
+  </data>
+  <data name="labelFor_themeSetting.Text" xml:space="preserve">
+    <value>Theme</value>
+  </data>
+  <data name="formTitle.Size" type="System.Drawing.Size, System.Drawing">
+    <value>49, 19</value>
+  </data>
+  <data name="formTitle.Text" xml:space="preserve">
+    <value>Setting</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>

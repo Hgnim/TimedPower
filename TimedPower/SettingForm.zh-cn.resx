@@ -117,10 +117,91 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.3500.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="labelFor_languageSetting.Text" xml:space="preserve">
-    <value>语言：</value>
-  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="ContextMenuSetting.Location" type="System.Drawing.Point, System.Drawing">
+    <value>230, 37</value>
+  </data>
+  <data name="SelfStartingSetting.Location" type="System.Drawing.Point, System.Drawing">
+    <value>230, 68</value>
+  </data>
+  <data name="CloseToTaskBarSetting.Location" type="System.Drawing.Point, System.Drawing">
+    <value>230, 99</value>
+  </data>
+  <data name="labelFor_ContextMenuSetting.Size" type="System.Drawing.Size, System.Drawing">
+    <value>219, 25</value>
+  </data>
+  <data name="labelFor_ContextMenuSetting.Text" xml:space="preserve">
+    <value>添加快捷按钮至Windows右键菜单</value>
+  </data>
+  <data name="labelFor_SelfStartingSetting.Size" type="System.Drawing.Size, System.Drawing">
+    <value>219, 25</value>
+  </data>
+  <data name="labelFor_SelfStartingSetting.Text" xml:space="preserve">
+    <value>开机自启动</value>
+  </data>
+  <data name="labelFor_CloseToTaskBarSetting.Size" type="System.Drawing.Size, System.Drawing">
+    <value>219, 25</value>
+  </data>
+  <data name="labelFor_CloseToTaskBarSetting.Text" xml:space="preserve">
+    <value>关闭时最小化至托盘</value>
+  </data>
+  <data name="labelFor_languageSetting.Size" type="System.Drawing.Size, System.Drawing">
+    <value>134, 25</value>
+  </data>
+  <data name="labelFor_languageSetting.Text" xml:space="preserve">
+    <value>语言</value>
+  </data>
+  <data name="languageSetting.Location" type="System.Drawing.Point, System.Drawing">
+    <value>145, 161</value>
+  </data>
+  <data name="okButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>102, 196</value>
+  </data>
+  <data name="okButton.Text" xml:space="preserve">
+    <value>确定</value>
+  </data>
+  <data name="cancelButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>165, 196</value>
+  </data>
+  <data name="cancelButton.Text" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="applyButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>228, 196</value>
+  </data>
+  <data name="applyButton.Text" xml:space="preserve">
+    <value>应用</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>287, 224</value>
+  </data>
+  <data name="themeSetting.Items" xml:space="preserve">
+    <value>系统默认</value>
+  </data>
+  <data name="themeSetting.Items1" xml:space="preserve">
+    <value>浅色</value>
+  </data>
+  <data name="themeSetting.Items2" xml:space="preserve">
+    <value>深色</value>
+  </data>
+  <data name="themeSetting.Location" type="System.Drawing.Point, System.Drawing">
+    <value>173, 130</value>
+  </data>
+  <data name="themeSetting.Size" type="System.Drawing.Size, System.Drawing">
+    <value>107, 25</value>
+  </data>
+  <data name="labelFor_themeSetting.Size" type="System.Drawing.Size, System.Drawing">
+    <value>162, 25</value>
+  </data>
+  <data name="labelFor_themeSetting.Text" xml:space="preserve">
+    <value>主题</value>
+  </data>
+  <data name="formTitle.Size" type="System.Drawing.Size, System.Drawing">
+    <value>37, 19</value>
+  </data>
+  <data name="formTitle.Text" xml:space="preserve">
+    <value>设置</value>
+  </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         AAABAAIAEBAAAAEAIABoBAAAJgAAABgYAAABACAAiAkAAI4EAAAoAAAAEAAAACAAAAABACAAAAAAAAAE
@@ -185,5 +266,8 @@
         AQCH+AEAh+AhAI/AYQCPwfEAh8PhAIfD4QCHw+EAg8PBAMPDwwDAwwMA4AAHAPAADwD4AB8A/gB/AP/D
         /wD/w/8A
 </value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>设置</value>
   </data>
 </root>

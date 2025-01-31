@@ -225,14 +225,6 @@
     <value>1分钟后</value>
   </data>
 
-  <data name="aboutForm.stats" xml:space="preserve">
-    <value>所有统计信息仅会存储在本地
-启动次数: {0}
-执行操作次数: {1}
-
-更多统计信息敬请期待...</value>
-  </data>
-
   <data name="global.alias" xml:space="preserve">
     <value>定时电源</value>
   </data>
@@ -242,5 +234,33 @@
   </data>
   <data name="main.messagebox.button.cancel" xml:space="preserve">
     <value>取消</value>
+  </data>
+
+  <data name="about.stats" xml:space="preserve">
+  <value>所有统计信息仅会存储在本地
+
+- 启动次数: {0}
+- 执行操作次数: {1}
+
+更多统计信息敬请期待...
+  </value>
+  </data>
+  <data name="about.main" xml:space="preserve">
+<value>
+### 关于
+{1}\
+&lt;span class="version-color"&gt;{2}&lt;/span&gt; \
+Github: [{3}]({3}) \
+**{0}**
+
+### 统计
+{4}
+</value>
+  </data>
+  <data name="about.button.ok" xml:space="preserve">
+    <value>确定</value>
+  </data>
+  <data name="about.title" xml:space="preserve">
+    <value>关于</value>
   </data>
 </root>

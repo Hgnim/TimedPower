@@ -225,14 +225,6 @@ Click confirm to exit the program.</value>
     <value>after 1min</value>
   </data>
 
-  <data name="aboutForm.stats" xml:space="preserve">
-    <value>All statistical information will only be stored locally
-Startup times: {0}
-Number of operations performed: {1}
-
-More stats coming soon...</value>
-  </data>
-
   <data name="global.alias" xml:space="preserve">
     <value>Timed Power</value>
   </data>
@@ -242,5 +234,32 @@ More stats coming soon...</value>
   </data>
   <data name="main.messagebox.button.cancel" xml:space="preserve">
     <value>Cancel</value>
+  </data>
+
+  <data name="about.stats" xml:space="preserve">
+    <value>All statistical information will only be stored locally
+
+- Startup times: {0}
+- Number of operations performed: {1}
+
+More stats coming soon...</value>
+  </data>
+  <data name="about.main" xml:space="preserve">
+    <value>
+### About
+{1}\
+&lt;span class="version-color"&gt;{2}&lt;/span&gt; \
+Github: [{3}]({3}) \
+**{0}**
+
+### Stats
+{4}
+    </value>
+  </data>
+  <data name="about.button.ok" xml:space="preserve">
+    <value>ok</value>
+  </data>
+  <data name="about.title" xml:space="preserve">
+    <value>About</value>
   </data>
 </root>

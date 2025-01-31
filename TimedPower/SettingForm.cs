@@ -1,15 +1,20 @@
 ﻿using Microsoft.Win32;
+using ReaLTaiizor.Forms;
 using System.Globalization;
 using System.Resources;
 using static TimedPower.DataCore;
 
 namespace TimedPower {
-	public partial class SettingForm : Form {
+	public partial class SettingForm : PoisonForm {
 		public SettingForm() 
 		{
 			UpdateLanguageResource();
 			InitializeComponent();
 			Main.ProgramLanguage.UpdateLanguage += UpdateLanguage;
+
+			void UpdateTheme()=>themeManager.UpdateFormTheme(ref poisonStyleManager);
+			themeManager.UpdateTheme += UpdateTheme;
+			UpdateTheme();
 		}
 		static ResourceManager langRes = null!;
 		static string GetLangStr(string key, string head = "setting") => langRes.GetString($"{head}.{key}", CultureInfo.CurrentUICulture)!;
@@ -44,6 +49,9 @@ namespace TimedPower {
 			if(languageSetting.Tag as string == "change") {
 				Main.ProgramLanguage.SettingValue=(LanguageData.Language.Langs)languageSetting.SelectedIndex;//该下拉框内的选项顺序必须和枚举的顺序一致
 			}
+			if(themeSetting.Tag as string == "change") {
+				themeManager.CurrentTheme = (TimedPower.Theme.Themes)themeSetting.SelectedIndex;
+			}
 			applyButton.Enabled = false;
 		}
 
@@ -67,6 +75,8 @@ namespace TimedPower {
 			SelfStartingSetting.Checked = SettingControl.SelfStarting;
 			CloseToTaskBarSetting.Checked = Main.CloseToTaskBar;
 			languageSetting.SelectedIndex=(int)Main.ProgramLanguage.SettingValue;
+			themeSetting.SelectedIndex = (int)themeManager.CurrentTheme;
+
 			loadLock = false;
 		}
 	}
