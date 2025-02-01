@@ -507,7 +507,7 @@ namespace TimedPower
 									UpdateFromGithub.InfoOfInstall? ioi = await ufg.DownloadReleaseAsync(iodf);
 									if (ioi != null) {
 										if (MessageBox.Show(GetLangStr("messagebox.downloadDone"), Text, MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes) {
-											ufg.InstallFile(ioi, waitTime: 900);
+											ufg.InstallFile(ioi, waitTime: 900,enterNested:1);
 											Invoke(new Action(() => NotifyIcon_main_ContextMenu_ExitButton_Click(null!, null!)));
 										}
 									}
