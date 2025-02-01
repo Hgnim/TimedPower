@@ -477,7 +477,7 @@ namespace TimedPower
 					UpdateFromGithub.CheckUpdateValue cuv = await ufg.CheckUpdateAsync();
 #pragma warning disable IDE0079
 #pragma warning disable SYSLIB1045
-					UpdateFromGithub.InfoOfDownloadFile iodf = await ufg.GetDownloadFileInfoAsync(fileRegex: new(@".+"));
+					UpdateFromGithub.InfoOfDownloadFile iodf = await ufg.GetDownloadFileInfoAsync(fileRegex: new(@".+\.7z"));
 #pragma warning restore SYSLIB1045
 #pragma warning restore IDE0079
 					if (cuv.HaveUpdate) {

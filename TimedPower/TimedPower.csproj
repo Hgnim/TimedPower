@@ -9,17 +9,21 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <ApplicationIcon>TimedPower_logo.ico</ApplicationIcon>
 
-	  <AssemblyTitle>定时电源操作工具</AssemblyTitle>
-	  <Company>Hgnim</Company>
+	  <Authors>Hgnim</Authors>
+	  <Company>$(Authors)</Company>
+	  <Owners>$(Authors)</Owners>
+	  <Copyright>Copyright (C) 2024-2025 $(Authors), All rights reserved.</Copyright>
 	  <Product>TimedPower</Product>
+	  <Title>定时电源操作工具</Title>
+	  <AssemblyTitle>$(Title)</AssemblyTitle>
 	  <Description>定时电源</Description>
-	  <Copyright>Copyright (C) 2024-2025 Hgnim, All rights reserved.</Copyright>
 	  <AssemblyName>定时电源</AssemblyName>
 	  
+	  
 	  <AssemblyVersion>2.8.7</AssemblyVersion>
-	  <FileVersion>2.8.7.0131</FileVersion>
-	  <VersionPrefix>2.8.7.20250131</VersionPrefix>
-	  <VersionSuffix>pre2</VersionSuffix>
+	  <FileVersion>2.8.7.0201</FileVersion>
+	  <VersionPrefix>2.8.7.20250201</VersionPrefix>
+	  <VersionSuffix>pre3</VersionSuffix>
   </PropertyGroup>
 
   <ItemGroup>
