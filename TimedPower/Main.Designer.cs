@@ -61,11 +61,11 @@
 			min40 = new ToolStripMenuItem();
 			h1 = new ToolStripMenuItem();
 			h2 = new ToolStripMenuItem();
-			label1 = new ReaLTaiizor.Controls.SmallLabel();
-			label2 = new ReaLTaiizor.Controls.SmallLabel();
+			label1 = new ReaLTaiizor.Controls.PoisonLabel();
+			label2 = new ReaLTaiizor.Controls.PoisonLabel();
 			TimeTypeSelect = new ReaLTaiizor.Controls.PoisonComboBox();
 			TimeInput = new ControlOverride.PoisonTextBox_OR();
-			countdownLabel = new ReaLTaiizor.Controls.BigLabel();
+			countdownLabel = new ReaLTaiizor.Controls.PoisonLabel();
 			StartButton = new ReaLTaiizor.Controls.PoisonButton();
 			StopButton = new ReaLTaiizor.Controls.PoisonButton();
 			FormMenuStrip = new ReaLTaiizor.Controls.PoisonContextMenuStrip(components);
@@ -421,11 +421,11 @@
 			// 
 			// Main
 			// 
-			resources.ApplyResources(this, "$this");
-			AutoScaleMode = AutoScaleMode.Font;
+			AutoScaleMode = AutoScaleMode.None;
 			BackImage = Resources.langs.language.image_logo_png_32x;
 			BackImagePadding = new Padding(3, 5, 0, 0);
 			BackMaxSize = 24;
+			resources.ApplyResources(this, "$this");
 			ContextMenuStrip = FormMenuStrip;
 			Controls.Add(StartButton);
 			Controls.Add(StopButton);
@@ -457,8 +457,8 @@
 
 		private ReaLTaiizor.Controls.PoisonComboBox ActionSelect;
         private ReaLTaiizor.Controls.PoisonDateTime TimePicker;
-        private ReaLTaiizor.Controls.SmallLabel label1;
-        private ReaLTaiizor.Controls.SmallLabel label2;
+        private ReaLTaiizor.Controls.PoisonLabel label1;
+        private ReaLTaiizor.Controls.PoisonLabel label2;
         private ReaLTaiizor.Controls.PoisonComboBox TimeTypeSelect;
         private ReaLTaiizor.Controls.PoisonContextMenuStrip TimeInput_ContextMenu;
         private ToolStripMenuItem s10;
@@ -471,7 +471,7 @@
         private ToolStripMenuItem h1;
         private ToolStripMenuItem h2;
         private ControlOverride.PoisonTextBox_OR TimeInput;
-        private ReaLTaiizor.Controls.BigLabel countdownLabel;
+        private ReaLTaiizor.Controls.PoisonLabel countdownLabel;
         private ReaLTaiizor.Controls.PoisonButton StartButton;
         private ReaLTaiizor.Controls.PoisonButton StopButton;
         private ReaLTaiizor.Controls.PoisonContextMenuStrip FormMenuStrip;

@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace TimedPower {
-	internal struct ControlOverride {
+	public struct ControlOverride {
 		/// <summary>
 		/// 通过反射获取基类的私有变量
 		/// </summary>
@@ -20,7 +20,7 @@ namespace TimedPower {
 			baseClass.GetField(targetName, BindingFlags.NonPublic | BindingFlags.Instance)
 				?.GetValue(thisObj);
 
-		internal class PoisonTextBox_OR: PoisonTextBox {
+		public class PoisonTextBox_OR: PoisonTextBox {
 			public override ContextMenuStrip ContextMenuStrip {
 				get => GetPrivateVar(typeof(ReaLTaiizor.Controls.PoisonTextBox), this, "baseTextBox")!.ContextMenuStrip;
 				set => GetPrivateVar(typeof(ReaLTaiizor.Controls.PoisonTextBox), this, "baseTextBox")!.ContextMenuStrip = value;

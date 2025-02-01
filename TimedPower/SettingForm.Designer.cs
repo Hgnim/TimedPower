@@ -166,8 +166,8 @@ namespace TimedPower {
 			// 
 			// SettingForm
 			// 
+			AutoScaleMode = AutoScaleMode.None;
 			resources.ApplyResources(this, "$this");
-			AutoScaleMode = AutoScaleMode.Font;
 			Controls.Add(themeSetting);
 			Controls.Add(labelFor_themeSetting);
 			Controls.Add(formTitle);

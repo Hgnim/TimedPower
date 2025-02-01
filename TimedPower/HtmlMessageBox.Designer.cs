@@ -37,7 +37,7 @@ namespace TimedPower {
 			HtmlPanel.Controls.Add(htmlView);
 			HtmlPanel.Location = new Point(0, 0);
 			HtmlPanel.Name = "HtmlPanel";
-			HtmlPanel.Size = new Size(301, 137);
+			HtmlPanel.Size = new Size(301, 174);
 			HtmlPanel.TabIndex = 0;
 			// 
 			// htmlView
@@ -48,15 +48,14 @@ namespace TimedPower {
 			htmlView.Dock = DockStyle.Fill;
 			htmlView.Location = new Point(0, 0);
 			htmlView.Name = "htmlView";
-			htmlView.Size = new Size(301, 137);
+			htmlView.Size = new Size(301, 174);
 			htmlView.TabIndex = 0;
 			htmlView.TabStop = false;
 			htmlView.ZoomFactor = 1D;
 			// 
 			// HtmlMessageBox
 			// 
-			AutoScaleDimensions = new SizeF(7F, 17F);
-			AutoScaleMode = AutoScaleMode.Font;
+			AutoScaleMode = AutoScaleMode.None;
 			ClientSize = new Size(301, 174);
 			Controls.Add(HtmlPanel);
 			FormBorderStyle = FormBorderStyle.FixedDialog;

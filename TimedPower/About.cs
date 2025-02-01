@@ -25,7 +25,7 @@ namespace TimedPower {
 				return "unset";
 
 			if (PInfo.version.Contains("pre", StringComparison.CurrentCulture))
-				return "yellow";
+				return "#ccba2a";
 			else if (PInfo.version.Contains("debug", StringComparison.CurrentCulture))
 				return "red";
 			else

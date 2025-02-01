@@ -161,30 +161,13 @@
 			// 
 			// 
 			// 
-			TimeInput.CustomButton.AccessibleDescription = resources.GetString("resource.AccessibleDescription");
-			TimeInput.CustomButton.AccessibleName = resources.GetString("resource.AccessibleName");
-			TimeInput.CustomButton.Anchor = (AnchorStyles)resources.GetObject("resource.Anchor");
-			TimeInput.CustomButton.AutoSize = (bool)resources.GetObject("resource.AutoSize");
-			TimeInput.CustomButton.AutoSizeMode = (AutoSizeMode)resources.GetObject("resource.AutoSizeMode");
-			TimeInput.CustomButton.BackgroundImage = (Image)resources.GetObject("resource.BackgroundImage");
-			TimeInput.CustomButton.BackgroundImageLayout = (ImageLayout)resources.GetObject("resource.BackgroundImageLayout");
-			TimeInput.CustomButton.Dock = (DockStyle)resources.GetObject("resource.Dock");
-			TimeInput.CustomButton.FlatStyle = (FlatStyle)resources.GetObject("resource.FlatStyle");
-			TimeInput.CustomButton.Font = (Font)resources.GetObject("resource.Font");
 			TimeInput.CustomButton.Image = (Image)resources.GetObject("resource.Image");
-			TimeInput.CustomButton.ImageAlign = (ContentAlignment)resources.GetObject("resource.ImageAlign");
-			TimeInput.CustomButton.ImageIndex = (int)resources.GetObject("resource.ImageIndex");
-			TimeInput.CustomButton.ImageKey = resources.GetString("resource.ImageKey");
 			TimeInput.CustomButton.ImeMode = (ImeMode)resources.GetObject("resource.ImeMode");
 			TimeInput.CustomButton.Location = (Point)resources.GetObject("resource.Location");
-			TimeInput.CustomButton.MaximumSize = (Size)resources.GetObject("resource.MaximumSize");
 			TimeInput.CustomButton.Name = "";
-			TimeInput.CustomButton.RightToLeft = (RightToLeft)resources.GetObject("resource.RightToLeft");
 			TimeInput.CustomButton.Size = (Size)resources.GetObject("resource.Size");
 			TimeInput.CustomButton.Style = ReaLTaiizor.Enum.Poison.ColorStyle.Blue;
 			TimeInput.CustomButton.TabIndex = (int)resources.GetObject("resource.TabIndex");
-			TimeInput.CustomButton.TextAlign = (ContentAlignment)resources.GetObject("resource.TextAlign");
-			TimeInput.CustomButton.TextImageRelation = (TextImageRelation)resources.GetObject("resource.TextImageRelation");
 			TimeInput.CustomButton.Theme = ReaLTaiizor.Enum.Poison.ThemeStyle.Light;
 			TimeInput.CustomButton.UseSelectable = true;
 			TimeInput.CustomButton.Visible = (bool)resources.GetObject("resource.Visible");
@@ -242,30 +225,13 @@
 			// 
 			// 
 			// 
-			taskName_TextBox.CustomButton.AccessibleDescription = resources.GetString("resource.AccessibleDescription1");
-			taskName_TextBox.CustomButton.AccessibleName = resources.GetString("resource.AccessibleName1");
-			taskName_TextBox.CustomButton.Anchor = (AnchorStyles)resources.GetObject("resource.Anchor1");
-			taskName_TextBox.CustomButton.AutoSize = (bool)resources.GetObject("resource.AutoSize1");
-			taskName_TextBox.CustomButton.AutoSizeMode = (AutoSizeMode)resources.GetObject("resource.AutoSizeMode1");
-			taskName_TextBox.CustomButton.BackgroundImage = (Image)resources.GetObject("resource.BackgroundImage1");
-			taskName_TextBox.CustomButton.BackgroundImageLayout = (ImageLayout)resources.GetObject("resource.BackgroundImageLayout1");
-			taskName_TextBox.CustomButton.Dock = (DockStyle)resources.GetObject("resource.Dock1");
-			taskName_TextBox.CustomButton.FlatStyle = (FlatStyle)resources.GetObject("resource.FlatStyle1");
-			taskName_TextBox.CustomButton.Font = (Font)resources.GetObject("resource.Font1");
 			taskName_TextBox.CustomButton.Image = (Image)resources.GetObject("resource.Image1");
-			taskName_TextBox.CustomButton.ImageAlign = (ContentAlignment)resources.GetObject("resource.ImageAlign1");
-			taskName_TextBox.CustomButton.ImageIndex = (int)resources.GetObject("resource.ImageIndex1");
-			taskName_TextBox.CustomButton.ImageKey = resources.GetString("resource.ImageKey1");
 			taskName_TextBox.CustomButton.ImeMode = (ImeMode)resources.GetObject("resource.ImeMode1");
 			taskName_TextBox.CustomButton.Location = (Point)resources.GetObject("resource.Location1");
-			taskName_TextBox.CustomButton.MaximumSize = (Size)resources.GetObject("resource.MaximumSize1");
 			taskName_TextBox.CustomButton.Name = "";
-			taskName_TextBox.CustomButton.RightToLeft = (RightToLeft)resources.GetObject("resource.RightToLeft1");
 			taskName_TextBox.CustomButton.Size = (Size)resources.GetObject("resource.Size1");
 			taskName_TextBox.CustomButton.Style = ReaLTaiizor.Enum.Poison.ColorStyle.Blue;
 			taskName_TextBox.CustomButton.TabIndex = (int)resources.GetObject("resource.TabIndex1");
-			taskName_TextBox.CustomButton.TextAlign = (ContentAlignment)resources.GetObject("resource.TextAlign1");
-			taskName_TextBox.CustomButton.TextImageRelation = (TextImageRelation)resources.GetObject("resource.TextImageRelation1");
 			taskName_TextBox.CustomButton.Theme = ReaLTaiizor.Enum.Poison.ThemeStyle.Light;
 			taskName_TextBox.CustomButton.UseSelectable = true;
 			taskName_TextBox.CustomButton.Visible = (bool)resources.GetObject("resource.Visible1");
@@ -323,8 +289,8 @@
 			// 
 			// AutoTaskForm
 			// 
+			AutoScaleMode = AutoScaleMode.None;
 			resources.ApplyResources(this, "$this");
-			AutoScaleMode = AutoScaleMode.Font;
 			Controls.Add(formTitle);
 			Controls.Add(infoPanel);
 			Controls.Add(buttonPanel);

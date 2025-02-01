@@ -81,6 +81,8 @@ namespace TimedPower {
 				else
 					btn.Location = new Point(this.Size.Width - 25 - btn.Size.Width, btn.Location.Y);
 
+				HtmlPanel.Size = new(HtmlPanel.Size.Width, HtmlPanel.Size.Height - btn.Size.Height - 10);//根据按钮调整HtmlPanel的高度，以适应不同系统缩放
+
 				if (i == defaultButtonIndex)
 					btn.Select();
 
