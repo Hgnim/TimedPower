@@ -6,5 +6,6 @@
 */appsettings*.json
 *.csproj.user
 */.config
+*/dll
 
 TimedPower/Resources/langs/*.Designer.cs

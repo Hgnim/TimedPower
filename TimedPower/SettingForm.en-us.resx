@@ -119,61 +119,61 @@
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="ContextMenuSetting.Location" type="System.Drawing.Point, System.Drawing">
-    <value>227, 37</value>
+    <value>309, 37</value>
   </data>
   <data name="SelfStartingSetting.Location" type="System.Drawing.Point, System.Drawing">
-    <value>227, 68</value>
+    <value>309, 68</value>
   </data>
   <data name="CloseToTaskBarSetting.Location" type="System.Drawing.Point, System.Drawing">
-    <value>227, 99</value>
+    <value>309, 99</value>
   </data>
   <data name="labelFor_ContextMenuSetting.Size" type="System.Drawing.Size, System.Drawing">
-    <value>216, 25</value>
+    <value>298, 25</value>
   </data>
   <data name="labelFor_ContextMenuSetting.Text" xml:space="preserve">
     <value>Add shortcut button to Windows right-click menu</value>
   </data>
   <data name="labelFor_SelfStartingSetting.Size" type="System.Drawing.Size, System.Drawing">
-    <value>216, 25</value>
+    <value>298, 25</value>
   </data>
   <data name="labelFor_SelfStartingSetting.Text" xml:space="preserve">
     <value>Automatically start upon startup</value>
   </data>
   <data name="labelFor_CloseToTaskBarSetting.Size" type="System.Drawing.Size, System.Drawing">
-    <value>216, 25</value>
+    <value>298, 25</value>
   </data>
   <data name="labelFor_CloseToTaskBarSetting.Text" xml:space="preserve">
     <value>Minimize to tray when closed</value>
   </data>
   <data name="labelFor_languageSetting.Size" type="System.Drawing.Size, System.Drawing">
-    <value>131, 25</value>
+    <value>213, 25</value>
   </data>
   <data name="labelFor_languageSetting.Text" xml:space="preserve">
     <value>Language</value>
   </data>
   <data name="languageSetting.Location" type="System.Drawing.Point, System.Drawing">
-    <value>142, 161</value>
+    <value>224, 161</value>
   </data>
   <data name="okButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>99, 196</value>
+    <value>181, 196</value>
   </data>
   <data name="okButton.Text" xml:space="preserve">
     <value>OK</value>
   </data>
   <data name="cancelButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>162, 196</value>
+    <value>244, 196</value>
   </data>
   <data name="cancelButton.Text" xml:space="preserve">
     <value>Cancel</value>
   </data>
   <data name="applyButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>225, 196</value>
+    <value>307, 196</value>
   </data>
   <data name="applyButton.Text" xml:space="preserve">
     <value>Apply</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>284, 224</value>
+    <value>366, 224</value>
   </data>
   <data name="themeSetting.Items" xml:space="preserve">
     <value>System Default</value>
@@ -185,13 +185,13 @@
     <value>Dark</value>
   </data>
   <data name="themeSetting.Location" type="System.Drawing.Point, System.Drawing">
-    <value>149, 130</value>
+    <value>231, 130</value>
   </data>
   <data name="themeSetting.Size" type="System.Drawing.Size, System.Drawing">
     <value>128, 25</value>
   </data>
   <data name="labelFor_themeSetting.Size" type="System.Drawing.Size, System.Drawing">
-    <value>138, 25</value>
+    <value>220, 25</value>
   </data>
   <data name="labelFor_themeSetting.Text" xml:space="preserve">
     <value>Theme</value>

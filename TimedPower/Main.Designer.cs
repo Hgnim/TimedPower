@@ -64,7 +64,7 @@
 			label1 = new ReaLTaiizor.Controls.PoisonLabel();
 			label2 = new ReaLTaiizor.Controls.PoisonLabel();
 			TimeTypeSelect = new ReaLTaiizor.Controls.PoisonComboBox();
-			TimeInput = new ControlOverride.PoisonTextBox_OR();
+			TimeInput = new ReaLTaiizor.Controls.PoisonTextBox();
 			countdownLabel = new ReaLTaiizor.Controls.PoisonLabel();
 			StartButton = new ReaLTaiizor.Controls.PoisonButton();
 			StopButton = new ReaLTaiizor.Controls.PoisonButton();
@@ -122,6 +122,7 @@
 			TimeInput_ContextMenu.Items.AddRange(new ToolStripItem[] { s10, s30, min1, min5, min10, min20, min40, h1, h2 });
 			TimeInput_ContextMenu.Name = "TimePicker_ContextMenu";
 			resources.ApplyResources(TimeInput_ContextMenu, "TimeInput_ContextMenu");
+			TimeInput_ContextMenu.Font = new Font(Font.FontFamily, 12.5f, FontStyle.Regular, GraphicsUnit.Pixel);
 			// 
 			// s10
 			// 
@@ -242,6 +243,7 @@
 			countdownLabel.ForeColor = Color.Black;
 			countdownLabel.Name = "countdownLabel";
 			countdownLabel.Tag = "";
+			countdownLabel.UseCustomFont = true;
 			countdownLabel.Resize += CountdownLabel_Resize;
 			// 
 			// StartButton
@@ -267,9 +269,10 @@
 			// FormMenuStrip
 			// 
 			FormMenuStrip.Items.AddRange(new ToolStripItem[] { FormMenuStrip_NewTaskFile, toolStripMenuItem5, FormMenuStrip_Setting, autoTask_ToolStripMenuItem, toolStripMenuItem1, FormMenuStrip_Help });
-			FormMenuStrip.Name = "GyMenuStrip";
+			FormMenuStrip.Name = "FormMenuStrip";
 			resources.ApplyResources(FormMenuStrip, "FormMenuStrip");
 			FormMenuStrip.Opening += FormMenuStrip_Opening;
+			FormMenuStrip.Font = new Font(Font.FontFamily, 12.5f, FontStyle.Regular, GraphicsUnit.Pixel);
 			// 
 			// FormMenuStrip_NewTaskFile
 			// 
@@ -348,6 +351,7 @@
 			notifyIcon_main_ContextMenu.Name = "notifyIcon_main_ContextMenu";
 			resources.ApplyResources(notifyIcon_main_ContextMenu, "notifyIcon_main_ContextMenu");
 			notifyIcon_main_ContextMenu.Opening += NotifyIcon_main_ContextMenu_Opening;
+			notifyIcon_main_ContextMenu.Font = new Font(Font.FontFamily, 12.5f, FontStyle.Regular, GraphicsUnit.Pixel);
 			// 
 			// notifyIcon_main_ContextMenu_ShowButton
 			// 
@@ -470,7 +474,7 @@
         private ToolStripMenuItem min40;
         private ToolStripMenuItem h1;
         private ToolStripMenuItem h2;
-        private ControlOverride.PoisonTextBox_OR TimeInput;
+        private ReaLTaiizor.Controls.PoisonTextBox TimeInput;
         private ReaLTaiizor.Controls.PoisonLabel countdownLabel;
         private ReaLTaiizor.Controls.PoisonButton StartButton;
         private ReaLTaiizor.Controls.PoisonButton StopButton;

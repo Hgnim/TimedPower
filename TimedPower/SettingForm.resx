@@ -117,497 +117,426 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="ContextMenuSetting.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="ContextMenuSetting.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Right</value>
-  </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="ContextMenuSetting.Location" type="System.Drawing.Point, System.Drawing">
-    <value>142, 37</value>
-  </data>
-  <data name="ContextMenuSetting.Size" type="System.Drawing.Size, System.Drawing">
-    <value>50, 25</value>
-  </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="ContextMenuSetting.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="ContextMenuSetting.Text" xml:space="preserve">
-    <value>关</value>
-  </data>
-  <data name="&gt;&gt;ContextMenuSetting.Name" xml:space="preserve">
-    <value>ContextMenuSetting</value>
-  </data>
-  <data name="&gt;&gt;ContextMenuSetting.Type" xml:space="preserve">
-    <value>ReaLTaiizor.Controls.PoisonToggle, ReaLTaiizor, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;ContextMenuSetting.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;ContextMenuSetting.ZOrder" xml:space="preserve">
-    <value>10</value>
-  </data>
-  <metadata name="SelfStartingSetting.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <data name="SelfStartingSetting.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Right</value>
-  </data>
-  <data name="SelfStartingSetting.Location" type="System.Drawing.Point, System.Drawing">
-    <value>142, 68</value>
-  </data>
-  <data name="SelfStartingSetting.Size" type="System.Drawing.Size, System.Drawing">
-    <value>50, 25</value>
-  </data>
-  <data name="SelfStartingSetting.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="SelfStartingSetting.Text" xml:space="preserve">
-    <value>关</value>
-  </data>
-  <data name="&gt;&gt;SelfStartingSetting.Name" xml:space="preserve">
-    <value>SelfStartingSetting</value>
-  </data>
-  <data name="&gt;&gt;SelfStartingSetting.Type" xml:space="preserve">
-    <value>ReaLTaiizor.Controls.PoisonToggle, ReaLTaiizor, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;SelfStartingSetting.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;SelfStartingSetting.ZOrder" xml:space="preserve">
-    <value>9</value>
-  </data>
-  <metadata name="CloseToTaskBarSetting.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <data name="CloseToTaskBarSetting.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Right</value>
-  </data>
-  <data name="CloseToTaskBarSetting.Location" type="System.Drawing.Point, System.Drawing">
-    <value>142, 99</value>
-  </data>
-  <data name="CloseToTaskBarSetting.Size" type="System.Drawing.Size, System.Drawing">
-    <value>50, 25</value>
-  </data>
-  <data name="CloseToTaskBarSetting.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="CloseToTaskBarSetting.Text" xml:space="preserve">
-    <value>关</value>
-  </data>
-  <data name="&gt;&gt;CloseToTaskBarSetting.Name" xml:space="preserve">
-    <value>CloseToTaskBarSetting</value>
-  </data>
-  <data name="&gt;&gt;CloseToTaskBarSetting.Type" xml:space="preserve">
-    <value>ReaLTaiizor.Controls.PoisonToggle, ReaLTaiizor, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;CloseToTaskBarSetting.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;CloseToTaskBarSetting.ZOrder" xml:space="preserve">
-    <value>8</value>
-  </data>
-  <metadata name="labelFor_ContextMenuSetting.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <data name="labelFor_ContextMenuSetting.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Left, Right</value>
-  </data>
-  <data name="labelFor_ContextMenuSetting.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 10pt</value>
-  </data>
-  <data name="labelFor_ContextMenuSetting.Location" type="System.Drawing.Point, System.Drawing">
-    <value>5, 37</value>
-  </data>
-  <data name="labelFor_ContextMenuSetting.Size" type="System.Drawing.Size, System.Drawing">
-    <value>131, 25</value>
-  </data>
-  <data name="labelFor_ContextMenuSetting.TabIndex" type="System.Int32, mscorlib">
-    <value>9</value>
-  </data>
-  <data name="labelFor_ContextMenuSetting.Text" xml:space="preserve">
-    <value>cms</value>
-  </data>
-  <data name="labelFor_ContextMenuSetting.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleLeft</value>
-  </data>
-  <data name="&gt;&gt;labelFor_ContextMenuSetting.Name" xml:space="preserve">
-    <value>labelFor_ContextMenuSetting</value>
-  </data>
   <data name="&gt;&gt;labelFor_ContextMenuSetting.Type" xml:space="preserve">
-    <value>ReaLTaiizor.Controls.SmallLabel, ReaLTaiizor, Culture=neutral, PublicKeyToken=null</value>
+    <value>ReaLTaiizor.Controls.PoisonLabel, ReaLTaiizor, Culture=neutral, PublicKeyToken=null</value>
   </data>
-  <data name="&gt;&gt;labelFor_ContextMenuSetting.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;labelFor_ContextMenuSetting.ZOrder" xml:space="preserve">
-    <value>13</value>
-  </data>
-  <metadata name="labelFor_SelfStartingSetting.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <data name="labelFor_SelfStartingSetting.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Left, Right</value>
-  </data>
-  <data name="labelFor_SelfStartingSetting.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 10pt</value>
-  </data>
-  <data name="labelFor_SelfStartingSetting.Location" type="System.Drawing.Point, System.Drawing">
-    <value>5, 68</value>
-  </data>
-  <data name="labelFor_SelfStartingSetting.Size" type="System.Drawing.Size, System.Drawing">
-    <value>131, 25</value>
-  </data>
-  <data name="labelFor_SelfStartingSetting.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
-  </data>
-  <data name="labelFor_SelfStartingSetting.Text" xml:space="preserve">
-    <value>sss</value>
-  </data>
-  <data name="labelFor_SelfStartingSetting.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleLeft</value>
-  </data>
-  <data name="&gt;&gt;labelFor_SelfStartingSetting.Name" xml:space="preserve">
-    <value>labelFor_SelfStartingSetting</value>
-  </data>
-  <data name="&gt;&gt;labelFor_SelfStartingSetting.Type" xml:space="preserve">
-    <value>ReaLTaiizor.Controls.SmallLabel, ReaLTaiizor, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;labelFor_SelfStartingSetting.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;labelFor_SelfStartingSetting.ZOrder" xml:space="preserve">
-    <value>12</value>
-  </data>
-  <metadata name="labelFor_CloseToTaskBarSetting.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <data name="labelFor_CloseToTaskBarSetting.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Left, Right</value>
-  </data>
-  <data name="labelFor_CloseToTaskBarSetting.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 10pt</value>
-  </data>
-  <data name="labelFor_CloseToTaskBarSetting.Location" type="System.Drawing.Point, System.Drawing">
-    <value>5, 99</value>
-  </data>
-  <data name="labelFor_CloseToTaskBarSetting.Size" type="System.Drawing.Size, System.Drawing">
-    <value>131, 25</value>
-  </data>
-  <data name="labelFor_CloseToTaskBarSetting.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
-  </data>
-  <data name="labelFor_CloseToTaskBarSetting.Text" xml:space="preserve">
-    <value>cttbs</value>
-  </data>
-  <data name="labelFor_CloseToTaskBarSetting.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleLeft</value>
-  </data>
-  <data name="&gt;&gt;labelFor_CloseToTaskBarSetting.Name" xml:space="preserve">
-    <value>labelFor_CloseToTaskBarSetting</value>
-  </data>
-  <data name="&gt;&gt;labelFor_CloseToTaskBarSetting.Type" xml:space="preserve">
-    <value>ReaLTaiizor.Controls.SmallLabel, ReaLTaiizor, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;labelFor_CloseToTaskBarSetting.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;labelFor_CloseToTaskBarSetting.ZOrder" xml:space="preserve">
-    <value>11</value>
-  </data>
-  <metadata name="labelFor_languageSetting.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <data name="labelFor_languageSetting.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Left, Right</value>
-  </data>
-  <data name="labelFor_languageSetting.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 10pt</value>
-  </data>
-  <data name="labelFor_languageSetting.Location" type="System.Drawing.Point, System.Drawing">
-    <value>5, 161</value>
-  </data>
-  <data name="labelFor_languageSetting.Size" type="System.Drawing.Size, System.Drawing">
-    <value>46, 25</value>
-  </data>
-  <data name="labelFor_languageSetting.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
+  <data name="&gt;&gt;applyButton.ZOrder" xml:space="preserve">
+    <value>3</value>
   </data>
   <data name="labelFor_languageSetting.Text" xml:space="preserve">
     <value>ls</value>
   </data>
-  <data name="labelFor_languageSetting.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleLeft</value>
-  </data>
-  <data name="&gt;&gt;labelFor_languageSetting.Name" xml:space="preserve">
-    <value>labelFor_languageSetting</value>
-  </data>
-  <data name="&gt;&gt;labelFor_languageSetting.Type" xml:space="preserve">
-    <value>ReaLTaiizor.Controls.SmallLabel, ReaLTaiizor, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;labelFor_languageSetting.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;labelFor_languageSetting.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <metadata name="languageSetting.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <data name="languageSetting.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Right</value>
-  </data>
-  <data name="languageSetting.ItemHeight" type="System.Int32, mscorlib">
-    <value>19</value>
-  </data>
-  <data name="languageSetting.Items" xml:space="preserve">
-    <value>简体中文(中国)</value>
-  </data>
-  <data name="languageSetting.Items1" xml:space="preserve">
-    <value>English(US)</value>
-  </data>
-  <data name="languageSetting.Location" type="System.Drawing.Point, System.Drawing">
-    <value>57, 161</value>
-  </data>
-  <data name="languageSetting.Size" type="System.Drawing.Size, System.Drawing">
-    <value>135, 25</value>
-  </data>
-  <data name="languageSetting.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
-  </data>
-  <data name="&gt;&gt;languageSetting.Name" xml:space="preserve">
-    <value>languageSetting</value>
-  </data>
-  <data name="&gt;&gt;languageSetting.Type" xml:space="preserve">
-    <value>ReaLTaiizor.Controls.PoisonComboBox, ReaLTaiizor, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;languageSetting.Parent" xml:space="preserve">
+  <data name="&gt;&gt;labelFor_themeSetting.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
   <data name="&gt;&gt;languageSetting.ZOrder" xml:space="preserve">
     <value>6</value>
   </data>
-  <metadata name="okButton.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <data name="okButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Right</value>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="labelFor_ContextMenuSetting.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI Light, 14px</value>
   </data>
-  <data name="okButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>14, 196</value>
-  </data>
-  <data name="okButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>57, 26</value>
-  </data>
-  <data name="okButton.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="okButton.Text" xml:space="preserve">
-    <value>qd</value>
-  </data>
-  <data name="&gt;&gt;okButton.Name" xml:space="preserve">
-    <value>okButton</value>
-  </data>
-  <data name="&gt;&gt;okButton.Type" xml:space="preserve">
-    <value>ReaLTaiizor.Controls.PoisonButton, ReaLTaiizor, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;okButton.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;okButton.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <metadata name="cancelButton.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <data name="cancelButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Right</value>
-  </data>
-  <data name="cancelButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>77, 196</value>
-  </data>
-  <data name="cancelButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>57, 26</value>
-  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="cancelButton.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
   </data>
-  <data name="cancelButton.Text" xml:space="preserve">
-    <value>qq</value>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>199, 224</value>
   </data>
-  <data name="&gt;&gt;cancelButton.Name" xml:space="preserve">
-    <value>cancelButton</value>
+  <data name="ContextMenuSetting.Size" type="System.Drawing.Size, System.Drawing">
+    <value>50, 25</value>
   </data>
-  <data name="&gt;&gt;cancelButton.Type" xml:space="preserve">
-    <value>ReaLTaiizor.Controls.PoisonButton, ReaLTaiizor, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;cancelButton.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;cancelButton.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <metadata name="applyButton.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <data name="applyButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Right</value>
-  </data>
-  <data name="applyButton.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="labelFor_languageSetting.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
   </data>
   <data name="applyButton.Location" type="System.Drawing.Point, System.Drawing">
     <value>140, 196</value>
   </data>
-  <data name="applyButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>57, 26</value>
+  <data name="cancelButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
   </data>
-  <data name="applyButton.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
+  <data name="&gt;&gt;labelFor_languageSetting.Type" xml:space="preserve">
+    <value>ReaLTaiizor.Controls.PoisonLabel, ReaLTaiizor, Culture=neutral, PublicKeyToken=null</value>
   </data>
-  <data name="applyButton.Text" xml:space="preserve">
-    <value>yy</value>
-  </data>
-  <data name="&gt;&gt;applyButton.Name" xml:space="preserve">
-    <value>applyButton</value>
-  </data>
-  <data name="&gt;&gt;applyButton.Type" xml:space="preserve">
-    <value>ReaLTaiizor.Controls.PoisonButton, ReaLTaiizor, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;applyButton.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;applyButton.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <metadata name="poisonStyleManager.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="$this.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>199, 224</value>
-  </data>
-  <metadata name="themeSetting.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <data name="themeSetting.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+  <data name="languageSetting.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
   </data>
-  <data name="themeSetting.ItemHeight" type="System.Int32, mscorlib">
-    <value>19</value>
+  <data name="&gt;&gt;labelFor_languageSetting.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
-  <data name="themeSetting.Items" xml:space="preserve">
-    <value>xtmr</value>
+  <data name="labelFor_languageSetting.Size" type="System.Drawing.Size, System.Drawing">
+    <value>46, 25</value>
   </data>
-  <data name="themeSetting.Items1" xml:space="preserve">
-    <value>qs</value>
+  <data name="labelFor_themeSetting.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
   </data>
-  <data name="themeSetting.Items2" xml:space="preserve">
-    <value>ss</value>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>ReaLTaiizor.Forms.PoisonForm, ReaLTaiizor, Culture=neutral, PublicKeyToken=null</value>
   </data>
-  <data name="themeSetting.Location" type="System.Drawing.Point, System.Drawing">
-    <value>117, 130</value>
+  <data name="labelFor_themeSetting.Size" type="System.Drawing.Size, System.Drawing">
+    <value>106, 25</value>
   </data>
-  <data name="themeSetting.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 25</value>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="$this.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>20, 30, 20, 20</value>
   </data>
-  <data name="themeSetting.TabIndex" type="System.Int32, mscorlib">
-    <value>12</value>
+  <data name="&gt;&gt;CloseToTaskBarSetting.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="okButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>57, 26</value>
   </data>
   <data name="&gt;&gt;themeSetting.Name" xml:space="preserve">
     <value>themeSetting</value>
   </data>
-  <data name="&gt;&gt;themeSetting.Type" xml:space="preserve">
+  <data name="&gt;&gt;SelfStartingSetting.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="&gt;&gt;formTitle.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="labelFor_CloseToTaskBarSetting.Size" type="System.Drawing.Size, System.Drawing">
+    <value>131, 25</value>
+  </data>
+  <data name="&gt;&gt;ContextMenuSetting.Name" xml:space="preserve">
+    <value>ContextMenuSetting</value>
+  </data>
+  <data name="cancelButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>57, 26</value>
+  </data>
+  <data name="CloseToTaskBarSetting.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="labelFor_themeSetting.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="&gt;&gt;SelfStartingSetting.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;cancelButton.Type" xml:space="preserve">
+    <value>ReaLTaiizor.Controls.PoisonButton, ReaLTaiizor, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="applyButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>57, 26</value>
+  </data>
+  <data name="&gt;&gt;formTitle.Name" xml:space="preserve">
+    <value>formTitle</value>
+  </data>
+  <data name="&gt;&gt;okButton.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="okButton.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="themeSetting.Items1" xml:space="preserve">
+    <value>qs</value>
+  </data>
+  <data name="&gt;&gt;labelFor_ContextMenuSetting.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;cancelButton.Name" xml:space="preserve">
+    <value>cancelButton</value>
+  </data>
+  <data name="labelFor_ContextMenuSetting.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 37</value>
+  </data>
+  <data name="labelFor_SelfStartingSetting.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
+  <data name="labelFor_languageSetting.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 161</value>
+  </data>
+  <data name="SelfStartingSetting.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="&gt;&gt;applyButton.Name" xml:space="preserve">
+    <value>applyButton</value>
+  </data>
+  <data name="labelFor_ContextMenuSetting.Size" type="System.Drawing.Size, System.Drawing">
+    <value>131, 25</value>
+  </data>
+  <data name="SelfStartingSetting.Text" xml:space="preserve">
+    <value>关</value>
+  </data>
+  <data name="CloseToTaskBarSetting.Location" type="System.Drawing.Point, System.Drawing">
+    <value>142, 99</value>
+  </data>
+  <data name="labelFor_CloseToTaskBarSetting.Text" xml:space="preserve">
+    <value>cttbs</value>
+  </data>
+  <data name="&gt;&gt;labelFor_themeSetting.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="applyButton.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;labelFor_languageSetting.Name" xml:space="preserve">
+    <value>labelFor_languageSetting</value>
+  </data>
+  <data name="okButton.Text" xml:space="preserve">
+    <value>qd</value>
+  </data>
+  <data name="&gt;&gt;ContextMenuSetting.Type" xml:space="preserve">
+    <value>ReaLTaiizor.Controls.PoisonToggle, ReaLTaiizor, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="CloseToTaskBarSetting.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="labelFor_languageSetting.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="themeSetting.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 25</value>
+  </data>
+  <data name="&gt;&gt;labelFor_SelfStartingSetting.Type" xml:space="preserve">
+    <value>ReaLTaiizor.Controls.PoisonLabel, ReaLTaiizor, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="ContextMenuSetting.Text" xml:space="preserve">
+    <value>关</value>
+  </data>
+  <data name="labelFor_ContextMenuSetting.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="labelFor_CloseToTaskBarSetting.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="&gt;&gt;labelFor_CloseToTaskBarSetting.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="labelFor_themeSetting.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
+  <data name="&gt;&gt;applyButton.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="SelfStartingSetting.Size" type="System.Drawing.Size, System.Drawing">
+    <value>50, 25</value>
+  </data>
+  <data name="labelFor_ContextMenuSetting.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="labelFor_themeSetting.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="labelFor_languageSetting.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="&gt;&gt;languageSetting.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="languageSetting.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>SZ</value>
+  </data>
+  <data name="&gt;&gt;CloseToTaskBarSetting.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="SelfStartingSetting.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;labelFor_themeSetting.Name" xml:space="preserve">
+    <value>labelFor_themeSetting</value>
+  </data>
+  <data name="labelFor_SelfStartingSetting.Text" xml:space="preserve">
+    <value>sss</value>
+  </data>
+  <data name="formTitle.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="CloseToTaskBarSetting.Text" xml:space="preserve">
+    <value>关</value>
+  </data>
+  <data name="labelFor_CloseToTaskBarSetting.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI Light, 14px</value>
+  </data>
+  <data name="okButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>14, 196</value>
+  </data>
+  <data name="languageSetting.Size" type="System.Drawing.Size, System.Drawing">
+    <value>135, 25</value>
+  </data>
+  <data name="&gt;&gt;SelfStartingSetting.Name" xml:space="preserve">
+    <value>SelfStartingSetting</value>
+  </data>
+  <data name="&gt;&gt;languageSetting.Type" xml:space="preserve">
     <value>ReaLTaiizor.Controls.PoisonComboBox, ReaLTaiizor, Culture=neutral, PublicKeyToken=null</value>
   </data>
-  <data name="&gt;&gt;themeSetting.Parent" xml:space="preserve">
+  <data name="CloseToTaskBarSetting.Size" type="System.Drawing.Size, System.Drawing">
+    <value>50, 25</value>
+  </data>
+  <data name="&gt;&gt;labelFor_languageSetting.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="themeSetting.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="languageSetting.ItemHeight" type="System.Int32, mscorlib">
+    <value>19</value>
+  </data>
+  <data name="SelfStartingSetting.Location" type="System.Drawing.Point, System.Drawing">
+    <value>142, 68</value>
+  </data>
+  <data name="labelFor_SelfStartingSetting.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="&gt;&gt;applyButton.Type" xml:space="preserve">
+    <value>ReaLTaiizor.Controls.PoisonButton, ReaLTaiizor, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="okButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
+  </data>
+  <data name="languageSetting.Items1" xml:space="preserve">
+    <value>English(US)</value>
+  </data>
+  <data name="&gt;&gt;labelFor_CloseToTaskBarSetting.Name" xml:space="preserve">
+    <value>labelFor_CloseToTaskBarSetting</value>
+  </data>
+  <data name="&gt;&gt;SelfStartingSetting.Type" xml:space="preserve">
+    <value>ReaLTaiizor.Controls.PoisonToggle, ReaLTaiizor, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;labelFor_ContextMenuSetting.Name" xml:space="preserve">
+    <value>labelFor_ContextMenuSetting</value>
+  </data>
+  <data name="&gt;&gt;cancelButton.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="applyButton.Text" xml:space="preserve">
+    <value>yy</value>
+  </data>
+  <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
+    <value>CenterParent</value>
+  </data>
+  <data name="cancelButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>77, 196</value>
+  </data>
+  <data name="applyButton.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="labelFor_SelfStartingSetting.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI Light, 14px</value>
+  </data>
+  <data name="&gt;&gt;labelFor_SelfStartingSetting.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;labelFor_SelfStartingSetting.Name" xml:space="preserve">
+    <value>labelFor_SelfStartingSetting</value>
+  </data>
+  <data name="&gt;&gt;cancelButton.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="formTitle.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="&gt;&gt;okButton.Name" xml:space="preserve">
+    <value>okButton</value>
+  </data>
+  <data name="&gt;&gt;poisonStyleManager.Name" xml:space="preserve">
+    <value>poisonStyleManager</value>
+  </data>
+  <data name="&gt;&gt;poisonStyleManager.Type" xml:space="preserve">
+    <value>ReaLTaiizor.Manager.PoisonStyleManager, ReaLTaiizor, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;ContextMenuSetting.ZOrder" xml:space="preserve">
+    <value>10</value>
+  </data>
+  <data name="labelFor_SelfStartingSetting.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 68</value>
+  </data>
+  <data name="labelFor_CloseToTaskBarSetting.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="languageSetting.Location" type="System.Drawing.Point, System.Drawing">
+    <value>57, 161</value>
+  </data>
+  <data name="&gt;&gt;labelFor_ContextMenuSetting.ZOrder" xml:space="preserve">
+    <value>13</value>
+  </data>
+  <data name="themeSetting.Items" xml:space="preserve">
+    <value>xtmr</value>
+  </data>
+  <data name="languageSetting.Items" xml:space="preserve">
+    <value>简体中文(中国)</value>
+  </data>
+  <data name="&gt;&gt;CloseToTaskBarSetting.Name" xml:space="preserve">
+    <value>CloseToTaskBarSetting</value>
+  </data>
+  <data name="labelFor_ContextMenuSetting.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
+  <data name="formTitle.Size" type="System.Drawing.Size, System.Drawing">
+    <value>20, 19</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>SettingForm</value>
+  </data>
+  <data name="labelFor_ContextMenuSetting.Text" xml:space="preserve">
+    <value>cms</value>
+  </data>
+  <data name="&gt;&gt;okButton.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
   <data name="&gt;&gt;themeSetting.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <metadata name="labelFor_themeSetting.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <data name="labelFor_themeSetting.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Left, Right</value>
-  </data>
-  <data name="labelFor_themeSetting.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 10pt</value>
-  </data>
-  <data name="labelFor_themeSetting.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="labelFor_themeSetting.Location" type="System.Drawing.Point, System.Drawing">
-    <value>5, 130</value>
-  </data>
-  <data name="labelFor_themeSetting.Size" type="System.Drawing.Size, System.Drawing">
-    <value>106, 25</value>
-  </data>
-  <data name="labelFor_themeSetting.TabIndex" type="System.Int32, mscorlib">
-    <value>11</value>
-  </data>
-  <data name="labelFor_themeSetting.Text" xml:space="preserve">
-    <value>ts</value>
-  </data>
-  <data name="labelFor_themeSetting.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+  <data name="labelFor_SelfStartingSetting.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleLeft</value>
   </data>
-  <data name="&gt;&gt;labelFor_themeSetting.Name" xml:space="preserve">
-    <value>labelFor_themeSetting</value>
+  <data name="ContextMenuSetting.Location" type="System.Drawing.Point, System.Drawing">
+    <value>142, 37</value>
   </data>
-  <data name="&gt;&gt;labelFor_themeSetting.Type" xml:space="preserve">
-    <value>ReaLTaiizor.Controls.SmallLabel, ReaLTaiizor, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;labelFor_themeSetting.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;labelFor_themeSetting.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <metadata name="formTitle.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <data name="formTitle.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Left, Right</value>
-  </data>
-  <data name="formTitle.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="formTitle.Location" type="System.Drawing.Point, System.Drawing">
-    <value>5, 11</value>
-  </data>
-  <data name="formTitle.Size" type="System.Drawing.Size, System.Drawing">
-    <value>20, 19</value>
+  <data name="cancelButton.Text" xml:space="preserve">
+    <value>qq</value>
   </data>
   <data name="formTitle.TabIndex" type="System.Int32, mscorlib">
     <value>10</value>
   </data>
+  <data name="&gt;&gt;labelFor_themeSetting.Type" xml:space="preserve">
+    <value>ReaLTaiizor.Controls.PoisonLabel, ReaLTaiizor, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;labelFor_SelfStartingSetting.ZOrder" xml:space="preserve">
+    <value>12</value>
+  </data>
+  <data name="ContextMenuSetting.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="labelFor_themeSetting.Text" xml:space="preserve">
+    <value>ts</value>
+  </data>
+  <data name="&gt;&gt;themeSetting.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="formTitle.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 11</value>
+  </data>
+  <data name="labelFor_SelfStartingSetting.Size" type="System.Drawing.Size, System.Drawing">
+    <value>131, 25</value>
+  </data>
+  <data name="&gt;&gt;okButton.Type" xml:space="preserve">
+    <value>ReaLTaiizor.Controls.PoisonButton, ReaLTaiizor, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;languageSetting.Name" xml:space="preserve">
+    <value>languageSetting</value>
+  </data>
+  <data name="labelFor_languageSetting.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI Light, 14px</value>
+  </data>
   <data name="formTitle.Text" xml:space="preserve">
     <value>sz</value>
   </data>
-  <data name="formTitle.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleLeft</value>
-  </data>
-  <data name="&gt;&gt;formTitle.Name" xml:space="preserve">
-    <value>formTitle</value>
-  </data>
-  <data name="&gt;&gt;formTitle.Type" xml:space="preserve">
-    <value>ReaLTaiizor.Controls.PoisonLabel, ReaLTaiizor, Culture=neutral, PublicKeyToken=null</value>
+  <data name="applyButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
   </data>
   <data name="&gt;&gt;formTitle.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;formTitle.ZOrder" xml:space="preserve">
-    <value>2</value>
+  <data name="themeSetting.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="themeSetting.Location" type="System.Drawing.Point, System.Drawing">
+    <value>117, 130</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -674,26 +603,97 @@
         /wD/w/8A
 </value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="$this.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>20, 30, 20, 20</value>
+  <data name="&gt;&gt;themeSetting.Type" xml:space="preserve">
+    <value>ReaLTaiizor.Controls.PoisonComboBox, ReaLTaiizor, Culture=neutral, PublicKeyToken=null</value>
   </data>
-  <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
-    <value>CenterParent</value>
+  <data name="labelFor_themeSetting.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 130</value>
   </data>
-  <data name="$this.Text" xml:space="preserve">
-    <value>SZ</value>
+  <data name="labelFor_CloseToTaskBarSetting.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
   </data>
-  <data name="&gt;&gt;poisonStyleManager.Name" xml:space="preserve">
-    <value>poisonStyleManager</value>
+  <data name="&gt;&gt;labelFor_CloseToTaskBarSetting.ZOrder" xml:space="preserve">
+    <value>11</value>
   </data>
-  <data name="&gt;&gt;poisonStyleManager.Type" xml:space="preserve">
-    <value>ReaLTaiizor.Manager.PoisonStyleManager, ReaLTaiizor, Culture=neutral, PublicKeyToken=null</value>
+  <data name="&gt;&gt;CloseToTaskBarSetting.Type" xml:space="preserve">
+    <value>ReaLTaiizor.Controls.PoisonToggle, ReaLTaiizor, Culture=neutral, PublicKeyToken=null</value>
   </data>
-  <data name="&gt;&gt;$this.Name" xml:space="preserve">
-    <value>SettingForm</value>
+  <data name="&gt;&gt;labelFor_CloseToTaskBarSetting.Type" xml:space="preserve">
+    <value>ReaLTaiizor.Controls.PoisonLabel, ReaLTaiizor, Culture=neutral, PublicKeyToken=null</value>
   </data>
-  <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>ReaLTaiizor.Forms.PoisonForm, ReaLTaiizor, Culture=neutral, PublicKeyToken=null</value>
+  <data name="themeSetting.ItemHeight" type="System.Int32, mscorlib">
+    <value>19</value>
   </data>
+  <data name="&gt;&gt;ContextMenuSetting.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;formTitle.Type" xml:space="preserve">
+    <value>ReaLTaiizor.Controls.PoisonLabel, ReaLTaiizor, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="themeSetting.Items2" xml:space="preserve">
+    <value>ss</value>
+  </data>
+  <data name="labelFor_themeSetting.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI Light, 14px</value>
+  </data>
+  <data name="ContextMenuSetting.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="labelFor_CloseToTaskBarSetting.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 99</value>
+  </data>
+  <data name="formTitle.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
+  <metadata name="formTitle.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="CloseToTaskBarSetting.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="labelFor_CloseToTaskBarSetting.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="cancelButton.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="labelFor_SelfStartingSetting.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="themeSetting.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="$this.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="languageSetting.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="ContextMenuSetting.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="okButton.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="labelFor_ContextMenuSetting.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="poisonStyleManager.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <metadata name="labelFor_themeSetting.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="SelfStartingSetting.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="applyButton.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="labelFor_languageSetting.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
 </root>

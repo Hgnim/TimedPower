@@ -30,17 +30,17 @@ namespace TimedPower {
 			ContextMenuSetting = new ReaLTaiizor.Controls.PoisonToggle();
 			SelfStartingSetting = new ReaLTaiizor.Controls.PoisonToggle();
 			CloseToTaskBarSetting = new ReaLTaiizor.Controls.PoisonToggle();
-			labelFor_ContextMenuSetting = new ReaLTaiizor.Controls.SmallLabel();
-			labelFor_SelfStartingSetting = new ReaLTaiizor.Controls.SmallLabel();
-			labelFor_CloseToTaskBarSetting = new ReaLTaiizor.Controls.SmallLabel();
-			labelFor_languageSetting = new ReaLTaiizor.Controls.SmallLabel();
+			labelFor_ContextMenuSetting = new ReaLTaiizor.Controls.PoisonLabel();
+			labelFor_SelfStartingSetting = new ReaLTaiizor.Controls.PoisonLabel();
+			labelFor_CloseToTaskBarSetting = new ReaLTaiizor.Controls.PoisonLabel();
+			labelFor_languageSetting = new ReaLTaiizor.Controls.PoisonLabel();
 			languageSetting = new ReaLTaiizor.Controls.PoisonComboBox();
 			okButton = new ReaLTaiizor.Controls.PoisonButton();
 			cancelButton = new ReaLTaiizor.Controls.PoisonButton();
 			applyButton = new ReaLTaiizor.Controls.PoisonButton();
 			poisonStyleManager = new ReaLTaiizor.Manager.PoisonStyleManager(components);
 			formTitle = new ReaLTaiizor.Controls.PoisonLabel();
-			labelFor_themeSetting = new ReaLTaiizor.Controls.SmallLabel();
+			labelFor_themeSetting = new ReaLTaiizor.Controls.PoisonLabel();
 			themeSetting = new ReaLTaiizor.Controls.PoisonComboBox();
 			((System.ComponentModel.ISupportInitialize)poisonStyleManager).BeginInit();
 			SuspendLayout();
@@ -166,8 +166,8 @@ namespace TimedPower {
 			// 
 			// SettingForm
 			// 
-			AutoScaleMode = AutoScaleMode.None;
 			resources.ApplyResources(this, "$this");
+			AutoScaleMode = AutoScaleMode.None;
 			Controls.Add(themeSetting);
 			Controls.Add(labelFor_themeSetting);
 			Controls.Add(formTitle);
@@ -198,19 +198,19 @@ namespace TimedPower {
 		#endregion
 
 		private ReaLTaiizor.Controls.PoisonToggle ContextMenuSetting;
-		private ReaLTaiizor.Controls.SmallLabel labelFor_ContextMenuSetting;
+		private ReaLTaiizor.Controls.PoisonLabel labelFor_ContextMenuSetting;
 		private ReaLTaiizor.Controls.PoisonToggle SelfStartingSetting;
-		private ReaLTaiizor.Controls.SmallLabel labelFor_SelfStartingSetting;
+		private ReaLTaiizor.Controls.PoisonLabel labelFor_SelfStartingSetting;
 		private ReaLTaiizor.Controls.PoisonToggle CloseToTaskBarSetting;
-		private ReaLTaiizor.Controls.SmallLabel labelFor_CloseToTaskBarSetting;
+		private ReaLTaiizor.Controls.PoisonLabel labelFor_CloseToTaskBarSetting;
 		private ReaLTaiizor.Controls.PoisonButton okButton;
 		private ReaLTaiizor.Controls.PoisonButton cancelButton;
 		private ReaLTaiizor.Controls.PoisonButton applyButton;
-		private ReaLTaiizor.Controls.SmallLabel labelFor_languageSetting;
+		private ReaLTaiizor.Controls.PoisonLabel labelFor_languageSetting;
 		private ReaLTaiizor.Controls.PoisonComboBox languageSetting;
 		private ReaLTaiizor.Manager.PoisonStyleManager poisonStyleManager;
 		private ReaLTaiizor.Controls.PoisonLabel formTitle;
-		private ReaLTaiizor.Controls.SmallLabel labelFor_themeSetting;
+		private ReaLTaiizor.Controls.PoisonLabel labelFor_themeSetting;
 		private ReaLTaiizor.Controls.PoisonComboBox themeSetting;
 	}
 }
