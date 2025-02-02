@@ -66,10 +66,44 @@ VIAddVersionKey "InternalName" "${PRODUCT_NAME_PJ}"
 VIAddVersionKey "OriginalFilename" "${OUTPUT_FILE_NAME}"
 
 Section "主要文件" SEC01
+  ;检查安装目录的末尾是否包含项目名->
+    StrCpy $R0 "$InstDir"  ;将安装目录复制到寄存器
+    StrCpy $R1 ""  ;初始化一个空字符串用于存储目录的最后一部分
+
+    ;获取目录的最后一部分->
+      StrCpy $R2 -1  ;初始化计数器
+      getLastStr_loop:
+          StrCpy $R3 $R0 1 $R2 ;从末尾开始取出字符
+          ;StrCmp $R3 "" getLastStr_loop_end  ;如果为空则结束循环
+          
+          StrCmp $R3 "\" getLastStr_loop_is_backslash ;如果是斜杠，则跳转
+          StrCmp $R3 "/" getLastStr_loop_is_backslash
+          StrCmp $R3 "\\" getLastStr_loop_is_backslash
+          StrCmp $R3 "\/" getLastStr_loop_is_backslash
+
+          StrCpy $R1 "$R3$R1"  ;将字符追加到$out
+          GoTo getLastStr_loop_continue
+        getLastStr_loop_is_backslash:
+          StrCmp $R1 "" getLastStr_loop_continue getLastStr_loop_end ;如果不为空则结束循环
+        getLastStr_loop_continue:
+          IntOp $R2 $R2 - 1  ;计数器减1
+          GoTo getLastStr_loop
+      getLastStr_loop_end:
+    ;<-
+
+    ;检查目录的最后一部分是否与项目名一致->
+      StrCmp $R1 "${PRODUCT_NAME_PJ}" skip_subdir_create
+          ;如果不一致，在用户选择的目录下创建子文件夹
+          StrCpy $InstDir "$InstDir\${PRODUCT_NAME_PJ}"
+          DetailPrint "Create subfolders: $InstDir"
+      skip_subdir_create:
+    ;<-
+  ;<-
+
+  ;设置输出目录
   SetOutPath "$INSTDIR"
   SetOverwrite try
 
-  SetOutPath "$INSTDIR"
   File /r "..\..\TimedPower_bin\*.*"
 
   CreateDirectory "$SMPROGRAMS\${PRODUCT_NAME_EN}"
