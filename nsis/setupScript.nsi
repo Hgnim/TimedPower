@@ -9,7 +9,7 @@
 !define PRODUCT_PUBLISHER "Hgnim"
 !define PRODUCT_WEB_SITE "https://github.com/Hgnim/TimedPower"
 !define PRODUCT_DIR_REGKEY "Software\Microsoft\Windows\CurrentVersion\App Paths\${PRODUCT_MAIN_EXE}"
-!define PRODUCT_UNINST_KEY "Software\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT_NAME}"
+!define PRODUCT_UNINST_KEY "Software\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT_NAME_PJ}"
 !define PRODUCT_UNINST_ROOT_KEY "HKLM"
 
 !define OUTPUT_FILE_NAME "${PRODUCT_NAME_PJ}_v${PRODUCT_VERSION}_Setup.exe"
@@ -26,6 +26,8 @@ SetCompressor lzma
 
 ; Welcome page
 !insertmacro MUI_PAGE_WELCOME
+; License page
+!insertmacro MUI_PAGE_LICENSE "..\LICENSE"
 ; Directory page
 !insertmacro MUI_PAGE_DIRECTORY
 ; Instfiles page
@@ -47,11 +49,10 @@ SetCompressor lzma
 
 Name "${PRODUCT_NAME}"
 OutFile "${OUTPUT_FILE_NAME}"
-InstallDir "$LOCALAPPDATA\Programs\${PRODUCT_NAME_PJ}"
+InstallDir "$PROGRAMFILES\${PRODUCT_NAME_PJ}"
 InstallDirRegKey HKLM "${PRODUCT_DIR_REGKEY}" ""
 ShowInstDetails show
 ShowUnInstDetails show
-RequestExecutionLevel user
 
 VIProductVersion "${PRODUCT_VERSION}"
 ; 文件信息
@@ -74,7 +75,6 @@ Section "主要文件" SEC01
   CreateDirectory "$SMPROGRAMS\${PRODUCT_NAME_EN}"
   CreateShortCut "$SMPROGRAMS\${PRODUCT_NAME_EN}\${PRODUCT_NAME}.lnk" "$INSTDIR\${PRODUCT_MAIN_EXE}"
   CreateShortCut "$DESKTOP\${PRODUCT_NAME}.lnk" "$INSTDIR\${PRODUCT_MAIN_EXE}"
-  File "..\..\TimedPower_bin\定时电源.runtimeconfig.json"
 SectionEnd
 
 Section -Post
