@@ -17,7 +17,7 @@
 SetCompressor lzma
 
 ; MUI 1.67 compatible ------
-!include "MUI.nsh"
+!include "MUI2.nsh"
 
 ; MUI Settings
 !define MUI_ABORTWARNING
@@ -40,10 +40,17 @@ SetCompressor lzma
 !insertmacro MUI_UNPAGE_INSTFILES
 
 ; Language files
+!insertmacro MUI_LANGUAGE "SimpChinese"
 !insertmacro MUI_LANGUAGE "English"
 
+; 初始化函数
+Function .onInit
+    ; 弹出语言选择对话框
+    !insertmacro MUI_LANGDLL_DISPLAY
+FunctionEnd
+
 ; Reserve files
-!insertmacro MUI_RESERVEFILE_INSTALLOPTIONS
+;!insertmacro MUI_RESERVEFILE_INSTALLOPTIONS
 
 ; MUI end ------
 
@@ -109,6 +116,8 @@ Section "主要文件" SEC01
   CreateDirectory "$SMPROGRAMS\${PRODUCT_NAME_EN}"
   CreateShortCut "$SMPROGRAMS\${PRODUCT_NAME_EN}\${PRODUCT_NAME}.lnk" "$INSTDIR\${PRODUCT_MAIN_EXE}"
   CreateShortCut "$DESKTOP\${PRODUCT_NAME}.lnk" "$INSTDIR\${PRODUCT_MAIN_EXE}"
+
+  SetAutoClose false
 SectionEnd
 
 Section -Post
@@ -120,12 +129,14 @@ Section -Post
   WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "DisplayVersion" "${PRODUCT_VERSION}"
   WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "URLInfoAbout" "${PRODUCT_WEB_SITE}"
   WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "Publisher" "${PRODUCT_PUBLISHER}"
+
+  SetAutoClose false
 SectionEnd
 
 
 Function un.onUninstSuccess
-  HideWindow
-  MessageBox MB_ICONINFORMATION|MB_OK "$(^Name) 已成功地从你的计算机移除。"
+  ;HideWindow
+  ;MessageBox MB_ICONINFORMATION|MB_OK "$(^Name) 已成功地从你的计算机移除。"
 FunctionEnd
 
 Function un.onInit
@@ -144,5 +155,10 @@ Section Uninstall
   DeleteRegKey ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}"
   DeleteRegKey HKLM "${PRODUCT_DIR_REGKEY}"
 
-  SetAutoClose true
+  DeleteRegKey HKCU "Software\Classes\Directory\Background\shell\TimedPower"
+  DeleteRegValue HKCU "Software\Microsoft\Windows\CurrentVersion\Run" "TimedPower"
+
+  DetailPrint "$(^Name) 已成功地从你的计算机移除。"
+
+  SetAutoClose false
 SectionEnd
