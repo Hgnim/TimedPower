@@ -12,7 +12,7 @@
 !define PRODUCT_UNINST_KEY "Software\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT_NAME_PJ}"
 !define PRODUCT_UNINST_ROOT_KEY "HKLM"
 
-!define OUTPUT_FILE_NAME "${PRODUCT_NAME_PJ}_v${PRODUCT_VERSION}_Setup.exe"
+!define OUTPUT_FILE_NAME "${PRODUCT_NAME_PJ}_v${PRODUCT_VERSION}_x64_Setup.exe"
 
 SetCompressor lzma
 
@@ -56,7 +56,7 @@ FunctionEnd
 
 Name "${PRODUCT_NAME}"
 OutFile "${OUTPUT_FILE_NAME}"
-InstallDir "$PROGRAMFILES\${PRODUCT_NAME_PJ}"
+InstallDir "$PROGRAMFILES64\${PRODUCT_NAME_PJ}"
 InstallDirRegKey HKLM "${PRODUCT_DIR_REGKEY}" ""
 ShowInstDetails show
 ShowUnInstDetails show
