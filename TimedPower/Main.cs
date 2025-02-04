@@ -1066,7 +1066,10 @@ namespace TimedPower
 			notifyIcon_main_ContextMenu_HiddenButton.Enabled = Visible;
 			nmc__AutoCheckUpdate.Checked = IsAutoCheckUpdate;
 		}
-		private void NotifyIcon_main_ContextMenu_ShowButton_Click(object sender, EventArgs e) => Visible = true;
+		private void NotifyIcon_main_ContextMenu_ShowButton_Click(object sender, EventArgs e) { 
+			Visible = true;
+			WindowState = FormWindowState.Normal;
+		}
 
 		private void NotifyIcon_main_ContextMenu_HiddenButton_Click(object sender, EventArgs e) => Visible = false;
 
@@ -1089,6 +1092,7 @@ namespace TimedPower
 			if (Visible == false)
 				NotifyIcon_main_ContextMenu_ShowButton_Click(null!, null!);
 			else {
+				WindowState = FormWindowState.Normal;
 				TopMost = true;
 				TopMost = false;
 				_ = Focus();

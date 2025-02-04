@@ -5,7 +5,7 @@
 !define PRODUCT_MAIN_EXE "定时电源.exe"
 !define PRODUCT_NAME_EN "Timed Power"
 !define PRODUCT_NAME_PJ "TimedPower"
-!define PRODUCT_VERSION "2.8.7.20250201-pre3"
+!define PRODUCT_VERSION "2.8.7.20250204"
 !define PRODUCT_PUBLISHER "Hgnim"
 !define PRODUCT_WEB_SITE "https://github.com/Hgnim/TimedPower"
 !define PRODUCT_DIR_REGKEY "Software\Microsoft\Windows\CurrentVersion\App Paths\${PRODUCT_MAIN_EXE}"
