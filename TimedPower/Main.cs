@@ -14,6 +14,7 @@ using System.Globalization;
 using Markdig;
 using ReaLTaiizor.Enum.Poison;
 using ReaLTaiizor.Forms;
+using System.Text.RegularExpressions;
 
 namespace TimedPower
 {
@@ -477,7 +478,7 @@ namespace TimedPower
 					UpdateFromGithub.CheckUpdateValue cuv = await ufg.CheckUpdateAsync();
 #pragma warning disable IDE0079
 #pragma warning disable SYSLIB1045
-					UpdateFromGithub.InfoOfDownloadFile iodf = await ufg.GetDownloadFileInfoAsync(fileRegex: new(@".+\.7z"));
+					UpdateFromGithub.InfoOfDownloadFile iodf = await ufg.GetDownloadFileInfoAsync(fileRegex: new(@".+_x64_Setup\.exe", RegexOptions.IgnoreCase));
 #pragma warning restore SYSLIB1045
 #pragma warning restore IDE0079
 					if (cuv.HaveUpdate) {
@@ -504,12 +505,18 @@ namespace TimedPower
 								void errorMsg() => _ = MessageBox.Show(GetLangStr("messagebox.downloadUpdateFailed")
 									, Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
 								try {
-									UpdateFromGithub.InfoOfInstall? ioi = await ufg.DownloadReleaseAsync(iodf);
+									UpdateFromGithub.InfoOfInstall? ioi = await ufg.DownloadReleaseAsync(iodf,unPack:false);
 									if (ioi != null) {
 										if (MessageBox.Show(GetLangStr("messagebox.downloadDone"), Text, MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes) {
-											ufg.InstallFile(ioi, waitTime: 900,enterNested:1);
-											Invoke(new Action(() => NotifyIcon_main_ContextMenu_ExitButton_Click(null!, null!)));
-										}
+												new Process(){
+													StartInfo = new ProcessStartInfo {
+														UseShellExecute = true,
+														CreateNoWindow = true,
+														FileName = $@"{ioi.NewFileDir}\{iodf.Name}",
+													}
+												}.Start();
+												Invoke(new Action(() => NotifyIcon_main_ContextMenu_ExitButton_Click(null!, null!)));
+											}
 									}
 									else {
 										errorMsg();
