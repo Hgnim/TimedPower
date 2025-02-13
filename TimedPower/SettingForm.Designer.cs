@@ -42,6 +42,8 @@ namespace TimedPower {
 			formTitle = new ReaLTaiizor.Controls.PoisonLabel();
 			labelFor_themeSetting = new ReaLTaiizor.Controls.PoisonLabel();
 			themeSetting = new ReaLTaiizor.Controls.PoisonComboBox();
+			TaskFileAssociationSetting = new ReaLTaiizor.Controls.PoisonToggle();
+			labelFor_TaskFileAssociationSetting = new ReaLTaiizor.Controls.PoisonLabel();
 			((System.ComponentModel.ISupportInitialize)poisonStyleManager).BeginInit();
 			SuspendLayout();
 			// 
@@ -164,10 +166,28 @@ namespace TimedPower {
 			themeSetting.UseSelectable = true;
 			themeSetting.SelectedIndexChanged += ChangeSettingEH;
 			// 
+			// TaskFileAssociationSetting
+			// 
+			resources.ApplyResources(TaskFileAssociationSetting, "TaskFileAssociationSetting");
+			TaskFileAssociationSetting.DisplayStatus = false;
+			TaskFileAssociationSetting.Name = "TaskFileAssociationSetting";
+			TaskFileAssociationSetting.UseSelectable = true;
+			TaskFileAssociationSetting.UseVisualStyleBackColor = true;
+			TaskFileAssociationSetting.CheckedChanged += ChangeSettingEH;
+			// 
+			// labelFor_TaskFileAssociationSetting
+			// 
+			resources.ApplyResources(labelFor_TaskFileAssociationSetting, "labelFor_TaskFileAssociationSetting");
+			labelFor_TaskFileAssociationSetting.BackColor = Color.Transparent;
+			labelFor_TaskFileAssociationSetting.ForeColor = Color.FromArgb(142, 142, 142);
+			labelFor_TaskFileAssociationSetting.Name = "labelFor_TaskFileAssociationSetting";
+			// 
 			// SettingForm
 			// 
 			resources.ApplyResources(this, "$this");
 			AutoScaleMode = AutoScaleMode.None;
+			Controls.Add(TaskFileAssociationSetting);
+			Controls.Add(labelFor_TaskFileAssociationSetting);
 			Controls.Add(themeSetting);
 			Controls.Add(labelFor_themeSetting);
 			Controls.Add(formTitle);
@@ -212,5 +232,7 @@ namespace TimedPower {
 		private ReaLTaiizor.Controls.PoisonLabel formTitle;
 		private ReaLTaiizor.Controls.PoisonLabel labelFor_themeSetting;
 		private ReaLTaiizor.Controls.PoisonComboBox themeSetting;
+		private ReaLTaiizor.Controls.PoisonToggle TaskFileAssociationSetting;
+		private ReaLTaiizor.Controls.PoisonLabel labelFor_TaskFileAssociationSetting;
 	}
 }

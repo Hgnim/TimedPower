@@ -152,28 +152,37 @@
     <value>语言</value>
   </data>
   <data name="languageSetting.Location" type="System.Drawing.Point, System.Drawing">
-    <value>145, 161</value>
+    <value>145, 192</value>
   </data>
   <data name="okButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>102, 196</value>
+    <value>102, 224</value>
   </data>
   <data name="okButton.Text" xml:space="preserve">
     <value>确定</value>
   </data>
   <data name="cancelButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>165, 196</value>
+    <value>165, 224</value>
   </data>
   <data name="cancelButton.Text" xml:space="preserve">
     <value>取消</value>
   </data>
   <data name="applyButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>228, 196</value>
+    <value>228, 224</value>
   </data>
   <data name="applyButton.Text" xml:space="preserve">
     <value>应用</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>287, 224</value>
+    <value>287, 252</value>
+  </data>
+  <data name="TaskFileAssociationSetting.Location" type="System.Drawing.Point, System.Drawing">
+    <value>230, 130</value>
+  </data>
+  <data name="labelFor_TaskFileAssociationSetting.Size" type="System.Drawing.Size, System.Drawing">
+    <value>219, 25</value>
+  </data>
+  <data name="labelFor_TaskFileAssociationSetting.Text" xml:space="preserve">
+    <value>任务文件关联(*.tpt)</value>
   </data>
   <data name="themeSetting.Items" xml:space="preserve">
     <value>系统默认</value>
@@ -185,7 +194,7 @@
     <value>深色</value>
   </data>
   <data name="themeSetting.Location" type="System.Drawing.Point, System.Drawing">
-    <value>173, 130</value>
+    <value>173, 161</value>
   </data>
   <data name="themeSetting.Size" type="System.Drawing.Size, System.Drawing">
     <value>107, 25</value>

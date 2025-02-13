@@ -262,4 +262,8 @@ Github: [{3}]({3}) \
   <data name="about.title" xml:space="preserve">
     <value>About</value>
   </data>
+
+  <data name="setting.taskFileAssociation.explain" xml:space="preserve">
+    <value>Timed Power task file</value>
+  </data>
 </root>

@@ -263,4 +263,8 @@ Github: [{3}]({3}) \
   <data name="about.title" xml:space="preserve">
     <value>关于</value>
   </data>
+
+  <data name="setting.taskFileAssociation.explain" xml:space="preserve">
+    <value>定时电源任务文件</value>
+  </data>
 </root>

@@ -1,8 +1,11 @@
 ﻿using Microsoft.Win32;
 using ReaLTaiizor.Forms;
 using System.Globalization;
+using System.IO;
+using System.Reflection;
 using System.Resources;
 using static TimedPower.DataCore;
+using static TimedPower.DataCore.RegPath;
 
 namespace TimedPower {
 	public partial class SettingForm : PoisonForm {
@@ -17,7 +20,7 @@ namespace TimedPower {
 			UpdateTheme();
 		}
 		static ResourceManager langRes = null!;
-		static string GetLangStr(string key, string head = "setting") => langRes.GetString($"{head}.{key}", CultureInfo.CurrentUICulture)!;
+		internal static string GetLangStr(string key, string head = "setting") => langRes.GetString($"{head}.{key}", CultureInfo.CurrentUICulture)!;
 		void UpdateLanguage() {
 			UpdateLanguageResource();
 			LanguageData.UpdateFormLanguage(this);
@@ -52,6 +55,10 @@ namespace TimedPower {
 			if(themeSetting.Tag as string == "change") {
 				themeManager.CurrentTheme = (TimedPower.Theme.Themes)themeSetting.SelectedIndex;
 			}
+			if(TaskFileAssociationSetting.Tag as string == "change") {
+				SettingControl.TaskFileAssociation = TaskFileAssociationSetting.Checked;
+				TaskFileAssociationSetting.Tag = null;
+			}
 			applyButton.Enabled = false;
 		}
 
@@ -76,6 +83,7 @@ namespace TimedPower {
 			CloseToTaskBarSetting.Checked = Main.CloseToTaskBar;
 			languageSetting.SelectedIndex=(int)Main.ProgramLanguage.SettingValue;
 			themeSetting.SelectedIndex = (int)themeManager.CurrentTheme;
+			TaskFileAssociationSetting.Checked=SettingControl.TaskFileAssociation;
 
 			loadLock = false;
 		}
@@ -182,13 +190,77 @@ namespace TimedPower {
 				}
 			}
 		}
-		/*internal static bool TptFileLink {
+		internal static bool TaskFileAssociation {
 			get {
-
+				using (RegistryKey? key = CU.root.OpenSubKey(CU.Classes.rootKeyPath+CU.Classes.TPT.fileExt, false)) {
+					if (key != null) {
+						string? getValue=key.GetValue("") as string;
+						return getValue != null && getValue == CU.Classes.TPT.progId;
+					}
+					else
+						return false;
+				}
 			}
 			set {
+				if (value) {
+					ResourceManager resm = new (FilePath.MainImageFile, Assembly.GetExecutingAssembly());
+					using (Icon? resIcon = (Icon?)resm.GetObject("image.logo.ico.tptFile")) {
+						using (MemoryStream? resStream= new()) {
+							if (resIcon != null) {
+								resIcon.Save(resStream);
+								resStream.Position = 0; // 将流的指针位置重置到开头，这样使用时才能正确读取到数据
 
+								using (FileStream fileStream = new(FilePath.Icon.TptFileIcon, FileMode.Create)) {
+									resStream.CopyTo(fileStream);//导出图标文件
+								}
+							}
+							else
+								throw new Exception("Resource not found");
+						}
+					}
+					
+					CU.root.CreateSubKey(CU.Classes.rootKeyPath + CU.Classes.TPT.fileExt).Close();
+					using (RegistryKey? key=CU.root.OpenSubKey(CU.Classes.rootKeyPath + CU.Classes.TPT.fileExt,true)) {
+						key?.SetValue("", CU.Classes.TPT.progId, RegistryValueKind.String);
+					}
+					CU.root.CreateSubKey(CU.Classes.rootKeyPath + CU.Classes.TPT.progId).Close();
+					using (RegistryKey? key = CU.root.OpenSubKey(CU.Classes.rootKeyPath + CU.Classes.TPT.progId,true)) {
+						if (key != null) {
+							key.SetValue("", SettingForm.GetLangStr("taskFileAssociation.explain"), RegistryValueKind.String);
+
+							key.CreateSubKey("DefaultIcon").Close();
+							using (RegistryKey? key2 = key.OpenSubKey("DefaultIcon",true)) {
+								key2?.SetValue("", FilePath.Icon.TptFileIcon, RegistryValueKind.String);
+							}
+
+							key.CreateSubKey("shell").Close();
+							using (RegistryKey? key2 = key.OpenSubKey("shell",true)) {
+								if (key2 != null) {
+									key2.CreateSubKey("open").Close();
+									using (RegistryKey? key3 = key2.OpenSubKey("open",true)) {
+										if (key3 != null) {
+											key3.SetValue("Icon",FilePath.thisExeFilePath, RegistryValueKind.String);
+
+											key3.CreateSubKey("command").Close();
+											using (RegistryKey? key4 = key3.OpenSubKey("command",true)) {
+												key4?.SetValue("", $"\"{FilePath.thisExeFilePath}\" \"%1\"", RegistryValueKind.String);
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+				else {
+					using (RegistryKey? key = CU.root.OpenSubKey(CU.Classes.rootKeyPath + CU.Classes.TPT.fileExt,true)) {
+						key?.SetValue("", "", RegistryValueKind.String);
+					}
+					using (RegistryKey? key = CU.root.OpenSubKey(CU.Classes.rootKeyPath,true)) {
+						key?.DeleteSubKeyTree(CU.Classes.TPT.progId,false);
+					}
+				}
 			}
-		}*/
+		}
 	}
 }

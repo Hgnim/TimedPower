@@ -158,6 +158,8 @@ Section Uninstall
   DeleteRegKey HKCU "Software\Classes\Directory\Background\shell\TimedPower"
   DeleteRegValue HKCU "Software\Microsoft\Windows\CurrentVersion\Run" "TimedPower"
 
+  DeleteRegKey HKCU "Software\Classes\TimedPower.tpt"
+
   DetailPrint "$(^Name) 已成功地从你的计算机移除。"
 
   SetAutoClose false

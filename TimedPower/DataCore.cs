@@ -58,6 +58,11 @@ namespace TimedPower {
 			internal static readonly string MainDataFile_Obsolete = ConfigDir + "data.xml";
 			internal static readonly string AutoTaskFile = ConfigDir + "autoTask.xml";
 			internal static readonly string StatsDataFile = ConfigDir + "stats.yml";
+			internal readonly struct Icon {
+				internal static string IconDir => ConfigDir + @"icons\";
+				//使用属性比readonly字段更好，能减少运行内存的占用。后续得将其它的readonly字段也改为属性。如果能用常量则优先使用常量。
+				internal static string TptFileIcon => IconDir + "tpt.ico";
+			}
 
 			internal static readonly string TempDir = System.IO.Path.GetTempPath() + @$"{PInfo.name}\";
 			internal static readonly string CommandDir = @$"{TempDir}Command\";
@@ -67,12 +72,20 @@ namespace TimedPower {
 
 			internal const string ResourceDir = "TimedPower.Resources";
 			internal const string MainLanguageFile = ResourceDir + ".langs.language";
+			internal const string MainImageFile = ResourceDir + ".img.Images";
 		}
 		internal readonly struct RegPath {
 			internal readonly struct CU {
 				internal static RegistryKey root = Registry.CurrentUser;
-				internal static string ContextMenuPath = @"Software\Classes\Directory\Background\shell\" + PInfo.name;
-				internal static string SelfStartingKey = @"Software\Microsoft\Windows\CurrentVersion\Run\" + PInfo.name;
+				internal const string ContextMenuPath = @"Software\Classes\Directory\Background\shell\" + PInfo.name;
+				internal const string SelfStartingKey = @"Software\Microsoft\Windows\CurrentVersion\Run\" + PInfo.name;
+				internal readonly struct Classes {
+					internal const string rootKeyPath = @"Software\Classes\";
+					internal readonly struct TPT {
+						internal const string fileExt = ".tpt";
+						internal const string progId = $"{PInfo.name}.tpt";
+					}
+				}
 			}
 		}
 

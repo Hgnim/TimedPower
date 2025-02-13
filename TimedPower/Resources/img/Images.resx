@@ -117,70 +117,14 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="global.hibernate" xml:space="preserve">
-    <value />
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="image.logo.ico.window" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>.\TimedPower_logo_window-icon.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="global.reboot" xml:space="preserve">
-    <value />
+  <data name="image.logo.png.32x" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>.\TimedPower_logo_32x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="global.shutdown" xml:space="preserve">
-    <value />
-  </data>
-  <data name="global.sleep" xml:space="preserve">
-    <value />
-  </data>
-  <data name="global.userlock" xml:space="preserve">
-    <value />
-  </data>
-  <data name="global.useroff" xml:space="preserve">
-    <value />
-  </data>
-  <data name="main.fileWindow.newTaskFile.filter" xml:space="preserve">
-    <value />
-  </data>
-  <data name="main.fileWindow.newTaskFile.title" xml:space="preserve">
-    <value />
-  </data>
-  <data name="main.messagebox.checkUpdateFailed" xml:space="preserve">
-    <value />
-  </data>
-  <data name="main.messagebox.downloadDone" xml:space="preserve">
-    <value />
-  </data>
-  <data name="main.messagebox.downloadUpdateFailed" xml:space="preserve">
-    <value />
-  </data>
-  <data name="main.messagebox.haveUpdate" xml:space="preserve">
-    <value />
-  </data>
-  <data name="main.messagebox.isNewVersion" xml:space="preserve">
-    <value />
-  </data>
-  <data name="main.messagebox.littleTimeWarning" xml:space="preserve">
-    <value />
-  </data>
-  <data name="main.messagebox.newVersionNeedRemoveOldVersionReg" xml:space="preserve">
-    <value />
-  </data>
-  <data name="main.messagebox.onlyUseFuture" xml:space="preserve">
-    <value />
-  </data>
-  <data name="main.messagebox.thanksToUse" xml:space="preserve">
-    <value />
-  </data>
-  <data name="main.messagebox.thanksToUse2" xml:space="preserve">
-    <value />
-  </data>
-  <data name="main.messagebox.timeValueError" xml:space="preserve">
-    <value />
-  </data>
-  <data name="main.messagebox.timeValueTooBig" xml:space="preserve">
-    <value />
-  </data>
-  <data name="main.winToast.timeWarning_autoTask.button" xml:space="preserve">
-    <value />
-  </data>
-  <data name="main.winToast.timeWarning_autoTask.text" xml:space="preserve">
-    <value />
+  <data name="image.logo.ico.tptFile" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>.\TimedPower_taskFile_logo.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

@@ -426,7 +426,7 @@
 			// Main
 			// 
 			AutoScaleMode = AutoScaleMode.None;
-			BackImage = Resources.langs.language.image_logo_png_32x;
+			BackImage = Resources.img.Images.image_logo_png_32x;
 			BackImagePadding = new Padding(3, 5, 0, 0);
 			BackMaxSize = 24;
 			resources.ApplyResources(this, "$this");

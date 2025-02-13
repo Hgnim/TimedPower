@@ -8,4 +8,4 @@
 */.config
 */dll
 
-TimedPower/Resources/langs/*.Designer.cs
+TimedPower/Resources/**/*.Designer.cs

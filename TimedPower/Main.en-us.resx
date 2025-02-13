@@ -298,4 +298,11 @@
   <data name="$this.Text" xml:space="preserve">
     <value>Timed power</value>
   </data>
+
+  <data name="TimeInput.PromptText" xml:space="preserve">
+    <value>Enter the time here</value>
+  </data>
+  <data name="TimeInput.WaterMark" xml:space="preserve">
+    <value>Enter the time here</value>
+  </data>
 </root>

@@ -63,6 +63,7 @@ namespace TimedPower
 			TimeTypeSelect.SelectedIndex = 0;
 
 			if (!Directory.Exists(FilePath.ConfigDir)) _ = Directory.CreateDirectory(FilePath.ConfigDir);
+			if (!Directory.Exists(FilePath.Icon.IconDir)) Directory.CreateDirectory(FilePath.Icon.IconDir);
 			if (!Directory.Exists(FilePath.TempDir)) _ = Directory.CreateDirectory(FilePath.TempDir);
 			if (!Directory.Exists(FilePath.CommandDir)) _ = Directory.CreateDirectory(FilePath.CommandDir);
 			if (File.Exists(FilePath.MainDataFile)) {
@@ -402,6 +403,7 @@ namespace TimedPower
 						default:
 							if (priArgs.Length == 1) {
 								if (File.Exists(priArgs[0])) {
+									//如果只有一个参数则代表是以任务文件的方式启动，如果文件存在则读取文件并执行
 									TPT? tpt = TPTRead(priArgs[0]);
 									if (tpt != null) {
 										tkAction = tpt.Action;

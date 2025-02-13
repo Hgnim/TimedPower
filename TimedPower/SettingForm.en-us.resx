@@ -152,28 +152,37 @@
     <value>Language</value>
   </data>
   <data name="languageSetting.Location" type="System.Drawing.Point, System.Drawing">
-    <value>224, 161</value>
+    <value>224, 192</value>
   </data>
   <data name="okButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>181, 196</value>
+    <value>181, 224</value>
   </data>
   <data name="okButton.Text" xml:space="preserve">
     <value>OK</value>
   </data>
   <data name="cancelButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>244, 196</value>
+    <value>244, 224</value>
   </data>
   <data name="cancelButton.Text" xml:space="preserve">
     <value>Cancel</value>
   </data>
   <data name="applyButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>307, 196</value>
+    <value>307, 224</value>
   </data>
   <data name="applyButton.Text" xml:space="preserve">
     <value>Apply</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>366, 224</value>
+    <value>366, 252</value>
+  </data>
+  <data name="TaskFileAssociationSetting.Location" type="System.Drawing.Point, System.Drawing">
+    <value>309, 130</value>
+  </data>
+  <data name="labelFor_TaskFileAssociationSetting.Size" type="System.Drawing.Size, System.Drawing">
+    <value>298, 25</value>
+  </data>
+  <data name="labelFor_TaskFileAssociationSetting.Text" xml:space="preserve">
+    <value>Task file association (*.tpt)</value>
   </data>
   <data name="themeSetting.Items" xml:space="preserve">
     <value>System Default</value>
@@ -185,7 +194,7 @@
     <value>Dark</value>
   </data>
   <data name="themeSetting.Location" type="System.Drawing.Point, System.Drawing">
-    <value>231, 130</value>
+    <value>231, 161</value>
   </data>
   <data name="themeSetting.Size" type="System.Drawing.Size, System.Drawing">
     <value>128, 25</value>
