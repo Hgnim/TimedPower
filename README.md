@@ -1,5 +1,8 @@
 # 定时电源(TimedPower)
 
+[English](https://github.com/Hgnim/TimedPower/blob/doc/README.en.md) | [简体中文](https://github.com/Hgnim/TimedPower/blob/doc/README.md) | [繁體中文](https://github.com/Hgnim/TimedPower/blob/doc/README.zh-Hant.md) | [русский](https://github.com/Hgnim/TimedPower/blob/doc/README.ru.md) | [Deutsch](https://github.com/Hgnim/TimedPower/blob/doc/README.de.md) | [Español](https://github.com/Hgnim/TimedPower/blob/doc/README.es.md) | [Français](https://github.com/Hgnim/TimedPower/blob/doc/README.fr.md) | [Português](https://github.com/Hgnim/TimedPower/blob/doc/README.pt.md)
+<!--翻译时需要先将语言选择这一行去掉-->
+
 基于Windows平台下的多功能定时电源操作软件。\
 软件目前只支持中英两种语言。
 
