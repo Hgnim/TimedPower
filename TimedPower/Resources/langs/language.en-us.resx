@@ -139,7 +139,7 @@
     <value>TimedPower task file {0}</value>
   </data>
   <data name="main.fileWindow.newTaskFile.title" xml:space="preserve">
-    <value>Create task file</value>
+    <value>The task file is saved as</value>
   </data>
   <data name="main.messagebox.checkUpdateFailed" xml:space="preserve">
     <value>Update check failed!</value>
@@ -265,5 +265,12 @@ Github: [{3}]({3}) \
 
   <data name="setting.taskFileAssociation.explain" xml:space="preserve">
     <value>Timed Power task file</value>
+  </data>
+
+  <data name="taskEditor.saveFailed" xml:space="preserve">
+    <value>File save failed!</value>
+  </data>
+  <data name="taskEditor.loadFailed" xml:space="preserve">
+    <value>File load failed!</value>
   </data>
 </root>

@@ -1,5 +1,6 @@
 ﻿using YamlDotNet.Serialization;
 using YamlDotNet.Serialization.NamingConventions;
+using static TimedPower.DataCore;
 using static TimedPower.DataCore.DataFiles;
 using static TimedPower.DataCore.FilePath;
 
@@ -90,7 +91,7 @@ namespace TimedPower {
 			public required TaskAction Action { get; set; }
 			public required string Time { get; set; }
 			public required TaskTimeType TimeType { get; set; }
-			public required uint FileVersion { get; set; }
+			public uint FileVersion { get; set; } = PInfo.ShortVersionNum;
 			private bool littleTimeWarning = true;
 			public bool LittleTimeWarning {
 				get => littleTimeWarning;

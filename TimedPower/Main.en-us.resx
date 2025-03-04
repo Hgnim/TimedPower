@@ -221,7 +221,7 @@
     <value>Stop</value>
   </data>
   <data name="FormMenuStrip_NewTaskFile.Text" xml:space="preserve">
-    <value>New task file</value>
+    <value>Task file editor</value>
   </data>
   <data name="toolStripMenuItem5.Size" type="System.Drawing.Size, System.Drawing">
     <value>167, 6</value>

@@ -117,161 +117,29 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="global.hibernate" xml:space="preserve">
-    <value>休眠</value>
-  </data>
-  <data name="global.reboot" xml:space="preserve">
-    <value>重启</value>
-  </data>
-  <data name="global.shutdown" xml:space="preserve">
-    <value>关机</value>
-  </data>
-  <data name="global.sleep" xml:space="preserve">
-    <value>睡眠</value>
-  </data>
-  <data name="global.userlock" xml:space="preserve">
-    <value>锁定</value>
-  </data>
-  <data name="global.useroff" xml:space="preserve">
-    <value>注销</value>
-  </data>
-  <data name="main.fileWindow.newTaskFile.filter" xml:space="preserve">
-    <value>定时电源任务文件{0}</value>
-  </data>
-  <data name="main.fileWindow.newTaskFile.title" xml:space="preserve">
-    <value>任务文件另存为</value>
-  </data>
-  <data name="main.messagebox.checkUpdateFailed" xml:space="preserve">
-    <value>更新检查失败！</value>
-  </data>
-  <data name="main.messagebox.downloadDone" xml:space="preserve">
-    <value>最新版本下载完毕，是否执行安装？</value>
-  </data>
-  <data name="main.messagebox.downloadUpdateFailed" xml:space="preserve">
-    <value>下载更新失败！</value>
-  </data>
-  <data name="main.messagebox.haveUpdate" xml:space="preserve">
-<value>
-## 检查到可用的更新，是否进行更新？
-- 当前版本: V{0}
-- 最新版本: {1}
-- 发布时间: {2}
-- 大小: {3}
-### 发行说明:
-#### {4}
 
-{5}
-</value>
+  <data name="ActionSelect.Items" xml:space="preserve">
+    <value>Shutdown</value>
   </data>
-  <data name="main.messagebox.isNewVersion" xml:space="preserve">
-    <value>当前已是最新版本</value>
+  <data name="ActionSelect.Items1" xml:space="preserve">
+    <value>Reboot</value>
   </data>
-  <data name="main.messagebox.littleTimeWarning" xml:space="preserve">
-    <value>计时时间小于等于5秒，确定继续吗？</value>
+  <data name="ActionSelect.Items2" xml:space="preserve">
+    <value>Sleep</value>
   </data>
-  <data name="main.messagebox.newVersionNeedRemoveOldVersionReg" xml:space="preserve">
-    <value>因当前程序版本更新，需要删除旧的注册表数据。如果取消，后续可使用软件开源仓库中提供的脚本进行删除。</value>
+  <data name="ActionSelect.Items3" xml:space="preserve">
+    <value>Hibernate</value>
   </data>
-  <data name="main.messagebox.onlyUseFuture" xml:space="preserve">
-    <value>只能选择未来的时间！</value>
+  <data name="ActionSelect.Items4" xml:space="preserve">
+    <value>UserLock</value>
   </data>
-  <data name="main.messagebox.thanksToUse" xml:space="preserve">
-    <value>该软件已经为你服务{0}次啦。如果觉得好用，还请前往该软件的Github仓库中点亮Star以支持开发者！</value>
+  <data name="ActionSelect.Items5" xml:space="preserve">
+    <value>UserOff</value>
   </data>
-  <data name="main.messagebox.thanksToUse2" xml:space="preserve">
-    <value>感谢使用</value>
+  <data name="timeTypeSelect.Items" xml:space="preserve">
+    <value>After</value>
   </data>
-  <data name="main.messagebox.timeValueError" xml:space="preserve">
-    <value>时间格式错误！</value>
-  </data>
-  <data name="main.messagebox.timeValueTooBig" xml:space="preserve">
-    <value>时间数值过大！</value>
-  </data>
-  <data name="main.winToast.timeWarning.button" xml:space="preserve">
-    <value>终止定时</value>
-  </data>
-  <data name="main.winToast.timeWarning.text" xml:space="preserve">
-    <value>警告，将在{0}后{1}</value>
-  </data>
-  <data name="main.winToast.timeWarning_autoTask.button" xml:space="preserve">
-    <value>禁用当前任务</value>
-  </data>
-  <data name="main.winToast.timeWarning_autoTask.text" xml:space="preserve">
-    <value>警告，名为"{0}"的自动定时任务将在{1}后执行{2}操作</value>
-  </data>
-
-<data name="autoTaskForm.text.newTaskName" xml:space="preserve">
-    <value>新的自动任务</value>
-  </data>
-  <data name="autoTaskForm.messagebox.deleteFailed" xml:space="preserve">
-    <value>删除失败！</value>
-  </data>
-  <data name="autoTaskForm.messagebox.haveNoSave" xml:space="preserve">
-    <value>当前有未保存的内容，是否继续？</value>
-  </data>
-<data name="autoTaskForm.messagebox.defendMessage" xml:space="preserve">
-    <value>警告，自动定时任务保护程序已阻止了一个可能的异常任务操作。
-自动定时任务保护程序将在程序启动的30秒内和更改完自动定时任务设置的10秒内阻止任何电源操作。以避免可能的误操作。
-点击确认以退出程序。</value>
-  </data>
-
-<data name="setting.contextMenu.title" xml:space="preserve">
-    <value>定时电源</value>
-  </data>
-  <data name="setting.contextMenu.af15s" xml:space="preserve">
-    <value>15秒后</value>
-  </data>
-  <data name="setting.contextMenu.af1min" xml:space="preserve">
-    <value>1分钟后</value>
-  </data>
-
-  <data name="global.alias" xml:space="preserve">
-    <value>定时电源</value>
-  </data>
-
-  <data name="main.messagebox.button.upgrade" xml:space="preserve">
-    <value>更新</value>
-  </data>
-  <data name="main.messagebox.button.cancel" xml:space="preserve">
-    <value>取消</value>
-  </data>
-
-  <data name="about.stats" xml:space="preserve">
-  <value>所有统计信息仅会存储在本地
-
-- 启动次数: {0}
-- 执行操作次数: {1}
-
-更多统计信息敬请期待...
-  </value>
-  </data>
-  <data name="about.main" xml:space="preserve">
-<value>
-### 关于
-{1}\
-&lt;span class="version-color"&gt;{2}&lt;/span&gt; \
-Github: [{3}]({3}) \
-**{0}**
-
-### 统计
-{4}
-</value>
-  </data>
-  <data name="about.button.ok" xml:space="preserve">
-    <value>确定</value>
-  </data>
-  <data name="about.title" xml:space="preserve">
-    <value>关于</value>
-  </data>
-
-  <data name="setting.taskFileAssociation.explain" xml:space="preserve">
-    <value>定时电源任务文件</value>
-  </data>
-
-  <data name="taskEditor.saveFailed" xml:space="preserve">
-    <value>文件保存失败！</value>
-  </data>
-  <data name="taskEditor.loadFailed" xml:space="preserve">
-    <value>文件加载失败！</value>
+  <data name="timeTypeSelect.Items1" xml:space="preserve">
+    <value>OnTime</value>
   </data>
 </root>

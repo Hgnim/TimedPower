@@ -1107,24 +1107,13 @@ namespace TimedPower
 			FormMenuStrip_Help_AutoCheckUpdate.Checked = IsAutoCheckUpdate;
 		}
 		private void FormMenuStrip_NewTaskFile_Click(object sender, EventArgs e) {
-			SaveFileDialog saveFileDialog = new() {
-				Title = GetLangStr("fileWindow.newTaskFile.title"),
-				DefaultExt = "tpt",
-				Filter = string.Format(GetLangStr("fileWindow.newTaskFile.filter"), "(*.tpt)|*.tpt"),
-				//InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)
-			};
-			if (saveFileDialog.ShowDialog() == DialogResult.OK) {
-				TPTSave(saveFileDialog.FileName, new() {
-					Action = TimedPowerTask.TaskAction.userlock,
-					Time = "5min",
-					TimeType = TimedPowerTask.TaskTimeType.after,
-					FileVersion = PInfo.ShortVersionNum
-				});
-			}
+			TaskEditor te = new();
+			te.Show();
 		}
 		private void FormMenuStrip_Setting_Click(object sender, EventArgs e) {
-			SettingForm sf= new();
-			sf.ShowDialog();
+			using (SettingForm sf = new()) {
+				sf.ShowDialog();
+			}
 		}
 		AutoTaskForm? autoTaskForm;
 		private void AutoTask_ToolStripMenuItem_Click(object sender, EventArgs e) {
