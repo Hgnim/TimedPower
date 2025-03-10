@@ -20,11 +20,18 @@
 	  <AssemblyName>定时电源</AssemblyName>
 	  
 	  
-	  <AssemblyVersion>2.9.7</AssemblyVersion>
+	  <AssemblyVersion>2.9.7.0310</AssemblyVersion>
 	  <FileVersion>2.9.7.0310</FileVersion>
 	  <VersionPrefix>2.9.7.20250310</VersionPrefix>
 	  <VersionSuffix>pre1</VersionSuffix>
   </PropertyGroup>
+
+	<ItemGroup>
+		<AssemblyAttribute Include="TimedPower.DataCore.PInfo.VersionAttribute">
+			<_Parameter1>"$(VersionPrefix)"</_Parameter1>
+			<_Parameter2>"$(VersionSuffix)"</_Parameter2>
+		</AssemblyAttribute>
+	</ItemGroup>
 
   <ItemGroup>
     <None Remove="BatFiles\RemoveOldVersionRegData.bat" />

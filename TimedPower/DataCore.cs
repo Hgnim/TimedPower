@@ -26,7 +26,20 @@ namespace TimedPower {
 			}
 
 			internal const string name = "TimedPower";
-			public const string version = "2.8.7.20250204";
+
+			[System.AttributeUsage(System.AttributeTargets.Assembly, Inherited = false, AllowMultiple = false)]
+			sealed internal class VersionAttribute : System.Attribute {
+				public string Version => VersionPrefix+ ((VersionSuffix is not null and not "") ? $"-{VersionSuffix}" : "");
+				public string VersionPrefix { get; }
+				public string VersionSuffix { get; }
+				public VersionAttribute(string versionPrefix,string versionSuffix) {
+					this.VersionPrefix = versionPrefix[1..^1];//去掉前后引号
+					this.VersionSuffix = versionSuffix[1..^1];
+				}
+			}
+			public readonly static string version = Assembly.GetExecutingAssembly()
+					.GetCustomAttribute<VersionAttribute>()?.Version ?? "Error";
+
 			public static string ShortVersion {
 				get {
 					string[] v = version.Split('.');
