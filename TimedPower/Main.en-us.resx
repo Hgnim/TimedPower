@@ -121,7 +121,7 @@
     <value>Shutdown</value>
   </data>
   <data name="ActionSelect.Items1" xml:space="preserve">
-    <value>Reboot</value>
+    <value>Restart</value>
   </data>
   <data name="ActionSelect.Items2" xml:space="preserve">
     <value>Sleep</value>
@@ -130,10 +130,10 @@
     <value>Hibernate</value>
   </data>
   <data name="ActionSelect.Items4" xml:space="preserve">
-    <value>UserLock</value>
+    <value>Lock</value>
   </data>
   <data name="ActionSelect.Items5" xml:space="preserve">
-    <value>UserOff</value>
+    <value>LogOff</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="ActionSelect.Location" type="System.Drawing.Point, System.Drawing">

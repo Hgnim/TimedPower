@@ -220,7 +220,7 @@
     <value>Shutdown</value>
   </data>
   <data name="ActionSelect.Items1" xml:space="preserve">
-    <value>Reboot</value>
+    <value>Restart</value>
   </data>
   <data name="ActionSelect.Items2" xml:space="preserve">
     <value>Sleep</value>
@@ -229,10 +229,10 @@
     <value>Hibernate</value>
   </data>
   <data name="ActionSelect.Items4" xml:space="preserve">
-    <value>UserLock</value>
+    <value>Lock</value>
   </data>
   <data name="ActionSelect.Items5" xml:space="preserve">
-    <value>UserOff</value>
+    <value>LogOff</value>
   </data>
   <data name="ActionSelect.Location" type="System.Drawing.Point, System.Drawing">
     <value>266, 56</value>
