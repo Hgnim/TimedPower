@@ -7,5 +7,6 @@
 *.csproj.user
 */.config
 */dll
+nuget/*.nupkg
 
 TimedPower/Resources/**/*.Designer.cs
