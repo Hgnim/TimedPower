@@ -5,7 +5,7 @@
 !define PRODUCT_MAIN_EXE "定时电源.exe"
 !define PRODUCT_NAME_EN "Timed Power"
 !define PRODUCT_NAME_PJ "TimedPower"
-!define PRODUCT_VERSION "2.8.7.20250204"
+!define PRODUCT_VERSION "2.9.7.20260330"
 !define PRODUCT_PUBLISHER "Hgnim"
 !define PRODUCT_WEB_SITE "https://github.com/Hgnim/TimedPower"
 !define PRODUCT_DIR_REGKEY "Software\Microsoft\Windows\CurrentVersion\App Paths\${PRODUCT_MAIN_EXE}"
@@ -66,7 +66,7 @@ VIProductVersion "${PRODUCT_VERSION}"
 VIAddVersionKey "ProductName" "${PRODUCT_NAME_EN}"
 VIAddVersionKey "ProductVersion" "${PRODUCT_VERSION}"
 VIAddVersionKey "CompanyName" "${PRODUCT_PUBLISHER}"
-VIAddVersionKey "LegalCopyright" "Copyright (C) 2024-2025 ${PRODUCT_PUBLISHER}, All rights reserved."
+VIAddVersionKey "LegalCopyright" "Copyright (C) 2024-2026 ${PRODUCT_PUBLISHER}, All rights reserved."
 VIAddVersionKey "FileDescription" "${PRODUCT_NAME}"
 VIAddVersionKey "FileVersion" "${PRODUCT_VERSION}"
 VIAddVersionKey "InternalName" "${PRODUCT_NAME_PJ}"
@@ -111,7 +111,7 @@ Section "主要文件" SEC01
   SetOutPath "$INSTDIR"
   SetOverwrite try
 
-  File /r "..\..\TimedPower_bin\*.*"
+  File /r ".\TimedPower_bin\*.*"
 
   CreateDirectory "$SMPROGRAMS\${PRODUCT_NAME_EN}"
   CreateShortCut "$SMPROGRAMS\${PRODUCT_NAME_EN}\${PRODUCT_NAME}.lnk" "$INSTDIR\${PRODUCT_MAIN_EXE}"

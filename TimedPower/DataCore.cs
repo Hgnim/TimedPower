@@ -54,7 +54,8 @@ namespace TimedPower {
 			}
 			internal const string githubUrl = "https://github.com/Hgnim/TimedPower";
 			internal const string githubWiki = "https://github.com/Hgnim/TimedPower/wiki";
-			internal const string copyright = "Copyright (C) 2024-2025 Hgnim, All rights reserved.";
+			public readonly static string copyright = Assembly.GetExecutingAssembly().
+				GetCustomAttribute<AssemblyCopyrightAttribute>()?.Copyright ?? "Error";
 		}
 
 		internal struct DataFiles {

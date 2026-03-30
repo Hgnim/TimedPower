@@ -9,4 +9,7 @@
 */dll
 nuget/*.nupkg
 
+nsis/TimedPower_bin
+nsis/TimedPower_*_Setup.exe
+
 TimedPower/Resources/**/*.Designer.cs
