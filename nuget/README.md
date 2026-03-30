@@ -3,9 +3,10 @@
 ## ReaLTaiizor
 
 `TimedPower/TimedPower.csproj`
+
 ```csproj
   <ItemGroup>
-    <PackageReference Include="ReaLTaiizor" Version="3.8.1.6"/>
+    <PackageReference Include="ReaLTaiizor" Version="xxx"/>
   </ItemGroup>
 ```
 

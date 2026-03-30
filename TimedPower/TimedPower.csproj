@@ -47,7 +47,7 @@
     <PackageReference Include="Microsoft.Toolkit.Uwp.Notifications" Version="7.1.3" />
     <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.2478.35" />
     <PackageReference Include="YamlDotNet" Version="16.2.1" />
-    <PackageReference Include="ReaLTaiizor" Version="3.8.1.6"/>
+    <PackageReference Include="ReaLTaiizor" Version="3.8.1.6-73132d251dba7e0a5c0a8aafe425f35c8724ba46"/>
   </ItemGroup>
 
 
