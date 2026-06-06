@@ -66,8 +66,11 @@ namespace TimedPower {
 
 		internal readonly struct FilePath {
 			internal static readonly string thisExeFilePath = System.Windows.Forms.Application.ExecutablePath;
-
+#if DEBUG
+			internal static readonly string ConfigDir = $"{Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData)}\\{PInfo.name}_debug\\";
+#else
 			internal static readonly string ConfigDir = $"{Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData)}\\{PInfo.name}\\";//踩坑提醒，之前该字符串使用@$前缀，而其中的\会将{转义，报出非常莫名其妙毫不相干的错误，在此作为提醒。
+#endif
 			internal static readonly string MainDataFile = ConfigDir + "data.yml";
 			internal static readonly string MainDataFile_Obsolete = ConfigDir + "data.xml";
 			internal static readonly string AutoTaskFile = ConfigDir + "autoTask.xml";

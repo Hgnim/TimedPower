@@ -814,10 +814,23 @@ namespace TimedPower
 						break;
 				}
 #endif
-				Invoke(new Action(() => {
-					trueExitProgram = true;
-					Close();
-				}));
+				switch (actionSelect) {//仅在关闭系统或用户时将程序关闭
+					case ActionSelectItems.shutdown:
+					case ActionSelectItems.reboot:
+					case ActionSelectItems.useroff:
+						Invoke(new Action(() => {
+							trueExitProgram = true;
+							Close();
+						}));
+						break;
+					default:
+						Task.Run(new Action(() => 
+								Invoke(new Action(() => 
+									StopButton_Click(null!, null!)
+								))
+							));
+						break;
+				}
 				/*this.Invoke(new Action(() =>{ if (fuse) StopButton_Click(null!, null!);}));*/
 			}
 		}
@@ -898,7 +911,7 @@ namespace TimedPower
 				{
 					DataSave();//操作前保存所有
 #if DEBUG
-					MessageBox.Show("调试模式：已假装执行" + actionSelect + "操作", Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
+					MessageBox.Show("调试模式：（自动任务）已假装执行" + actionSelect + "操作", Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
 #else
 					switch (actionSelect) {
 						case AutoTaskData.ATDataHead_action.shutdown:
@@ -921,13 +934,19 @@ namespace TimedPower
 							break;
 					}
 #endif
+					switch (actionSelect) {//仅在关闭系统或用户时将程序关闭
+						case AutoTaskData.ATDataHead_action.shutdown:
+						case ATDataHead_action.reboot:
+						case ATDataHead_action.useroff:
+							Invoke(new Action(() => {
+								trueExitProgram = true;
+								Close();
+							}));
+							break;
+					}
 				}
 				else
 					DefendAutoTask.DefendMessage_Msgbox();
-				Invoke(new Action(() => {
-					trueExitProgram = true;
-					Close();
-				}));
 				/*this.Invoke(new Action(() =>{ if (fuse_autoTask) StopButton_Click(null!, null!);}));*/
 			}
 			AutoTaskData.CountdownStateControl.updateWaitLock = false;
