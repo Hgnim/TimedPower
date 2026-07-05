@@ -36,7 +36,7 @@
 
 ## 用户须知
 
-- 使用该软件前必需[安装.net 8.0 runtime框架](https://dotnet.microsoft.com/zh-cn/download/dotnet/thank-you/runtime-8.0.10-windows-x64-installer)。
+- 使用该软件前必需 ~~[安装.net 8.0 runtime框架](https://dotnet.microsoft.com/zh-cn/download/dotnet/thank-you/runtime-8.0.10-windows-x64-installer)~~ [安装.net 8.0 desktop runtime框架](https://dotnet.microsoft.com/zh-cn/download/dotnet/thank-you/runtime-desktop-8.0.28-windows-x64-installer)。
 - Windows版本要求10.0.17763.0及以上。现在目前只支持windows x64平台。
 - 用户在使用定时休眠功能时，需要确保系统已启用且支持休眠功能，否则将会没有任何效果。
 
