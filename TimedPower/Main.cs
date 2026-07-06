@@ -791,7 +791,7 @@ namespace TimedPower
 			if (fuse) {
 				DataSave();//操作前保存所有
 #if DEBUG
-				MessageBox.Show("调试模式：已假装执行" + actionSelect + "操作", Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
+				MessageBox.Show("调试模式：已模拟执行" + actionSelect + "操作", Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
 #else
 				switch (actionSelect) {
 					case ActionSelectItems.shutdown:
@@ -841,8 +841,6 @@ namespace TimedPower
 		/// </summary>
 		bool fuse_autoTask = false;
 		void AutoTaskCountdownThread() {
-			countdown_autoTask = new();
-
 			void LastWarning(AutoTaskData.ATDataHead_action action, string time, string taskName) {
 				string actionStr = GetLangStr(action.ToString(), "global");
 				//侦听Windows通知点击事件
@@ -878,40 +876,49 @@ namespace TimedPower
                 while (!threadLock) { }
             }*/
 			AutoTaskData.ATDataHead_action actionSelect;
-			actionSelect = AutoTaskData.CountdownStateControl.GetAction();
-			{
-				long endTimeStamp = 0;
-				void TimeReload()//将时间差刷新至countdown内
-=> countdown_autoTask.SetTimeValue(seconds: ((long)endTimeStamp - (long)GetTimeStamp(DateTime.Now)));//try { this.Invoke(new Action(() => { countdownLabel.Text = countdown_autoTask.GetFormatdTime(); })); } catch { }//将格式化的数据刷新至UI
 
-				endTimeStamp = GetTimeStamp(AutoTaskData.CountdownStateControl.GetDateTime());
-
-				TimeReload();
-				while (countdown_autoTask.AllSeconds > 0 && fuse_autoTask) {
-					if (countdown_autoTask.AllSeconds <= 3 * 60) {
-						switch (countdown_autoTask.AllSeconds) {
-							case 3 * 60:
-							case 1 * 60:
-							case 30:
-							case 15:
-							case 5:
-								LastWarning(actionSelect,
-							countdown_autoTask.GetVisualTime(//判断当前语言来进行时间格式的选择
-							CultureInfo.CurrentUICulture.ToString().Equals("zh-cn", StringComparison.CurrentCultureIgnoreCase) ? "cn" : "en"),
-							AutoTaskData.CountdownStateControl.GetTaskName());
-								break;
-						}
-					}
-					Sleep(950);
-					TimeReload();
-				}
-			}
-			if (fuse_autoTask) {
-				if (!DefendAutoTask.DefendState())//自动任务防御程序，防止不可预测的意外
+			while (fuse_autoTask) {
+			whileRestart:;
+				countdown_autoTask = new();
+				actionSelect = AutoTaskData.CountdownStateControl.GetAction();
 				{
-					DataSave();//操作前保存所有
+					long endTimeStamp = 0;
+					void TimeReload()//将时间差刷新至countdown内
+	=> countdown_autoTask.SetTimeValue(seconds: ((long)endTimeStamp - (long)GetTimeStamp(DateTime.Now)));//try { this.Invoke(new Action(() => { countdownLabel.Text = countdown_autoTask.GetFormatdTime(); })); } catch { }//将格式化的数据刷新至UI
+
+					endTimeStamp = GetTimeStamp(AutoTaskData.CountdownStateControl.GetDateTime());
+
+					TimeReload();
+					while (countdown_autoTask.AllSeconds > 0 && fuse_autoTask) {
+						if (Main.trueExitProgram) goto whileBreak;//如果主线程退出，则结束该线程
+						if (AutoTaskData.CountdownStateControl.haveNewData) {//如果中途有新数据，则重启计时器
+							AutoTaskData.CountdownStateControl.haveNewData = false;
+							goto whileRestart;
+						}
+						if (countdown_autoTask.AllSeconds <= 3 * 60) {
+							switch (countdown_autoTask.AllSeconds) {
+								case 3 * 60:
+								case 1 * 60:
+								case 30:
+								case 15:
+								case 5:
+									LastWarning(actionSelect,
+								countdown_autoTask.GetVisualTime(//判断当前语言来进行时间格式的选择
+								CultureInfo.CurrentUICulture.ToString().Equals("zh-cn", StringComparison.CurrentCultureIgnoreCase) ? "cn" : "en"),
+								AutoTaskData.CountdownStateControl.GetTaskName());
+									break;
+							}
+						}
+						Sleep(950);
+						TimeReload();
+					}
+				}
+				if (fuse_autoTask) {
+					if (!DefendAutoTask.DefendState())//自动任务防御程序，防止不可预测的意外
+					{
+						DataSave();//操作前保存所有
 #if DEBUG
-					MessageBox.Show("调试模式：（自动任务）已假装执行" + actionSelect + "操作", Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
+						MessageBox.Show("调试模式：（自动任务）已模拟执行" + actionSelect + "操作", Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
 #else
 					switch (actionSelect) {
 						case AutoTaskData.ATDataHead_action.shutdown:
@@ -934,30 +941,33 @@ namespace TimedPower
 							break;
 					}
 #endif
-					switch (actionSelect) {//仅在关闭系统或用户时将程序关闭
-						case AutoTaskData.ATDataHead_action.shutdown:
-						case ATDataHead_action.reboot:
-						case ATDataHead_action.useroff:
-							Invoke(new Action(() => {
-								trueExitProgram = true;
-								Close();
-							}));
-							break;
+						switch (actionSelect) {//仅在关闭系统或用户时将程序关闭
+							case AutoTaskData.ATDataHead_action.shutdown:
+							case ATDataHead_action.reboot:
+							case ATDataHead_action.useroff:
+								Invoke(new Action(() => {
+									trueExitProgram = true;
+									Close();
+								}));
+								goto whileBreak;
+						}
 					}
+					else
+						DefendAutoTask.DefendMessage_Msgbox();
+					/*this.Invoke(new Action(() =>{ if (fuse_autoTask) StopButton_Click(null!, null!);}));*/
 				}
-				else
-					DefendAutoTask.DefendMessage_Msgbox();
-				/*this.Invoke(new Action(() =>{ if (fuse_autoTask) StopButton_Click(null!, null!);}));*/
+				AutoTaskData.CountdownStateControl.UpdateData();//更新数据
+				AutoTaskData.CountdownStateControl.haveNewData = false;
 			}
-			AutoTaskData.CountdownStateControl.updateWaitLock = false;
+		whileBreak:;
 		}
 		void AutoTask_CountdownState_IsEnable_Change(bool isEnable) {
 			if (isEnable) {
-				AutoTaskData.CountdownStateControl.updateWaitLock = true;//锁定数据刷新函数，避免在计时器运行过程中刷新数据导致异常
-
 				fuse_autoTask = true;
-				countdownThread_autoTask = new(AutoTaskCountdownThread);
-				countdownThread_autoTask.Start();
+				if (countdownThread_autoTask == null || !countdownThread_autoTask.IsAlive) {
+					countdownThread_autoTask = new(AutoTaskCountdownThread);
+					countdownThread_autoTask.Start();
+				}
 			}
 			else
 				fuse_autoTask = false;

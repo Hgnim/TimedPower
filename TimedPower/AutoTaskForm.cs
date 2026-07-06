@@ -375,13 +375,17 @@ end:;
 	internal static class AutoTaskData
     {
         private static readonly List<string[]> atData = [];
-        /// <summary>
-        /// 根据数据头获取AutoTaskData.atData变量的指定数据
-        /// </summary>
-        /// <param name="index">数据组序号</param>
-        /// <param name="head">数据头</param>
-        /// <returns>返回获取的数据。<br/>如果发生错误，则返回null</returns>
-        internal static string? GetData(int index, ATDataHead head)
+		/// <summary>
+		/// 程序启动的时间，用于计算软件启动后的计时
+		/// </summary>
+		private static readonly DateTime startTime = DateTime.Now;
+		/// <summary>
+		/// 根据数据头获取AutoTaskData.atData变量的指定数据
+		/// </summary>
+		/// <param name="index">数据组序号</param>
+		/// <param name="head">数据头</param>
+		/// <returns>返回获取的数据。<br/>如果发生错误，则返回null</returns>
+		internal static string? GetData(int index, ATDataHead head)
         {
             try
             {
@@ -549,51 +553,44 @@ end:;
             /// </summary>
             static string[] atdat=[];
             /// <summary>
-            /// 等待线程结束后刷新数据
+            /// 当前数据是否已经更新，用于更新正在计时的计时器，避免更改设置后不生效
             /// </summary>
-            public static bool updateWaitLock = false;
+            public static bool haveNewData = false;
             /// <summary>
             /// 刷新所有数据并执行函数
             /// </summary>
             internal static void UpdateData()
             {
-                Thread t = new(() =>
-                {
-                    IsEnable = false;
-                    while (updateWaitLock && !Main.trueExitProgram/*加一个判断防止主线程退出后该线程锁死在这里*/) { Thread.Sleep(1); }//等待计时线程关闭
-					if (Main.trueExitProgram) goto exitThread;//如果主线程退出，则结束该线程
-                    atdat = [];
-                    atdat_index = -1;
-                    for(int i=0;i<AutoTaskData.atData.Count;i++)//排序，引用最小的任务时间值
-                    {
-                        if (GetData(i, ATDataHead.enable)!.ToString() == ATDataHead_enable.t.ToString())//判断任务是否为启动状态
-                        {
-                            DateTime targetDt = AutoTaskData.ATtimeDataToDateTime(GetData(i, ATDataHead.timeData)!);//扫描的目标时间值
-                            if (DateTime.Compare(targetDt, DateTime.Now) > 0)//判断任务的目标时间是否大于当前时间
-                            {                                
-                                if (atdat.Length > 0)//判断当前是否已引入了值到本地
-                                {
-                                    DateTime myDt = AutoTaskData.ATtimeDataToDateTime(GetData(atdat, ATDataHead.timeData)!);//当前引入的时间值
-                                    if (DateTime.Compare(targetDt,myDt) < 0)//判断如果目标值比本地值小，则引用更小的值
-                                    {
-                                        atdat = atData[i];
-                                        atdat_index = i;
-                                    }
-                                }
-                                else
-                                {
-                                    atdat = atData[i];//如果值为空，则先直接引用
-                                    atdat_index= i;
-                                }
-                            }
-                        }
-                    }
-                    if (atdat_index != -1)
-                        IsEnable = true;
-
-exitThread:;
-                }); t.Start();
-            }
+				IsEnable = false;
+				atdat = [];
+				atdat_index = -1;
+				for (int i = 0; i < AutoTaskData.atData.Count; i++)//排序，引用最小的任务时间值
+				{
+					if (GetData(i, ATDataHead.enable)!.ToString() == ATDataHead_enable.t.ToString())//判断任务是否为启动状态
+					{
+						DateTime targetDt = AutoTaskData.ATtimeDataToDateTime(GetData(i, ATDataHead.timeData)!);//扫描的目标时间值
+						if (DateTime.Compare(targetDt, DateTime.Now) > 0)//判断任务的目标时间是否大于当前时间
+						{
+							if (atdat.Length > 0)//判断当前是否已引入了值到本地
+							{
+								DateTime myDt = AutoTaskData.ATtimeDataToDateTime(GetData(atdat, ATDataHead.timeData)!);//当前引入的时间值
+								if (DateTime.Compare(targetDt, myDt) < 0)//判断如果目标值比本地值小，则引用更小的值
+								{
+									atdat = atData[i];
+									atdat_index = i;
+								}
+							}
+							else {
+								atdat = atData[i];//如果值为空，则先直接引用
+								atdat_index = i;
+							}
+						}
+					}
+				}
+				if (atdat_index != -1)
+					IsEnable = true;
+				haveNewData = true;
+			}
 			/// <summary>
 			/// 获取本地单个数据组中的时间数据
 			/// </summary>
@@ -635,7 +632,7 @@ exitThread:;
             }
             else if (cache[0]=="-1" && cache[1]=="-1" && cache[2] == "-1")
             {
-                dt = DateTime.Now;
+                dt = startTime;
                 dt = dt.AddHours(int.Parse(cache[3]));
 				dt = dt.AddMinutes(int.Parse(cache[4]));
 				dt = dt.AddSeconds(int.Parse(cache[5]));
