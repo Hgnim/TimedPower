@@ -35,8 +35,14 @@ jobs:
     - name: Publish build with 'FolderProfile'
       run: dotnet publish -p:PublishProfile=FolderProfile
 
+    - name: Get version text #根据version.txt文件获取版本号
+      shell: pwsh
+      run: |
+        $content = Get-Content -Path "${{ github.workspace }}\version.txt" -Raw
+        echo "VERSION=$content" >> $env:GITHUB_ENV
+
     - name: Upload Artifact
       uses: actions/upload-artifact@v4
       with:
-        name: app-${{ matrix.profile }}
+        name: Release-V${{ env.VERSION }}
         path: ${{ github.workspace }}\TimedPower\bin\Release\net8.0-windows10.*\publish\**
