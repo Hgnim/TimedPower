@@ -2,7 +2,7 @@
 .vscode
 */bin
 */obj
-*/Properties
+*/Properties/**/*.user
 */appsettings*.json
 *.csproj.user
 */.config
