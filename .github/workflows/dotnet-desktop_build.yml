@@ -44,6 +44,12 @@ jobs:
         name: Release-V${{ env.VERSION }}
         path: ${{ github.workspace }}\TimedPower\bin\Release\**
 
+    - name: Upload win-x64 files
+      uses: actions/upload-artifact@v4
+      with:
+        name: TimedPower_V${{ env.VERSION }}_win-x64
+        path: ${{ github.workspace }}\TimedPower\bin\Release\net8.0-windows10.0.17763.0\publish\win-x64\*
+
     - name: Install NSIS
       run: choco install nsis -y
 
@@ -55,7 +61,9 @@ jobs:
 
     - name: Run NSIS
       shell: pwsh
-      run: cd ${{ github.workspace }}\nsis && '& "C:\Program Files (x86)\NSIS\makensis.exe" ".\setupScript.nsi"'
+      run: |
+        cd ${{ github.workspace }}\nsis
+        & "C:\Program Files (x86)\NSIS\makensis.exe" ".\setupScript.nsi"
     
     - name: Upload Installer
       uses: actions/upload-artifact@v4
