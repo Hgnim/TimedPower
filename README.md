@@ -1,3 +1,8 @@
+> [!IMPORTANT]
+> **只读分支**\
+> 该分支已压缩合并至main分支 4fa7719c1e580dd766112f7e8e9c9c2ecf8332c9 \
+> 该分支将不再接受与进行合并，保留其以查看压缩合并中的历史提交
+
 # 定时电源(TimedPower)
 
 [English](https://github.com/Hgnim/TimedPower/blob/doc/README.en.md) | [简体中文](https://github.com/Hgnim/TimedPower/blob/doc/README.md) | [繁體中文](https://github.com/Hgnim/TimedPower/blob/doc/README.zh-Hant.md) | [русский](https://github.com/Hgnim/TimedPower/blob/doc/README.ru.md) | [Deutsch](https://github.com/Hgnim/TimedPower/blob/doc/README.de.md) | [Español](https://github.com/Hgnim/TimedPower/blob/doc/README.es.md) | [Français](https://github.com/Hgnim/TimedPower/blob/doc/README.fr.md) | [Português](https://github.com/Hgnim/TimedPower/blob/doc/README.pt.md)
