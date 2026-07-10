@@ -55,9 +55,7 @@ jobs:
 
     - name: Run NSIS
       shell: pwsh
-      run: |
-        cd ${{ github.workspace }}\nsis
-        '& "C:\Program Files (x86)\NSIS\makensis.exe" ".\setupScript.nsi"'
+      run: cd ${{ github.workspace }}\nsis && '& "C:\Program Files (x86)\NSIS\makensis.exe" ".\setupScript.nsi"'
     
     - name: Upload Installer
       uses: actions/upload-artifact@v4
