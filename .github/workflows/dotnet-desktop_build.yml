@@ -1,0 +1,76 @@
+name: Build Project
+
+on:
+  workflow_dispatch:
+
+jobs:
+
+  workflows:
+
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+        lfs: true #启用lfs支持
+
+    - name: Pull LFS files #拉取lfs中的实际文件
+      run: git lfs pull
+
+    # Install the .NET Core workload
+    - name: Install .NET Core 8.0
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 8.0.x
+
+    - name: Publish build with 'FolderProfile'
+      run: dotnet publish -p:PublishProfile=FolderProfile
+
+    - name: Get version text #根据version.txt文件获取版本号
+      shell: pwsh
+      run: |
+        $content = Get-Content -Path "${{ github.workspace }}\version.txt" -Raw
+        echo "VERSION=$content" >> $env:GITHUB_ENV
+
+    - name: Upload Release files
+      uses: actions/upload-artifact@v4
+      with:
+        name: Release-V${{ env.VERSION }}
+        path: ${{ github.workspace }}\TimedPower\bin\Release\**
+    
+    - name: Compress win-x64 with 7z
+      shell: pwsh
+      run: |
+        New-Item -ItemType Directory -Path "${{ github.workspace }}\tmp" -Force
+        New-Item -ItemType Directory -Path "${{ github.workspace }}\tmp\TimedPower_V${{ env.VERSION }}_win-x64" -Force
+        Copy-Item "${{ github.workspace }}\TimedPower\bin\Release\net8.0-windows10.0.17763.0\publish\win-x64\*" "${{ github.workspace }}\tmp\TimedPower_V${{ env.VERSION }}_win-x64\" -Recurse -Force
+        & "C:\Program Files\7-Zip\7z.exe" a -t7z -mx=9 "${{ github.workspace }}\tmp\TimedPower_V${{ env.VERSION }}_win-x64.7z" "${{ github.workspace }}\tmp\TimedPower_V${{ env.VERSION }}_win-x64"
+
+    - name: Upload win-x64 7z file
+      uses: actions/upload-artifact@v4
+      with:
+        name: win-x64-7z-V${{ env.VERSION }}
+        path: ${{ github.workspace }}\tmp\TimedPower_V${{ env.VERSION }}_win-x64.7z
+
+    - name: Install NSIS
+      run: choco install nsis -y
+
+    - name: Copy files to 'TimedPower_bin'
+      shell: pwsh
+      run: |
+        New-Item -ItemType Directory -Path "${{ github.workspace }}\nsis\TimedPower_bin" -Force
+        Copy-Item "${{ github.workspace }}\TimedPower\bin\Release\net8.0-windows10.0.17763.0\publish\win-x64\*" "${{ github.workspace }}\nsis\TimedPower_bin\" -Recurse -Force
+
+    - name: Run NSIS
+      shell: pwsh
+      run: |
+        cd ${{ github.workspace }}\nsis
+        & "C:\Program Files (x86)\NSIS\makensis.exe" ".\setupScript.nsi"
+    
+    - name: Upload Installer
+      uses: actions/upload-artifact@v4
+      with:
+        name: Setup-V${{ env.VERSION }}
+        path: ${{ github.workspace }}\nsis\*.exe
