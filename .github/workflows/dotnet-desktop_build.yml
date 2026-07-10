@@ -43,12 +43,20 @@ jobs:
       with:
         name: Release-V${{ env.VERSION }}
         path: ${{ github.workspace }}\TimedPower\bin\Release\**
+    
+    - name: Compress win-x64 with 7z
+      shell: pwsh
+      run: |
+        New-Item -ItemType Directory -Path "${{ github.workspace }}\tmp" -Force
+        New-Item -ItemType Directory -Path "${{ github.workspace }}\tmp\TimedPower_V${{ env.VERSION }}_win-x64" -Force
+        Copy-Item "${{ github.workspace }}\TimedPower\bin\Release\net8.0-windows10.0.17763.0\publish\win-x64\*" "${{ github.workspace }}\tmp\TimedPower_V${{ env.VERSION }}_win-x64\" -Recurse -Force
+        & "C:\Program Files\7-Zip\7z.exe" a -t7z -mx=9 "${{ github.workspace }}\tmp\TimedPower_V${{ env.VERSION }}_win-x64.7z" "${{ github.workspace }}\tmp\TimedPower_V${{ env.VERSION }}_win-x64"
 
-    - name: Upload win-x64 files
+    - name: Upload win-x64 7z file
       uses: actions/upload-artifact@v4
       with:
-        name: TimedPower_V${{ env.VERSION }}_win-x64
-        path: ${{ github.workspace }}\TimedPower\bin\Release\net8.0-windows10.0.17763.0\publish\win-x64\*
+        name: win-x64-7z-V${{ env.VERSION }}
+        path: ${{ github.workspace }}\tmp\TimedPower_V${{ env.VERSION }}_win-x64.7z
 
     - name: Install NSIS
       run: choco install nsis -y
