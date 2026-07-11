@@ -21,10 +21,10 @@
 	  <AssemblyName>定时电源</AssemblyName>
 	  
 	  
-	  <AssemblyVersion>2.9.7.0330</AssemblyVersion>
-	  <FileVersion>2.9.7.0330</FileVersion>
-	  <VersionPrefix>2.9.7.20260330</VersionPrefix>
-	  <VersionSuffix></VersionSuffix>
+	  <AssemblyVersion>2.9.8.0711</AssemblyVersion>
+	  <FileVersion>2.9.8.0711</FileVersion>
+	  <VersionPrefix>2.9.8.20260711</VersionPrefix>
+	  <VersionSuffix>pre</VersionSuffix>
   </PropertyGroup>
 
 	<ItemGroup>
@@ -77,7 +77,7 @@
   </ItemGroup>
 
 	<!--在Release编译时清理无用的输出文件-->
-	<Target Name="RemoveOtherFile" AfterTargets="AfterBuild" Condition="'$(Configuration)'=='Release'">
+	<!--<Target Name="RemoveOtherFile" AfterTargets="AfterBuild" Condition="'$(Configuration)'=='Release'">
 		<Message Text="当前为Release模式，开始清理无用的输出文件..." Importance="high" />
 
 		<Delete Files="$(OutputPath)$(TargetName).pdb"/>
@@ -92,6 +92,6 @@
 		<Message Text="已删除 $(PublishDir)$(TargetName).pdb" Importance="high" />
 
 		<Message Text="无用文件清理完成" Importance="high" />
-	</Target>
+	</Target>-->
 	
 </Project>
